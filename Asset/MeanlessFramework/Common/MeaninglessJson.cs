@@ -8,6 +8,10 @@ namespace Meaningless
     public class MeaninglessJson
     {
         /// <summary>
+        /// Resource文件夹路径，适合Unity Editor使用
+        /// </summary>
+        public static string Path_Res = Application.dataPath + "/Resources/";
+        /// <summary>
         /// 从文件加载Json反序列化
         /// </summary>
         /// <typeparam name="T">序列化后的类</typeparam>
@@ -43,7 +47,7 @@ namespace Meaningless
         /// <param name="JsonFilePath">文件路径</param>
         /// <param name="json">json内容</param>
         /// <returns></returns>
-        public bool SavaJsonAsFile(string JsonFilePath,string json)
+        public static bool SavaJsonAsFile(string JsonFilePath,string json)
         {
             FileStream jsonFileStream = new FileStream(JsonFilePath, FileMode.Create);
             StreamWriter jsonFileStreamW = new StreamWriter(jsonFileStream, System.Text.Encoding.UTF8);
@@ -66,7 +70,7 @@ namespace Meaningless
         /// </summary>
         /// <param name="obj">对象</param>
         /// <returns></returns>
-        public string ToJson(object obj)
+        public static string ToJson(object obj)
         {
             return JsonUtility.ToJson(obj);
         }
@@ -75,7 +79,7 @@ namespace Meaningless
         /// </summary>
         /// <param name="json">Json数据</param>
         /// <param name="ObjectToOverwrite">要被覆写数据的物件</param>
-        public void FromJsonOverWrite(string json,object ObjectToOverwrite)
+        public static void FromJsonOverWrite(string json,object ObjectToOverwrite)
         {
             JsonUtility.FromJsonOverwrite(json, ObjectToOverwrite);
         }
@@ -85,7 +89,7 @@ namespace Meaningless
         /// <typeparam name="T">可以被序列化的类</typeparam>
         /// <param name="json">Json数据</param>
         /// <returns></returns>
-        public T FromJson<T>(string json)
+        public static T FromJson<T>(string json)
         {
             return JsonUtility.FromJson<T>(json);
         }
