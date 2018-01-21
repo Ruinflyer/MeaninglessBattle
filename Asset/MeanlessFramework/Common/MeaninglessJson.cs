@@ -33,7 +33,8 @@ namespace Meaningless
 
             if (json.Length>0)
             {
-                return JsonUtility.FromJson<T>(jsonFileStreamR.ReadToEnd());
+                return JsonUtility.FromJson<T>(json);
+                
             }
             else
             {
