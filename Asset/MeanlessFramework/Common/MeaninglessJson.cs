@@ -7,10 +7,12 @@ namespace Meaningless
 {
     public class MeaninglessJson
     {
-        /// <summary>
-        /// Resource文件夹路径，适合Unity Editor使用
-        /// </summary>
+      
+        //Resource文件夹路径
         public static string Path_Res = Application.dataPath + "/Resources/";
+        //StreamingAssets文件夹路径
+        public static string Path_StreamingAssets = Application.dataPath + "/StreamingAssets/";
+
         /// <summary>
         /// 从文件加载Json反序列化
         /// </summary>
