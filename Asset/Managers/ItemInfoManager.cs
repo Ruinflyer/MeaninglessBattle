@@ -21,7 +21,8 @@ public enum WeaponType
    Club,
    Sword,
    DoubleHands,
-   Spear
+   Spear,
+   Shield
 }
 
 /// <summary>
