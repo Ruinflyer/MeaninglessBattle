@@ -72,6 +72,8 @@ public class ArmorProperties
     public float Rate_Recovery;
     //控制类技能持续时间降低率
     public float Rate_DecreasedDurationTime;
+    //防具等级
+    public int Level;
 }
 
 /// <summary>
