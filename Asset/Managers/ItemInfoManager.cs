@@ -98,7 +98,7 @@ public class ItemInfoManager : Singleton<ItemInfoManager> {
     private ItemsInfo _itemsInfo=null;
 
     /// <summary>
-    /// TKey:物品名称
+    /// TKey:   资源名称
     /// TValue：SingleItemInfo 单个物品信息可序列化类
     /// </summary>
     private Dictionary<string, SingleItemInfo> Dict_ItemInfo;
@@ -107,217 +107,217 @@ public class ItemInfoManager : Singleton<ItemInfoManager> {
         _itemsInfo=MeaninglessJson.LoadJsonFromFile<ItemsInfo>(MeaninglessJson.Path_StreamingAssets+"ItemsInfo.json");
         foreach(SingleItemInfo s_iteminfo in _itemsInfo.ItemInfoList)
         {
-            Dict_ItemInfo.Add(s_iteminfo.ItemName,s_iteminfo);
+            Dict_ItemInfo.Add(s_iteminfo.ResName,s_iteminfo);
         }
     }
 
     /// <summary>
-    /// 通过物品名获得资源名
+    /// 通过资源名获得物品名称
     /// </summary>
-    /// <param name="ItemName">物品名称</param>
-    /// <returns>返回资源名</returns>
-    public string GetResName(string ItemName)
+    /// <param name="ResName">资源名称</param>
+    /// <returns>返回物品名</returns>
+    public string GetItemName(string ResName)
     {
         if(Dict_ItemInfo!=null)
         {
-            return Dict_ItemInfo[ItemName].ResName;
+            return Dict_ItemInfo[ResName].ItemName;
         }
         return null;
     }
     /// <summary>
-    /// 通过物品名获得出现概率
+    /// 通过资源名获得出现概率
     /// </summary>
-    /// <param name="ItemName">物品名称</param>
+    /// <param name="ResName">资源名称</param>
     /// <returns>返回出现概率</returns>
-    public float GetOccurrenceProbability(string ItemName)
+    public float GetOccurrenceProbability(string ResName)
     {
         if (Dict_ItemInfo != null)
         {
-            return Dict_ItemInfo[ItemName].OccurrenceProbability;
+            return Dict_ItemInfo[ResName].OccurrenceProbability;
         }
         return 0f;
     }
     /// <summary>
-    /// 通过物品名获得物品类型
+    /// 通过资源名获得物品类型
     /// </summary>
-    /// <param name="ItemName">物品名称</param>
+    /// <param name="ResName">资源名称</param>
     /// <returns>返回物品类型，默认返回消耗品类型</returns>
-    public ItemType GetItemType(string ItemName)
+    public ItemType GetItemType(string ResName)
     {
         if (Dict_ItemInfo != null)
         {
-            return Dict_ItemInfo[ItemName].itemType;
+            return Dict_ItemInfo[ResName].itemType;
         }
         return ItemType.Expendable;
     }
     /// <summary>
-    /// 通过物品名获得武器属性
+    /// 通过资源名获得武器属性
     /// </summary>
-    /// <param name="ItemName">物品名称</param>
+    /// <param name="ResName">资源名称</param>
     /// <returns>返回武器属性</returns>
-    public WeaponProperties GetWeaponProperties(string ItemName)
+    public WeaponProperties GetWeaponProperties(string ResName)
     {
         if (Dict_ItemInfo != null)
         {
-            return Dict_ItemInfo[ItemName].weaponProperties;
+            return Dict_ItemInfo[ResName].weaponProperties;
         }
         return null;
     }
     /// <summary>
-    /// 通过物品名获得防具属性
+    /// 通过资源名获得防具属性
     /// </summary>
-    /// <param name="ItemName">物品名称</param>
+    /// <param name="ResName">资源名称</param>
     /// <returns>返回防具属性，默认返回空</returns>
-    public ArmorProperties GetArmorProperties(string ItemName)
+    public ArmorProperties GetArmorProperties(string ResName)
     {
         if (Dict_ItemInfo != null)
         {
-            return Dict_ItemInfo[ItemName].armorProperties;
+            return Dict_ItemInfo[ResName].armorProperties;
         }
         return null;
     }
 
     /// <summary>
-    /// 通过物品名获得武器攻击力
+    /// 通过资源名获得武器攻击力
     /// </summary>
-    /// <param name="ItemName">物品名称</param>
+    /// <param name="ResName">资源名称</param>
     /// <returns>返回武器攻击力</returns>
-    public float GetWeaponDamage(string ItemName)
+    public float GetWeaponDamage(string ResName)
     {
         if (Dict_ItemInfo != null)
         {
-            return Dict_ItemInfo[ItemName].weaponProperties.Damage;
+            return Dict_ItemInfo[ResName].weaponProperties.Damage;
         }
         return 0f;
     }
     /// <summary>
-    /// 通过物品名获得武器攻击速度
+    /// 通过资源名获得武器攻击速度
     /// </summary>
-    /// <param name="ItemName">物品名称</param>
+    /// <param name="ResName">资源名称</param>
     /// <returns>返回武器攻击速度</returns>
-    public float GetWeaponAtkSpeed(string ItemName)
+    public float GetWeaponAtkSpeed(string ResName)
     {
         if (Dict_ItemInfo != null)
         {
-            return Dict_ItemInfo[ItemName].weaponProperties.Rate_AtkSpeed;
+            return Dict_ItemInfo[ResName].weaponProperties.Rate_AtkSpeed;
         }
         return 0f;
     }
     /// <summary>
-    /// 通过物品名获得武器冷却时间(通常为盾牌所使用)
+    /// 通过资源名获得武器冷却时间(通常为盾牌所使用)
     /// </summary>
-    /// <param name="ItemName">物品名称</param>
+    /// <param name="ResName">资源名称</param>
     /// <returns>返回武器冷却时间</returns>
-    public float GetWeaponCDTime(string ItemName)
+    public float GetWeaponCDTime(string ResName)
     {
         if (Dict_ItemInfo != null)
         {
-            return Dict_ItemInfo[ItemName].weaponProperties.CDTime;
+            return Dict_ItemInfo[ResName].weaponProperties.CDTime;
         }
         return 0f;
     }
     /// <summary>
-    /// 通过物品名获得武器类型
+    /// 通过资源名获得武器类型
     /// </summary>
-    /// <param name="ItemName">物品名称</param>
+    /// <param name="ResName">资源名称</param>
     /// <returns>返回武器类型</returns>
-    public WeaponType GetWeaponWeaponType(string ItemName)
+    public WeaponType GetWeaponWeaponType(string ResName)
     {
         if (Dict_ItemInfo != null)
         {
-            return Dict_ItemInfo[ItemName].weaponProperties.weaponType;
+            return Dict_ItemInfo[ResName].weaponProperties.weaponType;
         }
         return WeaponType.NULL;
     }
 
     /// <summary>
-    /// 通过物品名获得防具对哪种武器类别作用
+    /// 通过资源名获得防具对哪种武器类别作用
     /// </summary>
-    /// <param name="ItemName">物品名称</param>
+    /// <param name="ResName">资源名称</param>
     /// <returns>返回防具对哪种武器类别作用</returns>
-    public WeaponType GetArmor_ForWeaponType(string ItemName)
+    public WeaponType GetArmor_ForWeaponType(string ResName)
     {
         if (Dict_ItemInfo != null)
         {
-            return Dict_ItemInfo[ItemName].armorProperties.ForWeaponType;
+            return Dict_ItemInfo[ResName].armorProperties.ForWeaponType;
         }
         return WeaponType.NULL;
     }
     /// <summary>
-    /// 通过物品名获得防具攻击提高率
+    /// 通过资源名获得防具攻击提高率
     /// </summary>
-    /// <param name="ItemName">物品名称</param>
+    /// <param name="ResName">资源名称</param>
     /// <returns>返回防具攻击提高率</returns>
-    public float GetArmor_RateAttack(string ItemName)
+    public float GetArmor_RateAttack(string ResName)
     {
         if (Dict_ItemInfo != null)
         {
-            return Dict_ItemInfo[ItemName].armorProperties.Rate_Attack;
+            return Dict_ItemInfo[ResName].armorProperties.Rate_Attack;
         }
         return 0f;
     }
     /// <summary>
-    /// 通过物品名获得防具物理防御提高率
+    /// 通过资源名获得防具物理防御提高率
     /// </summary>
-    /// <param name="ItemName">物品名称</param>
+    /// <param name="ResName">资源名称</param>
     /// <returns>返回防具物理防御提高率</returns>
-    public float GetArmor_RatePhysicalDefend(string ItemName)
+    public float GetArmor_RatePhysicalDefend(string ResName)
     {
         if (Dict_ItemInfo != null)
         {
-            return Dict_ItemInfo[ItemName].armorProperties.Rate_PhysicalDefend;
+            return Dict_ItemInfo[ResName].armorProperties.Rate_PhysicalDefend;
         }
         return 0f;
     }
     /// <summary>
-    /// 通过物品名获得防具魔法防御提高率
+    /// 通过资源名获得防具魔法防御提高率
     /// </summary>
-    /// <param name="ItemName">物品名称</param>
+    /// <param name="ResName">资源名称</param>
     /// <returns>返回防具魔法防御提高率</returns>
-    public float GetArmor_RateMagicalDefend(string ItemName)
+    public float GetArmor_RateMagicalDefend(string ResName)
     {
         if (Dict_ItemInfo != null)
         {
-            return Dict_ItemInfo[ItemName].armorProperties.Rate_MagicalDefend;
+            return Dict_ItemInfo[ResName].armorProperties.Rate_MagicalDefend;
         }
         return 0f;
     }
     /// <summary>
-    /// 通过物品名获得防具移动速度提高率
+    /// 通过资源名获得防具移动速度提高率
     /// </summary>
-    /// <param name="ItemName">物品名称</param>
+    /// <param name="ResName">资源名称</param>
     /// <returns>返回防具移动速度提高率</returns>
-    public float GetArmor_RateMoveSpeed(string ItemName)
+    public float GetArmor_RateMoveSpeed(string ResName)
     {
         if (Dict_ItemInfo != null)
         {
-            return Dict_ItemInfo[ItemName].armorProperties.Rate_MoveSpeed;
+            return Dict_ItemInfo[ResName].armorProperties.Rate_MoveSpeed;
         }
         return 0f;
     }
     /// <summary>
-    /// 通过物品名获得防具生命恢复速率
+    /// 通过资源名获得防具生命恢复速率
     /// </summary>
-    /// <param name="ItemName">物品名称</param>
+    /// <param name="ResName">资源名称</param>
     /// <returns>返回防具生命恢复速率</returns>
-    public float GetArmor_RateRecovery(string ItemName)
+    public float GetArmor_RateRecovery(string ResName)
     {
         if (Dict_ItemInfo != null)
         {
-            return Dict_ItemInfo[ItemName].armorProperties.Rate_Recovery;
+            return Dict_ItemInfo[ResName].armorProperties.Rate_Recovery;
         }
         return 0f;
     }
     /// <summary>
-    /// 通过物品名获得防具控制类技能持续时间降低率
+    /// 通过资源名获得防具控制类技能持续时间降低率
     /// </summary>
-    /// <param name="ItemName">物品名称</param>
+    /// <param name="ResName">资源名称</param>
     /// <returns>返回防具控制类技能持续时间降低率</returns>
-    public float GetArmor_RateDecreasedDurationTime(string ItemName)
+    public float GetArmor_RateDecreasedDurationTime(string ResName)
     {
         if (Dict_ItemInfo != null)
         {
-            return Dict_ItemInfo[ItemName].armorProperties.Rate_DecreasedDurationTime;
+            return Dict_ItemInfo[ResName].armorProperties.Rate_DecreasedDurationTime;
         }
         return 0f;
     }
