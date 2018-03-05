@@ -18,6 +18,34 @@ namespace Meaningless
         
     }
 
+    public enum FSMStateType
+    {
+        Idle=0,
+        Move,
+        Jump,
+        SingleWieldAttack,
+        DoubleHandsAttack,
+        SpearIdle,
+        SpearMove,
+        SpearJump,
+        SpearAttack,
+        RippleAttack,
+    }
+
+    public enum FSMTransitionType
+    {
+        IsIdle=0,
+        CanBeMove,
+        CanBeJump,
+        AttackWithSingleWield,
+        AttackWithDoubleHands,
+        IsIdleWithSpear,
+        CanBeMoveWithSpear,
+        AttackWithSpear,
+        UsingRipple,
+    }
+
+
     public class GameDefine : MonoBehaviour
     {
         public static Dictionary<UIid, string> dicPath = new Dictionary<UIid, string>()

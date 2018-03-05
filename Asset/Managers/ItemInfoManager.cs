@@ -22,7 +22,20 @@ public enum WeaponType
     Sword,
     DoubleHands,
     Spear,
-    Shield
+    Shield,
+    Magic,
+}
+
+/// <summary>
+/// 魔法类型
+/// </summary>
+public enum MagicType
+{
+    Ripple=0,
+    HeartAttact,
+    StygianDesolator,
+    IceArrow,
+    ChoshimArrow,
 }
 
 /// <summary>
@@ -94,6 +107,20 @@ public class WeaponProperties
     public float CDTime;
 }
 
+[System.Serializable]
+public class MagicProperties
+{
+    //技能类别
+    public MagicType magicType;
+    //伤害值
+    public float Damage;
+    //控制概率
+    public float Probability;
+    //使用上限
+    public float UsableCount;
+    //冷却时间
+    public float CDTime;
+}
 
 public class ItemInfoManager : Singleton<ItemInfoManager>
 {

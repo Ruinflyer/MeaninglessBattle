@@ -18,11 +18,14 @@ public class ResourcesManager : Mono_DDOLSingleton<ResourcesManager>
 
     private Dictionary<string, GameObject> Dict_BaseMapTiles;
     private Dictionary<string, GameObject> Dict_Items;
+    public static Dictionary<string, GameObject> Dict_Magic = new Dictionary<string, GameObject>();
+
     void Start()
     {
         //StartCoroutine(LoadMapTiles());
     }
 
+ 
 
     public IEnumerator LoadMapTiles()
     {
@@ -67,5 +70,33 @@ public class ResourcesManager : Mono_DDOLSingleton<ResourcesManager>
             return Dict_Items[itemResname];
         }
         return null;
+    }
+
+    public IEnumerator LoadMagic()
+    {
+        Dict_Magic = new Dictionary<string, GameObject>();
+        StartCoroutine(AssetBundleLoader.LoadBundleToDictAsync<GameObject>("BC_Magic.json", Dict_Magic));
+        yield return true;
+    }
+
+    public void LoadMagic_sync()
+    {
+        Dict_Magic = new Dictionary<string, GameObject>();
+        AssetBundleLoader.LoadBundleToDict<GameObject>("BC_Magic.json", Dict_Magic);
+    }
+
+    public GameObject GetMagic(string magicName)
+    {
+        GameObject resourceGObj = null;
+        if (!Dict_Magic.TryGetValue(magicName, out resourceGObj))
+        {
+            Debug.LogError( magicName + "不在文件夹中");
+        }
+
+        if (resourceGObj == null)
+        {
+            Debug.LogError("无法获取");
+        }
+        return resourceGObj;
     }
 }
