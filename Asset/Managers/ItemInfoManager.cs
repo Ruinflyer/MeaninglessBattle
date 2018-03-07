@@ -32,7 +32,7 @@ public enum WeaponType
 public enum MagicType
 {
     Ripple=0,
-    HeartAttact,
+    HeartAttack,
     StygianDesolator,
     IceArrow,
     ChoshimArrow,

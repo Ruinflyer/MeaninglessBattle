@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Meaningless;
 
-public class PaticleMove : MonoBehaviour
+public class ParticleMove : MonoBehaviour
 {
     public int moveSpeed;
     public int destoryTime;
     private NetPoolManager NetPoolManager;
     private Rigidbody RB;
+    float time = 0;
 
     void Start()
     {
@@ -16,10 +17,16 @@ public class PaticleMove : MonoBehaviour
         RB = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    private void FixedUpdate()
     {
         Move(moveSpeed);
-        Timer.Instance.StartCountdown(destoryTime, new TimerEnd(DestroyObject));
+        time += Time.fixedDeltaTime;
+        if(time>destoryTime)
+        {
+            DestroyObject();
+            time = 0;
+        }
+        //Timer.Instance.StartCountdown(destoryTime, new TimerEnd(DestroyObject));
     }
 
     void DestroyObject()
@@ -29,6 +36,6 @@ public class PaticleMove : MonoBehaviour
 
     private void Move(float speed)
     {
-        RB.AddForce(transform.forward * speed);
+        transform.Translate(0, 0, speed * Time.fixedDeltaTime, Space.Self);
     }
 }

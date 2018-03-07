@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using Meaningless;
 
-public class RippleAttackState : FSMState
-{
-    internal NetPoolManager NetPoolManager=new NetPoolManager();
+public class IceArrowState : FSMState {
 
-    public RippleAttackState()
+    internal NetPoolManager NetPoolManager = new NetPoolManager();
+
+    public IceArrowState()
     {
-        stateID = FSMStateType.RippleAttack;
+        stateID = FSMStateType.IceArrow;
     }
 
     public override void Act(BaseFSM FSM)
     {
-        if(FSM.Attacked)
+        if (FSM.Attacked)
         {
             FSM.PlayAnimation("Magic Shoot Attack");
-            GameObject go=NetPoolManager.Instantiate("Ripple",GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
+            GameObject go = NetPoolManager.Instantiate("Ice Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
             Debug.Log(go.name);
         }
         FSM.Attacked = false;

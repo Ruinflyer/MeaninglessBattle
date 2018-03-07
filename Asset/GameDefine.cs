@@ -30,6 +30,10 @@ namespace Meaningless
         SpearJump,
         SpearAttack,
         RippleAttack,
+        HeartAttack,
+        StygianDesolator,
+        IceArrow,
+        ChoshimArrow,
     }
 
     public enum FSMTransitionType
@@ -43,6 +47,10 @@ namespace Meaningless
         CanBeMoveWithSpear,
         AttackWithSpear,
         UsingRipple,
+        UsingHeartAttack,
+        UsingStygianDesolator,
+        UsingIceArrow,
+        UsingChoshimArrow,
     }
 
 

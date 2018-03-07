@@ -40,7 +40,7 @@ public class ObjectPoolManager : Mono_DDOLSingleton<ObjectPoolManager>
         return objectPool;
     }
 
-    private static ObjectPool GetObjectPool(GameObject prefab, int num = 3)
+    private static ObjectPool GetObjectPool(GameObject prefab, int num = 4)
     {
         ObjectPool objectPool = null;
         int prefabID = prefab.GetInstanceID();
@@ -59,7 +59,7 @@ public class ObjectPoolManager : Mono_DDOLSingleton<ObjectPoolManager>
         return objectPool;
     }
 
-    private static ObjectPool GetObjectPool(GameObject prefab, Vector3 position, Quaternion rotation, int num = 3)
+    private static ObjectPool GetObjectPool(GameObject prefab, Vector3 position, Quaternion rotation, int num = 4)
     {
         ObjectPool objectPool = null;
         int prefabID = prefab.GetInstanceID();
@@ -79,7 +79,7 @@ public class ObjectPoolManager : Mono_DDOLSingleton<ObjectPoolManager>
         return objectPool;
     }
 
-    public static void InitPrefab(GameObject prefab, int initNum = 3)
+    public static void InitPrefab(GameObject prefab, int initNum = 4)
     {
         GetObjectPool(prefab, initNum);
     }

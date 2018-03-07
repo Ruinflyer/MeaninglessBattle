@@ -36,6 +36,10 @@ public class PlayerFSM :BaseFSM
         idle.AddTransition(FSMTransitionType.AttackWithSingleWield, FSMStateType.SingleWieldAttack);
         idle.AddTransition(FSMTransitionType.AttackWithDoubleHands, FSMStateType.DoubleHandsAttack);
         idle.AddTransition(FSMTransitionType.UsingRipple, FSMStateType.RippleAttack);
+        idle.AddTransition(FSMTransitionType.UsingHeartAttack, FSMStateType.HeartAttack);
+        idle.AddTransition(FSMTransitionType.UsingStygianDesolator, FSMStateType.StygianDesolator);
+        idle.AddTransition(FSMTransitionType.UsingIceArrow, FSMStateType.IceArrow);
+        idle.AddTransition(FSMTransitionType.UsingChoshimArrow, FSMStateType.ChoshimArrow);
 
         MoveState move = new MoveState();
         move.AddTransition(FSMTransitionType.IsIdle, FSMStateType.Idle);
@@ -60,12 +64,28 @@ public class PlayerFSM :BaseFSM
         RippleAttackState rippleAttackState = new RippleAttackState();
         rippleAttackState.AddTransition(FSMTransitionType.IsIdle, FSMStateType.Idle);
 
+        HeartAttackState heartAttackState = new HeartAttackState();
+        heartAttackState.AddTransition(FSMTransitionType.IsIdle, FSMStateType.Idle);
+
+        StygianDesolatorState stygianDesolatorState = new StygianDesolatorState();
+        stygianDesolatorState.AddTransition(FSMTransitionType.IsIdle, FSMStateType.Idle);
+
+        IceArrowState iceArrowState = new IceArrowState();
+        iceArrowState.AddTransition(FSMTransitionType.IsIdle, FSMStateType.Idle);
+
+        ChoshimArrowState choshimArrowState = new ChoshimArrowState();
+        choshimArrowState.AddTransition(FSMTransitionType.IsIdle, FSMStateType.Idle);
+
         AddFSMState(idle);
         AddFSMState(move);
         AddFSMState(jump);
         AddFSMState(singleWieldAttack);
         AddFSMState(dualWieldAttack);
         AddFSMState(rippleAttackState);
+        AddFSMState(heartAttackState);
+        AddFSMState(stygianDesolatorState);
+        AddFSMState(iceArrowState);
+        AddFSMState(choshimArrowState);
     }
 
     public override void OnCollisionEnter(Collision collision)
