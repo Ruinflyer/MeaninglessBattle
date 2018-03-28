@@ -7,6 +7,5 @@
 实现了地图生成、道具生成、毒圈的生成与缩放、计时器。
 
 # 本项目使用了的插件
-[Photon Unity Networking Free](https://assetstore.unity.com/packages/tools/network/photon-unity-networking-free-1786)  
 [Asset Bundle Browser](https://assetstore.unity.com/packages/tools/utilities/asset-bundle-browser-93571)  
 [iTween](https://assetstore.unity.com/packages/tools/animation/itween-84)  
