@@ -1,0 +1,34 @@
+ManifestFileVersion: 0
+CRC: 3522567225
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: d9bdcb3d46ad1116cbf9a42838bd4816
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: bc193d49e7d16f71ac778acf3c7bfc27
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/Character/Armor/Mask_Emirate.prefab
+- Assets/Resources/Character/Armor/Helmet_Swordman.prefab
+- Assets/Resources/Character/Armor/Helmet_Green.prefab
+- Assets/Resources/Character/Armor/Helmet_Gladiator.prefab
+- Assets/Resources/Character/Armor/Helmet_Knight.prefab
+Dependencies: []

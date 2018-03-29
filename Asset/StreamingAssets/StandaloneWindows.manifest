@@ -1,0 +1,13 @@
+ManifestFileVersion: 0
+CRC: 2538263413
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: map.ab
+      Dependencies: {}
+    Info_1:
+      Name: items.ab
+      Dependencies: {}
+    Info_2:
+      Name: uitextures.ab
+      Dependencies: {}

@@ -1,0 +1,67 @@
+ManifestFileVersion: 0
+CRC: 724275305
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: a1817d24be1a9360d30421fce0bb5da2
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 77c84f9dc31a1ed41e9d43aad25c8d94
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 111
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 7bd325fc6759b7142be7c8541d3ca88b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9ead6d2dae03fb84baac7f1d745f7ba7, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/Models/MapItem/Town_TrainingGround.prefab
+- Assets/Models/MapItem/Forest1.prefab
+- Assets/Models/MapItem/Town_HouseArea.prefab
+- Assets/Models/MapItem/House_Wild.prefab
+- Assets/Models/MapItem/Town_PedestrianStreet.prefab
+- Assets/Models/MapItem/Town_HouseArea2.prefab
+- Assets/Models/MapItem/Wlid6.prefab
+- Assets/Models/MapItem/Edge.prefab
+- Assets/Models/MapItem/Forest3.prefab
+- Assets/Models/MapItem/Square.prefab
+- Assets/Models/MapItem/House_WheatFarm.prefab
+- Assets/Models/MapItem/Forest2.prefab
+- Assets/Models/MapItem/CircleField.prefab
+- Assets/Models/MapItem/Wild5.prefab
+- Assets/Models/MapItem/Lake1.prefab
+- Assets/Models/MapItem/Moutain.prefab
+- Assets/Models/MapItem/Wild2.prefab
+- Assets/Models/MapItem/Lake2.prefab
+- Assets/Models/MapItem/Town_PubArea.prefab
+- Assets/Models/MapItem/Wild1.prefab
+- Assets/Models/MapItem/Wild3.prefab
+- Assets/Models/MapItem/Wild4.prefab
+Dependencies: []

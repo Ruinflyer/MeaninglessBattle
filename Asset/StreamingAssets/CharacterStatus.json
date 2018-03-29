@@ -1,0 +1,14 @@
+{
+    "characterName": "",
+    "weaponType": 0,
+    "magicType": 0,
+    "moveSpeed": 3,
+    "iumpSpeed": 1,
+    "HP": 100,
+    "Attack_Physics": 20,
+    "Attack_Magic": 0,
+    "RecoveryValue": 0,
+    "Defend_Physics": 0,
+    "Defend_Magic": 0,
+    "DecreaseDurationTime_Magic": 1
+}

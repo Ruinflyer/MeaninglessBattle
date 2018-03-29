@@ -1,0 +1,27 @@
+{
+    "ResName":[
+        "Town_HouseArea",
+        "Town_HouseArea2",
+        "Town_PedestrianStreet",
+        "Town_PubArea",
+        "Town_TrainingGround",
+        "Forest1",
+        "Forest2",
+        "Forest3",
+        "House_WheatFarm",
+        "House_Wild",
+        "Wild1",
+        "Wild2",
+        "Wild3",
+        "Wild4",
+        "Wild5",
+        "Wild6",
+        "Lake1",
+        "Lake2",
+        "Moutain",
+        "Square",
+        "CircleField",
+        "Edge"
+    ],
+    "BundlePath":"map.ab"
+}

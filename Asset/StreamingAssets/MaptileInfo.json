@@ -1,0 +1,31 @@
+{
+    "Town_Resname": [
+        "Town_HouseArea",
+        "Town_HouseArea2",
+        "Town_PedestrianStreet",
+        "Town_PubArea",
+        "Town_TrainingGround"
+    ],
+    "Lake_Resname": [
+        "Lake1",
+        "Lake2"
+    ],
+    "Wild_Resname": [
+        "Wild1",
+        "Wild2",
+        "Wild3",
+        "Wild4",
+        "Wild5"
+    ],
+    "Forest_Resname": [
+        "Forest1",
+        "Forest2"
+    ],
+    "Wildhouse_Resname": [
+        "House_WheatFarm",
+        "House_Wild"
+    ],
+    "Moutain_Resname": [
+        "Moutain"
+    ]
+}

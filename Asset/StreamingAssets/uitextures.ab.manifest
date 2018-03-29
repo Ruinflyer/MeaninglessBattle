@@ -1,0 +1,20 @@
+ManifestFileVersion: 0
+CRC: 1558168815
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 76dc2f5b09af3c0d31f494527bb0b7b3
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 1b3feb9bc6055cd677abb4cd6f720d90
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 687078895
+  Script: {instanceID: 0}
+Assets:
+- Assets/Textures/BagIcon.spriteatlas
+Dependencies: []
