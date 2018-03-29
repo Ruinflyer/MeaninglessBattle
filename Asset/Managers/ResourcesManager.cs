@@ -18,11 +18,51 @@ public class ResourcesManager : Mono_DDOLSingleton<ResourcesManager>
 
     private Dictionary<string, GameObject> Dict_BaseMapTiles;
     private Dictionary<string, GameObject> Dict_Items;
+    private Dictionary<string, Sprite> Dict_UITex;
+    public static Dictionary<string, GameObject> Dict_Magic = new Dictionary<string, GameObject>();
+
     void Start()
     {
         //StartCoroutine(LoadMapTiles());
     }
 
+    public IEnumerator LoadAllRes()
+    {
+        LoadUITextures();
+        LoadMapTiles();
+        LoadItems();
+        LoadMagic();
+        yield return true;
+    }
+
+    /// <summary>
+    /// 加载UI图片
+    /// </summary>
+    public void LoadUITextures()
+    {
+        Dict_UITex = new Dictionary<string, Sprite>();
+        BundleConf bundleConf = MeaninglessJson.LoadJsonFromFile<BundleConf>(Application.dataPath + "/StreamingAssets/"+"BC_UITextures.json");
+        AssetBundle ab = AssetBundle.LoadFromFile(Application.dataPath + "/StreamingAssets/" + bundleConf.BundlePath);
+        UnityEngine.U2D.SpriteAtlas spriteAtlas = ab.LoadAsset<UnityEngine.U2D.SpriteAtlas>("BagIcon");
+        foreach(string str in bundleConf.ResName)
+        {
+            Dict_UITex.Add(str, spriteAtlas.GetSprite(str));
+        }
+    }
+    public Sprite GetUITexture(string textureName)
+    {
+        Sprite resourceGObj = null;
+        if (!Dict_UITex.TryGetValue(textureName, out resourceGObj))
+        {
+            Debug.LogError(textureName + "不在文件夹中");
+        }
+
+        if (resourceGObj == null)
+        {
+            Debug.LogError("无法获取");
+        }
+        return resourceGObj;
+    }
 
     public IEnumerator LoadMapTiles()
     {
@@ -34,14 +74,19 @@ public class ResourcesManager : Mono_DDOLSingleton<ResourcesManager>
             yield return true;
         }
     }
-
     public GameObject GetMapTiles(string MapTileName)
     {
-        if (Dict_BaseMapTiles != null)
+        GameObject gobj;
+        if (!Dict_BaseMapTiles.TryGetValue(MapTileName,out gobj) )
         {
+            Debug.LogError(MapTileName + "不在文件夹中");
             return Dict_BaseMapTiles[MapTileName];
         }
-        return null;
+        if(gobj==null)
+        {
+            Debug.LogError(MapTileName+" 无法获取");
+        }
+        return gobj;
     }
 
     public IEnumerator LoadItems()
@@ -67,5 +112,32 @@ public class ResourcesManager : Mono_DDOLSingleton<ResourcesManager>
             return Dict_Items[itemResname];
         }
         return null;
+    }
+
+
+    public IEnumerator LoadMagic()
+    {
+        Dict_Magic = new Dictionary<string, GameObject>();
+        StartCoroutine(AssetBundleLoader.LoadBundleToDictAsync<GameObject>("BC_Magic.json", Dict_Magic));
+        yield return true;
+    }
+    public void LoadMagic_sync()
+    {
+        Dict_Magic = new Dictionary<string, GameObject>();
+        AssetBundleLoader.LoadBundleToDict<GameObject>("BC_Magic.json", Dict_Magic);
+    }
+    public GameObject GetMagic(string magicName)
+    {
+        GameObject resourceGObj = null;
+        if (!Dict_Magic.TryGetValue(magicName, out resourceGObj))
+        {
+            Debug.LogError(magicName + "不在文件夹中");
+        }
+
+        if (resourceGObj == null)
+        {
+            Debug.LogError("无法获取");
+        }
+        return resourceGObj;
     }
 }

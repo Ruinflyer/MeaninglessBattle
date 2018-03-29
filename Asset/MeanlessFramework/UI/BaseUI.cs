@@ -88,6 +88,18 @@ namespace Meaningless
         {
             this.gameObject.SetActive(true);
         }
+        /// <summary>
+        /// 显示UI时执行
+        /// </summary>
+        /// <param name="del"></param>
+        public virtual void ShowUI(DelAfterHideUI del)
+        {
+            this.gameObject.SetActive(true);
+            if(del!=null)
+            {
+                del();
+            }
+        }
         public virtual void HideUI(DelAfterHideUI del)
         {
             this.gameObject.SetActive(false);
@@ -110,12 +122,18 @@ namespace Meaningless
         //自带的脚本生命周期函数
         protected virtual void OnEnable()
         {
+            DoThings_while_enable();
             PlayAudio();
         }
         //显示窗体时播放的音效
         protected virtual void PlayAudio()
         {
             
+        }
+        //显示窗体时执行的操作
+        protected virtual void DoThings_while_enable()
+        {
+
         }
     }
 	

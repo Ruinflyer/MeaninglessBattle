@@ -10,7 +10,9 @@ public enum ItemType
 {
     Weapon = 0,
     Armor,
-    Expendable
+    Expendable,
+    Magic,
+    Gem
 }
 /// <summary>
 /// 武器类型
@@ -22,7 +24,32 @@ public enum WeaponType
     Sword,
     DoubleHands,
     Spear,
-    Shield
+    Shield,
+    Magic,
+    
+}
+
+/// <summary>
+/// 防具类型
+/// </summary>
+public enum ArmorType
+{
+    NULL=0,
+    Head,
+    Body
+}
+
+
+/// <summary>
+/// 魔法类型
+/// </summary>
+public enum MagicType
+{
+    Ripple=0,
+    HeartAttack,
+    StygianDesolator,
+    IceArrow,
+    ChoshimArrow,
 }
 
 /// <summary>
@@ -52,6 +79,12 @@ public class SingleItemInfo
     public ArmorProperties armorProperties;
     //武器属性
     public WeaponProperties weaponProperties;
+    //魔法属性
+    public MagicProperties magicProperties;
+    //宝石属性
+    public GemProperties gemProperties;
+    //消耗品属性
+    public ExpendableProperties expendableProperties;
 }
 
 /// <summary>
@@ -60,6 +93,8 @@ public class SingleItemInfo
 [System.Serializable]
 public class ArmorProperties
 {
+    //防具类型
+    public ArmorType armorType;
     //对哪种武器类别作用
     public WeaponType ForWeaponType;
     //攻击提高率
@@ -74,8 +109,7 @@ public class ArmorProperties
     public float Rate_Recovery;
     //控制类技能持续时间降低率
     public float Rate_DecreasedDurationTime;
-    //防具等级
-    public int Level;
+    
 }
 
 /// <summary>
@@ -88,20 +122,72 @@ public class WeaponProperties
     public WeaponType weaponType;
     //武器伤害值
     public float Damage;
-    //攻击速率(动画时间加速比)
-    public float Rate_AtkSpeed;
     //武器冷却时间(盾牌)
     public float CDTime;
 }
 
+/// <summary>
+/// 魔法属性可序列化类
+/// </summary>
+[System.Serializable]
+public class MagicProperties
+{
+    //技能类别
+    public MagicType magicType;
+    //伤害值
+    public float Damage;
+    //控制概率
+    public float Probability;
+    //使用上限
+    public float UsableCount;
+    //冷却时间
+    public float CDTime;
+}
 
+/// <summary>
+/// 宝石属性可序列化类
+/// </summary>
+[System.Serializable]
+public class GemProperties
+{
+  
+    //物理攻击提高率
+    public float Rate_PhysicalAttack;
+    //魔法攻击提高率
+    public float Rate_MagicalAttack;
+    //物理防御提高率
+    public float Rate_PhysicalDefend;
+    //魔法防御提高率
+    public float Rate_MagicalDefend;
+    //移动速度提高率
+    public float Rate_MoveSpeed;
+    //生命恢复速率
+    public float Rate_Recovery;
+    //控制类技能持续时间降低率
+    public float Rate_DecreasedDurationTime;
+}
+
+/// <summary>
+/// 消耗品属性可序列化类
+/// </summary>
+[System.Serializable]
+public class ExpendableProperties
+{
+    //生命恢复值
+    public float Recovery_HP;
+    //恢复时间
+    public float Recovery_Time;
+    //能量补充值
+    public float RechargeValue;
+
+}
 public class ItemInfoManager : Singleton<ItemInfoManager>
 {
 
     private ItemsInfo _itemsInfo = null;
 
     /// <summary>
-    /// TKey:   物品ID称
+    /// TKey:   物品ID
     /// TValue：SingleItemInfo 单个物品信息可序列化类
     /// </summary>
     private Dictionary<int, SingleItemInfo> Dict_ItemInfo;
@@ -216,19 +302,7 @@ public class ItemInfoManager : Singleton<ItemInfoManager>
         }
         return 0f;
     }
-    /// <summary>
-    /// 通过物品ID获得武器攻击速度
-    /// </summary>
-    /// <param name="ItemID">物品ID</param>
-    /// <returns>返回武器攻击速度</returns>
-    public float GetWeaponAtkSpeed(int ItemID)
-    {
-        if (Dict_ItemInfo != null)
-        {
-            return Dict_ItemInfo[ItemID].weaponProperties.Rate_AtkSpeed;
-        }
-        return 0f;
-    }
+   
     /// <summary>
     /// 通过物品ID获得武器冷却时间(通常为盾牌所使用)
     /// </summary>
@@ -380,6 +454,24 @@ public class ItemInfoManager : Singleton<ItemInfoManager>
                 tmp_int[i] = _itemsInfo.ItemInfoList[i].ItemID;
             }
             return tmp_int;
+        }
+        return null;
+    }
+
+    /// <summary>
+    /// 通过物品ID获取单个物品信息
+    /// </summary>
+    /// <param name="ItemID">物品ID</param>
+    /// <returns>单个物品信息</returns>
+    public SingleItemInfo GetItemInfo(int ItemID)
+    {
+        if(Dict_ItemInfo!=null)
+        {
+            SingleItemInfo itemInfo;
+            if(Dict_ItemInfo.TryGetValue(ItemID,out itemInfo))
+            {
+                return itemInfo;
+            }
         }
         return null;
     }
