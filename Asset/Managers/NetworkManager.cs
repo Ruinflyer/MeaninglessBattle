@@ -1,19 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MeaninglessServer;
-public class NetworkManager : MonoBehaviour {
+using Meaningless;
+using MeaninglessNetwork;
+public class NetworkManager : MonoSingleton<NetworkManager>
+{
 
     public static Connect ServerConnection = new Connect();
+    public static string PlayerName="";
 	// Use this for initialization
 	void Start () {
-		
+        Application.runInBackground = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
         ServerConnection.Update();
-
 
     }
 
