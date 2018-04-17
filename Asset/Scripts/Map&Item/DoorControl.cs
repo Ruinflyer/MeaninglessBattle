@@ -9,12 +9,10 @@ public class DoorControl : MonoBehaviour
     private bool EnterDoorAera = false;
     private bool isDoorOpen = false;
     private Animation anim;
-    private PhotonView photonView;
     // Use this for initialization
     void Start()
     {
         anim = GetComponent<Animation>();
-        photonView = GetComponent<PhotonView>();
     }
 
     private void Update()
@@ -22,21 +20,18 @@ public class DoorControl : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && EnterDoorAera)
         {
-            if (photonView == null)
-            {
-                photonView = GetComponent<PhotonView>();
-            }
+            
 
             if (isDoorOpen == false)
             {
                 OpenDoor();
 
-                photonView.RPC("OpenDoor", PhotonTargets.Others);
+                //photonView.RPC("OpenDoor", PhotonTargets.Others);
             }
             else
             {
                 CloseDoor();
-                photonView.RPC("CloseDoor", PhotonTargets.Others);
+                //photonView.RPC("CloseDoor", PhotonTargets.Others);
             }
 
         }
@@ -51,13 +46,12 @@ public class DoorControl : MonoBehaviour
         EnterDoorAera = false;
     }
 
-    [PunRPC]
     public void OpenDoor()
     {
         anim.CrossFade(DoorOpenAnimationName);
         isDoorOpen = true;
     }
-    [PunRPC]
+
     public void CloseDoor()
     {
         anim.CrossFade(DoorCloseAnimationName);

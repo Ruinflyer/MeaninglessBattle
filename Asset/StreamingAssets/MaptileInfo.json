@@ -1,31 +1,33 @@
 {
     "Town_Resname": [
-        "Town_HouseArea",
-        "Town_HouseArea2",
-        "Town_PedestrianStreet",
-        "Town_PubArea",
-        "Town_TrainingGround"
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
     ],
     "Lake_Resname": [
-        "Lake1",
-        "Lake2"
+        "17",
+        "18"
     ],
     "Wild_Resname": [
-        "Wild1",
-        "Wild2",
-        "Wild3",
-        "Wild4",
-        "Wild5"
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16"
     ],
     "Forest_Resname": [
-        "Forest1",
-        "Forest2"
+        "6",
+        "7",
+        "8"
     ],
     "Wildhouse_Resname": [
-        "House_WheatFarm",
-        "House_Wild"
+        "9",
+        "10"
     ],
     "Moutain_Resname": [
-        "Moutain"
+        "19"
     ]
 }

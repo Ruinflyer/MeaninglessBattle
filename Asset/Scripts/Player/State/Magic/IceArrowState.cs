@@ -5,7 +5,6 @@ using Meaningless;
 
 public class IceArrowState : FSMState {
 
-    internal NetPoolManager NetPoolManager = new NetPoolManager();
 
     public IceArrowState()
     {

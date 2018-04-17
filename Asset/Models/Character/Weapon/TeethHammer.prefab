@@ -21,9 +21,8 @@ GameObject:
   - component: {fileID: 4732892269878846}
   - component: {fileID: 33057893198731688}
   - component: {fileID: 23392291540087250}
-  - component: {fileID: 64744413370836686}
   - component: {fileID: 114402131111644886}
-  - component: {fileID: 64097337631257386}
+  - component: {fileID: 64965660800208884}
   m_Layer: 0
   m_Name: TeethHammer
   m_TagString: Untagged
@@ -85,21 +84,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1703225010345282}
   m_Mesh: {fileID: 4300000, guid: 268a0b8abcfd2f14b80e186c79f668cb, type: 3}
---- !u!64 &64097337631257386
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1703225010345282}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: 268a0b8abcfd2f14b80e186c79f668cb, type: 3}
---- !u!64 &64744413370836686
+--- !u!64 &64965660800208884
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -132,7 +117,8 @@ MonoBehaviour:
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1

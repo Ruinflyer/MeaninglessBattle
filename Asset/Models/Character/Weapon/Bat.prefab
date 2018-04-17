@@ -21,9 +21,8 @@ GameObject:
   - component: {fileID: 4477534544915120}
   - component: {fileID: 33320236735405328}
   - component: {fileID: 23495288511563428}
-  - component: {fileID: 64195230545014530}
   - component: {fileID: 114547925225278802}
-  - component: {fileID: 64133565045413640}
+  - component: {fileID: 64468580476046936}
   m_Layer: 0
   m_Name: Bat
   m_TagString: Untagged
@@ -85,21 +84,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1687839321185430}
   m_Mesh: {fileID: 4300000, guid: d4922126d74ac444eb57079af3bfac78, type: 3}
---- !u!64 &64133565045413640
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1687839321185430}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: d4922126d74ac444eb57079af3bfac78, type: 3}
---- !u!64 &64195230545014530
+--- !u!64 &64468580476046936
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

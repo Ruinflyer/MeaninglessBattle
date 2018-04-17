@@ -28,7 +28,22 @@
         "Ground_Armor_Doctor",
         "Ground_Armor_Santa",
         "Ground_Armor_Horde",
-        "Ground_Armor_Wizard"
+        "Ground_Armor_Wizard",
+        "Crystal_Purple",
+        "Crystal_Green",
+        "Crystal_Red",
+        "Crystal_Dark_Blue",
+        "Crystal_Light_Blue",
+        "Crystal_Pink",
+        "HealthPotion",
+        "Crystal_Magic",
+        "Ripple",
+        "Heart_Attack",
+        "Stygian_Desolator",
+        "IceArrow",
+        "ChoshimArrow",
+        "KillerQueen",
+        "Thunderbolt"
     ],
     "BundlePath":"items.ab"
 }

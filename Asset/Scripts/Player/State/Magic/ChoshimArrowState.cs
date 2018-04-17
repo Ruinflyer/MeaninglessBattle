@@ -5,8 +5,6 @@ using Meaningless;
 
 public class ChoshimArrowState : FSMState {
 
-    internal NetPoolManager NetPoolManager = new NetPoolManager();
-
     public ChoshimArrowState()
     {
         stateID = FSMStateType.ChoshimArrow;
@@ -18,7 +16,6 @@ public class ChoshimArrowState : FSMState {
         {
             FSM.PlayAnimation("Magic Shoot Attack");
             GameObject go = NetPoolManager.Instantiate("Choshim Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
-            Debug.Log(go.name);
         }
         FSM.Attacked = false;
     }

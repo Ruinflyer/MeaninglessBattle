@@ -21,9 +21,8 @@ GameObject:
   - component: {fileID: 4779567943288176}
   - component: {fileID: 33265576361573042}
   - component: {fileID: 23777274391504462}
-  - component: {fileID: 64088614027063864}
   - component: {fileID: 114055829657390696}
-  - component: {fileID: 64695492854614402}
+  - component: {fileID: 64926582343447654}
   m_Layer: 0
   m_Name: Axe
   m_TagString: Untagged
@@ -85,21 +84,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1478163134859620}
   m_Mesh: {fileID: 4300000, guid: 1c93047dd5bfa7d43917b4166afae8f3, type: 3}
---- !u!64 &64088614027063864
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1478163134859620}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: 1c93047dd5bfa7d43917b4166afae8f3, type: 3}
---- !u!64 &64695492854614402
+--- !u!64 &64926582343447654
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

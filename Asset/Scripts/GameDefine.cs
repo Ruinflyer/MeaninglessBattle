@@ -32,6 +32,8 @@ namespace Meaningless
         Heal,
         //发送一个int型充能值
         Recharge,
+        //发现物品
+        FoundItem,
         //使用物品
         UseItem,
         //获取背包列表并刷新显示
@@ -58,6 +60,8 @@ namespace Meaningless
         Idle = 0,
         Move,
         Jump,
+        UseItem,
+        PickUp,
         SingleWieldAttack,
         DoubleHandsAttack,
         SpearIdle,
@@ -76,6 +80,8 @@ namespace Meaningless
         IsIdle = 0,
         CanBeMove,
         CanBeJump,
+        CanPickUp,
+        CanUseItem,
         AttackWithSingleWield,
         AttackWithDoubleHands,
         IsIdleWithSpear,

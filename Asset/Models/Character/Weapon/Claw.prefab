@@ -21,9 +21,8 @@ GameObject:
   - component: {fileID: 4072690722672458}
   - component: {fileID: 33358620500209846}
   - component: {fileID: 23851713116869046}
-  - component: {fileID: 64744620796582920}
   - component: {fileID: 114754270184218038}
-  - component: {fileID: 64343312607154168}
+  - component: {fileID: 64588216774359988}
   m_Layer: 0
   m_Name: Claw
   m_TagString: Untagged
@@ -85,21 +84,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1486950349901038}
   m_Mesh: {fileID: 4300000, guid: d070b424b6da32c4db6043761e231b94, type: 3}
---- !u!64 &64343312607154168
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1486950349901038}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: d070b424b6da32c4db6043761e231b94, type: 3}
---- !u!64 &64744620796582920
+--- !u!64 &64588216774359988
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

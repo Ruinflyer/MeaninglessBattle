@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GroundItem : MonoBehaviour {
 
-    public string ResName=null;
+    public int ItemID=0;
 
 
-    [PunRPC]
+
 	public void Hide()
     {
         gameObject.SetActive(false);

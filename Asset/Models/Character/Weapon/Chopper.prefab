@@ -21,9 +21,8 @@ GameObject:
   - component: {fileID: 4301213972549454}
   - component: {fileID: 33752720924487714}
   - component: {fileID: 23809605567809536}
-  - component: {fileID: 64508893785536986}
   - component: {fileID: 114993759667613008}
-  - component: {fileID: 64095709549130542}
+  - component: {fileID: 64693277702044652}
   m_Layer: 0
   m_Name: Chopper
   m_TagString: Untagged
@@ -58,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 2baf5b20e0597cc40a18eafe0986c91e, type: 2}
+  - {fileID: 2100000, guid: ad64a6d44d03c4047a810e16866417cc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,21 +84,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1090293401734834}
   m_Mesh: {fileID: 4300000, guid: 0e241bb9969f5184f86687d560c76e93, type: 3}
---- !u!64 &64095709549130542
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1090293401734834}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: 0e241bb9969f5184f86687d560c76e93, type: 3}
---- !u!64 &64508893785536986
+--- !u!64 &64693277702044652
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

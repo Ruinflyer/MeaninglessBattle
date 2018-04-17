@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 724275305
+CRC: 2762613791
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a1817d24be1a9360d30421fce0bb5da2
+    Hash: 05e0e4c5c4a5eaa92bcd413e190b7ce4
   TypeTreeHash:
     serializedVersion: 2
     Hash: 77c84f9dc31a1ed41e9d43aad25c8d94
@@ -42,26 +42,25 @@ ClassTypes:
 - Class: 115
   Script: {instanceID: 0}
 Assets:
-- Assets/Models/MapItem/Town_TrainingGround.prefab
-- Assets/Models/MapItem/Forest1.prefab
-- Assets/Models/MapItem/Town_HouseArea.prefab
-- Assets/Models/MapItem/House_Wild.prefab
-- Assets/Models/MapItem/Town_PedestrianStreet.prefab
-- Assets/Models/MapItem/Town_HouseArea2.prefab
-- Assets/Models/MapItem/Wlid6.prefab
+- Assets/Models/MapItem/5.prefab
+- Assets/Models/MapItem/6.prefab
+- Assets/Models/MapItem/1.prefab
+- Assets/Models/MapItem/10.prefab
+- Assets/Models/MapItem/3.prefab
+- Assets/Models/MapItem/2.prefab
+- Assets/Models/MapItem/16.prefab
 - Assets/Models/MapItem/Edge.prefab
-- Assets/Models/MapItem/Forest3.prefab
-- Assets/Models/MapItem/Square.prefab
-- Assets/Models/MapItem/House_WheatFarm.prefab
-- Assets/Models/MapItem/Forest2.prefab
+- Assets/Models/MapItem/8.prefab
+- Assets/Models/MapItem/9.prefab
+- Assets/Models/MapItem/7.prefab
 - Assets/Models/MapItem/CircleField.prefab
-- Assets/Models/MapItem/Wild5.prefab
-- Assets/Models/MapItem/Lake1.prefab
-- Assets/Models/MapItem/Moutain.prefab
-- Assets/Models/MapItem/Wild2.prefab
-- Assets/Models/MapItem/Lake2.prefab
-- Assets/Models/MapItem/Town_PubArea.prefab
-- Assets/Models/MapItem/Wild1.prefab
-- Assets/Models/MapItem/Wild3.prefab
-- Assets/Models/MapItem/Wild4.prefab
+- Assets/Models/MapItem/15.prefab
+- Assets/Models/MapItem/17.prefab
+- Assets/Models/MapItem/19.prefab
+- Assets/Models/MapItem/12.prefab
+- Assets/Models/MapItem/18.prefab
+- Assets/Models/MapItem/4.prefab
+- Assets/Models/MapItem/11.prefab
+- Assets/Models/MapItem/13.prefab
+- Assets/Models/MapItem/14.prefab
 Dependencies: []

@@ -1,0 +1,26 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Meaningless;
+
+public class DefendState : FSMState {
+
+	public DefendState()
+    {
+        stateID = FSMStateType.Defend;
+    }
+
+    public override void Act(BaseFSM FSM)
+    {
+        FSM.PlayAnimation("Defend");
+
+    }
+
+    public override void Reason(BaseFSM FSM)
+    {
+        if (FSM.animationManager.baseStateInfo.IsName("Idle"))
+        {
+            FSM.PerformTransition(FSMTransitionType.IsIdle);
+        }
+    }
+}

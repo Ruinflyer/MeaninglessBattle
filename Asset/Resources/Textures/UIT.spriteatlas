@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: UIT
+  m_EditorData:
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingParameters:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 845a7ef328c974f419b482703414660f, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 499831dd9e7108e41a143e1139ea8ffa, type: 3}
+  - {fileID: 21300000, guid: dfc4b03e16e6a044894d50b024fc8abc, type: 3}
+  - {fileID: 21300000, guid: b67b5e221c4da52429bc6ccdd56f2335, type: 3}
+  - {fileID: 21300000, guid: e62228209acc6574c90b59554a6bfea6, type: 3}
+  - {fileID: 21300000, guid: 5e572fc524312d54e854686698e07710, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Dice
+  - Bag
+  - Icon
+  - button-default
+  - button-default-background
+  m_Tag: UIT
+  m_IsVariant: 0

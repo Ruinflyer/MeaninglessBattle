@@ -21,9 +21,8 @@ GameObject:
   - component: {fileID: 4684396439633282}
   - component: {fileID: 33597728006848194}
   - component: {fileID: 23522876089216026}
-  - component: {fileID: 64737459649055270}
   - component: {fileID: 114618350960347110}
-  - component: {fileID: 64354302152516288}
+  - component: {fileID: 64467745332410694}
   m_Layer: 0
   m_Name: IronShield
   m_TagString: Untagged
@@ -85,21 +84,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1067518057446434}
   m_Mesh: {fileID: 4300000, guid: bbbd41033486b8446878c4f68af5a450, type: 3}
---- !u!64 &64354302152516288
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1067518057446434}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: bbbd41033486b8446878c4f68af5a450, type: 3}
---- !u!64 &64737459649055270
+--- !u!64 &64467745332410694
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

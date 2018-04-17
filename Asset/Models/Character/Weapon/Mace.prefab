@@ -21,9 +21,8 @@ GameObject:
   - component: {fileID: 4018763200397662}
   - component: {fileID: 33147252040054102}
   - component: {fileID: 23675783759430660}
-  - component: {fileID: 64820367155463278}
   - component: {fileID: 114548879288305070}
-  - component: {fileID: 64130997626471298}
+  - component: {fileID: 64887691463573940}
   m_Layer: 0
   m_Name: Mace
   m_TagString: Untagged
@@ -85,21 +84,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1144058454744952}
   m_Mesh: {fileID: 4300000, guid: d09a370426f20454aa1efdf7cc161728, type: 3}
---- !u!64 &64130997626471298
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1144058454744952}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: d09a370426f20454aa1efdf7cc161728, type: 3}
---- !u!64 &64820367155463278
+--- !u!64 &64887691463573940
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -132,7 +117,8 @@ MonoBehaviour:
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1

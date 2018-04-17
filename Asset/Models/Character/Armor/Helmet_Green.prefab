@@ -83,7 +83,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1354788378388096}
-  m_Mesh: {fileID: 4300000, guid: b8928ea7f9f7cc6479cccece29c9f5ff, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 18df4458bc9a0514daafe168d58cb714, type: 3}
 --- !u!64 &64483370625617736
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -117,7 +117,8 @@ MonoBehaviour:
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1

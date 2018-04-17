@@ -27,7 +27,7 @@ public class CharacterStatus
     public float Defend_Magic;
     //魔法持续时间减少值
     public float DecreaseDurationTime_Magic;
-    //针对武器的属性值
-    public Dictionary<WeaponType, float> AppointedWeaponData;
+    
+
 }
 

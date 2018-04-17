@@ -21,9 +21,8 @@ GameObject:
   - component: {fileID: 4415742892909312}
   - component: {fileID: 33000817038834000}
   - component: {fileID: 23487234427830656}
-  - component: {fileID: 64457001591295610}
   - component: {fileID: 114166877636447572}
-  - component: {fileID: 64158424450674514}
+  - component: {fileID: 64335787844314450}
   m_Layer: 0
   m_Name: StabHammer
   m_TagString: Untagged
@@ -85,21 +84,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1944888437551724}
   m_Mesh: {fileID: 4300000, guid: 598b1b55bf2e9174daac5906d252906e, type: 3}
---- !u!64 &64158424450674514
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1944888437551724}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: 598b1b55bf2e9174daac5906d252906e, type: 3}
---- !u!64 &64457001591295610
+--- !u!64 &64335787844314450
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -132,7 +117,8 @@ MonoBehaviour:
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1

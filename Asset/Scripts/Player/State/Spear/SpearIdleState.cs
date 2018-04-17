@@ -23,10 +23,13 @@ public class SpearIdleState : FSMState
             FSM.PerformTransition(FSMTransitionType.IsIdle);
         }
 
-        if ((Mathf.Abs(Input.GetAxis("Horizontal")) > 0.5 || Mathf.Abs(Input.GetAxis("Vertical")) > 0.5) && FSM.controller.CC.isGrounded&&FSM.characterStatus.weaponType==WeaponType.Spear)
+        if ((Mathf.Abs(Input.GetAxis("Horizontal")) > 0.5 || Mathf.Abs(Input.GetAxis("Vertical")) > 0.5) && FSM.controller.CC.isGrounded && FSM.characterStatus.weaponType == WeaponType.Spear)
         {
             FSM.PerformTransition(FSMTransitionType.CanBeMoveWithSpear);
         }
-        
+        if (Input.GetButtonDown("Fire1") && (FSM.characterStatus.weaponType == WeaponType.Spear))
+        {
+            FSM.PerformTransition(FSMTransitionType.AttackWithSpear);
+        }
     }
 }

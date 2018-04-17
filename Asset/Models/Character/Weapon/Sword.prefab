@@ -21,9 +21,8 @@ GameObject:
   - component: {fileID: 4562390278404218}
   - component: {fileID: 33121869450040212}
   - component: {fileID: 23547832219371650}
-  - component: {fileID: 64172997566761876}
   - component: {fileID: 114003699731932990}
-  - component: {fileID: 64734030707749908}
+  - component: {fileID: 64186714737580522}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -58,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 38d2b0e390cc2094dab24a4f96fc5267, type: 2}
+  - {fileID: 2100000, guid: 6ec693f605c72e940ba3359cfd44cb74, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,21 +84,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1004305348391868}
   m_Mesh: {fileID: 4300000, guid: c2a7230b8911571448ed941e246d74dd, type: 3}
---- !u!64 &64172997566761876
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1004305348391868}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: c2a7230b8911571448ed941e246d74dd, type: 3}
---- !u!64 &64734030707749908
+--- !u!64 &64186714737580522
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

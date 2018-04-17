@@ -17,20 +17,21 @@ public class PlayerBag : MonoBehaviour
 {
     private Canvas canvas;
 
-    private int CurrentSelected;
-    [SerializeField]
-    private List<SingleItemInfo> List_Equipped;
-    [SerializeField]
-    private List<SingleItemInfo> List_PickUp;
+    private int CurrentSelected=1;
+    
+    public List<SingleItemInfo> List_Equipped;
 
+    public List<SingleItemInfo> List_PickUp;
+
+    
     private int pickedupItemID;
-    private int UseItemID;
-    //背包是否已满
-    public bool isPickUpListFull=false;
+
     //默认角色属性值
     private CharacterStatus defaultCharacterStatus;
     //默认角色属性值
     private CharacterStatus characterStatus;
+
+
 
     private struct BasicAttributes
     {
@@ -42,9 +43,8 @@ public class PlayerBag : MonoBehaviour
         public float rate_MoveSpeed;
         public float rate_DurationTime_Magic;
     }
-
     private BasicAttributes armorAttributes;
-    private BasicAttributes[] List_WeaponAttributes;
+    private BasicAttributes[] List_WeaponAttributes = new BasicAttributes[2];
 
     //开始补血的时间
     private float timeBeginheal;
@@ -60,37 +60,26 @@ public class PlayerBag : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        List_PickUp = new List<SingleItemInfo>();
         List_Equipped = new List<SingleItemInfo>();
-        UseItemID = -1;
         for (int i = 0; i < 15; i++)
         {
             List_Equipped.Add(null);
         }
 
-        List_WeaponAttributes = new BasicAttributes[2];
+
         for (int j = 0; j < 2; j++)
         {
             List_WeaponAttributes[j] = new BasicAttributes();
         }
 
         defaultCharacterStatus = MeaninglessJson.LoadJsonFromFile<CharacterStatus>(MeaninglessJson.Path_StreamingAssets + "CharacterStatus.json");
-        //canvas = GameTool.GetTheChildComponent<Canvas>(GameObject.FindGameObjectWithTag("UIRoot"), "BagUI");
+        characterStatus = defaultCharacterStatus;
+        //  canvas = GameTool.GetTheChildComponent<Canvas>(GameObject.FindGameObjectWithTag("UIRoot"), "BagUI");
         MessageCenter.AddListener(EMessageType.PickedupItem, (object obj) => { pickedupItemID = (int)obj; });
         MessageCenter.AddListener(EMessageType.CurrentselectedWeapon, (object obj) => { CurrentSelected = (int)obj; });
+        MessageCenter.AddListener_Multparam(EMessageType.EquipItem, (object[] obj) => { EquipItem((EquippedItem)obj[0], (SingleItemInfo)obj[1]); });
+        MessageCenter.AddListener(EMessageType.UseItem, (object obj) => { UseItem((int)obj); });
 
-        MessageCenter.AddListener_Multparam(EMessageType.EquipItem, (object[] objs) =>
-        {
-            EquipItem((EquippedItem)objs[0], (SingleItemInfo)objs[1]);
-        });
-
-        
-        MessageCenter.AddListener(EMessageType.UseItem, (object obj) => { UseItemID = (int)obj; });
-
-        MessageCenter.AddListener(EMessageType.UnEquipItem, (object obj) =>
-        {
-            UnequipItem((EquippedItem)obj);
-        });
     }
 
     // Update is called once per frame
@@ -114,16 +103,8 @@ public class PlayerBag : MonoBehaviour
                 healFlag = false;
             }
         }
-
-        if (UseItemID != -1)
-        {
-            UseItem(UseItemID);
-        }
-
-        if(pickedupItemID!=-1)
-        {
-            PickItem(pickedupItemID);
-        }
+        MessageCenter.Send(EMessageType.GetAndSetBagList, List_PickUp);
+        MessageCenter.Send(EMessageType.GetAndSetEquippedList, List_Equipped);
     }
 
 
@@ -134,17 +115,13 @@ public class PlayerBag : MonoBehaviour
     /// <param name="ItemID"></param>
     public void UseItem(int index)
     {
-
         if (List_PickUp[index] != null)
         {
             if (List_PickUp[index].itemType == ItemType.Expendable)
             {
                 if (List_PickUp[index].expendableProperties.RechargeValue != 0)
                 {
-                    //发送充能值
                     MessageCenter.Send(EMessageType.Recharge, List_PickUp[index].expendableProperties.RechargeValue);
-                    //刷新UI中的列表
-                    MessageCenter.Send(EMessageType.GetAndSetBagList, List_PickUp);
                 }
 
                 if (List_PickUp[index].expendableProperties.Recovery_HP != 0)
@@ -154,17 +131,11 @@ public class PlayerBag : MonoBehaviour
                     RecoveryPerSec = RecoveryValue / RecoveryTime;
                     timeBeginheal = Time.time;
                     healFlag = true;
+
                 }
 
+                List_PickUp.RemoveAt(index);
             }
-            List_PickUp.RemoveAt(index);
-            MessageCenter.Send(EMessageType.RefreshBagList, index);
-            if (List_PickUp.Count < 10)
-            {
-                isPickUpListFull = false;
-                MessageCenter.Send(EMessageType.GetBagListFull, isPickUpListFull);
-            }
-            UseItemID = -1;
         }
     }
 
@@ -176,8 +147,9 @@ public class PlayerBag : MonoBehaviour
     {
         if (ItemID != 0)
         {
-            SingleItemInfo ItemInfo = ItemInfoManager.Instance.GetItemInfo(ItemID);
-
+            SingleItemInfo ItemInfo;
+            ItemInfo = ItemInfoManager.Instance.GetItemInfo(ItemID);
+            pickedupItemID = -1;
             switch (ItemInfo.itemType)
             {
                 case ItemType.Armor:
@@ -189,6 +161,7 @@ public class PlayerBag : MonoBehaviour
                             if (List_Equipped[(int)EquippedItem.Head] == null)
                             {
                                 EquipItem(EquippedItem.Head, ItemInfo);
+                                //GetComponent<MeaninglessCharacterController>().EquipHelmet(ItemID);
                             }
 
 
@@ -197,6 +170,7 @@ public class PlayerBag : MonoBehaviour
                             if (List_Equipped[(int)EquippedItem.Body] == null)
                             {
                                 EquipItem(EquippedItem.Body, ItemInfo);
+                                //GetComponent<MeaninglessCharacterController>().EquipClothes(ItemID);
                             }
 
                             break;
@@ -204,30 +178,48 @@ public class PlayerBag : MonoBehaviour
 
                     break;
                 case ItemType.Weapon:
-                    if (List_Equipped[(int)EquippedItem.Weapon1] == null)
+                    if(ItemInfo.weaponProperties.weaponType!=WeaponType.Shield)
                     {
-                        EquipItem(EquippedItem.Weapon1, ItemInfo);
-                    }
-                    else if (List_Equipped[(int)EquippedItem.Weapon2] != null && CurrentSelected == 1)
-                    {
-                        EquipItem(EquippedItem.Weapon1, ItemInfo);
-                    }
+                        if (List_Equipped[(int)EquippedItem.Weapon1] == null)
+                        {
+                            GetComponent<MeaninglessCharacterController>().CurrentSelected = 1;
+                            EquipItem(EquippedItem.Weapon1, ItemInfo);
 
-                    if (List_Equipped[(int)EquippedItem.Weapon2] == null)
-                    {
-                        EquipItem(EquippedItem.Weapon2, ItemInfo);
+                        }
+                        else if (List_Equipped[(int)EquippedItem.Weapon2] != null && CurrentSelected == 1)
+                        {
+                            EquipItem(EquippedItem.Weapon1, ItemInfo);
+                        }
+
+                        if (List_Equipped[(int)EquippedItem.Weapon2] == null)
+                        {
+                            GetComponent<MeaninglessCharacterController>().CurrentSelected = 2;
+                            EquipItem(EquippedItem.Weapon2, ItemInfo);
+
+                        }
+                        else if (List_Equipped[(int)EquippedItem.Weapon1] != null && CurrentSelected == 2)
+                        {
+                            EquipItem(EquippedItem.Weapon2, ItemInfo);
+                        }
                     }
-                    else if (List_Equipped[(int)EquippedItem.Weapon1] != null && CurrentSelected == 2)
+                    else
                     {
-                        EquipItem(EquippedItem.Weapon2, ItemInfo);
+                        if (List_Equipped[(int)EquippedItem.Shield] == null)
+                        {
+                            EquipItem(EquippedItem.Shield, ItemInfo);
+                        }
+                        else
+                        {
+                            UnequipItem(EquippedItem.Shield);
+                            EquipItem(EquippedItem.Shield, ItemInfo);
+                        }
                     }
                     break;
                 case ItemType.Expendable:
 
-                    if (List_PickUp.Count < 10)
+                    if (List_PickUp.Count <= 10)
                     {
                         List_PickUp.Add(ItemInfo);
-                        MessageCenter.Send(EMessageType.GetAndSetBagList, List_PickUp);
                     }
 
                     break;
@@ -252,21 +244,12 @@ public class PlayerBag : MonoBehaviour
                     }
                     break;
                 case ItemType.Gem:
-                    if (List_PickUp.Count < 10)
+                    if (List_PickUp.Count <= 10)
                     {
                         List_PickUp.Add(ItemInfo);
-                        MessageCenter.Send(EMessageType.GetAndSetBagList, List_PickUp);
                     }
-
                     break;
             }
-            if (List_PickUp.Count == 10)
-            {
-                isPickUpListFull = true;
-                MessageCenter.Send(EMessageType.GetBagListFull, isPickUpListFull);
-            }
-            pickedupItemID = -1;
-            MessageCenter.Send(EMessageType.GetAndSetBagList,List_PickUp);
         }
     }
 
@@ -303,6 +286,8 @@ public class PlayerBag : MonoBehaviour
                     armorAttributes.rate_Recovery += List_Equipped[(int)EquippedItem.HeadGem2].gemProperties.Rate_Recovery;
                 }
                 List_Equipped[(int)EquippedItem.Head] = itemInfo;
+                GetComponent<PlayerController>().UnEquip(EquippedItem.Head);
+                GetComponent<PlayerController>().EquipHelmet(itemInfo.ItemID);
                 break;
             case EquippedItem.Body:
                 //1.使用UnequipItem(EquippedItem.Body)后，直接脱下身体防具将会减去身体防具上宝石的属性，所以装备身体防具时，当宝石存在，即再次加上宝石属性.
@@ -328,7 +313,6 @@ public class PlayerBag : MonoBehaviour
                     armorAttributes.rate_Recovery += List_Equipped[(int)EquippedItem.BodyGem2].gemProperties.Rate_Recovery;
                 }
 
-
                 //添加身体防具属性
                 armorAttributes.rate_Defend_Magic += itemInfo.armorProperties.Rate_MagicalDefend;
                 armorAttributes.rate_Defend_Physics += itemInfo.armorProperties.Rate_PhysicalDefend;
@@ -337,6 +321,8 @@ public class PlayerBag : MonoBehaviour
                 armorAttributes.rate_Recovery += itemInfo.armorProperties.Rate_Recovery;
 
                 List_Equipped[(int)EquippedItem.Body] = itemInfo;
+                GetComponent<PlayerController>().UnEquip(EquippedItem.Body);
+                GetComponent<PlayerController>().EquipClothes(itemInfo.ItemID);
                 break;
 
             case EquippedItem.HeadGem1:
@@ -419,6 +405,10 @@ public class PlayerBag : MonoBehaviour
                 }
 
                 List_Equipped[(int)EquippedItem.Weapon1] = itemInfo;
+
+                GetComponent<PlayerController>().UnEquip(EquippedItem.Weapon1);
+                GetComponent<PlayerController>().EquipWeapon(itemInfo.ItemID);
+                
                 break;
             case EquippedItem.Weapon2:
                 //1.使用UnequipItem(EquippedItem.Weapon2)后，直接脱下武器将会减去武器上宝石的属性，所以装备武器时，当宝石存在，即再次加上宝石属性.
@@ -444,6 +434,9 @@ public class PlayerBag : MonoBehaviour
                     List_WeaponAttributes[1].rate_Recovery += List_Equipped[(int)EquippedItem.Weapon2_Gem2].gemProperties.Rate_Recovery;
                 }
                 List_Equipped[(int)EquippedItem.Weapon2] = itemInfo;
+
+                GetComponent<PlayerController>().UnEquip(EquippedItem.Weapon2);
+                GetComponent<PlayerController>().EquipWeapon(itemInfo.ItemID);
                 break;
 
             case EquippedItem.Weapon1_Gem1:
@@ -501,6 +494,8 @@ public class PlayerBag : MonoBehaviour
 
             case EquippedItem.Shield:
                 List_Equipped[(int)EquippedItem.Shield] = itemInfo;
+                GetComponent<PlayerController>().UnEquip(EquippedItem.Shield);
+                GetComponent<PlayerController>().EquipShield(itemInfo.ItemID);
                 break;
 
 
@@ -516,8 +511,8 @@ public class PlayerBag : MonoBehaviour
         }
 
         List_Equipped[(int)equippedItem] = itemInfo;
-        MessageCenter.Send(EMessageType.GetAndSetEquippedList, List_Equipped);
 
+        
     }
 
     /// <summary>
@@ -556,7 +551,6 @@ public class PlayerBag : MonoBehaviour
                     List_Equipped[(int)EquippedItem.Head] = null;
                     break;
                 case EquippedItem.HeadGem1:
-                    
                     if (List_Equipped[(int)EquippedItem.Head] != null)
                     {
                         armorAttributes.rate_Attack_Magic -= List_Equipped[(int)EquippedItem.HeadGem1].gemProperties.Rate_MagicalAttack;
@@ -697,7 +691,7 @@ public class PlayerBag : MonoBehaviour
     }
 
     /// <summary>
-    /// 根据当前选择的武器返回角色数据，0为盾牌 1为武器1 2为武器2  3为魔法1 4为魔法2
+    /// 根据当前选择的武器返回角色数据，0无武器 1为武器1 2为武器2  3为魔法1 4为魔法2 5为盾牌
     /// </summary>
     /// <returns></returns>
     public CharacterStatus GetCharacterStatus()
@@ -705,16 +699,7 @@ public class PlayerBag : MonoBehaviour
         switch (CurrentSelected)
         {
             case 0:
-                //一次防御盾前抵挡所有控制一次，一次后破防，一次防御盾前抵挡200伤害，溢出则破防
-                characterStatus.weaponType = WeaponType.Shield;
-                characterStatus.Attack_Physics = 0;
-                characterStatus.Attack_Magic = 0;
-                characterStatus.DecreaseDurationTime_Magic = 0;
-                characterStatus.Defend_Magic = 200;
-                characterStatus.Defend_Physics = 200;
-                characterStatus.moveSpeed = defaultCharacterStatus.moveSpeed + (defaultCharacterStatus.moveSpeed * armorAttributes.rate_MoveSpeed);
-                characterStatus.RecoveryValue = defaultCharacterStatus.RecoveryValue + defaultCharacterStatus.RecoveryValue * armorAttributes.rate_Recovery;
-
+                GetNonWeaponCharacterStatus();
                 break;
             case 1:
 
@@ -751,10 +736,6 @@ public class PlayerBag : MonoBehaviour
                         characterStatus.Attack_Physics += (List_Equipped[(int)EquippedItem.Weapon1].weaponProperties.Damage * List_Equipped[(int)EquippedItem.Head].armorProperties.Rate_Attack);
                     }
                 }
-
-
-
-
                 break;
             case 2:
                 //未装备Weapon2而使用Weapon2槽位攻击时，返回无武器属性
@@ -795,6 +776,7 @@ public class PlayerBag : MonoBehaviour
 
             case 3:
                 characterStatus.weaponType = List_Equipped[(int)EquippedItem.Magic1].weaponProperties.weaponType;
+                characterStatus.magicType = List_Equipped[(int)EquippedItem.Magic1].magicProperties.magicType;
 
                 characterStatus.Attack_Physics = 0;
 
@@ -814,6 +796,7 @@ public class PlayerBag : MonoBehaviour
                 break;
             case 4:
                 characterStatus.weaponType = List_Equipped[(int)EquippedItem.Magic2].weaponProperties.weaponType;
+                characterStatus.magicType = List_Equipped[(int)EquippedItem.Magic2].magicProperties.magicType;
 
                 characterStatus.Attack_Physics = 0;
 
@@ -830,6 +813,18 @@ public class PlayerBag : MonoBehaviour
                 characterStatus.moveSpeed = defaultCharacterStatus.moveSpeed + (defaultCharacterStatus.moveSpeed * armorAttributes.rate_MoveSpeed);
 
                 characterStatus.RecoveryValue = defaultCharacterStatus.RecoveryValue + (defaultCharacterStatus.RecoveryValue * armorAttributes.rate_Recovery);
+                break;
+            case 5:
+                //一次防御盾前抵挡所有控制一次，一次后破防，一次防御盾前抵挡200伤害，溢出则破防
+                characterStatus.weaponType = WeaponType.Shield;
+                characterStatus.Attack_Physics = 0;
+                characterStatus.Attack_Magic = 0;
+                characterStatus.DecreaseDurationTime_Magic = 0;
+                characterStatus.Defend_Magic = 200;
+                characterStatus.Defend_Physics = 200;
+                characterStatus.moveSpeed = defaultCharacterStatus.moveSpeed + (defaultCharacterStatus.moveSpeed * armorAttributes.rate_MoveSpeed);
+                characterStatus.RecoveryValue = defaultCharacterStatus.RecoveryValue + defaultCharacterStatus.RecoveryValue * armorAttributes.rate_Recovery;
+
                 break;
         }
         return characterStatus;
@@ -858,8 +853,4 @@ public class PlayerBag : MonoBehaviour
         characterStatus.RecoveryValue = defaultCharacterStatus.RecoveryValue + (defaultCharacterStatus.RecoveryValue * armorAttributes.rate_Recovery);
         return characterStatus;
     }
-
-
 }
-
-

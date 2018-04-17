@@ -5,7 +5,6 @@ using Meaningless;
 
 public class RippleAttackState : FSMState
 {
-    internal NetPoolManager NetPoolManager=new NetPoolManager();
 
     public RippleAttackState()
     {

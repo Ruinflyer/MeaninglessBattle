@@ -4,11 +4,11 @@ using UnityEngine;
 using Meaningless;
 using System;
 
-public class NetPoolManager : ObjectPoolManager, IPunPrefabPool
+public class NetPoolManager : ObjectPoolManager
 {
     public void Awake()
     {
-        PhotonNetwork.PrefabPool = this;      
+        //PhotonNetwork.PrefabPool = this;      
     }
 
     public GameObject Instantiate(string prefabId, Vector3 position, Quaternion rotation)

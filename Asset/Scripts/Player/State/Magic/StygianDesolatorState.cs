@@ -5,7 +5,7 @@ using Meaningless;
 
 public class StygianDesolatorState : FSMState
 {
-    internal NetPoolManager NetPoolManager = new NetPoolManager();
+    //internal NetPoolManager NetPoolManager = new NetPoolManager();
 
     public StygianDesolatorState()
     {

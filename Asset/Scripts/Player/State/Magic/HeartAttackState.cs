@@ -5,7 +5,6 @@ using Meaningless;
 
 public class HeartAttackState : FSMState
 {
-    internal NetPoolManager NetPoolManager = new NetPoolManager();
 
     public HeartAttackState()
     {

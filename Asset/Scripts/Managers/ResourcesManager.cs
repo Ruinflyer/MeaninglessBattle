@@ -19,7 +19,9 @@ public class ResourcesManager : Mono_DDOLSingleton<ResourcesManager>
     private Dictionary<string, GameObject> Dict_BaseMapTiles;
     private Dictionary<string, GameObject> Dict_Items;
     private Dictionary<string, Sprite> Dict_UITex;
+ 
     public static Dictionary<string, GameObject> Dict_Magic = new Dictionary<string, GameObject>();
+
 
     void Start()
     {
@@ -140,4 +142,13 @@ public class ResourcesManager : Mono_DDOLSingleton<ResourcesManager>
         }
         return resourceGObj;
     }
+
+
+    public IEnumerator LoadScene()
+    {
+        AssetBundle ab = AssetBundle.LoadFromFile(Application.dataPath + "/StreamingAssets/Scene.ab");
+        ab.LoadAllAssets();
+        yield return true;
+    }
+    
 }

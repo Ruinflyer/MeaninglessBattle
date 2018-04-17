@@ -21,9 +21,8 @@ GameObject:
   - component: {fileID: 4074784303113590}
   - component: {fileID: 33468975070604780}
   - component: {fileID: 23490087877912170}
-  - component: {fileID: 64051766809596708}
   - component: {fileID: 114160680986544130}
-  - component: {fileID: 64032524376552714}
+  - component: {fileID: 64167650836705042}
   m_Layer: 0
   m_Name: WoodShield
   m_TagString: Untagged
@@ -58,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7405c3fbd593e0e4d8a4c6029829895b, type: 2}
+  - {fileID: 2100000, guid: 79740c5adf8c72444bcf809174aca58c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,21 +84,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1358891863701560}
   m_Mesh: {fileID: 4300000, guid: d509debbbccecb44fafcfcd15bc6138e, type: 3}
---- !u!64 &64032524376552714
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1358891863701560}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: d509debbbccecb44fafcfcd15bc6138e, type: 3}
---- !u!64 &64051766809596708
+--- !u!64 &64167650836705042
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -132,7 +117,8 @@ MonoBehaviour:
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1

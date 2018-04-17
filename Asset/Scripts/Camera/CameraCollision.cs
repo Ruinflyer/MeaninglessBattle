@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraCollision : MonoBehaviour {
+public class CameraCollision : MonoBehaviour
+{
 
     public float minDistnce = 1f;
     public float maxDistance = 5f;
@@ -10,6 +11,8 @@ public class CameraCollision : MonoBehaviour {
     public float distance;
     private Vector3 dir;
     RaycastHit hit;
+    Ray rayToItem;
+    RaycastHit hitToItem;
 
     private void Awake()
     {
@@ -19,10 +22,8 @@ public class CameraCollision : MonoBehaviour {
 
     private void Update()
     {
-        
-
         if (Physics.Linecast(transform.parent.position, transform.parent.TransformPoint(dir * maxDistance), out hit))
-        {   
+        {
             distance = Mathf.Clamp(hit.distance * 0.9f, minDistnce, maxDistance);
         }
         else
@@ -31,18 +32,33 @@ public class CameraCollision : MonoBehaviour {
         }
         transform.localPosition = Vector3.Lerp(transform.localPosition, dir * distance, Time.deltaTime * smooth);
 
-        if(hit.collider!=null)
+        rayToItem = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(rayToItem, out hitToItem))
         {
-            if (hit.collider.GetComponent<GroundItem>() != null)
+            float distance = Vector3.Distance(rayToItem.origin, hitToItem.point);
+            if (hitToItem.collider != null)
             {
-                MessageCenter.Send(Meaningless.EMessageType.FoundItem, true);
+                if (distance <= 10)
+                {
+                    if (hitToItem.collider.GetComponent<GroundItem>() != null)
+                    {
+                        MessageCenter.Send(Meaningless.EMessageType.FoundItem, true);
+                        MessageCenter.Send(Meaningless.EMessageType.PickedupItem, hitToItem.collider.GetComponent<GroundItem>().ItemID);
+                    }
+                    else if (hitToItem.collider.GetComponent<Terrain>() != null)
+                    {
+
+                        MessageCenter.Send(Meaningless.EMessageType.GetHitPoint, hitToItem.point);
+                    }
+                    else
+                    {
+                        MessageCenter.Send(Meaningless.EMessageType.FoundItem, false);
+                    }
+                }
             }
-            else
-            {
-                MessageCenter.Send(Meaningless.EMessageType.FoundItem, false);
-            }
+
         }
-    
+
 
     }
 }

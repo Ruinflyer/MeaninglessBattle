@@ -21,9 +21,8 @@ GameObject:
   - component: {fileID: 4139820485678658}
   - component: {fileID: 33750608119489612}
   - component: {fileID: 23559668657355536}
-  - component: {fileID: 64965875057668770}
   - component: {fileID: 114520259534145140}
-  - component: {fileID: 64207654991231442}
+  - component: {fileID: 64610364896940016}
   m_Layer: 0
   m_Name: Knuckles
   m_TagString: Untagged
@@ -85,21 +84,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1885642301230048}
   m_Mesh: {fileID: 4300000, guid: 5ed7080df48af754cba1910b4d40c991, type: 3}
---- !u!64 &64207654991231442
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1885642301230048}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: 5ed7080df48af754cba1910b4d40c991, type: 3}
---- !u!64 &64965875057668770
+--- !u!64 &64610364896940016
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

@@ -21,9 +21,8 @@ GameObject:
   - component: {fileID: 4785011236397232}
   - component: {fileID: 33706347320719532}
   - component: {fileID: 23327151691664992}
-  - component: {fileID: 64868365390994244}
   - component: {fileID: 114205419528300076}
-  - component: {fileID: 64676810314572302}
+  - component: {fileID: 64521761889757558}
   m_Layer: 0
   m_Name: TeethClub
   m_TagString: Untagged
@@ -85,21 +84,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1626181990512716}
   m_Mesh: {fileID: 4300000, guid: 03dd33f2e39dbf04b9d72f880e030e0e, type: 3}
---- !u!64 &64676810314572302
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1626181990512716}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: 03dd33f2e39dbf04b9d72f880e030e0e, type: 3}
---- !u!64 &64868365390994244
+--- !u!64 &64521761889757558
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -132,7 +117,8 @@ MonoBehaviour:
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1

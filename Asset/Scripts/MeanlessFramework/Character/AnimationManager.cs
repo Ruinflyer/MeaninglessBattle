@@ -11,7 +11,7 @@ namespace Meaningless
         public AnimatorStateInfo baseStateInfo;
         public AnimatorStateInfo attackStateInfo;
         public Animator anim;
-        private string animCur;
+        public string animCur;
 
         void Start()
         {
@@ -45,6 +45,8 @@ namespace Meaningless
             anim.SetBool(animCur, false);
             animCur = "Idle";
         }
+
+
     }
 
 }
