@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using Meaningless;
 using MeaninglessNetwork;
-
+using UnityEngine.SceneManagement;
 
 public class RoomUI : BaseUI
 {
@@ -96,8 +96,10 @@ public class RoomUI : BaseUI
         }
         else
         {
+            
+            
             //游戏开始
-
+            //MessageCenter.Send();
         }
     }
 
