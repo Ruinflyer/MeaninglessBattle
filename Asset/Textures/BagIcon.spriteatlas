@@ -1,0 +1,133 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: BagIcon
+  m_EditorData:
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingParameters:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 253556aa1995123468413990016e81d7, type: 3}
+    - {fileID: 102900000, guid: 64f9f735e07090e48a516cb5b9c24db4, type: 3}
+    - {fileID: 102900000, guid: c835fe6d9cc72db4a97fb06d67eeeb9e, type: 3}
+    - {fileID: 102900000, guid: 1fe03c20b92592b4c83e6b1bb8369071, type: 3}
+    - {fileID: 102900000, guid: e9d24ed2add4bf544bdd7c0c02e8c76e, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: ea9c593674349ba48be99604fa1d6c98, type: 3}
+  - {fileID: 21300000, guid: 339783b56f7c4f34e85e61a61df3fa1b, type: 3}
+  - {fileID: 21300000, guid: 6bc9a741b617de042983c781c0e5180a, type: 3}
+  - {fileID: 21300000, guid: cb9c1d12591ddd4439e4f2fdf6608f23, type: 3}
+  - {fileID: 21300000, guid: c9b6642c674663d41ae172a9610b730e, type: 3}
+  - {fileID: 21300000, guid: 6e2d664686c29634bb6f4510a54407a8, type: 3}
+  - {fileID: 21300000, guid: 845b45659f9620d469f7b340cd3c5937, type: 3}
+  - {fileID: 21300000, guid: 0c63a33fdef39324daa9bd6efe5e4d0f, type: 3}
+  - {fileID: 21300000, guid: 75ef7fbc326033d4f83a587cccd2021e, type: 3}
+  - {fileID: 21300000, guid: 1ea799106cf08264d846db64d0cb3270, type: 3}
+  - {fileID: 21300000, guid: c4e2fd78f7d788940949fb974adf711b, type: 3}
+  - {fileID: 21300000, guid: 9177ba262f6e7974483bad89e5cb87fd, type: 3}
+  - {fileID: 21300000, guid: 608bda9a08c921b41a6689062b1bcfe4, type: 3}
+  - {fileID: 21300000, guid: 35d81a8ed5199fa42bac6ad3b64cac76, type: 3}
+  - {fileID: 21300000, guid: e699778d72123b0469597e51ed2afddd, type: 3}
+  - {fileID: 21300000, guid: 2c8500c679fc0e441a0414eabe7871d0, type: 3}
+  - {fileID: 21300000, guid: d7471e7538589904e9954828b093b8c4, type: 3}
+  - {fileID: 21300000, guid: 48252988d6781ac4c85609211f65b66b, type: 3}
+  - {fileID: 21300000, guid: 31fba31eddc7a5947a60aeb1522b125d, type: 3}
+  - {fileID: 21300000, guid: aadf8e1190d38064f9815ca1b8b47195, type: 3}
+  - {fileID: 21300000, guid: 0349c5a4b345ff44796932e339879708, type: 3}
+  - {fileID: 21300000, guid: a9b92a67f0605a64ab4f47123de14db7, type: 3}
+  - {fileID: 21300000, guid: 1752c930abf0f7e42974bc025a5aca10, type: 3}
+  - {fileID: 21300000, guid: 6feee7b053994ac4b8eb6cbe13ace021, type: 3}
+  - {fileID: 21300000, guid: b3492a31cea1d6c47ab35c5f1a407373, type: 3}
+  - {fileID: 21300000, guid: 9fabd97439a1605408e4edd0bbc13a3b, type: 3}
+  - {fileID: 21300000, guid: 6389952847ba2d14e81227722c7ec89b, type: 3}
+  - {fileID: 21300000, guid: 5e041a1f68036034eba3a8b0c6547e61, type: 3}
+  - {fileID: 21300000, guid: 2d399f5b117c2e644986a5403b4d1d8a, type: 3}
+  - {fileID: 21300000, guid: 66ff2d09e94de194fa43f75e4feaefa6, type: 3}
+  - {fileID: 21300000, guid: cbed0dd40e6c36943a196f3504736d70, type: 3}
+  - {fileID: 21300000, guid: 10dda79c81d56f84e853430f4d4ecc7c, type: 3}
+  - {fileID: 21300000, guid: af8c6d9f5aec5a14da8cd4cf277ed86e, type: 3}
+  - {fileID: 21300000, guid: ad323473572f3c145acd43f0b112741d, type: 3}
+  - {fileID: 21300000, guid: 29d0523fafb47bf4bbbc257747fe62a9, type: 3}
+  - {fileID: 21300000, guid: b1be265cf06998347a9f2896a341a2e2, type: 3}
+  - {fileID: 21300000, guid: 0b22b0669d42b6e4292be860a5573224, type: 3}
+  - {fileID: 21300000, guid: 6fdb052a13ea8224fb4907d4e138a4ee, type: 3}
+  - {fileID: 21300000, guid: 651d70b1581ca2746a89aa74a4ddaad0, type: 3}
+  - {fileID: 21300000, guid: f4379dce24a319a41b83d5f21f4094e3, type: 3}
+  - {fileID: 21300000, guid: 19685f2cfc8db224ebda8e0618e9ce71, type: 3}
+  - {fileID: 21300000, guid: b7733645145ee194e89a86af89e357bb, type: 3}
+  - {fileID: 21300000, guid: bdf0668449079aa4b8cc6e908c9c31a5, type: 3}
+  - {fileID: 21300000, guid: 25986d96a83068444a3d53c16ad708c0, type: 3}
+  - {fileID: 21300000, guid: f3a6a6d701d29cb4bb2a959db0b56d49, type: 3}
+  - {fileID: 21300000, guid: a34e92b4dd320c04daf6998299e73b7b, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Crystal_Green
+  - Crystal_Orange
+  - Helmet_Knight
+  - Crystal_Light_Blue
+  - HealthPotion
+  - Axe
+  - Ripple
+  - Knuckles
+  - Chopper
+  - Mask_Emirate
+  - Claw
+  - Sword
+  - TeethClub
+  - Thunderbolt
+  - Helmet_Swordman
+  - Club
+  - IceArrow
+  - ChoshimArrow
+  - Null
+  - KillerQueen
+  - Scythe
+  - Armor_KnightArmor
+  - Crystal_Yellow
+  - Crystal_Dark_Blue
+  - Rake
+  - Armor_Santa
+  - Crystal_Pink
+  - Spear
+  - IronShield
+  - Stygian_Desolator
+  - Crystal_Magic
+  - Dragger
+  - Mace
+  - Armor_Casual
+  - Crystal_Red
+  - Armor_Wizard
+  - WoodShield
+  - StabHammer
+  - Armor_KnightChainArmor
+  - Heart_Attack
+  - Crystal_Purple
+  - Helmet_Gladiator
+  - TeethHammer
+  - Armor_Horde
+  - Helmet_Green
+  - Armor_KnightMagenta
+  m_Tag: BagIcon
+  m_IsVariant: 0

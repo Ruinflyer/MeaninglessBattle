@@ -1,0 +1,77 @@
+ManifestFileVersion: 0
+CRC: 1367763202
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 79d1e432c7c8094000759c1cadc32e88
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: a4448b11ad8ebf9dbf547675b4f9021e
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/Models/Character/Armor/Mask_Emirate.prefab
+- Assets/Models/Character/Expendable/Crystal_Magic.prefab
+- Assets/Models/Character/Magic/Ripple.prefab
+- Assets/Models/Character/Weapon/Dagger.prefab
+- Assets/Models/Character/Weapon/Mace.prefab
+- Assets/Models/Character/Expendable/HealthPotion.prefab
+- Assets/Models/Character/Weapon/ForgeHammer.prefab
+- Assets/Models/Character/Armor/Body/Ground_Armor_Santa.prefab
+- Assets/Models/Character/Gem/Crystal_Pink.prefab
+- Assets/Models/Character/Armor/Helmet_Swordman.prefab
+- Assets/Models/Character/Weapon/Chopper.prefab
+- Assets/Models/Character/Weapon/Axe.prefab
+- Assets/Models/Character/Armor/Body/Ground_Armor_Doctor.prefab
+- Assets/Models/Character/Gem/Crystal_Purple.prefab
+- Assets/Models/Character/Weapon/StabHammer.prefab
+- Assets/Models/Character/Gem/Crystal_Orange.prefab
+- Assets/Models/Character/Weapon/Scythe.prefab
+- Assets/Models/Character/Armor/Body/Ground_Armor_Casual.prefab
+- Assets/Models/Character/Weapon/TeethClub.prefab
+- Assets/Models/Character/Gem/Crystal_Green.prefab
+- Assets/Models/Character/Weapon/WoodShield.prefab
+- Assets/Models/Character/Armor/Body/Ground_Armor_Horde.prefab
+- Assets/Models/Character/Weapon/Claw.prefab
+- Assets/Models/Character/Weapon/Knuckles.prefab
+- Assets/Models/Character/Weapon/Rake.prefab
+- Assets/Models/Character/Weapon/Sword.prefab
+- Assets/Models/Character/Gem/Crystal_Red.prefab
+- Assets/Models/Character/Magic/Thunderbolt.prefab
+- Assets/Models/Character/Weapon/IronShield.prefab
+- Assets/Models/Character/Magic/ChoshimArrow.prefab
+- Assets/Models/Character/Magic/KillerQueen.prefab
+- Assets/Models/Character/Gem/Crystal_Dark_Blue.prefab
+- Assets/Models/Character/Magic/IceArrow.prefab
+- Assets/Models/Character/Weapon/TeethHammer.prefab
+- Assets/Models/Character/Gem/Crystal_Light_Blue.prefab
+- Assets/Models/Character/Armor/Body/Ground_Armor_Chain.prefab
+- Assets/Models/Character/Weapon/Bat.prefab
+- Assets/Models/Character/Magic/Stygian_Desolator.prefab
+- Assets/Models/Character/Weapon/Spear.prefab
+- Assets/Models/Character/Magic/HeartAttack.prefab
+Dependencies: []

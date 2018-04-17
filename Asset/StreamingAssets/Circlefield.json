@@ -1,0 +1,28 @@
+{
+    "Circlefields": [
+        {
+            "Holdtime": 10,
+            "Movetime": 60,
+            "ShrinkPercent": 0.6,
+            "DamagePerSec": 2
+        },
+        {
+            "Holdtime": 60,
+            "Movetime": 30,
+            "ShrinkPercent": 0.5,
+            "DamagePerSec": 4
+        },
+        {
+            "Holdtime": 30,
+            "Movetime": 15,
+            "ShrinkPercent": 0.5,
+            "DamagePerSec": 8
+        },
+        {
+            "Holdtime": 30,
+            "Movetime": 15,
+            "ShrinkPercent": 0.5,
+            "DamagePerSec": 16
+        }
+    ]
+}

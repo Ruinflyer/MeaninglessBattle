@@ -1,0 +1,33 @@
+{
+    "Town_Resname": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+    ],
+    "Lake_Resname": [
+        "17",
+        "18"
+    ],
+    "Wild_Resname": [
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16"
+    ],
+    "Forest_Resname": [
+        "6",
+        "7",
+        "8"
+    ],
+    "Wildhouse_Resname": [
+        "9",
+        "10"
+    ],
+    "Moutain_Resname": [
+        "19"
+    ]
+}
