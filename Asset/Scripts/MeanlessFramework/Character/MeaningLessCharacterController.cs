@@ -10,7 +10,7 @@ namespace Meaningless
 
         public CharacterController CC;
         public float Gravity=9.8f;
-        public int CurrentSelected=1;
+        public int CurrentSelected=0;
 
         //测试用身体坐标
         public Transform LHand;

@@ -24,6 +24,10 @@ public class NetworkPlayerManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 更新网络玩家数据
+    /// </summary>
+    /// <param name="protocol"></param>
     public void UpdatePlayerInfo(BaseProtocol protocol)
     {
         BytesProtocol p = protocol as BytesProtocol;
@@ -40,7 +44,7 @@ public class NetworkPlayerManager : MonoBehaviour
         int HeadItem = p.GetInt(startIndex, ref startIndex);
         int BodyItem = p.GetInt(startIndex, ref startIndex);
         int WeaponID = p.GetInt(startIndex, ref startIndex);
-        string CurrentAction = p.GetString(startIndex, ref startIndex);
+        int CurrentAction = p.GetInt(startIndex, ref startIndex);
 
         if (ScenePlayers.ContainsKey(playerName))
         {
@@ -113,6 +117,15 @@ public class NetworkPlayerManager : MonoBehaviour
             UIManager.Instance.ShowUI(UIid.MainUI);
         }
 
+    }
+
+
+    public void SendPlayerInfoToServer(float HP,float posX,float posY,float posZ,float rotX,float rotY,float rotZ)
+    {
+
+
+
+        
     }
 
 }

@@ -44,6 +44,8 @@ namespace Meaningless
         GetBagListFull,
         //刷新UI中的背包列表
         RefreshBagList,
+        //获取摄像机射线终点
+        GetHitPoint,
         //装备物品
         EquipItem,
         //脱下物品
@@ -52,6 +54,7 @@ namespace Meaningless
         TipsUI,
         PlayerName,
         LoadingUI,
+        LoadingScene,
         //
     }
 
@@ -64,15 +67,15 @@ namespace Meaningless
         PickUp,
         SingleWieldAttack,
         DoubleHandsAttack,
-        SpearIdle,
-        SpearMove,
-        SpearJump,
+
         SpearAttack,
         RippleAttack,
         HeartAttack,
         StygianDesolator,
         IceArrow,
         ChoshimArrow,
+        ThunderBolt,
+        Defend,
     }
 
     public enum FSMTransitionType
@@ -84,14 +87,14 @@ namespace Meaningless
         CanUseItem,
         AttackWithSingleWield,
         AttackWithDoubleHands,
-        IsIdleWithSpear,
-        CanBeMoveWithSpear,
         AttackWithSpear,
         UsingRipple,
         UsingHeartAttack,
         UsingStygianDesolator,
         UsingIceArrow,
         UsingChoshimArrow,
+        UsingThunderBolt,
+        CanDefend,
     }
     public class GameDefine : MonoBehaviour
     {

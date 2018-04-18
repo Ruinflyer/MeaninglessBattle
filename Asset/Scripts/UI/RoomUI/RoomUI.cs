@@ -27,7 +27,7 @@ public class RoomUI : BaseUI
         MemberList = GameTool.GetTheChildComponent<ScrollRect>(this.gameObject, "MemberList");
 
         NetworkManager.ServerConnection.msgDistribution.AddEventListener("GetRoomInfo", GetRoomInfo);
-        NetworkManager.ServerConnection.msgDistribution.AddEventListener("StartGame", OnRequestStartGameBack);
+        NetworkManager.ServerConnection.msgDistribution.AddEventListener("StartGame", OnStartGameBack);
 
 
     }
@@ -86,7 +86,8 @@ public class RoomUI : BaseUI
         int startIndex = 0;
         p.GetString(startIndex, ref startIndex);
         int returnCode = p.GetInt(startIndex, ref startIndex);
-        if (returnCode != 0)
+        Debug.Log("RequestStartGameBack Return code: " + returnCode.ToString());
+        if (returnCode == -1)
         {
             UIManager.Instance.ShowUI(UIid.TipsUI);
             object[] param = new object[2];
@@ -94,15 +95,17 @@ public class RoomUI : BaseUI
             param[1] = "返回";
             MessageCenter.Send_Multparam(EMessageType.TipsUI, param);
         }
-        else
-        {
-            
-            
-            //游戏开始
-            //MessageCenter.Send();
-        }
+
     }
 
+    private void OnStartGameBack(BaseProtocol protocol)
+    {
+        BytesProtocol p = (BytesProtocol)protocol;
+        int startIndex = 0;
+        p.GetString(startIndex, ref startIndex);
+        UIManager.Instance.ShowUI(UIid.LoadingUI);
+        MessageCenter.Send(EMessageType.LoadingScene,new object());
+    }
     private void GetRoomInfo(BaseProtocol protocol)
     {
         for (int j = 0; j < 10; j++)
@@ -122,10 +125,10 @@ public class RoomUI : BaseUI
             memberListItem.Text_PlayerName.text = playerName;
 
             int isMaster = p.GetInt(startIndex, ref startIndex);
-            
+
             if (playerName == NetworkManager.PlayerName)
             {
-                if(isMaster == 1)
+                if (isMaster == 1)
                 {
                     memberListItem.Text_Rank.text = "房主";
                     Btn_Start.gameObject.SetActive(true);
@@ -135,7 +138,7 @@ public class RoomUI : BaseUI
                     Btn_Start.gameObject.SetActive(false);
                 }
             }
-            
+
             MemberListItems[i].SetActive(true);
         }
     }

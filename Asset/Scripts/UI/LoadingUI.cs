@@ -4,20 +4,24 @@ using UnityEngine.EventSystems;
 using System;
 using System.Collections;
 using Meaningless;
+using MeaninglessNetwork;
 using UnityEngine.SceneManagement;
+
 
 public class LoadingUI : BaseUI, IPointerDownHandler
 {
     //AutoStatement
     private int sequence = 0;
     //加载序列,为0时加载
-    private int LoadingSequence = 0;
     private Text text;
+
+
     protected override void InitUiOnAwake()
     {
         text = GameTool.GetTheChildComponent<Text>(this.gameObject, "Text");
 
         MessageCenter.AddListener_Multparam(EMessageType.LoadingUI, SetTips);
+        MessageCenter.AddListener(EMessageType.LoadingScene, LoadScene);
     }
     protected override void InitDataOnAwake()
     {
@@ -45,9 +49,12 @@ public class LoadingUI : BaseUI, IPointerDownHandler
         {
             text.text = (string)objs[0];
             sequence = (int)objs[1];
-            LoadingSequence = (int)objs[2];
         }
+    }
 
+    protected void LoadScene(object obj)
+    {
+        Loading(1);
     }
     IEnumerator LoadResources()
     {
@@ -57,7 +64,7 @@ public class LoadingUI : BaseUI, IPointerDownHandler
         yield return ResourcesManager.Instance.LoadItems();
         //yield return ResourcesManager.Instance.LoadMapTiles();
         ResourcesManager.Instance.LoadUITextures();
-
+        ResourcesManager.Instance.LoadSceneAndGetSceneName();
 
         //网络管理器
         GameObject networkManager = new GameObject("NetworkManager");
@@ -75,23 +82,27 @@ public class LoadingUI : BaseUI, IPointerDownHandler
     IEnumerator InstantiateResources()
     {
 
-        AsyncOperation async = SceneManager.LoadSceneAsync("Assets/Scene/Map1.unity");
+        AsyncOperation async = SceneManager.LoadSceneAsync(ResourcesManager.Instance.sceneName);
+        yield return async;
 
-        if (async.progress > 90)
-        {
-            
-        }
-        if (async.isDone)
-        {
-            MapManager mapManager = GameObject.Find("MapManager").AddComponent<MapManager>();
-            mapManager.GenerateItem();
-
-            
-            text.text = "资源加载完毕，即将进入游戏";
-            sequence = 2;
-        }
         
-        yield return true;
+        //SceneManager.LoadScene(ResourcesManager.Instance.sceneName);
+        MapManager mapManager = GameObject.Find("MapManager").GetComponent<MapManager>();
+        //网络玩家管理器
+        //NetworkPlayerManager networkPlayerManager = GameObject.Find("NetworkPlayerManager").AddComponent<NetworkPlayerManager>();
+
+        //创建组件完毕 发送PlayerReady协议
+        BytesProtocol ready = new BytesProtocol();
+        ready.SpliceString("PlayerReady");
+        ready.SpliceString(NetworkManager.PlayerName);
+        NetworkManager.ServerConnection.Send(ready);
+
+        
+
+        text.text = "资源加载完毕，即将进入游戏";
+        sequence = 2;
+        
+
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -104,6 +115,9 @@ public class LoadingUI : BaseUI, IPointerDownHandler
                 sequence = 0;
                 break;
             case 2:
+                UIManager.Instance.HideTheUI(UIid.LoginUI, delegate { });
+                UIManager.Instance.HideTheUI(UIid.MainUI, delegate { });
+                UIManager.Instance.HideTheUI(UIid.RoomUI, delegate { });
                 UIManager.Instance.HideTheUI(UIid.LoadingUI, delegate { });
                 UIManager.Instance.ShowUI(UIid.HUDUI);
                 break;

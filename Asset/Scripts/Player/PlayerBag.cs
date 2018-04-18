@@ -17,13 +17,13 @@ public class PlayerBag : MonoBehaviour
 {
     private Canvas canvas;
 
-    private int CurrentSelected=1;
-    
+    private int CurrentSelected = 1;
+
     public List<SingleItemInfo> List_Equipped;
 
     public List<SingleItemInfo> List_PickUp;
 
-    
+
     private int pickedupItemID;
 
     //默认角色属性值
@@ -178,7 +178,7 @@ public class PlayerBag : MonoBehaviour
 
                     break;
                 case ItemType.Weapon:
-                    if(ItemInfo.weaponProperties.weaponType!=WeaponType.Shield)
+                    if (ItemInfo.weaponProperties.weaponType != WeaponType.Shield)
                     {
                         if (List_Equipped[(int)EquippedItem.Weapon1] == null)
                         {
@@ -408,7 +408,7 @@ public class PlayerBag : MonoBehaviour
 
                 GetComponent<PlayerController>().UnEquip(EquippedItem.Weapon1);
                 GetComponent<PlayerController>().EquipWeapon(itemInfo.ItemID);
-                
+
                 break;
             case EquippedItem.Weapon2:
                 //1.使用UnequipItem(EquippedItem.Weapon2)后，直接脱下武器将会减去武器上宝石的属性，所以装备武器时，当宝石存在，即再次加上宝石属性.
@@ -512,7 +512,7 @@ public class PlayerBag : MonoBehaviour
 
         List_Equipped[(int)equippedItem] = itemInfo;
 
-        
+
     }
 
     /// <summary>
@@ -852,5 +852,36 @@ public class PlayerBag : MonoBehaviour
 
         characterStatus.RecoveryValue = defaultCharacterStatus.RecoveryValue + (defaultCharacterStatus.RecoveryValue * armorAttributes.rate_Recovery);
         return characterStatus;
+    }
+
+    /// <summary>
+    /// 获取当前选择的武器的武器ID
+    /// </summary>
+    /// <returns></returns>
+    public int GetCurSelectedWeaponID()
+    {
+        int itemID=0;
+        switch (CurrentSelected)
+        {
+            case 0:
+                itemID = 0;
+                break;
+            case 1:
+                itemID = List_Equipped[(int)EquippedItem.Weapon1].ItemID;
+                break;
+            case 2:
+                itemID = List_Equipped[(int)EquippedItem.Weapon2].ItemID;
+                break;
+            case 3:
+                itemID = List_Equipped[(int)EquippedItem.Magic1].ItemID;
+                break;
+            case 4:
+                itemID = List_Equipped[(int)EquippedItem.Magic2].ItemID;
+                break;
+            case 5:
+                itemID = List_Equipped[(int)EquippedItem.Shield].ItemID;
+                break;
+        }
+        return itemID;
     }
 }

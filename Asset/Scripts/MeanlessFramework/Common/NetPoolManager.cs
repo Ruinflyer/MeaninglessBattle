@@ -11,7 +11,7 @@ public class NetPoolManager : ObjectPoolManager
         //PhotonNetwork.PrefabPool = this;      
     }
 
-    public GameObject Instantiate(string prefabId, Vector3 position, Quaternion rotation)
+    public static GameObject Instantiate(string prefabId, Vector3 position, Quaternion rotation)
     {
         GameObject go = null;
 

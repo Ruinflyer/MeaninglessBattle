@@ -17,23 +17,22 @@ public class DoorControl : MonoBehaviour
 
     private void Update()
     {
+        
+    }
 
-        if (Input.GetKeyDown(KeyCode.E) && EnterDoorAera)
+    /// <summary>
+    /// 操控门
+    /// </summary>
+    public void ControlDoor()
+    {
+        if (isDoorOpen == false)
         {
-            
+            OpenDoor();
 
-            if (isDoorOpen == false)
-            {
-                OpenDoor();
-
-                //photonView.RPC("OpenDoor", PhotonTargets.Others);
-            }
-            else
-            {
-                CloseDoor();
-                //photonView.RPC("CloseDoor", PhotonTargets.Others);
-            }
-
+        }
+        else
+        {
+            CloseDoor();
         }
     }
 
@@ -46,17 +45,17 @@ public class DoorControl : MonoBehaviour
         EnterDoorAera = false;
     }
 
-    public void OpenDoor()
+    private void OpenDoor()
     {
         anim.CrossFade(DoorOpenAnimationName);
         isDoorOpen = true;
     }
 
-    public void CloseDoor()
+    private void CloseDoor()
     {
         anim.CrossFade(DoorCloseAnimationName);
         isDoorOpen = false;
     }
 
-   
+
 }

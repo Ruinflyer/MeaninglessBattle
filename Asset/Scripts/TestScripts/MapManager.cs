@@ -8,12 +8,12 @@ using MeaninglessNetwork;
 
 public class MapManager : MonoSingleton<MapManager>
 {
-    public bool isLoaded=false;
+    public bool isLoaded = false;
 
     //圈参数表
     private GameObject Circlefield;
 
-    private ItemSpawnPoint ISP;
+    public ItemSpawnPoint itemSpawnPoint;
     private List<float> RandomList = new List<float>();
     private int ItemListIndex = 0;
     private int Seed;
@@ -27,8 +27,10 @@ public class MapManager : MonoSingleton<MapManager>
     void Start()
     {
         //LoadCirclefieldInfo();
+        //初始化网络事件
         NetworkManager.ServerConnection.msgDistribution.AddEventListener("GetMapItemData", OnGetMapItemDataBack);
         NetworkManager.ServerConnection.msgDistribution.AddEventListener("Circlefield", OnCirclefieldBack);
+        NetworkManager.ServerConnection.msgDistribution.AddEventListener("DoorOpen", OnDoorOpen); 
     }
 
     // Update is called once per frame
@@ -99,14 +101,14 @@ public class MapManager : MonoSingleton<MapManager>
 
         //地上物品生成：
 
-        for (int j = 0; j < ISP.ItemSpawnPoints.Length; j++)
+        for (int j = 0; j < itemSpawnPoint.ItemSpawnPoints.Length; j++)
         {
-            Instantiate(ResourcesManager.Instance.GetItem(ItemInfoManager.Instance.GetItemName(ItemsID[CalcIndex(j,ItemInfoManager.Instance.GetTotalOccurrenceProbability())])),
-                new Vector3(ISP.ItemSpawnPoints[j].position.x, 0, ISP.ItemSpawnPoints[j].position.z), Quaternion.identity);
+            Instantiate(ResourcesManager.Instance.GetItem(ItemInfoManager.Instance.GetItemName(ItemsID[CalcIndex(j, ItemInfoManager.Instance.GetTotalOccurrenceProbability())])),
+                new Vector3(itemSpawnPoint.ItemSpawnPoints[j].position.x, 0, itemSpawnPoint.ItemSpawnPoints[j].position.z), Quaternion.identity);
         }
 
 
-
+        
         param[0] = "地图物品生成完毕";
         param[1] = 2;
         MessageCenter.Send_Multparam(EMessageType.LoadingUI, param);
@@ -117,10 +119,10 @@ public class MapManager : MonoSingleton<MapManager>
     /// <summary>
     /// 根据出现概率计算道具下标
     /// </summary>
-    private int CalcIndex(int RandomListIndex,float[] probabilityValue)
+    private int CalcIndex(int RandomListIndex, float[] probabilityValue)
     {
 
-        
+
         for (int i = 0; i < probabilityValue.Length; i++)
         {
             if (RandomList[RandomListIndex] < probabilityValue[i])
@@ -152,7 +154,7 @@ public class MapManager : MonoSingleton<MapManager>
         }
         List<float> temp_RandomList = new List<float>();
         Random.InitState(Seed);
-        for (int i = 0; i < ISP.ItemSpawnPoints.Length; i++)
+        for (int i = 0; i < itemSpawnPoint.ItemSpawnPoints.Length; i++)
         {
             temp_RandomList.Add(Random.Range(0, totalProbabilityValue));
         }
@@ -172,7 +174,17 @@ public class MapManager : MonoSingleton<MapManager>
         iTween.MoveTo(Circlefield, iTween.Hash("position", new Vector3(X, 0, Y), "time", Movetime));
     }
 
-
+    public void OnDoorOpen(BaseProtocol protocol)
+    {
+        BytesProtocol p = (BytesProtocol)protocol;
+        int startIndex = 0;
+        p.GetString(startIndex, ref startIndex);
+        int DoorID = p.GetInt(startIndex, ref startIndex);
+        if(itemSpawnPoint.DoorSpawnPoints[DoorID]!=null)
+        {
+            itemSpawnPoint.DoorSpawnPoints[DoorID].gameObject.GetComponent<DoorControl>().ControlDoor();
+        }
+    }
 }
 
 

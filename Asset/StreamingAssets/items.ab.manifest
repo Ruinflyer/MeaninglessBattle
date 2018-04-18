@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1367763202
+CRC: 3985403520
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 79d1e432c7c8094000759c1cadc32e88
+    Hash: 26782b3960aed4a6db1a52d4eb819356
   TypeTreeHash:
     serializedVersion: 2
-    Hash: a4448b11ad8ebf9dbf547675b4f9021e
+    Hash: 157d80ff4e61424260468b44efb3fff9
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -31,8 +31,6 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-- Class: 115
-  Script: {instanceID: 0}
 Assets:
 - Assets/Models/Character/Armor/Mask_Emirate.prefab
 - Assets/Models/Character/Expendable/Crystal_Magic.prefab

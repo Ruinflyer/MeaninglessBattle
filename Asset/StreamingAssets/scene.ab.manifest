@@ -1,0 +1,15 @@
+ManifestFileVersion: 0
+CRC: 1659139239
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 852078a52ba39b6756a8b58f868b37bc
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 31d6cfe0d16ae931b73c59d7e0c089c0
+HashAppended: 0
+ClassTypes: []
+Assets:
+- Assets/Scene/Map1.unity
+Dependencies:
+- C:/MeaninglessBattle/AssetBundles/StandaloneWindows/map.ab

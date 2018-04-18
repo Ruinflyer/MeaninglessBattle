@@ -9,7 +9,7 @@ public class PlayerController : MeaninglessCharacterController
     private List<SingleItemInfo> EquippedList;
     private Dictionary<MagicType, Timer> magicCDTimer;
     private int preSelected;
-
+    private PlayerBag playerBag;
     public void EquipClothes(int itemID)
     {
         string itemName = ItemInfoManager.Instance.GetResname(itemID);
@@ -192,21 +192,27 @@ public class PlayerController : MeaninglessCharacterController
         {
             CurrentSelected = preSelected;
         }
-
+        if(playerBag==null)
+        {
+            playerBag = GetComponent<PlayerBag>();
+        }
         switch (CurrentSelected)
         {
+            case 0:
+                break;
             case 1:
-                GetComponent<PlayerBag>().EquipItem(EquippedItem.Weapon1, ItemInfoManager.Instance.GetItemInfo(EquippedList[(int)EquippedItem.Weapon1].ItemID));
+                //playerBag.EquipItem(EquippedItem.Weapon1, ItemInfoManager.Instance.GetItemInfo(EquippedList[(int)EquippedItem.Weapon1].ItemID));
                 //EquipWeapon(EquippedItem.Weapon1, EquippedList[(int)EquippedItem.Weapon1].ItemID);
                 break;
             case 2:
-                GetComponent<PlayerBag>().EquipItem(EquippedItem.Weapon2, ItemInfoManager.Instance.GetItemInfo(EquippedList[(int)EquippedItem.Weapon2].ItemID));
+                //playerBag.EquipItem(EquippedItem.Weapon2, ItemInfoManager.Instance.GetItemInfo(EquippedList[(int)EquippedItem.Weapon2].ItemID));
                 // EquipWeapon(EquippedItem.Weapon2, EquippedList[(int)EquippedItem.Weapon2].ItemID);
                 break;
             case 3:
                 break;
             case 4:
                 break;
+            
         }
 
     }

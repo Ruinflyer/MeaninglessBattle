@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 1748397183
+CRC: 4143286080
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -14,3 +14,7 @@ AssetBundleManifest:
     Info_3:
       Name: magic.ab
       Dependencies: {}
+    Info_4:
+      Name: scene.ab
+      Dependencies:
+        Dependency_0: map.ab

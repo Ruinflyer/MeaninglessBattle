@@ -19,9 +19,10 @@ public class ResourcesManager : Mono_DDOLSingleton<ResourcesManager>
     private Dictionary<string, GameObject> Dict_BaseMapTiles;
     private Dictionary<string, GameObject> Dict_Items;
     private Dictionary<string, Sprite> Dict_UITex;
- 
+
     public static Dictionary<string, GameObject> Dict_Magic = new Dictionary<string, GameObject>();
 
+    public string sceneName="";
 
     void Start()
     {
@@ -43,10 +44,10 @@ public class ResourcesManager : Mono_DDOLSingleton<ResourcesManager>
     public void LoadUITextures()
     {
         Dict_UITex = new Dictionary<string, Sprite>();
-        BundleConf bundleConf = MeaninglessJson.LoadJsonFromFile<BundleConf>(Application.dataPath + "/StreamingAssets/"+"BC_UITextures.json");
+        BundleConf bundleConf = MeaninglessJson.LoadJsonFromFile<BundleConf>(Application.dataPath + "/StreamingAssets/" + "BC_UITextures.json");
         AssetBundle ab = AssetBundle.LoadFromFile(Application.dataPath + "/StreamingAssets/" + bundleConf.BundlePath);
         UnityEngine.U2D.SpriteAtlas spriteAtlas = ab.LoadAsset<UnityEngine.U2D.SpriteAtlas>("BagIcon");
-        foreach(string str in bundleConf.ResName)
+        foreach (string str in bundleConf.ResName)
         {
             Dict_UITex.Add(str, spriteAtlas.GetSprite(str));
         }
@@ -79,14 +80,14 @@ public class ResourcesManager : Mono_DDOLSingleton<ResourcesManager>
     public GameObject GetMapTiles(string MapTileName)
     {
         GameObject gobj;
-        if (!Dict_BaseMapTiles.TryGetValue(MapTileName,out gobj) )
+        if (!Dict_BaseMapTiles.TryGetValue(MapTileName, out gobj))
         {
             Debug.LogError(MapTileName + "不在文件夹中");
             return Dict_BaseMapTiles[MapTileName];
         }
-        if(gobj==null)
+        if (gobj == null)
         {
-            Debug.LogError(MapTileName+" 无法获取");
+            Debug.LogError(MapTileName + " 无法获取");
         }
         return gobj;
     }
@@ -143,12 +144,16 @@ public class ResourcesManager : Mono_DDOLSingleton<ResourcesManager>
         return resourceGObj;
     }
 
-
-    public IEnumerator LoadScene()
+    /// <summary>
+    /// 加载场景assetbundl并且获得场景名字
+    /// </summary>
+    public void LoadSceneAndGetSceneName()
     {
-        AssetBundle ab = AssetBundle.LoadFromFile(Application.dataPath + "/StreamingAssets/Scene.ab");
-        ab.LoadAllAssets();
-        yield return true;
+        AssetBundle ab = AssetBundle.LoadFromFile(Application.dataPath + "/StreamingAssets/scene.ab");
+        string[] scenePath = ab.GetAllScenePaths();
+        string SceneName = System.IO.Path.GetFileNameWithoutExtension(scenePath[0]);
+
+        sceneName= SceneName;
     }
-    
+
 }

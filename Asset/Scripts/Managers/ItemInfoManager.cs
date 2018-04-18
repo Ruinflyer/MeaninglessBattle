@@ -45,11 +45,14 @@ public enum ArmorType
 /// </summary>
 public enum MagicType
 {
-    Ripple=0,
+    NULL = 0,
+    Ripple ,
     HeartAttack,
     StygianDesolator,
     IceArrow,
     ChoshimArrow,
+    Thunderbolt,
+
 }
 
 /// <summary>

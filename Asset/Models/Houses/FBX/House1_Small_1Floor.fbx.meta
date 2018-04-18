@@ -1,0 +1,295 @@
+fileFormatVersion: 2
+guid: 0411321c4f61f4d4981426fbb28a573f
+timeCreated: 1516636337
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: nurbsToPoly1
+    100004: pCube1
+    100006: pCube10
+    100008: pCube11
+    100010: pCube12
+    100012: pCube13
+    100014: pCube2
+    100016: pCube3
+    100018: pCube4
+    100020: pCube5
+    100022: pCube6
+    100024: pCube7
+    100026: pCube8
+    100028: pCube9
+    100030: pPlane1
+    100032: SM_Prop_Table_01
+    100034: transform2
+    100036: transform3
+    100038: transform4
+    100040: transform5
+    100042: transform6
+    100044: transform7
+    100046: transform8
+    100048: transform9
+    100050: group
+    100052: group1
+    100054: group2
+    100056: pasted__group
+    100058: pasted__group1
+    100060: pasted__group1 1
+    100062: pasted__pasted__Door
+    100064: pasted__pasted__pCube29
+    100066: pasted__pasted__pCube30
+    100068: pasted__pasted__pCube7
+    100070: pasted__pasted__pCube7 1
+    100072: pasted__pasted__pCube8
+    100074: pasted__pasted__pCube8 1
+    100076: pasted__pasted__pPlane2
+    100078: pasted__pasted__pPlane3
+    100080: pasted__pasted__pPlane4
+    100082: pasted__pasted__pPlane4 1
+    100084: pasted__pasted__pPlane4 2
+    100086: pasted__pasted__pPlane5
+    100088: pasted__pasted__pPlane5 1
+    100090: pasted__pasted__pPlane5 2
+    100092: pasted__pasted__pPlane6
+    100094: pasted__pasted__pPlane7
+    100096: pasted__pasted__pPlane8
+    100098: pasted__pasted__transform28
+    100100: pasted__pasted__transform29
+    100102: pasted__pasted__transform30
+    100104: pasted__pasted__transform31
+    100106: pasted__pasted__transform32
+    100108: pasted__pasted__transform33
+    100110: pasted__pasted__transform34
+    100112: pasted__pasted__transform35
+    100114: pasted__pasted__Window
+    100116: pasted__pasted__Window 1
+    100118: group1_pasted__group1_pasted__pasted__Window_pasted__pasted__pCube7
+    100120: group_pasted__group1_pasted__pasted__Window_pasted__pasted__pCube8
+    100122: transform10
+    100124: transform11
+    100126: transform12
+    100128: transform13
+    100130: transform14
+    100132: transform15
+    100134: transform16
+    100136: transform17
+    400000: //RootNode
+    400002: nurbsToPoly1
+    400004: pCube1
+    400006: pCube10
+    400008: pCube11
+    400010: pCube12
+    400012: pCube13
+    400014: pCube2
+    400016: pCube3
+    400018: pCube4
+    400020: pCube5
+    400022: pCube6
+    400024: pCube7
+    400026: pCube8
+    400028: pCube9
+    400030: pPlane1
+    400032: SM_Prop_Table_01
+    400034: transform2
+    400036: transform3
+    400038: transform4
+    400040: transform5
+    400042: transform6
+    400044: transform7
+    400046: transform8
+    400048: transform9
+    400050: group
+    400052: group1
+    400054: group2
+    400056: pasted__group
+    400058: pasted__group1
+    400060: pasted__group1 1
+    400062: pasted__pasted__Door
+    400064: pasted__pasted__pCube29
+    400066: pasted__pasted__pCube30
+    400068: pasted__pasted__pCube7
+    400070: pasted__pasted__pCube7 1
+    400072: pasted__pasted__pCube8
+    400074: pasted__pasted__pCube8 1
+    400076: pasted__pasted__pPlane2
+    400078: pasted__pasted__pPlane3
+    400080: pasted__pasted__pPlane4
+    400082: pasted__pasted__pPlane4 1
+    400084: pasted__pasted__pPlane4 2
+    400086: pasted__pasted__pPlane5
+    400088: pasted__pasted__pPlane5 1
+    400090: pasted__pasted__pPlane5 2
+    400092: pasted__pasted__pPlane6
+    400094: pasted__pasted__pPlane7
+    400096: pasted__pasted__pPlane8
+    400098: pasted__pasted__transform28
+    400100: pasted__pasted__transform29
+    400102: pasted__pasted__transform30
+    400104: pasted__pasted__transform31
+    400106: pasted__pasted__transform32
+    400108: pasted__pasted__transform33
+    400110: pasted__pasted__transform34
+    400112: pasted__pasted__transform35
+    400114: pasted__pasted__Window
+    400116: pasted__pasted__Window 1
+    400118: group1_pasted__group1_pasted__pasted__Window_pasted__pasted__pCube7
+    400120: group_pasted__group1_pasted__pasted__Window_pasted__pasted__pCube8
+    400122: transform10
+    400124: transform11
+    400126: transform12
+    400128: transform13
+    400130: transform14
+    400132: transform15
+    400134: transform16
+    400136: transform17
+    2100000: lambert1
+    2300000: nurbsToPoly1
+    2300002: pCube11
+    2300004: pCube13
+    2300006: pCube3
+    2300008: pCube5
+    2300010: pCube7
+    2300012: pPlane1
+    2300014: SM_Prop_Table_01
+    2300016: pasted__pasted__pCube7
+    2300018: pasted__pasted__pCube7 1
+    2300020: pasted__pasted__pCube8
+    2300022: pasted__pasted__pCube8 1
+    2300024: pasted__pasted__pPlane4 1
+    2300026: pasted__pasted__pPlane4 2
+    2300028: pasted__pasted__pPlane5 1
+    2300030: pasted__pasted__pPlane5 2
+    2300032: pasted__pasted__pPlane8
+    2300034: group1_pasted__group1_pasted__pasted__Window_pasted__pasted__pCube7
+    2300036: group_pasted__group1_pasted__pasted__Window_pasted__pasted__pCube8
+    3300000: nurbsToPoly1
+    3300002: pCube11
+    3300004: pCube13
+    3300006: pCube3
+    3300008: pCube5
+    3300010: pCube7
+    3300012: pPlane1
+    3300014: SM_Prop_Table_01
+    3300016: pasted__pasted__pCube7
+    3300018: pasted__pasted__pCube7 1
+    3300020: pasted__pasted__pCube8
+    3300022: pasted__pasted__pCube8 1
+    3300024: pasted__pasted__pPlane4 1
+    3300026: pasted__pasted__pPlane4 2
+    3300028: pasted__pasted__pPlane5 1
+    3300030: pasted__pasted__pPlane5 2
+    3300032: pasted__pasted__pPlane8
+    3300034: group1_pasted__group1_pasted__pasted__Window_pasted__pasted__pCube7
+    3300036: group_pasted__group1_pasted__pasted__Window_pasted__pasted__pCube8
+    4300000: nurbsToPoly1
+    4300002: pCube3
+    4300004: pCube5
+    4300006: pCube7
+    4300008: pCube11
+    4300010: pCube13
+    4300012: pPlane1
+    4300014: SM_Prop_Table_01
+    4300016: pasted__pasted__pPlane5
+    4300018: pasted__pasted__pCube8
+    4300020: pasted__pasted__pCube7
+    4300022: pasted__pasted__pPlane4
+    4300024: pasted__pasted__pPlane5
+    4300026: pasted__pasted__pCube8
+    4300028: pasted__pasted__pCube7
+    4300030: pasted__pasted__pPlane4
+    4300032: pasted__pasted__pPlane8
+    4300034: group_pasted__group1_pasted__pasted__Window_pasted__pasted__pCube8
+    4300036: group1_pasted__group1_pasted__pasted__Window_pasted__pasted__pCube7
+    6400000: group1_pasted__group1_pasted__pasted__Window_pasted__pasted__pCube7
+    6400002: group_pasted__group1_pasted__pasted__Window_pasted__pasted__pCube8
+    6400004: nurbsToPoly1
+    6400006: pasted__pasted__pPlane8
+    6400008: pCube11
+    6400010: pCube13
+    6400012: pCube3
+    6400014: pCube5
+    6400016: pCube7
+    6400018: pPlane1
+    6400020: SM_Prop_Table_01
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

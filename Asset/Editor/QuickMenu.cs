@@ -13,7 +13,12 @@ public class QuickMenu : MonoBehaviour {
     {
         EditorSceneManager.OpenScene("Assets/Scene/Map1.unity");
     }
-    
-   
+
+    [MenuItem("GameObject/返回UI场景", false, -1)]
+    [MenuItem("Assets/返回UI场景", false, -1)]
+    static void BackToUIScene()
+    {
+        EditorSceneManager.OpenScene("Assets/Scene/MeaninglessBattle.unity");
+    }
 
 }

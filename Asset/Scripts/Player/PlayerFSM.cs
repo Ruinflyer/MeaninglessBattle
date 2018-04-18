@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Meaningless;
 
-public class PlayerFSM :BaseFSM
+public class PlayerFSM : BaseFSM
 {
 
-    /*
-    public void LoadCharacterStatus()
+
+    public override void LoadCharacterStatus()
     {
-            string path="Player/"+"player" + ".json";
-            characterStatus = MeaninglessJson.LoadJsonFromFile<CharacterStatus>(MeaninglessJson.Path_StreamingAssets+ path);
+        string path = "Player/" + "player" + ".json";
+        characterStatus = MeaninglessJson.LoadJsonFromFile<CharacterStatus>(MeaninglessJson.Path_StreamingAssets + path);
     }
-    */
+
 
     protected override void Initialize()
     {
@@ -28,7 +28,7 @@ public class PlayerFSM :BaseFSM
     {
         CurrentState.Reason(this);
         CurrentState.Act(this);
-        
+
     }
 
     protected override void FSMUpdate()
