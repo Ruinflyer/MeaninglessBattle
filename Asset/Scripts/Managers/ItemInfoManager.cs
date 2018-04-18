@@ -25,8 +25,6 @@ public enum WeaponType
     DoubleHands,
     Spear,
     Shield,
-    Magic,
-    
 }
 
 /// <summary>
@@ -45,11 +43,14 @@ public enum ArmorType
 /// </summary>
 public enum MagicType
 {
-    Ripple=0,
+    NULL = 0,
+    Ripple,
     HeartAttack,
     StygianDesolator,
     IceArrow,
     ChoshimArrow,
+    KillerQueen,
+    Thunderbolt,
 }
 
 /// <summary>
@@ -122,6 +123,7 @@ public class WeaponProperties
     public WeaponType weaponType;
     //武器伤害值
     public float Damage;
+    public float weaponLength;
     //武器冷却时间(盾牌)
     public float CDTime;
 }
@@ -469,6 +471,15 @@ public class ItemInfoManager : Singleton<ItemInfoManager>
         {
             SingleItemInfo itemInfo;
             if(Dict_ItemInfo.TryGetValue(ItemID,out itemInfo))
+            {
+                return itemInfo;
+            }
+        }
+        else
+        {
+            LoadInfo();
+            SingleItemInfo itemInfo;
+            if (Dict_ItemInfo.TryGetValue(ItemID, out itemInfo))
             {
                 return itemInfo;
             }

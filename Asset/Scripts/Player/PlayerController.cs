@@ -9,6 +9,8 @@ public class PlayerController : MeaninglessCharacterController
     private List<SingleItemInfo> EquippedList;
     private Dictionary<MagicType, Timer> magicCDTimer;
     private int preSelected;
+    private Dictionary<Transform, int> Dict_PickUp_Tran = new Dictionary<Transform, int>();
+    public List<BaseFSM> List_CanAttack = new List<BaseFSM>();
 
     public void EquipClothes(int itemID)
     {
@@ -26,10 +28,9 @@ public class PlayerController : MeaninglessCharacterController
     }
 
 
-
     public void EquipWeapon(int itemID)
     {
-        
+
         string itemName = ItemInfoManager.Instance.GetResname(itemID);
         GameObject itemObj = ResourcesManager.Instance.GetItem(itemName);
         GameObject RWeapon = Instantiate(itemObj, RHand);
@@ -130,17 +131,7 @@ public class PlayerController : MeaninglessCharacterController
         CC.Move(moveDirection * Time.fixedDeltaTime);
     }
 
-    public override void UseGravity(float Gravity)
-    {
-        Vector3 moveDirection = Vector3.zero;
-        if (!CC.isGrounded)
-        {
-            moveDirection.y -= Gravity * Time.fixedDeltaTime;
-        }
-        else
-            moveDirection = Vector3.zero;
-        CC.Move(moveDirection);
-    }
+
 
     public override void FindTranform(Body type)
     {
@@ -184,22 +175,43 @@ public class PlayerController : MeaninglessCharacterController
 
         if (Input.GetButtonDown("Defend"))
         {
+            Debug.Log("C" + CurrentSelected);
             preSelected = CurrentSelected;
+            Debug.Log(preSelected);
             CurrentSelected = 5;
         }
 
         if (Input.GetButtonUp("Defend"))
         {
+            Debug.Log(CurrentSelected);
             CurrentSelected = preSelected;
         }
 
         switch (CurrentSelected)
         {
             case 1:
+                if (EquippedList[(int)EquippedItem.Shield].ItemName != null && EquippedList[(int)EquippedItem.Weapon1].weaponProperties.weaponType != WeaponType.DoubleHands)
+                {
+                    GetComponent<PlayerBag>().EquipItem(EquippedItem.Shield, ItemInfoManager.Instance.GetItemInfo(EquippedList[(int)EquippedItem.Shield].ItemID));
+                }
+                else if (EquippedList[(int)EquippedItem.Weapon1].weaponProperties.weaponType == WeaponType.DoubleHands)
+                {
+                    UnEquip(EquippedItem.Shield);
+                }
+                UnEquip(EquippedItem.Weapon2);
                 GetComponent<PlayerBag>().EquipItem(EquippedItem.Weapon1, ItemInfoManager.Instance.GetItemInfo(EquippedList[(int)EquippedItem.Weapon1].ItemID));
                 //EquipWeapon(EquippedItem.Weapon1, EquippedList[(int)EquippedItem.Weapon1].ItemID);
                 break;
             case 2:
+                if (EquippedList[(int)EquippedItem.Shield].ItemName != null && EquippedList[(int)EquippedItem.Weapon2].weaponProperties.weaponType != WeaponType.DoubleHands)
+                {
+                    GetComponent<PlayerBag>().EquipItem(EquippedItem.Shield, ItemInfoManager.Instance.GetItemInfo(EquippedList[(int)EquippedItem.Shield].ItemID));
+                }
+                else if (EquippedList[(int)EquippedItem.Weapon2].weaponProperties.weaponType == WeaponType.DoubleHands)
+                {
+                    UnEquip(EquippedItem.Shield);
+                }
+                UnEquip(EquippedItem.Weapon1);
                 GetComponent<PlayerBag>().EquipItem(EquippedItem.Weapon2, ItemInfoManager.Instance.GetItemInfo(EquippedList[(int)EquippedItem.Weapon2].ItemID));
                 // EquipWeapon(EquippedItem.Weapon2, EquippedList[(int)EquippedItem.Weapon2].ItemID);
                 break;
@@ -207,8 +219,61 @@ public class PlayerController : MeaninglessCharacterController
                 break;
             case 4:
                 break;
+            case 5:
+                break;
         }
 
+    }
+
+    public void PickItem(Transform Item)
+    {
+        Dict_PickUp_Tran.Add(Item, Item.GetComponent<GroundItem>().ItemID);
+        Item.SetParent(transform);
+        Item.gameObject.SetActive(false);
+    }
+
+    public void DiscardItem(int itemID)
+    {
+        foreach (Transform key in Dict_PickUp_Tran.Keys)
+        {
+            if (Dict_PickUp_Tran[key].Equals(itemID))
+            {
+                key.SetParent(null);
+                key.gameObject.SetActive(true);
+                Dict_PickUp_Tran.Remove(key);
+            }
+        }
+    }
+
+    public bool CheckCanAttack(GameObject center,GameObject enemy, float distance,float angle)
+    {
+        Vector3 relativeVector = enemy.transform.position - center.transform.position;
+        float dot = Vector3.Dot(center.transform.forward, relativeVector);
+
+        if (dot > Mathf.Cos(angle) * distance)
+        {
+            if (!List_CanAttack.Contains(enemy.GetComponent<BaseFSM>()))
+                List_CanAttack.Add(enemy.GetComponent<BaseFSM>());
+            return true;
+        }
+        else
+        {
+            if (List_CanAttack.Contains(enemy.GetComponent<BaseFSM>()))
+                List_CanAttack.Remove(enemy.GetComponent<BaseFSM>());
+            return false;
+        }
+    }
+
+    public override void UseGravity(float Gravity)
+    {
+        Vector3 moveDirection = Vector3.zero;
+        if (!CC.isGrounded)
+        {
+            moveDirection.y -= Gravity * Time.fixedDeltaTime;
+        }
+        else
+            moveDirection = Vector3.zero;
+        CC.Move(moveDirection);
     }
 
     protected override void Initialize()

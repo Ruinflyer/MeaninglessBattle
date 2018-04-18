@@ -22,6 +22,7 @@ public class PlayerFSM :BaseFSM
         ConstructFSM();
         characterStatus = GetComponent<PlayerBag>().GetCharacterStatus();
         //LoadCharacterStatus();
+
     }
 
     protected override void FSMFixedUpdate()

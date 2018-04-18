@@ -13,6 +13,9 @@ namespace Meaningless
 		,LoadingUI
 		,HUDUI
 		,BagUI
+		,LoginUI
+		,RoomUI
+		,TipsUI
 		/*UIIDHere*/
 
     }
@@ -48,6 +51,10 @@ namespace Meaningless
         EquipItem,
         //脱下物品
         UnEquipItem,
+         /***************/
+        TipsUI,
+        PlayerName,
+        LoadingUI,
         //
     }
 
@@ -97,6 +104,9 @@ namespace Meaningless
 			{UIid.LoadingUI,"UIPrefab/LoadingUI"},
 			{UIid.HUDUI,"UIPrefab/HUDUI"},
 			{UIid.BagUI,"UIPrefab/BagUI"},
+			{UIid.LoginUI,"UIPrefab/LoginUI"},
+			{UIid.RoomUI,"UIPrefab/RoomUI"},
+			{UIid.TipsUI,"UIPrefab/TipsUI"},
 			/*UIDictHere*/
                        
 
@@ -117,6 +127,15 @@ namespace Meaningless
 					break;
 				case UIid.BagUI:
 					 scriptType=typeof(BagUI);
+					break;
+                    case UIid.LoginUI:
+					 scriptType=typeof(LoginUI);
+					break;
+				case UIid.RoomUI:
+					 scriptType=typeof(RoomUI);
+					break;
+				case UIid.TipsUI:
+					 scriptType=typeof(TipsUI);
 					break;
 				/*SwitchUIScriptType*/
                 case UIid.NullUI:

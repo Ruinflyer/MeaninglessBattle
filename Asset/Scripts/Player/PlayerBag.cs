@@ -75,12 +75,12 @@ public class PlayerBag : MonoBehaviour
         defaultCharacterStatus = MeaninglessJson.LoadJsonFromFile<CharacterStatus>(MeaninglessJson.Path_StreamingAssets + "CharacterStatus.json");
         characterStatus = defaultCharacterStatus;
         //  canvas = GameTool.GetTheChildComponent<Canvas>(GameObject.FindGameObjectWithTag("UIRoot"), "BagUI");
-        MessageCenter.AddListener(EMessageType.PickedupItem, (object obj) => { pickedupItemID = (int)obj; });
         MessageCenter.AddListener(EMessageType.CurrentselectedWeapon, (object obj) => { CurrentSelected = (int)obj; });
         MessageCenter.AddListener_Multparam(EMessageType.EquipItem, (object[] obj) => { EquipItem((EquippedItem)obj[0], (SingleItemInfo)obj[1]); });
         MessageCenter.AddListener(EMessageType.UseItem, (object obj) => { UseItem((int)obj); });
 
     }
+
 
     // Update is called once per frame
     void Update()
@@ -149,7 +149,6 @@ public class PlayerBag : MonoBehaviour
         {
             SingleItemInfo ItemInfo;
             ItemInfo = ItemInfoManager.Instance.GetItemInfo(ItemID);
-            pickedupItemID = -1;
             switch (ItemInfo.itemType)
             {
                 case ItemType.Armor:
@@ -158,21 +157,32 @@ public class PlayerBag : MonoBehaviour
                         case ArmorType.NULL:
                             break;
                         case ArmorType.Head:
-                            if (List_Equipped[(int)EquippedItem.Head] == null)
-                            {
+                            if (List_Equipped[(int)EquippedItem.Head].ItemName == null)
+                            { 
                                 EquipItem(EquippedItem.Head, ItemInfo);
-                                //GetComponent<MeaninglessCharacterController>().EquipHelmet(ItemID);
+                            }
+                            else
+                            {
+                                UnequipItem(EquippedItem.Head);
+                                GetComponent<PlayerController>().UnEquip(EquippedItem.Head);
+                                GetComponent<PlayerController>().DiscardItem(List_Equipped[(int)EquippedItem.Head].ItemID);
+                               EquipItem(EquippedItem.Head, ItemInfo);
                             }
 
 
                             break;
                         case ArmorType.Body:
-                            if (List_Equipped[(int)EquippedItem.Body] == null)
+                            if (List_Equipped[(int)EquippedItem.Body].ItemName == null)
                             {
                                 EquipItem(EquippedItem.Body, ItemInfo);
-                                //GetComponent<MeaninglessCharacterController>().EquipClothes(ItemID);
                             }
-
+                            else
+                            {
+                                UnequipItem(EquippedItem.Body);
+                                GetComponent<PlayerController>().UnEquip(EquippedItem.Body);
+                                GetComponent<PlayerController>().DiscardItem(List_Equipped[(int)EquippedItem.Body].ItemID);
+                                EquipItem(EquippedItem.Body, ItemInfo);
+                            }
                             break;
                     }
 
@@ -180,31 +190,41 @@ public class PlayerBag : MonoBehaviour
                 case ItemType.Weapon:
                     if(ItemInfo.weaponProperties.weaponType!=WeaponType.Shield)
                     {
-                        if (List_Equipped[(int)EquippedItem.Weapon1] == null)
+                        if(List_Equipped[(int)EquippedItem.Weapon1].ItemName == null)
                         {
                             GetComponent<MeaninglessCharacterController>().CurrentSelected = 1;
                             EquipItem(EquippedItem.Weapon1, ItemInfo);
-
                         }
-                        else if (List_Equipped[(int)EquippedItem.Weapon2] != null && CurrentSelected == 1)
+                        else if(List_Equipped[(int)EquippedItem.Weapon1].ItemName != null)
                         {
-                            EquipItem(EquippedItem.Weapon1, ItemInfo);
-                        }
-
-                        if (List_Equipped[(int)EquippedItem.Weapon2] == null)
-                        {
-                            GetComponent<MeaninglessCharacterController>().CurrentSelected = 2;
-                            EquipItem(EquippedItem.Weapon2, ItemInfo);
-
-                        }
-                        else if (List_Equipped[(int)EquippedItem.Weapon1] != null && CurrentSelected == 2)
-                        {
-                            EquipItem(EquippedItem.Weapon2, ItemInfo);
+                            if(List_Equipped[(int)EquippedItem.Weapon2].ItemName == null)
+                            {
+                                GetComponent<MeaninglessCharacterController>().CurrentSelected = 2;
+                                EquipItem(EquippedItem.Weapon2, ItemInfo);
+                            }
+                            else
+                            {
+                                if(CurrentSelected==2)
+                                {
+                                    Debug.Log(List_Equipped[(int)EquippedItem.Weapon2].ItemName);
+                                    UnequipItem(EquippedItem.Weapon2);
+                                    GetComponent<PlayerController>().UnEquip(EquippedItem.Weapon2);
+                                    GetComponent<PlayerController>().DiscardItem(List_Equipped[(int)EquippedItem.Weapon2].ItemID);
+                                    EquipItem(EquippedItem.Weapon2, ItemInfo);
+                                }
+                                else
+                                {
+                                    UnequipItem(EquippedItem.Weapon1);
+                                    GetComponent<PlayerController>().UnEquip(EquippedItem.Weapon1);
+                                    GetComponent<PlayerController>().DiscardItem(List_Equipped[(int)EquippedItem.Weapon1].ItemID);
+                                    EquipItem(EquippedItem.Weapon1, ItemInfo);
+                                }
+                            }
                         }
                     }
                     else
                     {
-                        if (List_Equipped[(int)EquippedItem.Shield] == null)
+                        if (List_Equipped[(int)EquippedItem.Shield].ItemName == null)
                         {
                             EquipItem(EquippedItem.Shield, ItemInfo);
                         }
@@ -225,22 +245,35 @@ public class PlayerBag : MonoBehaviour
                     break;
                 case ItemType.Magic:
 
-                    if (List_Equipped[(int)EquippedItem.Magic1] == null)
+                    if (List_Equipped[(int)EquippedItem.Magic1].ItemName == null)
                     {
+                        GetComponent<MeaninglessCharacterController>().CurrentSelected = 3;
                         EquipItem(EquippedItem.Magic1, ItemInfo);
                     }
-                    else if (List_Equipped[(int)EquippedItem.Magic2] != null && CurrentSelected == 3)
+                    else if (List_Equipped[(int)EquippedItem.Magic1].ItemName != null)
                     {
-                        EquipItem(EquippedItem.Magic1, ItemInfo);
-                    }
-
-                    if (List_Equipped[(int)EquippedItem.Magic2] == null)
-                    {
-                        EquipItem(EquippedItem.Magic2, ItemInfo);
-                    }
-                    else if (List_Equipped[(int)EquippedItem.Weapon1] != null && CurrentSelected == 4)
-                    {
-                        EquipItem(EquippedItem.Magic2, ItemInfo);
+                        if (List_Equipped[(int)EquippedItem.Magic2].ItemName == null)
+                        {
+                            GetComponent<MeaninglessCharacterController>().CurrentSelected = 4;
+                            EquipItem(EquippedItem.Magic2, ItemInfo);
+                        }
+                        else
+                        {
+                            if (CurrentSelected == 3)
+                            {
+                                UnequipItem(EquippedItem.Magic1);
+                                GetComponent<PlayerController>().UnEquip(EquippedItem.Magic1);
+                                GetComponent<PlayerController>().DiscardItem(List_Equipped[(int)EquippedItem.Magic1].ItemID);
+                                EquipItem(EquippedItem.Magic1, ItemInfo);
+                            }
+                            else if (CurrentSelected == 4)
+                            {
+                                UnequipItem(EquippedItem.Magic2);
+                                GetComponent<PlayerController>().UnEquip(EquippedItem.Magic2);
+                                GetComponent<PlayerController>().DiscardItem(List_Equipped[(int)EquippedItem.Magic2].ItemID);
+                                EquipItem(EquippedItem.Magic2, ItemInfo);
+                            }
+                        }
                     }
                     break;
                 case ItemType.Gem:
@@ -286,7 +319,6 @@ public class PlayerBag : MonoBehaviour
                     armorAttributes.rate_Recovery += List_Equipped[(int)EquippedItem.HeadGem2].gemProperties.Rate_Recovery;
                 }
                 List_Equipped[(int)EquippedItem.Head] = itemInfo;
-                GetComponent<PlayerController>().UnEquip(EquippedItem.Head);
                 GetComponent<PlayerController>().EquipHelmet(itemInfo.ItemID);
                 break;
             case EquippedItem.Body:
@@ -321,7 +353,7 @@ public class PlayerBag : MonoBehaviour
                 armorAttributes.rate_Recovery += itemInfo.armorProperties.Rate_Recovery;
 
                 List_Equipped[(int)EquippedItem.Body] = itemInfo;
-                GetComponent<PlayerController>().UnEquip(EquippedItem.Body);
+               
                 GetComponent<PlayerController>().EquipClothes(itemInfo.ItemID);
                 break;
 
@@ -404,9 +436,8 @@ public class PlayerBag : MonoBehaviour
                     List_WeaponAttributes[0].rate_Recovery += List_Equipped[(int)EquippedItem.Weapon1_Gem2].gemProperties.Rate_Recovery;
                 }
 
-                List_Equipped[(int)EquippedItem.Weapon1] = itemInfo;
 
-                GetComponent<PlayerController>().UnEquip(EquippedItem.Weapon1);
+                List_Equipped[(int)EquippedItem.Weapon1] = itemInfo;
                 GetComponent<PlayerController>().EquipWeapon(itemInfo.ItemID);
                 
                 break;
@@ -433,9 +464,9 @@ public class PlayerBag : MonoBehaviour
                     List_WeaponAttributes[1].rate_MoveSpeed += List_Equipped[(int)EquippedItem.Weapon2_Gem2].gemProperties.Rate_MoveSpeed;
                     List_WeaponAttributes[1].rate_Recovery += List_Equipped[(int)EquippedItem.Weapon2_Gem2].gemProperties.Rate_Recovery;
                 }
+
                 List_Equipped[(int)EquippedItem.Weapon2] = itemInfo;
 
-                GetComponent<PlayerController>().UnEquip(EquippedItem.Weapon2);
                 GetComponent<PlayerController>().EquipWeapon(itemInfo.ItemID);
                 break;
 
@@ -493,17 +524,20 @@ public class PlayerBag : MonoBehaviour
                 break;
 
             case EquippedItem.Shield:
+
                 List_Equipped[(int)EquippedItem.Shield] = itemInfo;
-                GetComponent<PlayerController>().UnEquip(EquippedItem.Shield);
                 GetComponent<PlayerController>().EquipShield(itemInfo.ItemID);
                 break;
 
 
             case EquippedItem.Magic1:
                 List_Equipped[(int)EquippedItem.Magic1] = itemInfo;
+               
                 break;
             case EquippedItem.Magic2:
+
                 List_Equipped[(int)EquippedItem.Magic2] = itemInfo;
+                
                 break;
 
             default:
@@ -711,6 +745,7 @@ public class PlayerBag : MonoBehaviour
                 else
                 {
                     characterStatus.weaponType = List_Equipped[(int)EquippedItem.Weapon1].weaponProperties.weaponType;
+                    characterStatus.magicType = MagicType.NULL;
 
                     characterStatus.Attack_Physics = List_Equipped[(int)EquippedItem.Weapon1].weaponProperties.Damage +
                         (List_Equipped[(int)EquippedItem.Weapon1].weaponProperties.Damage * armorAttributes.rate_Attack_Physics) +
@@ -746,6 +781,7 @@ public class PlayerBag : MonoBehaviour
                 else
                 {
                     characterStatus.weaponType = List_Equipped[(int)EquippedItem.Weapon2].weaponProperties.weaponType;
+                    characterStatus.magicType = MagicType.NULL;
 
                     characterStatus.Attack_Physics = List_Equipped[(int)EquippedItem.Weapon2].weaponProperties.Damage +
                         (List_Equipped[(int)EquippedItem.Weapon2].weaponProperties.Damage * armorAttributes.rate_Attack_Physics) +
