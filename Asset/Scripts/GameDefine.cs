@@ -67,7 +67,6 @@ namespace Meaningless
         PickUp,
         SingleWieldAttack,
         DoubleHandsAttack,
-
         SpearAttack,
         RippleAttack,
         HeartAttack,
