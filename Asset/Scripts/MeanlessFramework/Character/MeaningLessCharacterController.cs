@@ -10,7 +10,12 @@ namespace Meaningless
 
         public CharacterController CC;
         public float Gravity=9.8f;
-        public int CurrentSelected=0;
+        public int CurrentSelected=1;
+        public List<NetworkPlayer> List_CanAttack = new List<NetworkPlayer>();
+
+
+        //测试用敌人列表
+        public List<NetworkPlayer> List_Enemy = new List<NetworkPlayer>();
 
         //测试用身体坐标
         public Transform LHand;
@@ -69,10 +74,12 @@ namespace Meaningless
 
         public abstract void Move(float walkSpeed);
         public abstract void Jump(float jumpSpeed);
+        public abstract bool CheckCanAttack(GameObject center, GameObject enemy, float distance, float angle);
+        public abstract void SearchEnemy(float Range);
 
         public virtual void ChangeWeapon() { }
         public virtual void FindTranform(Body type ) { }
-
+        public virtual SingleItemInfo GetCurSelectedWeaponInfo() { return null; }
 
 
 

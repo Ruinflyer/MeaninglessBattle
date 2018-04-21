@@ -14,19 +14,18 @@ public class StygianDesolatorState : FSMState
 
     public override void Act(BaseFSM FSM)
     {
-        if (FSM.Attacked)
-        {
+
             FSM.PlayAnimation("Spin Attack");
             GameObject go = NetPoolManager.Instantiate("Stygian Desolator", GameTool.FindTheChild(FSM.gameObject, "RigPelvisGizmo").position, FSM.transform.rotation);
-        }
-        FSM.Attacked = false;
+
     }
 
     public override void Reason(BaseFSM FSM)
     {
-        if (FSM.animationManager.baseStateInfo.IsName("Idle"))
-        {
-            FSM.PerformTransition(FSMTransitionType.IsIdle);
-        }
+        CharacterMessageDispatcher.Instance.DispatchMesssage
+            (FSMTransitionType.IsIdle,
+            FSM.GetComponent<NetworkPlayer>(),
+            FSM.animationManager.baseStateInfo.IsName("Idle")
+            );
     }
 }

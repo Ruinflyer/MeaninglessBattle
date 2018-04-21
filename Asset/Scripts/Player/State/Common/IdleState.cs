@@ -21,6 +21,69 @@ public class IdleState : FSMState
     public override void Reason(BaseFSM FSM)
     {
         MessageCenter.AddListener(EMessageType.FoundItem, (object obj) => { isFound = (bool)obj; });
+        CharacterMessageDispatcher.Instance.DispatchMesssage
+            (FSMTransitionType.CanBeMove,
+            FSM.GetComponent<NetworkPlayer>(),
+            (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.5 || Mathf.Abs(Input.GetAxis("Vertical")) > 0.5) && FSM.controller.CC.isGrounded
+            );
+        CharacterMessageDispatcher.Instance.DispatchMesssage
+            (FSMTransitionType.CanDefend,
+            FSM.GetComponent<NetworkPlayer>(),
+            Input.GetButton("Defend") && FSM.characterStatus.magicType == MagicType.NULL && FSM.characterStatus.weaponType == WeaponType.Shield
+            );
+
+        CharacterMessageDispatcher.Instance.DispatchMesssage
+            (FSMTransitionType.CanPickUp,
+            FSM.GetComponent<NetworkPlayer>(),
+            Input.GetButtonDown("PickUp") && isFound
+            );
+        CharacterMessageDispatcher.Instance.DispatchMesssage
+            (FSMTransitionType.AttackWithSingleWield,
+            FSM.GetComponent<NetworkPlayer>(),
+            Input.GetButtonDown("Fire1") && (FSM.characterStatus.weaponType == WeaponType.Sword || FSM.characterStatus.weaponType == WeaponType.Club)
+            );
+        CharacterMessageDispatcher.Instance.DispatchMesssage
+            (FSMTransitionType.AttackWithDoubleHands,
+            FSM.GetComponent<NetworkPlayer>(),
+            Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.DoubleHands
+            );
+        CharacterMessageDispatcher.Instance.DispatchMesssage
+            (FSMTransitionType.AttackWithSpear,
+            FSM.GetComponent<NetworkPlayer>(),
+             Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.Spear
+            );
+       
+        CharacterMessageDispatcher.Instance.DispatchMesssage
+            (FSMTransitionType.UsingRipple,
+            FSM.GetComponent<NetworkPlayer>(),
+            Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.NULL && FSM.characterStatus.magicType == MagicType.Ripple
+            );
+        CharacterMessageDispatcher.Instance.DispatchMesssage
+            (FSMTransitionType.UsingHeartAttack,
+            FSM.GetComponent<NetworkPlayer>(),
+            Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.NULL && FSM.characterStatus.magicType == MagicType.HeartAttack
+            );
+        CharacterMessageDispatcher.Instance.DispatchMesssage
+            (FSMTransitionType.UsingStygianDesolator,
+            FSM.GetComponent<NetworkPlayer>(),
+            Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.NULL && FSM.characterStatus.magicType == MagicType.StygianDesolator
+            );
+        CharacterMessageDispatcher.Instance.DispatchMesssage
+            (FSMTransitionType.UsingChoshimArrow,
+            FSM.GetComponent<NetworkPlayer>(),
+            Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.NULL && FSM.characterStatus.magicType == MagicType.ChoshimArrow
+            );
+        CharacterMessageDispatcher.Instance.DispatchMesssage
+            (FSMTransitionType.UsingThunderBolt,
+            FSM.GetComponent<NetworkPlayer>(),
+            Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.NULL && FSM.characterStatus.magicType == MagicType.Thunderbolt
+            );
+    }
+
+    /*
+    public override void Reason(BaseFSM FSM)
+    {
+       
 
         if ((Mathf.Abs(Input.GetAxis("Horizontal")) > 0.5 || Mathf.Abs(Input.GetAxis("Vertical")) > 0.5) && FSM.controller.CC.isGrounded)
         {
@@ -41,11 +104,6 @@ public class IdleState : FSMState
             FSM.PerformTransition(FSMTransitionType.CanPickUp);
         }
 
-
-        if (Input.GetButton("Fire2"))
-        {
-            FSM.controller.CurrentSelected = 0;
-        }
 
         if (Input.GetButtonDown("Fire1") && (FSM.characterStatus.weaponType == WeaponType.Sword || FSM.characterStatus.weaponType == WeaponType.Club))
         {
@@ -102,4 +160,5 @@ public class IdleState : FSMState
             FSM.PerformTransition(FSMTransitionType.AttackWithSpear);
         }
     }
+    */
 }

@@ -27,11 +27,8 @@ public class BagUI : BaseUI
     private Image Magic2;
 
     [SerializeField]
-    private List<SingleItemInfo> PickUpList;
-    [SerializeField]
-    private List<SingleItemInfo> EquippedList;
-    [SerializeField]
     private List<GameObject> BagItem;
+
     protected override void InitUiOnAwake()
     {
         Btn_Close = GameTool.GetTheChildComponent<Button>(this.gameObject, "Btn_Close");
@@ -52,25 +49,17 @@ public class BagUI : BaseUI
         Magic1 = GameTool.GetTheChildComponent<Image>(GameTool.FindTheChild(this.gameObject, "MagicSlot1").gameObject, "Image");
         Magic2 = GameTool.GetTheChildComponent<Image>(GameTool.FindTheChild(this.gameObject, "MagicSlot2").gameObject, "Image");
         Btn_Close.onClick.AddListener(CloseBagUI);
-
+       // PickUpList = new List<SingleItemInfo>();
+       // EquippedList = new List<SingleItemInfo>();
         BagItem = new List<GameObject>();
-        PickUpList = new List<SingleItemInfo>();
-        EquippedList = new List<SingleItemInfo>();
-
-        MessageCenter.AddListener(EMessageType.GetAndSetBagList, (object obj) =>
-        {
-            PickUpList = (List<SingleItemInfo>)obj;
-            SetBagListItems(PickUpList);
-        });
-        MessageCenter.AddListener(EMessageType.GetAndSetEquippedList, (object obj) =>
-        {
-            EquippedList = (List<SingleItemInfo>)obj;
-            SetEquippedItems(EquippedList);
-        });
+        //PickUpList = CameraBase.Instance.player.GetComponent<PlayerBag>().List_PickUp;
+        //EquippedList = CameraBase.Instance.player.GetComponent<PlayerBag>().List_Equipped;
+       
 
         MessageCenter.AddListener(EMessageType.RefreshBagList, RefreshBagList);
-       
     }
+
+    
     protected override void InitDataOnAwake()
     {
         this.uiId = UIid.BagUI;
@@ -92,10 +81,20 @@ public class BagUI : BaseUI
 
     protected override void InitInStart()
     {
-        InitBagItem(scrollRect.content);
-        SetBagListItems(PickUpList);
-        SetEquippedItems(EquippedList);
 
+   
+
+        InitBagItem(scrollRect.content);
+        //SetEquippedItems();
+        //SetBagListItems();
+        
+
+    }
+
+    private void Update()
+    {
+        SetEquippedItems(BagManager.Instance.Dict_Equipped);
+        SetBagListItems(BagManager.Instance.List_PickUp);
     }
 
 
@@ -109,7 +108,7 @@ public class BagUI : BaseUI
         {
             BagItem[i].SetActive(false);
         }
-        SetBagListItems(PickUpList);
+        SetBagListItems(BagManager.Instance.List_PickUp);
 
     }
     /// <summary>
@@ -120,7 +119,7 @@ public class BagUI : BaseUI
     private void SetBagListItems(List<SingleItemInfo> PickUpList)
     {
         BagListitem bagListitem = null;
-        if (PickUpList.Count > 0)
+
         {
             for (int i = 0; i < PickUpList.Count; i++)
             {
@@ -134,57 +133,67 @@ public class BagUI : BaseUI
         }
 
     }
-    private void SetEquippedItems(List<SingleItemInfo> EquippedList)
+    private void SetEquippedItems(Dictionary<EquippedItem,SingleItemInfo> EquippedList)
     {
+
         if (EquippedList.Count > 0)
         {
-            if (EquippedList[(int)EquippedItem.Head] != null)
+            if (EquippedList[EquippedItem.Head] != null)
             {
-                HeadSlot.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[(int)EquippedItem.Head].ResName);
+                HeadSlot.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Head].ResName);
             }
-            if (EquippedList[(int)EquippedItem.HeadGem1] != null)
+            if (EquippedList[EquippedItem.HeadGem1] != null)
             {
-                HeadGem1.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[(int)EquippedItem.HeadGem1].ResName);
+                HeadGem1.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.HeadGem1].ResName);
             }
-            if (EquippedList[(int)EquippedItem.HeadGem2] != null)
+            if (EquippedList[EquippedItem.HeadGem2] != null)
             {
-                HeadGem2.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[(int)EquippedItem.HeadGem2].ResName);
+                HeadGem2.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.HeadGem2].ResName);
             }
-            if (EquippedList[(int)EquippedItem.Body] != null)
+            if (EquippedList[EquippedItem.Body] != null)
             {
-                BodySlot.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[(int)EquippedItem.Body].ResName);
+                BodySlot.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Body].ResName);
             }
-            if (EquippedList[(int)EquippedItem.BodyGem1] != null)
+            if (EquippedList[EquippedItem.BodyGem1] != null)
             {
-                BodyGem1.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[(int)EquippedItem.BodyGem1].ResName);
+                BodyGem1.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.BodyGem1].ResName);
             }
-            if (EquippedList[(int)EquippedItem.BodyGem2] != null)
+            if (EquippedList[EquippedItem.BodyGem2] != null)
             {
-                BodyGem2.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[(int)EquippedItem.BodyGem2].ResName);
+                BodyGem2.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.BodyGem2].ResName);
             }
-            if (EquippedList[(int)EquippedItem.Weapon1] != null)
+            if (EquippedList[EquippedItem.Weapon1] != null)
             {
-                WeaponSlot1.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[(int)EquippedItem.Weapon1].ResName);
+                WeaponSlot1.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Weapon1].ResName);
             }
-            if (EquippedList[(int)EquippedItem.Weapon1_Gem1] != null)
+            if (EquippedList[EquippedItem.Weapon1_Gem1] != null)
             {
-                Weapon1Gem1.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[(int)EquippedItem.Weapon1_Gem1].ResName);
+                Weapon1Gem1.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Weapon1_Gem1].ResName);
             }
-            if (EquippedList[(int)EquippedItem.Weapon1_Gem2] != null)
+            if (EquippedList[EquippedItem.Weapon1_Gem2] != null)
             {
-                Weapon1Gem2.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[(int)EquippedItem.Weapon1_Gem2].ResName);
+                Weapon1Gem2.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Weapon1_Gem2].ResName);
             }
-            if (EquippedList[(int)EquippedItem.Weapon2] != null)
+            if (EquippedList[EquippedItem.Weapon2] != null)
             {
-                WeaponSlot1.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[(int)EquippedItem.Weapon2].ResName);
+                WeaponSlot2.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Weapon2].ResName);
             }
-            if (EquippedList[(int)EquippedItem.Weapon2_Gem1] != null)
+            if (EquippedList[EquippedItem.Weapon2_Gem1] != null)
             {
-                Weapon2Gem1.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[(int)EquippedItem.Weapon2_Gem1].ResName);
+                Weapon2Gem1.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Weapon2_Gem1].ResName);
             }
-            if (EquippedList[(int)EquippedItem.Weapon2_Gem2] != null)
+            if (EquippedList[EquippedItem.Weapon2_Gem2] != null)
             {
-                Weapon2Gem2.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[(int)EquippedItem.Weapon2_Gem2].ResName);
+                Weapon2Gem2.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Weapon2_Gem2].ResName);
+            }
+
+            if (EquippedList[EquippedItem.Magic1] != null)
+            {
+                Magic1.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Magic1].ResName);
+            }
+            if (EquippedList[EquippedItem.Magic2] != null)
+            {
+                Magic2.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Magic2].ResName);
             }
 
         }
@@ -217,6 +226,8 @@ public class BagUI : BaseUI
 
     private void CloseBagUI()
     {
-        UIManager.Instance.HideTheUI(UIid.BagUI,()=> { });
+        //UIManager.Instance.HideTheUI(UIid.BagUI,()=> { });
+        UIManager.Instance.ReturnUI(this.beforeUIid);
+        CameraBase.Instance.isFollowing = true;
     }
 }

@@ -24,7 +24,9 @@ namespace Meaningless
         private FSMState currentState;
         public FSMState CurrentState { get { return currentState; } }
 
-        protected virtual void Initialize() { }
+        protected virtual void Initialize()
+        {
+        }
         protected virtual void FSMUpdate() { }
         protected virtual void FSMFixedUpdate() { }
 
@@ -93,12 +95,16 @@ namespace Meaningless
             }
         }
 
-        public abstract void LoadCharacterStatus();
-        public abstract void OnCollisionEnter(Collision collision);
+
 
         public void PlayAnimation(string aniName)
         {
             animationManager.PlayAnimation(aniName);
+        }
+
+        public void PlayAnimation(string aniName,int value)
+        {
+            animationManager.PlayAnimation(aniName, value);
         }
 
         void Start()

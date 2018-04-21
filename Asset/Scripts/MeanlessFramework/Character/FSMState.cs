@@ -14,6 +14,7 @@ namespace Meaningless
         protected FSMStateType stateID;
         public FSMStateType ID { get { return stateID; } }
 
+        
 
         public void AddTransition(FSMTransitionType transition, FSMStateType id)
         {
