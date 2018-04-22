@@ -6,10 +6,62 @@ using Meaningless;
 public class PlayerController : MeaninglessCharacterController
 {
 
-    private List<SingleItemInfo> EquippedList;
-    private Dictionary<MagicType, Timer> magicCDTimer;
-    private int preSelected;
-    private PlayerBag playerBag;
+    private Dictionary<EquippedItem, SingleItemInfo> EquippedDict = new Dictionary<EquippedItem, SingleItemInfo>();
+
+    private Dictionary<Transform, int> Dict_PickUp_Tran = new Dictionary<Transform, int>();
+
+    /*
+    public void Equip(int itemID)
+    {
+        if (itemID != 0)
+        {
+            SingleItemInfo ItemInfo;
+            ItemInfo = ItemInfoManager.Instance.GetItemInfo(itemID);
+            switch (ItemInfo.itemType)
+            {
+                case ItemType.Armor:
+                    switch (ItemInfo.armorProperties.armorType)
+                    {
+                        case ArmorType.NULL:
+                            break;
+                        case ArmorType.Head:
+                            GameObject headRes = ResourcesManager.Instance.GetItem(ItemInfo.ItemName);
+                            GameObject headObj = Instantiate(headRes, Head);
+                            break;
+                        case ArmorType.Body:
+                            GameObject bodyObj = ResourcesManager.Instance.GetItem(ItemInfo.ItemName);
+                            Material clothesMat = bodyObj.GetComponent<MeshRenderer>().sharedMaterial;
+                            GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().material = clothesMat;
+                            break;
+                    }
+                    break;
+                case ItemType.Weapon:
+                    if (ItemInfo.weaponProperties.weaponType != WeaponType.Shield)
+                    {
+                        GameObject weaponRes = ResourcesManager.Instance.GetItem(ItemInfo.ItemName);
+                        GameObject RWeapon = Instantiate(weaponRes, RHand);
+                        RWeapon.transform.parent = RHand;
+
+                        if (ItemInfoManager.Instance.GetWeaponWeaponType(itemID) == WeaponType.DoubleHands)
+                        {
+                            GameObject LWeapon = Instantiate(weaponRes, LHand);
+                            LWeapon.transform.parent = LHand;
+                        }
+
+                    }
+                    else
+                    {
+                        GameObject itemRes = ResourcesManager.Instance.GetItem(ItemInfo.ItemName);
+                        GameObject Shield = Instantiate(itemRes, LHand);
+                        Shield.transform.parent = LHand;
+                    }
+                    break;
+            }
+        }
+    }
+    */
+
+    
     public void EquipClothes(int itemID)
     {
         string itemName = ItemInfoManager.Instance.GetResname(itemID);
@@ -26,10 +78,9 @@ public class PlayerController : MeaninglessCharacterController
     }
 
 
-
     public void EquipWeapon(int itemID)
     {
-        
+
         string itemName = ItemInfoManager.Instance.GetResname(itemID);
         GameObject itemObj = ResourcesManager.Instance.GetItem(itemName);
         GameObject RWeapon = Instantiate(itemObj, RHand);
@@ -50,6 +101,8 @@ public class PlayerController : MeaninglessCharacterController
         GameObject Shield = Instantiate(itemObj, LHand);
         Shield.transform.parent = LHand;
     }
+    
+
 
     public void UnEquip(EquippedItem equippedItem)
     {
@@ -130,17 +183,7 @@ public class PlayerController : MeaninglessCharacterController
         CC.Move(moveDirection * Time.fixedDeltaTime);
     }
 
-    public override void UseGravity(float Gravity)
-    {
-        Vector3 moveDirection = Vector3.zero;
-        if (!CC.isGrounded)
-        {
-            moveDirection.y -= Gravity * Time.fixedDeltaTime;
-        }
-        else
-            moveDirection = Vector3.zero;
-        CC.Move(moveDirection);
-    }
+
 
     public override void FindTranform(Body type)
     {
@@ -161,60 +204,167 @@ public class PlayerController : MeaninglessCharacterController
 
     public override void ChangeWeapon()
     {
-
-        if (Input.GetButtonDown("Bar1"))
-        {
-            CurrentSelected = 1;
-
-        }
-        if (Input.GetButtonDown("Bar2"))
-        {
-            CurrentSelected = 2;
-
-        }
-        if (Input.GetButtonDown("Bar3"))
-        {
-            CurrentSelected = 3;
-
-        }
-        if (Input.GetButtonDown("Bar4"))
-        {
-            CurrentSelected = 4;
-        }
-
-        if (Input.GetButtonDown("Defend"))
-        {
-            preSelected = CurrentSelected;
-            CurrentSelected = 5;
-        }
-
-        if (Input.GetButtonUp("Defend"))
-        {
-            CurrentSelected = preSelected;
-        }
-        if(playerBag==null)
-        {
-            playerBag = GetComponent<PlayerBag>();
-        }
         switch (CurrentSelected)
         {
-            case 0:
-                break;
             case 1:
-                //playerBag.EquipItem(EquippedItem.Weapon1, ItemInfoManager.Instance.GetItemInfo(EquippedList[(int)EquippedItem.Weapon1].ItemID));
-                //EquipWeapon(EquippedItem.Weapon1, EquippedList[(int)EquippedItem.Weapon1].ItemID);
+                if (EquippedDict[EquippedItem.Weapon1] != null)
+                {
+                    if (EquippedDict[EquippedItem.Shield] != null && EquippedDict[EquippedItem.Weapon1].weaponProperties.weaponType != WeaponType.DoubleHands)
+                    {
+                        BagManager.Instance.EquipItem(EquippedItem.Shield, ItemInfoManager.Instance.GetItemInfo(EquippedDict[EquippedItem.Shield].ItemID));
+                        EquipShield(EquippedDict[EquippedItem.Shield].ItemID);
+                    }
+                    else if (EquippedDict[EquippedItem.Weapon1].weaponProperties.weaponType == WeaponType.DoubleHands)
+                    {
+                        BagManager.Instance.UnequipItem(EquippedItem.Shield);
+                        UnEquip(EquippedItem.Shield);
+                    }
+
+                    if (EquippedDict[EquippedItem.Weapon2] != null)
+                    {
+                        BagManager.Instance.UnequipItem(EquippedItem.Weapon2);
+                        UnEquip(EquippedItem.Weapon2);
+                    }
+
+                    //BagManager.Instance.EquipItem(EquippedItem.Weapon1, ItemInfoManager.Instance.GetItemInfo(EquippedDict[EquippedItem.Weapon1].ItemID));
+                    EquipWeapon(EquippedDict[EquippedItem.Weapon1].ItemID);
+                }
                 break;
             case 2:
-                //playerBag.EquipItem(EquippedItem.Weapon2, ItemInfoManager.Instance.GetItemInfo(EquippedList[(int)EquippedItem.Weapon2].ItemID));
-                // EquipWeapon(EquippedItem.Weapon2, EquippedList[(int)EquippedItem.Weapon2].ItemID);
+                if (EquippedDict[EquippedItem.Weapon2] != null)
+                {
+                    if (EquippedDict[EquippedItem.Shield] != null && EquippedDict[EquippedItem.Weapon2].weaponProperties.weaponType != WeaponType.DoubleHands)
+                    {
+                        BagManager.Instance.EquipItem(EquippedItem.Shield, ItemInfoManager.Instance.GetItemInfo(EquippedDict[EquippedItem.Shield].ItemID));
+                        EquipShield(EquippedDict[EquippedItem.Shield].ItemID);
+                    }
+                    else if (EquippedDict[EquippedItem.Weapon2].weaponProperties.weaponType == WeaponType.DoubleHands)
+                    {
+                        BagManager.Instance.UnequipItem(EquippedItem.Shield);
+                        UnEquip(EquippedItem.Shield);
+                    }
+                    if (EquippedDict[EquippedItem.Weapon1] != null)
+                    {
+                        BagManager.Instance.UnequipItem(EquippedItem.Weapon1);
+                        UnEquip(EquippedItem.Weapon1);
+                    }
+                    //BagManager.Instance.EquipItem(EquippedItem.Weapon2, ItemInfoManager.Instance.GetItemInfo(EquippedDict[EquippedItem.Weapon2].ItemID));
+                    EquipWeapon(EquippedDict[EquippedItem.Weapon2].ItemID);
+                }
                 break;
             case 3:
                 break;
             case 4:
                 break;
-            
+            case 5:
+                break;
         }
 
+    }
+
+    public void PickItem(Transform Item)
+    {
+        Dict_PickUp_Tran.Add(Item, Item.GetComponent<GroundItem>().ItemID);
+        Item.SetParent(transform);
+        Item.gameObject.SetActive(false);
+    }
+
+    public void DiscardItem(int itemID)
+    {
+        foreach (Transform key in Dict_PickUp_Tran.Keys)
+        {
+            if (Dict_PickUp_Tran[key].Equals(itemID))
+            {
+                key.SetParent(null);
+                key.gameObject.SetActive(true);
+                Dict_PickUp_Tran.Remove(key);
+            }
+        }
+    }
+
+    public override SingleItemInfo GetCurSelectedWeaponInfo()
+    {
+        SingleItemInfo itemInfo = null;
+        switch (CurrentSelected)
+        {
+            case 0:
+                itemInfo = null;
+                break;
+            case 1:
+                itemInfo = EquippedDict[EquippedItem.Weapon1];
+                break;
+            case 2:
+                itemInfo = EquippedDict[EquippedItem.Weapon2];
+                break;
+            case 3:
+                itemInfo = EquippedDict[EquippedItem.Magic1];
+                break;
+            case 4:
+                itemInfo = EquippedDict[EquippedItem.Magic2];
+                break;
+            case 5:
+                itemInfo = EquippedDict[EquippedItem.Shield];
+                break;
+        }
+        return itemInfo;
+    }
+
+
+
+    //单人测试用搜索敌人
+    public override void SearchEnemy(float Range)
+    {
+        Collider[] colliderArr = Physics.OverlapSphere(transform.position, Range, LayerMask.GetMask("Player"));
+        for (int i = 0; i < colliderArr.Length; i++)
+        {
+            if (colliderArr[i].GetComponent<BaseFSM>() != null && colliderArr[i] != gameObject)
+            {
+                if (!List_Enemy.Contains(colliderArr[i].GetComponent<NetworkPlayer>()))
+                    List_Enemy.Add(colliderArr[i].GetComponent<NetworkPlayer>());
+            }
+        }
+    }
+
+
+
+    /// <summary>
+    /// 检测敌人是否处于攻击范围
+    /// </summary>
+    /// <param name="center"></param>
+    /// <param name="enemy"></param>
+    /// <param name="distance"></param>
+    /// <param name="angle"></param>
+    /// <returns></returns>
+    public override bool CheckCanAttack(GameObject center, GameObject enemy, float distance, float angle)
+    {
+        Vector3 relativeVector = enemy.transform.position - center.transform.position;
+        float dot = Vector3.Dot(center.transform.forward, relativeVector);
+
+        if (dot > Mathf.Cos(angle) * distance)
+        {
+            if (!List_CanAttack.Contains(enemy.GetComponent<NetworkPlayer>()))
+                List_CanAttack.Add(enemy.GetComponent<NetworkPlayer>());
+            return true;
+        }
+        else
+        {
+            if (List_CanAttack.Contains(enemy.GetComponent<NetworkPlayer>()))
+                List_CanAttack.Remove(enemy.GetComponent<NetworkPlayer>());
+            return false;
+        }
+    }
+
+
+    public override void UseGravity(float Gravity)
+    {
+        Vector3 moveDirection = Vector3.zero;
+        if (!CC.isGrounded)
+        {
+            moveDirection.y -= Gravity * Time.fixedDeltaTime;
+        }
+        else
+            moveDirection = Vector3.zero;
+        CC.Move(moveDirection);
     }
 
     protected override void Initialize()
@@ -222,17 +372,20 @@ public class PlayerController : MeaninglessCharacterController
         FindTranform(Body.RHand);
         FindTranform(Body.LHand);
         FindTranform(Body.Head);
-        MessageCenter.AddListener(EMessageType.GetAndSetEquippedList, (object obj) =>
-        {
-            EquippedList = (List<SingleItemInfo>)obj;
-        });
+    }
+
+    protected override void CCUpdate()
+    {
+        CurrentSelected = BagManager.Instance.CurrentSelected;
+        EquippedDict = BagManager.Instance.Dict_Equipped;
+        OpenBag();
+        ChangeWeapon();
+        MessageCenter.Send(EMessageType.CurrentselectedWeapon, CurrentSelected);
+        SearchEnemy(10);
     }
 
     protected override void CCFixedUpdate()
     {
         UseGravity(Gravity);
-        OpenBag();
-        ChangeWeapon();
-        MessageCenter.Send(EMessageType.CurrentselectedWeapon, CurrentSelected);
     }
 }

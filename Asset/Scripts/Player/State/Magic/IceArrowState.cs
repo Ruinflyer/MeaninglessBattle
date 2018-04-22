@@ -13,20 +13,19 @@ public class IceArrowState : FSMState {
 
     public override void Act(BaseFSM FSM)
     {
-        if (FSM.Attacked)
-        {
+
             FSM.PlayAnimation("Magic Shoot Attack");
             GameObject go = NetPoolManager.Instantiate("Ice Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
             Debug.Log(go.name);
-        }
-        FSM.Attacked = false;
+
     }
 
     public override void Reason(BaseFSM FSM)
     {
-        if (FSM.animationManager.baseStateInfo.IsName("Idle"))
-        {
-            FSM.PerformTransition(FSMTransitionType.IsIdle);
-        }
+        CharacterMessageDispatcher.Instance.DispatchMesssage
+            (FSMTransitionType.IsIdle,
+            FSM.GetComponent<NetworkPlayer>(),
+            FSM.animationManager.baseStateInfo.IsName("Idle")
+            );
     }
 }

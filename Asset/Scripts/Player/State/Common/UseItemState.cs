@@ -20,10 +20,11 @@ public class UseItemState : FSMState
 
     public override void Reason(BaseFSM FSM)
     {
-        if (FSM.animationManager.baseStateInfo.IsName("Idle"))
-        {
-            FSM.PerformTransition(FSMTransitionType.IsIdle);
-        }
+        CharacterMessageDispatcher.Instance.DispatchMesssage
+            (FSMTransitionType.IsIdle,
+            FSM.GetComponent<NetworkPlayer>(),
+            FSM.animationManager.baseStateInfo.IsName("Idle")
+            );
     }
 
 }

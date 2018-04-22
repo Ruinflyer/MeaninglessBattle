@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Meaningless;
 
-public class PlayerFSM : BaseFSM
+public class PlayerFSM :BaseFSM
 {
 
-
-    public override void LoadCharacterStatus()
+    /*
+    public void LoadCharacterStatus()
     {
-        string path = "Player/" + "player" + ".json";
-        characterStatus = MeaninglessJson.LoadJsonFromFile<CharacterStatus>(MeaninglessJson.Path_StreamingAssets + path);
+            string path="Player/"+"player" + ".json";
+            characterStatus = MeaninglessJson.LoadJsonFromFile<CharacterStatus>(MeaninglessJson.Path_StreamingAssets+ path);
     }
-
+    */
 
     protected override void Initialize()
     {
@@ -20,20 +20,21 @@ public class PlayerFSM : BaseFSM
         animationManager = GetComponent<AnimationManager>();
         controller = GetComponent<MeaninglessCharacterController>();
         ConstructFSM();
-        characterStatus = GetComponent<PlayerBag>().GetCharacterStatus();
+        characterStatus = BagManager.Instance.GetCharacterStatus();
         //LoadCharacterStatus();
+
     }
 
     protected override void FSMFixedUpdate()
     {
         CurrentState.Reason(this);
         CurrentState.Act(this);
-
+        
     }
 
     protected override void FSMUpdate()
     {
-        characterStatus = GetComponent<PlayerBag>().GetCharacterStatus();
+        characterStatus = BagManager.Instance.GetCharacterStatus();
     }
 
     private void ConstructFSM()
@@ -120,8 +121,4 @@ public class PlayerFSM : BaseFSM
     }
 
 
-
-    public override void OnCollisionEnter(Collision collision)
-    {
-    }
 }

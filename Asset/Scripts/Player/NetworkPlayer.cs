@@ -7,7 +7,6 @@ using MeaninglessNetwork;
 
 public class NetworkPlayer : MonoBehaviour {
 
-    public PlayerBag playerBag;
     public PlayerFSM playerFSM;
     public PlayerController playerController;
     public AnimationManager animationManager;
@@ -28,7 +27,6 @@ public class NetworkPlayer : MonoBehaviour {
 
     private void Start()
     {
-        playerBag= GetComponent<PlayerBag>();
         playerFSM = GetComponent<PlayerFSM>();
         playerController = GetComponent<PlayerController>();
         animationManager = GetComponent<AnimationManager>();
@@ -112,30 +110,30 @@ public class NetworkPlayer : MonoBehaviour {
         protocol.SpliceFloat(transform.rotation.y);
         protocol.SpliceFloat(transform.rotation.z);
 
-        if(playerBag.List_Equipped[(int)EquippedItem.Head]==null)
+        if(BagManager.Instance.Dict_Equipped[EquippedItem.Head]==null)
         {
             protocol.SpliceInt(0);
         }
         else
         {
-            protocol.SpliceInt(playerBag.List_Equipped[(int)EquippedItem.Head].ItemID);
+            protocol.SpliceInt(BagManager.Instance.Dict_Equipped[EquippedItem.Head].ItemID);
         }
 
-        if (playerBag.List_Equipped[(int)EquippedItem.Body] == null)
+        if (BagManager.Instance.Dict_Equipped[EquippedItem.Body] == null)
         {
             protocol.SpliceInt(0);
         }
         else
         {
-            protocol.SpliceInt(playerBag.List_Equipped[(int)EquippedItem.Body].ItemID);
+            protocol.SpliceInt(BagManager.Instance.Dict_Equipped[EquippedItem.Body].ItemID);
         }
-        if (playerBag.List_Equipped[(int)EquippedItem.Weapon1] == null && playerBag.List_Equipped[(int)EquippedItem.Weapon2] == null)
+        if (BagManager.Instance.Dict_Equipped[EquippedItem.Weapon1] == null && BagManager.Instance.Dict_Equipped[EquippedItem.Weapon2] == null)
         {
             protocol.SpliceInt(0);
         }
         else
         {
-            protocol.SpliceInt(playerBag.List_Equipped[(int)EquippedItem.Body].ItemID);
+            protocol.SpliceInt(BagManager.Instance.Dict_Equipped[EquippedItem.Body].ItemID);
         }
 
        // protocol.SpliceInt(WeaponID);

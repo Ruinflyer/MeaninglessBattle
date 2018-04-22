@@ -16,52 +16,52 @@ public class HUDUI : BaseUI
 	private Image Img_Shield = null;
     private Image Img_PickUpTip=null;
     private Image Img_FrontSight=null;
-    [SerializeField]
-    private List<SingleItemInfo> EquippedList;
+
 
 
     protected override void InitUiOnAwake()
     {
+        Img_PickUpTip = GameTool.GetTheChildComponent<Image>(this.gameObject, "PickUpTip");
         Img_Weapon1 = GameTool.GetTheChildComponent<Image>(this.gameObject,"Img_Weapon1");
 		Img_Weapon2 = GameTool.GetTheChildComponent<Image>(this.gameObject,"Img_Weapon2");
 		Img_Skill1 = GameTool.GetTheChildComponent<Image>(this.gameObject,"Img_Skill1");
 		Img_Skill2 = GameTool.GetTheChildComponent<Image>(this.gameObject,"Img_Skill2");
 		Img_Shield = GameTool.GetTheChildComponent<Image>(this.gameObject,"Img_Shield");
-        Img_PickUpTip = GameTool.GetTheChildComponent<Image>(this.gameObject, "PickUpTip");
         Img_FrontSight = GameTool.GetTheChildComponent<Image>(gameObject, "Img_FrontSight");
-        EquippedList = new List<SingleItemInfo>();
 
         MessageCenter.AddListener(EMessageType.FoundItem, AwakePickUpTip);
         
-        MessageCenter.AddListener(EMessageType.GetAndSetEquippedList, (object obj) =>
-        {
-            EquippedList = (List<SingleItemInfo>)obj;
-            SetBarIcon(EquippedList);
-        });
-        
     }
+
+    private void Update()
+    {
+        SetBarIcon(BagManager.Instance.Dict_Equipped);
+    }
+
     protected override void InitDataOnAwake()
     {
         this.uiId = UIid.HUDUI;
     }
 
-    private void SetBarIcon(List<SingleItemInfo> EquippedList)
-    {
-        if (EquippedList[(int)EquippedItem.Weapon1] != null)
-            Img_Weapon1.sprite=ResourcesManager.Instance.GetUITexture(EquippedList[(int)EquippedItem.Weapon1].ResName);
-        if (EquippedList[(int)EquippedItem.Weapon2] != null)
-            Img_Weapon2.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[(int)EquippedItem.Weapon2].ResName);
-        if (EquippedList[(int)EquippedItem.Magic1] != null)
-            Img_Skill1.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[(int)EquippedItem.Magic1].ResName);
-        if (EquippedList[(int)EquippedItem.Magic2] != null)
-            Img_Skill2.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[(int)EquippedItem.Magic2].ResName);
-        if (EquippedList[(int)EquippedItem.Shield] != null)
-            Img_Shield.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[(int)EquippedItem.Shield].ResName);
-
-    }
-    
     private void AwakePickUpTip(object Active)
     {
         Img_PickUpTip.gameObject.SetActive((bool)Active);
     }
+
+    private void SetBarIcon(Dictionary<EquippedItem,SingleItemInfo> EquippedList)
+    {
+        if (EquippedList[EquippedItem.Weapon1] != null)
+            Img_Weapon1.sprite=ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Weapon1].ResName);
+        if (EquippedList[EquippedItem.Weapon2] != null)
+            Img_Weapon2.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Weapon2].ResName);
+        if (EquippedList[EquippedItem.Magic1] != null)
+            Img_Skill1.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Magic1].ResName);
+        if (EquippedList[EquippedItem.Magic2] != null)
+            Img_Skill2.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Magic2].ResName);
+        if (EquippedList[EquippedItem.Shield] != null)
+            Img_Shield.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Shield].ResName);
+
+    }
+    
+
 }

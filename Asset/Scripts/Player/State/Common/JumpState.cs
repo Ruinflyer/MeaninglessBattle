@@ -19,16 +19,19 @@ public class JumpState : FSMState
 
     public override void Reason(BaseFSM FSM)
     {
-        if( FSM.controller.CC.isGrounded)
-        {
-            FSM.PerformTransition(FSMTransitionType.IsIdle);
-        }
+  
+        CharacterMessageDispatcher.Instance.DispatchMesssage
+           (FSMTransitionType.IsIdle,
+           FSM.GetComponent<NetworkPlayer>(),
+            FSM.controller.CC.isGrounded
+           );
 
-        
-        if ((Mathf.Abs(Input.GetAxis("Horizontal")) > 0.5 || Mathf.Abs(Input.GetAxis("Vertical")) > 0.5)&& FSM.controller.CC.isGrounded)
-        {
-            FSM.PerformTransition(FSMTransitionType.CanBeMove);
-        }
+        CharacterMessageDispatcher.Instance.DispatchMesssage
+          (FSMTransitionType.CanBeMove,
+          FSM.GetComponent<NetworkPlayer>(),
+           (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.5 || Mathf.Abs(Input.GetAxis("Vertical")) > 0.5) && FSM.controller.CC.isGrounded
+          );
+
         
     }
 
