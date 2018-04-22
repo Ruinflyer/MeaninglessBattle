@@ -6,11 +6,12 @@
             "ResName": "Bat",
             "OccurrenceProbability": 0.10,
             "itemType": 0,
-            "weaponProperties": {
-                "weaponType": 1,
-                "Damage": 40.0,
-                "CDTime": 0.0
-            }
+          "weaponProperties": {
+            "weaponType": 1,
+            "Damage": 40.0,
+            "weaponLength": 0.8,
+            "CDTime": 0.0
+          }
         },
         {
             "ItemID": 301,
@@ -18,11 +19,12 @@
             "ResName": "TeethClub",
             "OccurrenceProbability": 0.08,
             "itemType": 0,
-            "weaponProperties": {
-                "weaponType": 1,
-                "Damage": 48.0,
-                "CDTime": 0.0
-            }
+          "weaponProperties": {
+            "weaponType": 1,
+            "Damage": 48.0,
+            "weaponLength": 0.8,
+            "CDTime": 0.0
+          }
         },
         {
             "ItemID": 302,
@@ -30,11 +32,12 @@
             "ResName": "TeethHammer",
             "OccurrenceProbability": 0.07,
             "itemType": 0,
-            "weaponProperties": {
-                "weaponType": 1,
-                "Damage": 54.0,
-                "CDTime": 0.0
-            }
+          "weaponProperties": {
+            "weaponType": 1,
+            "Damage": 54.0,
+            "weaponLength": 0.8,
+            "CDTime": 0.0
+          }
         },
         {
             "ItemID": 303,
@@ -42,11 +45,12 @@
             "ResName": "ForgeHammer",
             "OccurrenceProbability": 0.06,
             "itemType": 0,
-            "weaponProperties": {
-                "weaponType": 1,
-                "Damage": 62.0,
-                "CDTime": 0.0
-            }
+          "weaponProperties": {
+            "weaponType": 1,
+            "Damage": 62.0,
+            "weaponLength": 0.8,
+            "CDTime": 0.0
+          }
         },
         {
             "ItemID": 304,
@@ -54,11 +58,12 @@
             "ResName": "StabHammer",
             "OccurrenceProbability": 0.06,
             "itemType": 0,
-            "weaponProperties": {
-                "weaponType": 1,
-                "Damage": 70.0,
-                "CDTime": 0.0
-            }
+          "weaponProperties": {
+            "weaponType": 1,
+            "Damage": 70.0,
+            "weaponLength": 0.8,
+            "CDTime": 0.0
+          }
         },
         {
             "ItemID": 305,
@@ -66,11 +71,12 @@
             "ResName": "Mace",
             "OccurrenceProbability": 0.04,
             "itemType": 0,
-            "weaponProperties": {
-                "weaponType": 1,
-                "Damage": 62.0,
-                "CDTime": 0.0
-            }
+          "weaponProperties": {
+            "weaponType": 1,
+            "Damage": 62.0,
+            "weaponLength": 0.8,
+            "CDTime": 0.0
+          }
         },
         {
             "ItemID": 306,
@@ -78,11 +84,12 @@
             "ResName": "Dagger",
             "OccurrenceProbability": 0.12,
             "itemType": 0,
-            "weaponProperties": {
-                "weaponType": 2,
-                "Damage": 35.0,
-                "CDTime": 0.0
-            }
+          "weaponProperties": {
+            "weaponType": 2,
+            "Damage": 35.0,
+            "weaponLength": 0.7,
+            "CDTime": 0.0
+          }
         },
         {
             "ItemID": 307,
@@ -90,11 +97,12 @@
             "ResName": "Sword",
             "OccurrenceProbability": 0.07,
             "itemType": 0,
-            "weaponProperties": {
-                "weaponType": 2,
-                "Damage": 60.0,
-                "CDTime": 0.0
-            }
+          "weaponProperties": {
+            "weaponType": 2,
+            "Damage": 60.0,
+            "weaponLength": 1,
+            "CDTime": 0.0
+          }
         },
         {
             "ItemID": 308,
@@ -102,11 +110,12 @@
             "ResName": "Scythe",
             "OccurrenceProbability": 0.04,
             "itemType": 0,
-            "weaponProperties": {
-                "weaponType": 2,
-                "Damage": 68.0,
-                "CDTime": 0.0
-            }
+          "weaponProperties": {
+            "weaponType": 2,
+            "Damage": 68.0,
+            "weaponLength": 1.2,
+            "CDTime": 0.0
+          }
         },
         {
             "ItemID": 309,
@@ -114,11 +123,12 @@
             "ResName": "Chopper",
             "OccurrenceProbability": 0.04,
             "itemType": 0,
-            "weaponProperties": {
-                "weaponType": 2,
-                "Damage": 68.0,
-                "CDTime": 0.0
-            }
+          "weaponProperties": {
+            "weaponType": 2,
+            "Damage": 68.0,
+            "weaponLength": 1,
+            "CDTime": 0.0
+          }
         },
         {
             "ItemID": 310,
@@ -126,11 +136,12 @@
             "ResName": "Claw",
             "OccurrenceProbability": 0.07,
             "itemType": 0,
-            "weaponProperties": {
-                "weaponType": 3,
-                "Damage": 35.0,
-                "CDTime": 0.0
-            }
+          "weaponProperties": {
+            "weaponType": 3,
+            "Damage": 35.0,
+            "weaponLength": 0.5,
+            "CDTime": 0.0
+          }
         },
         {
             "ItemID": 311,
@@ -138,11 +149,12 @@
             "ResName": "Axe",
             "OccurrenceProbability": 0.07,
             "itemType": 0,
-            "weaponProperties": {
-                "weaponType": 3,
-                "Damage": 45.0,
-                "CDTime": 0.0
-            }
+          "weaponProperties": {
+            "weaponType": 3,
+            "Damage": 45.0,
+            "weaponLength": 0.7,
+            "CDTime": 0.0
+          }
         },
         {
             "ItemID": 312,
@@ -150,11 +162,12 @@
             "ResName": "Knuckles",
             "OccurrenceProbability": 0.08,
             "itemType": 0,
-            "weaponProperties": {
-                "weaponType": 3,
-                "Damage": 35.0,
-                "CDTime": 0.0
-            }
+          "weaponProperties": {
+            "weaponType": 3,
+            "Damage": 35.0,
+            "weaponLength": 0.5,
+            "CDTime": 0.0
+          }
         },
         {
             "ItemID": 313,
@@ -162,11 +175,12 @@
             "ResName": "Spear",
             "OccurrenceProbability": 0.01,
             "itemType": 0,
-            "weaponProperties": {
-                "weaponType": 4,
-                "Damage": 95.0,
-                "CDTime": 0.0
-            }
+          "weaponProperties": {
+            "weaponType": 4,
+            "Damage": 95.0,
+            "weaponLength": 2,
+            "CDTime": 0.0
+          }
         },
         {
             "ItemID": 314,
@@ -174,11 +188,12 @@
             "ResName": "Rake",
             "OccurrenceProbability": 0.02,
             "itemType": 0,
-            "weaponProperties": {
-                "weaponType": 4,
-                "Damage": 80.0,
-                "CDTime": 0.0
-            }
+          "weaponProperties": {
+            "weaponType": 4,
+            "Damage": 80.0,
+            "weaponLength": 1.8,
+            "CDTime": 0.0
+          }
         },
         {
             "ItemID": 315,
@@ -186,11 +201,12 @@
             "ResName": "WoodShield",
             "OccurrenceProbability": 0.04,
             "itemType": 0,
-            "weaponProperties": {
-                "weaponType": 5,
-                "Damage": 0.0,
-                "CDTime": 5.0
-            }
+          "weaponProperties": {
+            "weaponType": 5,
+            "Damage": 0.0,
+            "weaponLength": 0.2,
+            "CDTime": 5.0
+          }
         },
         {
             "ItemID": 316,
@@ -198,11 +214,12 @@
             "ResName": "IronShield",
             "OccurrenceProbability": 0.03,
             "itemType": 0,
-            "weaponProperties": {
-                "weaponType": 5,
-                "Damage": 0.0,
-                "CDTime": 5.0
-            }
+          "weaponProperties": {
+            "weaponType": 5,
+            "Damage": 0.0,
+            "weaponLength": 0.2,
+            "CDTime": 5.0
+          }
         },
         {
             "ItemID": 101,
@@ -328,9 +345,9 @@
             "ItemName": "卫士链甲",
             "ResName": "Ground_Armor_Chain",
             "OccurrenceProbability": 0.12,
-            "itemType": 2,
+            "itemType": 1,
             "armorProperties": {
-                "armorType": 1,
+                "armorType": 2,
                 "ForWeaponType": 0,
                 "Rate_Attack": 1.00,
                 "Rate_PhysicalDefend": 1.15,
@@ -551,7 +568,7 @@
             "OccurrenceProbability": 0.12,
             "itemType": 3,
             "magicProperties":{
-                "magicType":0,
+                "magicType":1,
                 "Damage":30,
                 "Probability":0,
                 "UsableCount":10,
@@ -565,7 +582,7 @@
             "OccurrenceProbability": 0.12,
             "itemType": 3,
             "magicProperties":{
-                "magicType":0,
+                "magicType":2,
                 "Damage":50,
                 "Probability":0,
                 "UsableCount":5,
@@ -579,7 +596,7 @@
             "OccurrenceProbability": 0.12,
             "itemType": 3,
             "magicProperties":{
-                "magicType":0,
+                "magicType":3,
                 "Damage":0,
                 "Probability":1,
                 "UsableCount":3,
@@ -593,7 +610,7 @@
             "OccurrenceProbability": 0.12,
             "itemType": 3,
             "magicProperties":{
-                "magicType":0,
+                "magicType":4,
                 "Damage":20,
                 "Probability":0.33,
                 "UsableCount":2,
@@ -607,7 +624,7 @@
             "OccurrenceProbability": 0.12,
             "itemType": 3,
             "magicProperties":{
-                "magicType":0,
+                "magicType":5,
                 "Damage":20,
                 "Probability":0.50,
                 "UsableCount":4,
@@ -621,7 +638,7 @@
             "OccurrenceProbability": 0.12,
             "itemType": 3,
             "magicProperties":{
-                "magicType":0,
+                "magicType":6,
                 "Damage":70,
                 "Probability":0,
                 "UsableCount":3,
@@ -635,7 +652,7 @@
             "OccurrenceProbability": 0.12,
             "itemType": 3,
             "magicProperties":{
-                "magicType":0,
+                "magicType":7,
                 "Damage":60,
                 "Probability":0,
                 "UsableCount":2,
