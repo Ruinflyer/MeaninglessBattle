@@ -14,6 +14,8 @@ public class CameraCollision : MonoBehaviour
     Ray rayToItem;
     RaycastHit hitToItem;
 
+    public Transform itemTran=null;
+
     private void Awake()
     {
         dir = transform.localPosition.normalized;
@@ -43,7 +45,8 @@ public class CameraCollision : MonoBehaviour
                     if (hitToItem.collider.GetComponent<GroundItem>() != null)
                     {
                         MessageCenter.Send(Meaningless.EMessageType.FoundItem, true);
-                        MessageCenter.Send(Meaningless.EMessageType.PickedupItem, hitToItem.collider.GetComponent<GroundItem>().ItemID);
+                        itemTran = hitToItem.collider.transform;
+                        //MessageCenter.Send(Meaningless.EMessageType.PickedupItem, hitToItem.collider.transform);
                     }
                     else if (hitToItem.collider.GetComponent<Terrain>() != null)
                     {

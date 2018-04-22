@@ -75,6 +75,7 @@ namespace Meaningless
         ChoshimArrow,
         ThunderBolt,
         Defend,
+        TakeDamage,
     }
 
     public enum FSMTransitionType
@@ -94,6 +95,7 @@ namespace Meaningless
         UsingChoshimArrow,
         UsingThunderBolt,
         CanDefend,
+        Hurt,
     }
     public class GameDefine : MonoBehaviour
     {
