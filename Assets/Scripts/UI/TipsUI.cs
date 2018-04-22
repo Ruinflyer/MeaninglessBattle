@@ -39,6 +39,6 @@ public class TipsUI : BaseUI
     protected void OK()
     {
         UIManager.Instance.HideTheUI(this.uiId,()=>{ });
-        UIManager.Instance.ReturnUI(this.beforUIid);
+        UIManager.Instance.ReturnUI(this.beforeUIid);
     }
 }

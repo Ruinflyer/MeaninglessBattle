@@ -16,7 +16,7 @@ namespace Meaningless
         //当前窗体的ID
         protected UIid uiId = UIid.NullUI;
         //上一个窗体的ID
-        protected UIid beforUIid = UIid.NullUI;
+        protected UIid beforeUIid = UIid.NullUI;
         //显示机制
         //public EShowUIMode showMode = EShowUIMode.HideOther;
         //获取窗体的ID（只读）
@@ -32,11 +32,11 @@ namespace Meaningless
         {
             get
             {
-                return beforUIid;
+                return beforeUIid;
             }
             set
             {
-                beforUIid = value;
+                beforeUIid = value;
             }
         }
         ////显示出来后是否需要处理其他窗体（1、隐藏所有 2、隐藏其他窗体，不包括最前方的 3、什么事情都不做的）
