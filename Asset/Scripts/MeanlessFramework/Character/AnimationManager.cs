@@ -12,6 +12,7 @@ namespace Meaningless
         public AnimatorStateInfo attackStateInfo;
         public Animator anim;
         public string animCur;
+        public int LayerCur;
 
         void Start()
         {
@@ -46,6 +47,16 @@ namespace Meaningless
             animCur = "Idle";
         }
 
+        /// <summary>
+        /// 网络用播放动画
+        /// </summary>
+        public void NetPlayClip(int Layer, string ClipName, float normalizedTime = 0f)
+        {
+            if (anim.GetCurrentAnimatorClipInfo(Layer)[0].clip.name != ClipName)
+            {
+                anim.Play(ClipName, Layer, normalizedTime);
+            }
+        }
 
     }
 
