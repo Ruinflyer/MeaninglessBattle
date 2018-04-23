@@ -17,6 +17,11 @@ public class MapManager : MonoSingleton<MapManager>
     private List<float> RandomList = new List<float>();
     private int ItemListIndex = 0;
     private int Seed;
+
+    /// <summary>
+    /// 门字典 ID,Transform
+    /// </summary>
+    public Dictionary<int, Transform> Doors = new Dictionary<int, Transform>();
     #region 物品变量
     private float[] ProbabilityValue;
     private int[] ItemsID;
@@ -31,6 +36,12 @@ public class MapManager : MonoSingleton<MapManager>
         NetworkManager.ServerConnection.msgDistribution.AddEventListener("GetMapItemData", OnGetMapItemDataBack);
         NetworkManager.ServerConnection.msgDistribution.AddEventListener("Circlefield", OnCirclefieldBack);
         NetworkManager.ServerConnection.msgDistribution.AddEventListener("DoorOpen", OnDoorOpen); 
+        //门加入字典
+        for(int i=0;i<itemSpawnPoint.DoorSpawnPoints.Length;i++)
+        {
+            Doors.Add(i,itemSpawnPoint.DoorSpawnPoints[i]);
+        }
+
     }
 
     // Update is called once per frame
@@ -160,6 +171,11 @@ public class MapManager : MonoSingleton<MapManager>
         }
         return temp_RandomList;
     }
+
+    /// <summary>
+    /// 毒圈回调
+    /// </summary>
+    /// <param name="protocol"></param>
     public void OnCirclefieldBack(BaseProtocol protocol)
     {
         BytesProtocol p = (BytesProtocol)protocol;
@@ -174,6 +190,10 @@ public class MapManager : MonoSingleton<MapManager>
         iTween.MoveTo(Circlefield, iTween.Hash("position", new Vector3(X, 0, Y), "time", Movetime));
     }
 
+    /// <summary>
+    /// 开门
+    /// </summary>
+    /// <param name="protocol"></param>
     public void OnDoorOpen(BaseProtocol protocol)
     {
         BytesProtocol p = (BytesProtocol)protocol;
@@ -182,7 +202,7 @@ public class MapManager : MonoSingleton<MapManager>
         int DoorID = p.GetInt(startIndex, ref startIndex);
         if(itemSpawnPoint.DoorSpawnPoints[DoorID]!=null)
         {
-            itemSpawnPoint.DoorSpawnPoints[DoorID].gameObject.GetComponent<DoorControl>().ControlDoor();
+            Doors[DoorID].gameObject.GetComponent<DoorControl>().ControlDoor();
         }
     }
 }
