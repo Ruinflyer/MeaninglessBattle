@@ -16,38 +16,52 @@ public class MapManager : MonoSingleton<MapManager>
     public ItemSpawnPoint itemSpawnPoint;
     private List<float> RandomList = new List<float>();
     private int ItemListIndex = 0;
-    private int Seed;
+    private int Seed=0;
 
     /// <summary>
     /// 门字典 ID,Transform
     /// </summary>
     public Dictionary<int, Transform> Doors = new Dictionary<int, Transform>();
     #region 物品变量
-    private float[] ProbabilityValue;
-    private int[] ItemsID;
+    private float[] ProbabilityValue=null;
+    private int[] ItemsID =null;
     private float totalProbabilityValue = 0;
-    private float getRandom = 0;
+   
     #endregion
     // Use this for initialization
     void Start()
     {
+        itemSpawnPoint = GetComponent<ItemSpawnPoint>();
         //LoadCirclefieldInfo();
         //初始化网络事件
         NetworkManager.ServerConnection.msgDistribution.AddEventListener("GetMapItemData", OnGetMapItemDataBack);
         NetworkManager.ServerConnection.msgDistribution.AddEventListener("Circlefield", OnCirclefieldBack);
-        NetworkManager.ServerConnection.msgDistribution.AddEventListener("DoorOpen", OnDoorOpen); 
+        NetworkManager.ServerConnection.msgDistribution.AddEventListener("DoorOpen", OnDoorOpen);
+        NetworkManager.ServerConnection.msgDistribution.AddEventListener("AllPlayerLoaded", OnDoorOpen);
+        
         //门加入字典
-        for(int i=0;i<itemSpawnPoint.DoorSpawnPoints.Length;i++)
+        for (int i=0;i<itemSpawnPoint.DoorSpawnPoints.Length;i++)
         {
             Doors.Add(i,itemSpawnPoint.DoorSpawnPoints[i]);
         }
 
+        ProbabilityValue = ItemInfoManager.Instance.GetTotalOccurrenceProbability();
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    /// <summary>
+    /// 请求获得道具数据
+    /// </summary>
+    public void RequestItemData()
+    {
+        BytesProtocol p = new BytesProtocol();
+        p.SpliceString("GetMapItemData");
+        NetworkManager.ServerConnection.Send(p);
     }
     /* DeadCode
     private void OnGetMapDataBack(BaseProtocol protocol)
@@ -78,7 +92,6 @@ public class MapManager : MonoSingleton<MapManager>
         BytesProtocol p = (BytesProtocol)protocol;
         int startIndex = 0;
         p.GetString(startIndex, ref startIndex);
-        p.GetInt(startIndex, ref startIndex);
         Seed = p.GetInt(startIndex, ref startIndex);
 
         object[] param = new object[2];
@@ -86,16 +99,25 @@ public class MapManager : MonoSingleton<MapManager>
         param[1] = 2;
         MessageCenter.Send_Multparam(EMessageType.LoadingUI, param);
 
-        //220个物品生成点的随机数
-        RandomList = InitTotalProbabilityValue(ItemInfoManager.Instance.GetTotalOccurrenceProbability());
+        if(Seed!=0)
+        {
+            //220个物品生成点的随机数
+            RandomList = InitTotalProbabilityValue(ProbabilityValue);
+            param[0] = "道具数据接收完毕";
+            param[1] = 2;
+            MessageCenter.Send_Multparam(EMessageType.LoadingUI, param);
+
+            GenerateItem();
+        }
+        else
+        {
+            Debug.LogError("Seed异常 "+Seed.ToString()+" 无法加载");
+        }
 
 
-        param[0] = "道具数据接收完毕";
-        param[1] = 2;
-        MessageCenter.Send_Multparam(EMessageType.LoadingUI, param);
-
-        GenerateItem();
+      
     }
+    //生成地面道具
     public void GenerateItem()
     {
         StartCoroutine(Generate());
@@ -111,11 +133,15 @@ public class MapManager : MonoSingleton<MapManager>
 
 
         //地上物品生成：
-
+        GameObject tmp = null;
+        int tmp_ID = 0;
+        
         for (int j = 0; j < itemSpawnPoint.ItemSpawnPoints.Length; j++)
         {
-            Instantiate(ResourcesManager.Instance.GetItem(ItemInfoManager.Instance.GetItemName(ItemsID[CalcIndex(j, ItemInfoManager.Instance.GetTotalOccurrenceProbability())])),
+            //tmp_ID = ItemsID[CalcIndex(, )];
+            tmp =Instantiate(ResourcesManager.Instance.GetItem(ItemInfoManager.Instance.GetItemName(tmp_ID)),
                 new Vector3(itemSpawnPoint.ItemSpawnPoints[j].position.x, 0, itemSpawnPoint.ItemSpawnPoints[j].position.z), Quaternion.identity);
+            tmp.AddComponent<GroundItem>().ItemID = tmp_ID;
         }
 
 
@@ -124,15 +150,15 @@ public class MapManager : MonoSingleton<MapManager>
         param[1] = 2;
         MessageCenter.Send_Multparam(EMessageType.LoadingUI, param);
         isLoaded = true;
+
         yield return true;
     }
 
     /// <summary>
     /// 根据出现概率计算道具下标
     /// </summary>
-    private int CalcIndex(int RandomListIndex, float[] probabilityValue)
+    private int CalcIndex(int RandomListIndex,float[] probabilityValue)
     {
-
 
         for (int i = 0; i < probabilityValue.Length; i++)
         {
@@ -167,6 +193,7 @@ public class MapManager : MonoSingleton<MapManager>
         Random.InitState(Seed);
         for (int i = 0; i < itemSpawnPoint.ItemSpawnPoints.Length; i++)
         {
+            
             temp_RandomList.Add(Random.Range(0, totalProbabilityValue));
         }
         return temp_RandomList;
@@ -204,6 +231,11 @@ public class MapManager : MonoSingleton<MapManager>
         {
             Doors[DoorID].gameObject.GetComponent<DoorControl>().ControlDoor();
         }
+    }
+
+    public void OnAllPlayerLoaded(BaseProtocol protocol)
+    {
+
     }
 }
 

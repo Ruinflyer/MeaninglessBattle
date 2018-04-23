@@ -91,16 +91,25 @@ public class LoadingUI : BaseUI, IPointerDownHandler
         //网络玩家管理器
         //NetworkPlayerManager networkPlayerManager = GameObject.Find("NetworkPlayerManager").AddComponent<NetworkPlayerManager>();
 
+        //请求地图数据
+        mapManager.RequestItemData();
+
+
         //创建组件完毕 发送PlayerReady协议
-        BytesProtocol ready = new BytesProtocol();
-        ready.SpliceString("PlayerReady");
-        ready.SpliceString(NetworkManager.PlayerName);
-        NetworkManager.ServerConnection.Send(ready);
+        if(mapManager.isLoaded)
+        {
+            BytesProtocol ready = new BytesProtocol();
+            ready.SpliceString("PlayerReady");
+            ready.SpliceString(NetworkManager.PlayerName);
+            NetworkManager.ServerConnection.Send(ready);
+            text.text = "资源加载完毕，即将进入游戏";
+            sequence = 2;
+        }
+        
 
         
 
-        text.text = "资源加载完毕，即将进入游戏";
-        sequence = 2;
+        
         
 
     }
