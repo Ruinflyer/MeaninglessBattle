@@ -38,7 +38,6 @@ GameObject:
   - component: {fileID: 4247865847746940}
   - component: {fileID: 198414935089144174}
   - component: {fileID: 199974713601638916}
-  - component: {fileID: 114658719823409930}
   m_Layer: 0
   m_Name: Heart Attact
   m_TagString: Untagged
@@ -103,32 +102,6 @@ Transform:
   m_Father: {fileID: 4247865847746940}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!114 &114658719823409930
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1303496528402658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerId: 0
-  group: 0
-  OwnerShipWasTransfered: 0
-  prefixBackup: -1
-  synchronization: 0
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 0}
-  ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
-  currentMasterID: -1
-  isRuntimeInstantiated: 0
 --- !u!114 &114943857260437372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -202,7 +175,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -617448239
+  randomSeed: 1569576971
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3563,7 +3536,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1020202926
+  randomSeed: 434979005
   InitialModule:
     serializedVersion: 3
     enabled: 1

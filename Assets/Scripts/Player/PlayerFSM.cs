@@ -53,6 +53,7 @@ public class PlayerFSM :BaseFSM
         idle.AddTransition(FSMTransitionType.UsingThunderBolt, FSMStateType.ThunderBolt);
         idle.AddTransition(FSMTransitionType.AttackWithSpear, FSMStateType.SpearAttack);
         idle.AddTransition(FSMTransitionType.CanDefend, FSMStateType.Defend);
+        idle.AddTransition(FSMTransitionType.Falling, FSMStateType.Fall);
 
         MoveState move = new MoveState();
         move.AddTransition(FSMTransitionType.IsIdle, FSMStateType.Idle);
@@ -103,6 +104,9 @@ public class PlayerFSM :BaseFSM
         PickUpState pickUp = new PickUpState();
         pickUp.AddTransition(FSMTransitionType.IsIdle, FSMStateType.Idle);
 
+        FallState fall = new FallState();
+        fall.AddTransition(FSMTransitionType.IsIdle, FSMStateType.Idle);
+
 
         AddFSMState(idle);
         AddFSMState(move);
@@ -118,6 +122,7 @@ public class PlayerFSM :BaseFSM
         AddFSMState(thunderBolt);
         AddFSMState(pickUp);
         AddFSMState(spearAttack);
+        AddFSMState(fall);
     }
 
 

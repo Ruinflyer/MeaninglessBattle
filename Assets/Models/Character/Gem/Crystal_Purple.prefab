@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4012912222318022}
   - component: {fileID: 33337778753608378}
   - component: {fileID: 23274494429271938}
+  - component: {fileID: 64921615959047232}
   m_Layer: 0
   m_Name: Crystal_Purple
   m_TagString: Untagged
@@ -81,4 +82,18 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1001079386725212}
+  m_Mesh: {fileID: 4300000, guid: f7abcbbb4fa4c8042a2c81251ec0f49e, type: 3}
+--- !u!64 &64921615959047232
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1001079386725212}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: f7abcbbb4fa4c8042a2c81251ec0f49e, type: 3}

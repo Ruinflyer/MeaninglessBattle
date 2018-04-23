@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4174352174351982}
   - component: {fileID: 33845568714438174}
   - component: {fileID: 23247340396697214}
+  - component: {fileID: 64881357961236692}
   m_Layer: 0
   m_Name: Crystal_Green
   m_TagString: Untagged
@@ -81,4 +82,18 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1858571711851176}
+  m_Mesh: {fileID: 4300000, guid: 6ac5a1c4e2b37ec448616253e5b7a55b, type: 3}
+--- !u!64 &64881357961236692
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1858571711851176}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 6ac5a1c4e2b37ec448616253e5b7a55b, type: 3}

@@ -131,6 +131,7 @@ public class ResourcesManager : Mono_DDOLSingleton<ResourcesManager>
     }
     public GameObject GetMagic(string magicName)
     {
+        Debug.Log(Dict_Items.Count);
         GameObject resourceGObj = null;
         if (!Dict_Magic.TryGetValue(magicName, out resourceGObj))
         {

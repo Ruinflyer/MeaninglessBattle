@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4337899181588670}
   - component: {fileID: 33033690056165894}
   - component: {fileID: 23694527979214926}
+  - component: {fileID: 64938843751118518}
   m_Layer: 0
   m_Name: Crystal_Orange
   m_TagString: Untagged
@@ -81,4 +82,18 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1029424714314134}
+  m_Mesh: {fileID: 4300000, guid: e8ae9508e1fcedb4a88dad81f1c9e526, type: 3}
+--- !u!64 &64938843751118518
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1029424714314134}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: e8ae9508e1fcedb4a88dad81f1c9e526, type: 3}

@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33554455920220356}
   - component: {fileID: 23460461245957284}
   - component: {fileID: 64520063426188716}
-  - component: {fileID: 114485072819868140}
   - component: {fileID: 65081972042989800}
   m_Layer: 0
   m_Name: Ground_Armor_Doctor
@@ -111,29 +110,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 5, z: 1.2}
   m_Center: {x: 0, y: -2.322243, z: 0.43235588}
---- !u!114 &114485072819868140
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1893628589860712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerId: 0
-  group: 0
-  OwnerShipWasTransfered: 0
-  prefixBackup: -1
-  synchronization: 0
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 0}
-  ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
-  currentMasterID: -1
-  isRuntimeInstantiated: 0

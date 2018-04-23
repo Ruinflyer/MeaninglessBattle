@@ -1,0 +1,37 @@
+ManifestFileVersion: 0
+CRC: 3993148840
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 4b12767258913c5ce9e5c4d3bae9a211
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: a1cc2f130f30b577a0dec7fe6ccd76d4
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 654fcd6a5d081154ab2a9bee78180351, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
+Assets:
+- Assets/Models/Particle Attractor/Prefabs/Heart Attack.prefab
+- Assets/Models/Particle Attractor/Prefabs/Choshim Arrow.prefab
+- Assets/Models/Particle Attractor/Prefabs/Ice Arrow.prefab
+- Assets/Models/Particle Attractor/Prefabs/Stygian Desolator.prefab
+- Assets/Models/Particle Attractor/Prefabs/ThunderBolt.prefab
+- Assets/Models/Particle Attractor/Prefabs/Ripple.prefab
+Dependencies: []

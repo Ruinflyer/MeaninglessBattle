@@ -16,6 +16,8 @@ public class IdleState : FSMState
     {
         FSM.animationManager.PlayIdle();
         FSM.comboCount = 0;
+        FSM.controller.Wings.gameObject.SetActive(false);
+        FSM.controller.Gravity = 9.8f;
     }
 
     public override void Reason(BaseFSM FSM)
@@ -52,7 +54,8 @@ public class IdleState : FSMState
             FSM.GetComponent<NetworkPlayer>(),
              Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.Spear
             );
-       
+
+
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.UsingRipple,
             FSM.GetComponent<NetworkPlayer>(),
@@ -77,6 +80,13 @@ public class IdleState : FSMState
             (FSMTransitionType.UsingThunderBolt,
             FSM.GetComponent<NetworkPlayer>(),
             Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.NULL && FSM.characterStatus.magicType == MagicType.Thunderbolt
+            );
+
+        CharacterMessageDispatcher.Instance.DispatchMesssage
+           (
+            FSMTransitionType.Falling,
+            FSM.GetComponent<NetworkPlayer>(),
+            FSM.transform.position.y > 30
             );
     }
 

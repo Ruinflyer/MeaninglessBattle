@@ -7,7 +7,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
 {
     public int CurrentSelected = 1;
     public Dictionary<EquippedItem, SingleItemInfo> Dict_Equipped;
-    public List<SingleItemInfo> List_PickUp=new List<SingleItemInfo>();
+    public List<SingleItemInfo> List_PickUp = new List<SingleItemInfo>();
     private int preSelected;
 
     private struct BasicAttributes
@@ -20,8 +20,25 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
         public float rate_MoveSpeed;
         public float rate_DurationTime_Magic;
     }
+
+    public struct SkillAttributes
+    {
+        public SingleItemInfo skillInfo;
+        //CD计时
+        public float Timer;
+        //剩余次数
+        public int remainCount;
+        //CD是否到
+        public bool isOn;
+        //是否使用了技能
+        public bool isUse;
+    }
+
+
+
     private BasicAttributes armorAttributes;
     private BasicAttributes[] List_WeaponAttributes = new BasicAttributes[2];
+    public SkillAttributes[] skillAttributesList = new SkillAttributes[2];
 
     //默认角色属性值
     private CharacterStatus defaultCharacterStatus;
@@ -40,23 +57,23 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
     private float RecoveryPerSec;
 
 
-    void Start ()
+    void Start()
     {
 
         Dict_Equipped = new Dictionary<EquippedItem, SingleItemInfo>();
 
-        for (EquippedItem i = EquippedItem.Head;i <=EquippedItem.Magic2; i++)
+        for (EquippedItem i = EquippedItem.Head; i <= EquippedItem.Magic2; i++)
         {
-            Dict_Equipped.Add(i,null);
+            Dict_Equipped.Add(i, null);
         }
         defaultCharacterStatus = MeaninglessJson.LoadJsonFromFile<CharacterStatus>(MeaninglessJson.Path_StreamingAssets + "CharacterStatus.json");
         characterStatus = defaultCharacterStatus;
         MessageCenter.AddListener_Multparam(EMessageType.EquipItem, (object[] obj) => { EquipItem((EquippedItem)obj[0], (SingleItemInfo)obj[1]); });
         MessageCenter.AddListener(EMessageType.UseItem, (object obj) => { UseItem((int)obj); });
     }
-	
-	
-	void Update ()
+
+
+    void Update()
     {
         if (Input.GetButtonDown("Bar1"))
         {
@@ -106,6 +123,42 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
             {
                 healFlag = false;
             }
+        }
+
+        if (Dict_Equipped[EquippedItem.Magic1] != null)
+        {
+            if (skillAttributesList[0].isOn && skillAttributesList[0].isUse && skillAttributesList[0].remainCount > 0)
+            {
+                skillAttributesList[0].isOn = false;
+                skillAttributesList[0].remainCount -= 1;
+
+            }
+
+            if (skillAttributesList[0].Timer <= 0)
+            {
+                skillAttributesList[0].Timer = skillAttributesList[0].skillInfo.magicProperties.CDTime;
+                skillAttributesList[0].isUse = false;
+                skillAttributesList[0].isOn = true;
+            }
+            if (skillAttributesList[0].isUse && skillAttributesList[0].remainCount > 0)
+                skillAttributesList[0].Timer -= Time.deltaTime;
+        }
+        if (Dict_Equipped[EquippedItem.Magic2] != null)
+        {
+            if (skillAttributesList[1].isOn && skillAttributesList[1].isUse && skillAttributesList[0].remainCount > 0)
+            {
+                skillAttributesList[1].isOn = false;
+                skillAttributesList[1].remainCount -= 1;
+            }
+
+            if (skillAttributesList[1].Timer <= 0)
+            {
+                skillAttributesList[1].Timer = skillAttributesList[1].skillInfo.magicProperties.CDTime;
+                skillAttributesList[1].isUse = false;
+                skillAttributesList[1].isOn = true;
+            }
+            if (skillAttributesList[1].isUse && skillAttributesList[1].remainCount > 0)
+                skillAttributesList[1].Timer -= Time.deltaTime;
         }
     }
 
@@ -228,6 +281,11 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                     break;
             }
         }
+    }
+
+    public void UseMagic(int index)
+    {
+        skillAttributesList[index].isUse = true;
     }
 
     /// <summary>
@@ -467,9 +525,19 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
 
             case EquippedItem.Magic1:
                 Dict_Equipped[EquippedItem.Magic1] = itemInfo;
+                skillAttributesList[0].skillInfo = itemInfo;
+                skillAttributesList[0].isOn = true;
+                skillAttributesList[0].isUse = false;
+                skillAttributesList[0].Timer = itemInfo.magicProperties.CDTime;
+                skillAttributesList[0].remainCount = (int)itemInfo.magicProperties.UsableCount;
                 break;
             case EquippedItem.Magic2:
                 Dict_Equipped[EquippedItem.Magic2] = itemInfo;
+                skillAttributesList[1].skillInfo = itemInfo;
+                skillAttributesList[1].isOn = true;
+                skillAttributesList[1].isUse = false;
+                skillAttributesList[1].Timer = itemInfo.magicProperties.CDTime;
+                skillAttributesList[1].remainCount = (int)itemInfo.magicProperties.UsableCount;
                 break;
 
             default:
@@ -650,6 +718,12 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                     break;
                 case EquippedItem.Weapon2:
                     Dict_Equipped[EquippedItem.Weapon2] = null;
+                    break;
+                case EquippedItem.Magic1:
+                    Dict_Equipped[EquippedItem.Magic1] = null;
+                    break;
+                case EquippedItem.Magic2:
+                    Dict_Equipped[EquippedItem.Magic2] = null;
                     break;
             }
 

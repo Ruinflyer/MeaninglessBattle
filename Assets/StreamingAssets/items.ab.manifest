@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3985403520
+CRC: 2386160322
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 26782b3960aed4a6db1a52d4eb819356
+    Hash: c5fb97ab1b87a6359b636a7634bbe185
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 157d80ff4e61424260468b44efb3fff9
+    Hash: 30f6c2b0e0ae3bf4568422598a44648b
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -29,8 +29,6 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 65
   Script: {instanceID: 0}
-- Class: 114
-  Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
 Assets:
 - Assets/Models/Character/Armor/Mask_Emirate.prefab
 - Assets/Models/Character/Expendable/Crystal_Magic.prefab
@@ -39,16 +37,20 @@ Assets:
 - Assets/Models/Character/Weapon/Mace.prefab
 - Assets/Models/Character/Expendable/HealthPotion.prefab
 - Assets/Models/Character/Weapon/ForgeHammer.prefab
+- Assets/Models/Character/Armor/Helmet_Knight.prefab
 - Assets/Models/Character/Armor/Body/Ground_Armor_Santa.prefab
 - Assets/Models/Character/Gem/Crystal_Pink.prefab
 - Assets/Models/Character/Armor/Helmet_Swordman.prefab
 - Assets/Models/Character/Weapon/Chopper.prefab
 - Assets/Models/Character/Weapon/Axe.prefab
 - Assets/Models/Character/Armor/Body/Ground_Armor_Doctor.prefab
+- Assets/Models/Character/Armor/Helmet_Green.prefab
 - Assets/Models/Character/Gem/Crystal_Purple.prefab
 - Assets/Models/Character/Weapon/StabHammer.prefab
+- Assets/Models/Character/Armor/Body/Ground_Armor_Knight.prefab
 - Assets/Models/Character/Gem/Crystal_Orange.prefab
 - Assets/Models/Character/Weapon/Scythe.prefab
+- Assets/Models/Character/Armor/Helmet_Gladiator.prefab
 - Assets/Models/Character/Armor/Body/Ground_Armor_Casual.prefab
 - Assets/Models/Character/Weapon/TeethClub.prefab
 - Assets/Models/Character/Gem/Crystal_Green.prefab
@@ -60,6 +62,7 @@ Assets:
 - Assets/Models/Character/Weapon/Sword.prefab
 - Assets/Models/Character/Gem/Crystal_Red.prefab
 - Assets/Models/Character/Magic/Thunderbolt.prefab
+- Assets/Models/Character/Armor/Body/Ground_Armor_Wizard.prefab
 - Assets/Models/Character/Weapon/IronShield.prefab
 - Assets/Models/Character/Magic/ChoshimArrow.prefab
 - Assets/Models/Character/Magic/KillerQueen.prefab

@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4779567943288176}
   - component: {fileID: 33265576361573042}
   - component: {fileID: 23777274391504462}
-  - component: {fileID: 114055829657390696}
-  - component: {fileID: 64926582343447654}
+  - component: {fileID: 64088614027063864}
+  - component: {fileID: 64695492854614402}
   m_Layer: 0
   m_Name: Axe
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1478163134859620}
   m_Mesh: {fileID: 4300000, guid: 1c93047dd5bfa7d43917b4166afae8f3, type: 3}
---- !u!64 &64926582343447654
+--- !u!64 &64088614027063864
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -98,29 +98,17 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 1c93047dd5bfa7d43917b4166afae8f3, type: 3}
---- !u!114 &114055829657390696
-MonoBehaviour:
+--- !u!64 &64695492854614402
+MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1478163134859620}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerId: 0
-  group: 0
-  OwnerShipWasTransfered: 0
-  prefixBackup: -1
-  synchronization: 0
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 0}
-  ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
-  currentMasterID: -1
-  isRuntimeInstantiated: 0
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 1c93047dd5bfa7d43917b4166afae8f3, type: 3}

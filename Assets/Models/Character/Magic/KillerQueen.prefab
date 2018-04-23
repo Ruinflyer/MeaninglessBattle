@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4166305186047158}
   - component: {fileID: 33583974578974490}
   - component: {fileID: 23457550917339358}
+  - component: {fileID: 64264667750069148}
   m_Layer: 0
   m_Name: KillerQueen
   m_TagString: Untagged
@@ -82,4 +83,18 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1803039999512238}
+  m_Mesh: {fileID: 4300000, guid: 537ecdea34326994ea76d5b0bb0710db, type: 3}
+--- !u!64 &64264667750069148
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1803039999512238}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 537ecdea34326994ea76d5b0bb0710db, type: 3}

@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4684396439633282}
   - component: {fileID: 33597728006848194}
   - component: {fileID: 23522876089216026}
-  - component: {fileID: 114618350960347110}
-  - component: {fileID: 64467745332410694}
+  - component: {fileID: 64737459649055270}
+  - component: {fileID: 64354302152516288}
   m_Layer: 0
   m_Name: IronShield
   m_TagString: Untagged
@@ -57,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 340c12db2ef3814479556e79ac968b81, type: 2}
+  - {fileID: 2100000, guid: ae9b1d423a544f745bcc148bdc4d2643, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,7 +84,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1067518057446434}
   m_Mesh: {fileID: 4300000, guid: bbbd41033486b8446878c4f68af5a450, type: 3}
---- !u!64 &64467745332410694
+--- !u!64 &64354302152516288
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -98,29 +98,17 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: bbbd41033486b8446878c4f68af5a450, type: 3}
---- !u!114 &114618350960347110
-MonoBehaviour:
+--- !u!64 &64737459649055270
+MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1067518057446434}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerId: 0
-  group: 0
-  OwnerShipWasTransfered: 0
-  prefixBackup: -1
-  synchronization: 0
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 0}
-  ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
-  currentMasterID: -1
-  isRuntimeInstantiated: 0
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: bbbd41033486b8446878c4f68af5a450, type: 3}

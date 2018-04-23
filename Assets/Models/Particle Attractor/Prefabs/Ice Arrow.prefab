@@ -38,7 +38,6 @@ GameObject:
   - component: {fileID: 4589464960713574}
   - component: {fileID: 198871170421169830}
   - component: {fileID: 199801512583957856}
-  - component: {fileID: 114337920868806082}
   m_Layer: 0
   m_Name: Ice Arrow
   m_TagString: Untagged
@@ -116,32 +115,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   destoryTime: 5
---- !u!114 &114337920868806082
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1737594832573150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerId: 0
-  group: 0
-  OwnerShipWasTransfered: 0
-  prefixBackup: -1
-  synchronization: 0
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 0}
-  ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
-  currentMasterID: -1
-  isRuntimeInstantiated: 0
 --- !u!198 &198086349128160928
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -202,7 +175,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -335737041
+  randomSeed: -1015641812
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3563,7 +3536,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 222957975
+  randomSeed: -354018932
   InitialModule:
     serializedVersion: 3
     enabled: 1

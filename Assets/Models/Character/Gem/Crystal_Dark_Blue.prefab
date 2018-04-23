@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4569875159796946}
   - component: {fileID: 33664676289030860}
   - component: {fileID: 23863597209320136}
+  - component: {fileID: 64502555811873822}
   m_Layer: 0
   m_Name: Crystal_Dark_Blue
   m_TagString: Untagged
@@ -81,4 +82,18 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1283830813319756}
+  m_Mesh: {fileID: 4300000, guid: f4fe9dddcd125f54ba4ffb6179e99ce2, type: 3}
+--- !u!64 &64502555811873822
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1283830813319756}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: f4fe9dddcd125f54ba4ffb6179e99ce2, type: 3}

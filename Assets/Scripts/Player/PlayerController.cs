@@ -65,6 +65,7 @@ public class PlayerController : MeaninglessCharacterController
     public void EquipClothes(int itemID)
     {
         string itemName = ItemInfoManager.Instance.GetResname(itemID);
+        
         GameObject itemObj = ResourcesManager.Instance.GetItem(itemName);
         Material clothesMat = itemObj.GetComponent<MeshRenderer>().sharedMaterial;
         GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().material = clothesMat;
@@ -83,6 +84,7 @@ public class PlayerController : MeaninglessCharacterController
 
         string itemName = ItemInfoManager.Instance.GetResname(itemID);
         GameObject itemObj = ResourcesManager.Instance.GetItem(itemName);
+        Debug.Log(itemObj);
         GameObject RWeapon = Instantiate(itemObj, RHand);
         RWeapon.transform.parent = RHand;
 
@@ -183,23 +185,13 @@ public class PlayerController : MeaninglessCharacterController
         CC.Move(moveDirection * Time.fixedDeltaTime);
     }
 
-
-
-    public override void FindTranform(Body type)
+    public override void FallingCtrl(float Speed)
     {
-        Transform RigPelvis = GameTool.FindTheChild(gameObject, "RigPelvis");
-        if (type == Body.LHand)
-        {
-            LHand = GameTool.FindTheChild(RigPelvis.gameObject, "Dummy Prop Left");
-        }
-        if (type == Body.RHand)
-        {
-            RHand = GameTool.FindTheChild(RigPelvis.gameObject, "Dummy Prop Right");
-        }
-        if (type == Body.Head)
-        {
-            Head = GameTool.FindTheChild(RigPelvis.gameObject, "Dummy Prop Head");
-        }
+        Vector3 moveDirection = Vector3.zero;
+        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        moveDirection = transform.TransformDirection(moveDirection);
+        moveDirection *= Speed;
+        CC.Move(moveDirection * Time.fixedDeltaTime);
     }
 
     public override void ChangeWeapon()
@@ -369,9 +361,11 @@ public class PlayerController : MeaninglessCharacterController
 
     protected override void Initialize()
     {
-        FindTranform(Body.RHand);
-        FindTranform(Body.LHand);
-        FindTranform(Body.Head);
+        Transform RigPelvis = GameTool.FindTheChild(gameObject, "RigPelvis");
+        LHand = GameTool.FindTheChild(RigPelvis.gameObject, "Dummy Prop Left");
+        RHand = GameTool.FindTheChild(RigPelvis.gameObject, "Dummy Prop Right");
+        Head = GameTool.FindTheChild(RigPelvis.gameObject, "Dummy Prop Head");
+        Wings = GameTool.FindTheChild(gameObject, "Wings");
     }
 
     protected override void CCUpdate()

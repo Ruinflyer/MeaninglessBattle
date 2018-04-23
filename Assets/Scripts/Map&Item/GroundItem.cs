@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class GroundItem : MonoBehaviour {
 
-    public int ItemID=0;
+    public int ItemID = 0;
 
-
-
-	public void Hide()
+    public void Hide()
     {
         gameObject.SetActive(false);
     }

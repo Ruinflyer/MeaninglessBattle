@@ -13,9 +13,27 @@ public class RippleAttackState : FSMState
 
     public override void Act(BaseFSM FSM)
     {
+        if (BagManager.Instance.skillAttributesList[0].skillInfo.magicProperties.magicType==MagicType.Ripple)
+        {
+            if(BagManager.Instance.skillAttributesList[0].isOn)
+            {
+                BagManager.Instance.UseMagic(0);
+                FSM.PlayAnimation("Magic Shoot Attack");
+                GameObject go = NetPoolManager.Instantiate("Ripple", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
+            }  
+        }
+        else if (BagManager.Instance.skillAttributesList[1].skillInfo.magicProperties.magicType == MagicType.Ripple)
+        {
+            if (BagManager.Instance.skillAttributesList[1].isOn)
+            {
+                BagManager.Instance.UseMagic(1);
+                FSM.PlayAnimation("Magic Shoot Attack");
+                GameObject go = NetPoolManager.Instantiate("Ripple", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
+            }
 
-            FSM.PlayAnimation("Magic Shoot Attack");
-            GameObject go=NetPoolManager.Instantiate("Ripple",GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
+        }
+
+       
 
     }
 
