@@ -7,7 +7,7 @@ using Meaningless;
 public class NetworkPlayerManager : MonoBehaviour
 {
 
-    private Dictionary<string, GameObject> ScenePlayers = new Dictionary<string, GameObject>();
+    private Dictionary<string, NetworkPlayer> ScenePlayers = new Dictionary<string, NetworkPlayer>();
 
     // Use this for initialization
     void Start()
@@ -75,7 +75,7 @@ public class NetworkPlayerManager : MonoBehaviour
                 tmp_player = Instantiate(playerprefab) as GameObject;
                 NetworkPlayer nPlayer = tmp_player.GetComponent<NetworkPlayer>();
                 nPlayer.SetPlayerName(playerName);
-                ScenePlayers.Add(playerName, tmp_player);
+                ScenePlayers.Add(playerName, nPlayer);
                 nPlayer.LastUpdateTime = NetworkManager.GetTimeStamp();
             }
 
@@ -125,7 +125,6 @@ public class NetworkPlayerManager : MonoBehaviour
 
 
 
-        
     }
 
 }

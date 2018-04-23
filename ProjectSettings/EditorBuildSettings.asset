@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scene/MeaninglessBattle.unity
+    guid: 8e4ad7904b81f9a449bb2e9475a0cd5b
+  - enabled: 1
+    path: Assets/Scene/Map1.unity
+    guid: 70f8ff3ec7a60cf41a42934b6e38d980
