@@ -16,7 +16,7 @@ public class FallState :  FSMState
         FSM.PlayAnimation("Falling");
         FSM.controller.Gravity = 20;
         FSM.controller.Wings.gameObject.SetActive(true);
-        FSM.controller.FallingCtrl(2f);
+        FSM.controller.FallingCtrl(5f);
        
     }
 
@@ -25,7 +25,7 @@ public class FallState :  FSMState
         CharacterMessageDispatcher.Instance.DispatchMesssage(
             FSMTransitionType.IsIdle,
             FSM.GetComponent<NetworkPlayer>(),
-            FSM.transform.position.y <= 30
+            FSM.transform.position.y <= 20
             );
           
     }

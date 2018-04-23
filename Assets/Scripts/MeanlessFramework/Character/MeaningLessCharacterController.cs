@@ -68,6 +68,7 @@ namespace Meaningless
             if(Input.GetButtonDown("Bag"))
             {
                 UIManager.Instance.ShowUI(UIid.BagUI);
+
                 CameraBase.Instance.isFollowing = false;
 
             }

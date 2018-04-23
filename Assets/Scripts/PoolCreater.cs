@@ -23,7 +23,6 @@ public class PoolCreater : MonoBehaviour
     IEnumerator LoadResources()
     {
         yield return new WaitForEndOfFrame();
-        yield return ResourcesManager.Instance.LoadMagic();
 
         PoolObject poolObject;
         List<string> list = new List<string>();

@@ -81,20 +81,21 @@ public class BagUI : BaseUI
 
     protected override void InitInStart()
     {
-
-   
-
         InitBagItem(scrollRect.content);
         //SetEquippedItems();
-        //SetBagListItems();
-        
+        SetBagListItems(BagManager.Instance.List_PickUp);
+       
+    }
 
+    protected override void OnEnable()
+    {
+        RefreshBagList(BagManager.Instance.List_PickUp);
     }
 
     private void Update()
     {
         SetEquippedItems(BagManager.Instance.Dict_Equipped);
-        SetBagListItems(BagManager.Instance.List_PickUp);
+        
     }
 
 
@@ -102,7 +103,7 @@ public class BagUI : BaseUI
     /// 刷新背包列表中 列表项的下标
     /// </summary>
     /// <param name="obj"></param>
-    private void RefreshBagList(object obj)
+    public void RefreshBagList(object obj)
     {
         for (int i = 0; i < BagItem.Count; i++)
         {

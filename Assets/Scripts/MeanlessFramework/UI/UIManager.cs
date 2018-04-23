@@ -52,7 +52,7 @@ namespace Meaningless
             DontDestroyOnLoad(canvas);
             
             //显示主窗体
-            ShowUI(UIid.HUDUI);
+            ShowUI(UIid.LoadingUI);
            
         }
         //显示窗体的方法(isSaveBeforUIid是否要存储上一个跳转过来的窗体ID)

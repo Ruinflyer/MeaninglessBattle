@@ -1071,7 +1071,7 @@ Animator:
   m_GameObject: {fileID: 1887132482691962}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 231d45dba8bff13478d80904318e7bc4, type: 3}
-  m_Controller: {fileID: 9100000, guid: b3a1845673829dc4488913e820163d13, type: 2}
+  m_Controller: {fileID: 9100000, guid: b28a5814760ae474880bf98404639623, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1098,6 +1098,7 @@ MonoBehaviour:
   LHand: {fileID: 0}
   RHand: {fileID: 0}
   Head: {fileID: 0}
+  Wings: {fileID: 0}
 --- !u!114 &114622247498669894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1181,7 +1182,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 4427b350d87ba9441bf69b2af4cc0238, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

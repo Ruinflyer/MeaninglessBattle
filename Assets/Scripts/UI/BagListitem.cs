@@ -95,7 +95,6 @@ public class BagListitem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         {
             //拖拽结束后销毁
             Destroy(dragObj);
-
         }
     }
 
@@ -125,6 +124,8 @@ public class BagListitem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         MessageCenter.Send(Meaningless.EMessageType.UseItem, Index);
         PressedSlider.value = 0;
+        txt.text = "";
+        img.sprite = null;
         gameObject.SetActive(false);
         Destroy(dragObj);
     }

@@ -174,7 +174,19 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
             {
                 if (List_PickUp[index].expendableProperties.RechargeValue != 0)
                 {
-                    MessageCenter.Send(EMessageType.Recharge, List_PickUp[index].expendableProperties.RechargeValue);
+                    //MessageCenter.Send(EMessageType.Recharge, List_PickUp[index].expendableProperties.RechargeValue);
+                    if(CurrentSelected==4)
+                    {
+                        skillAttributesList[1].remainCount += (int)List_PickUp[index].expendableProperties.RechargeValue;
+                        if (skillAttributesList[1].remainCount > skillAttributesList[1].skillInfo.magicProperties.UsableCount)
+                            skillAttributesList[1].remainCount = (int)skillAttributesList[1].skillInfo.magicProperties.UsableCount;
+                    }
+                    else
+                    {
+                        skillAttributesList[0].remainCount += (int)List_PickUp[index].expendableProperties.RechargeValue;
+                        if (skillAttributesList[0].remainCount > skillAttributesList[0].skillInfo.magicProperties.UsableCount)
+                            skillAttributesList[0].remainCount = (int)skillAttributesList[0].skillInfo.magicProperties.UsableCount;
+                    }
                 }
 
                 if (List_PickUp[index].expendableProperties.Recovery_HP != 0)
@@ -187,6 +199,11 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
 
                 }
 
+                List_PickUp.RemoveAt(index);
+            }
+
+            if(List_PickUp[index].itemType == ItemType.Gem)
+            {
                 List_PickUp.RemoveAt(index);
             }
         }

@@ -48,7 +48,7 @@ public class CameraCollision : MonoBehaviour
                         itemTran = hitToItem.collider.transform;
                         //MessageCenter.Send(Meaningless.EMessageType.PickedupItem, hitToItem.collider.transform);
                     }
-                    else if (hitToItem.collider.GetComponent<Terrain>() != null)
+                    else if (hitToItem.collider.tag== "Terrain")
                     {
 
                         MessageCenter.Send(Meaningless.EMessageType.GetHitPoint, hitToItem.point);

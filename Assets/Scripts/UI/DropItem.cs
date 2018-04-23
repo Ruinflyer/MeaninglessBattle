@@ -63,6 +63,7 @@ public class DropItem : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHan
                                 MessageCenter.Send_Multparam(Meaningless.EMessageType.EquipItem, param);
 
                                 ItemInfo = bagListitem.Item;
+
                                 bagListitem.UseItem();
 
                                 canDrag = true;

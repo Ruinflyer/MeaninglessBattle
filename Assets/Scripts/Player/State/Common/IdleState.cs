@@ -86,7 +86,7 @@ public class IdleState : FSMState
            (
             FSMTransitionType.Falling,
             FSM.GetComponent<NetworkPlayer>(),
-            FSM.transform.position.y > 30
+            FSM.transform.position.y > 20
             );
     }
 
