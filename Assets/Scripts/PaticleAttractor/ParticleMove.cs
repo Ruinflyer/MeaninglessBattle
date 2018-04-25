@@ -10,7 +10,6 @@ public class ParticleMove : MonoBehaviour
     private NetPoolManager NetPoolManager;
     private Rigidbody RB;
     float time = 0;
-
     void Start()
     {
         NetPoolManager = new NetPoolManager();
@@ -26,7 +25,6 @@ public class ParticleMove : MonoBehaviour
             DestroyObject();
             time = 0;
         }
-        //Timer.Instance.StartCountdown(destoryTime, new TimerEnd(DestroyObject));
     }
 
     void DestroyObject()

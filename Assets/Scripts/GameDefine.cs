@@ -60,6 +60,13 @@ namespace Meaningless
         //
     }
 
+    public enum DebuffType
+    {
+        Freeze,
+        SlowDown,
+        Blind,
+    }
+
     public enum FSMStateType
     {
         Idle = 0,

@@ -44,8 +44,8 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
 
     //默认角色属性值
     private CharacterStatus defaultCharacterStatus;
-    //默认角色属性值
-    private CharacterStatus characterStatus;
+    //角色属性值
+    public CharacterStatus characterStatus;
 
     //开始补血的时间
     private float timeBeginheal;

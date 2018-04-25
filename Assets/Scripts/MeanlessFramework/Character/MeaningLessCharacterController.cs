@@ -11,8 +11,14 @@ namespace Meaningless
         public CharacterController CC;
         public float Gravity=9.8f;
         public int CurrentSelected=1;
-        public List<NetworkPlayer> List_CanAttack = new List<NetworkPlayer>();
+        public float deBuffTime = 0;
         
+        public List<NetworkPlayer> List_CanAttack = new List<NetworkPlayer>();
+        [HideInInspector]
+        public CharacterStatus characterStatus;
+
+        protected bool deBuffFlag;
+        protected CharacterStatus debuffStatus;
 
         //测试用敌人列表
         public List<NetworkPlayer> List_Enemy = new List<NetworkPlayer>();
@@ -43,6 +49,14 @@ namespace Meaningless
 
         void Update()
         {
+            if(deBuffFlag)
+            {
+                characterStatus = debuffStatus;
+            }
+            else
+            {
+                characterStatus = BagManager.Instance.GetCharacterStatus();
+            }
             CCUpdate();
         }
 
@@ -79,6 +93,7 @@ namespace Meaningless
         public abstract void Jump(float jumpSpeed);
         public abstract bool CheckCanAttack(GameObject center, GameObject enemy, float distance, float angle);
         public abstract void SearchEnemy(float Range);
+        public abstract void GetDeBuffInTime(DebuffType debuff, float time);
 
         public virtual void ChangeWeapon(int currentSelected) { }
         public virtual void FindTranform(Body type ) { }

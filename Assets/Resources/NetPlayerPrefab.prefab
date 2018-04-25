@@ -1093,7 +1093,21 @@ MonoBehaviour:
   CC: {fileID: 0}
   Gravity: 9.8
   CurrentSelected: 1
+  deBuffTime: 0
   List_CanAttack: []
+  characterStatus:
+    characterName: 
+    weaponType: 0
+    magicType: 0
+    moveSpeed: 0
+    jumpSpeed: 0
+    HP: 0
+    Attack_Physics: 0
+    Attack_Magic: 0
+    RecoveryValue: 0
+    Defend_Physics: 0
+    Defend_Magic: 0
+    DecreaseDurationTime_Magic: 0
   List_Enemy: []
   LHand: {fileID: 0}
   RHand: {fileID: 0}
@@ -1183,6 +1197,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 4427b350d87ba9441bf69b2af4cc0238, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
