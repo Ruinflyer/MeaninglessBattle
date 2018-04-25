@@ -309,7 +309,7 @@
         {
             "ItemID": 200,
             "ItemName": "休闲便服",
-            "ResName": "Ground_Armor_Casual",
+            "ResName": "Armor_Casual",
             "OccurrenceProbability": 0.28,
             "itemType": 1,
             "armorProperties": {
@@ -326,7 +326,7 @@
         {
             "ItemID": 201,
             "ItemName": "骑士铠甲",
-            "ResName": "Ground_Armor_Knight",
+            "ResName": "Armor_Knight",
             "OccurrenceProbability": 0.12,
             "itemType": 1,
             "armorProperties": {
@@ -343,7 +343,7 @@
         {
             "ItemID": 202,
             "ItemName": "卫士链甲",
-            "ResName": "Ground_Armor_Chain",
+            "ResName": "Armor_Chain",
             "OccurrenceProbability": 0.12,
             "itemType": 1,
             "armorProperties": {
@@ -360,7 +360,7 @@
         {
             "ItemID": 203,
             "ItemName": "医生便服",
-            "ResName": "Ground_Armor_Doctor",
+            "ResName": "Armor_Doctor",
             "OccurrenceProbability": 0.12,
             "itemType": 1,
             "armorProperties": {
@@ -377,7 +377,7 @@
         {
             "ItemID": 204,
             "ItemName": "圣诞老人服装",
-            "ResName": "Ground_Armor_Santa",
+            "ResName": "Armor_Santa",
             "OccurrenceProbability": 0.12,
             "itemType": 1,
             "armorProperties": {
@@ -394,7 +394,7 @@
         {
             "ItemID": 205,
             "ItemName": "部落冲突服装",
-            "ResName": "Ground_Armor_Horde",
+            "ResName": "Armor_Horde",
             "OccurrenceProbability": 0.12,
             "itemType": 1,
             "armorProperties": {
@@ -411,7 +411,7 @@
         {
             "ItemID": 206,
             "ItemName": "法术服",
-            "ResName": "Ground_Armor_Wizard",
+            "ResName": "Armor_Wizard",
             "OccurrenceProbability": 0.12,
             "itemType": 1,
             "armorProperties": {

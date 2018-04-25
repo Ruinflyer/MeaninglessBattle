@@ -10,6 +10,7 @@ public class BagUI : BaseUI
     //AutoStatement
     private Button Btn_Close = null;
     private ScrollRect scrollRect = null;
+    private ScrollRect equipScrollRect=null;
 
     private Image HeadSlot;
     private Image HeadGem1;
@@ -25,14 +26,18 @@ public class BagUI : BaseUI
     private Image Weapon2Gem2;
     private Image Magic1;
     private Image Magic2;
+    private Image Shield;
 
     [SerializeField]
     private List<GameObject> BagItem;
+    [SerializeField]
+    private List<GameObject> EquipItem;
 
     protected override void InitUiOnAwake()
     {
         Btn_Close = GameTool.GetTheChildComponent<Button>(this.gameObject, "Btn_Close");
         scrollRect = GameTool.GetTheChildComponent<ScrollRect>(this.gameObject, "BagList");
+        equipScrollRect= GameTool.GetTheChildComponent<ScrollRect>(this.gameObject, "EquipList");
         /**/
         HeadSlot = GameTool.GetTheChildComponent<Image>(GameTool.FindTheChild(this.gameObject, "HeadSlot").gameObject, "Image");
         HeadGem1 = GameTool.GetTheChildComponent<Image>(GameTool.FindTheChild(this.gameObject, "HeadGem1").gameObject, "Image");
@@ -48,13 +53,15 @@ public class BagUI : BaseUI
         Weapon2Gem2 = GameTool.GetTheChildComponent<Image>(GameTool.FindTheChild(this.gameObject, "Weapon2Gem2").gameObject, "Image");
         Magic1 = GameTool.GetTheChildComponent<Image>(GameTool.FindTheChild(this.gameObject, "MagicSlot1").gameObject, "Image");
         Magic2 = GameTool.GetTheChildComponent<Image>(GameTool.FindTheChild(this.gameObject, "MagicSlot2").gameObject, "Image");
+        Shield = GameTool.GetTheChildComponent<Image>(GameTool.FindTheChild(this.gameObject, "ShieldSlot").gameObject, "Image");
         Btn_Close.onClick.AddListener(CloseBagUI);
        // PickUpList = new List<SingleItemInfo>();
        // EquippedList = new List<SingleItemInfo>();
         BagItem = new List<GameObject>();
+        EquipItem = new List<GameObject>();
         //PickUpList = CameraBase.Instance.player.GetComponent<PlayerBag>().List_PickUp;
         //EquippedList = CameraBase.Instance.player.GetComponent<PlayerBag>().List_Equipped;
-       
+
 
         MessageCenter.AddListener(EMessageType.RefreshBagList, RefreshBagList);
     }
@@ -81,20 +88,22 @@ public class BagUI : BaseUI
 
     protected override void InitInStart()
     {
-        InitBagItem(scrollRect.content);
+        InitBagItem(scrollRect.content,BagItem);
+        InitBagItem(equipScrollRect.content, EquipItem);
         //SetEquippedItems();
-        SetBagListItems(BagManager.Instance.List_PickUp);
-       
+        SetBagListItems(BagManager.Instance.List_PickUp,BagItem);
+        SetBagListItems(BagManager.Instance.List_Equip, EquipItem);
     }
 
     protected override void OnEnable()
     {
         RefreshBagList(BagManager.Instance.List_PickUp);
+        RefreshBagList(BagManager.Instance.List_Equip);
     }
 
     private void Update()
     {
-        SetEquippedItems(BagManager.Instance.Dict_Equipped);
+        //SetEquippedItems(BagManager.Instance.Dict_Equipped);
         
     }
 
@@ -109,31 +118,38 @@ public class BagUI : BaseUI
         {
             BagItem[i].SetActive(false);
         }
-        SetBagListItems(BagManager.Instance.List_PickUp);
-
+        for (int i = 0; i < EquipItem.Count; i++)
+        {
+            EquipItem[i].SetActive(false);
+        }
+        SetBagListItems(BagManager.Instance.List_PickUp,BagItem);
+        SetBagListItems(BagManager.Instance.List_Equip, EquipItem);
     }
     /// <summary>
     /// 设置列表物件显示
     /// </summary>
     /// <param name="PickUpList"></param>
     /// <param name="EquippedList"></param>
-    private void SetBagListItems(List<SingleItemInfo> PickUpList)
+    private void SetBagListItems(List<SingleItemInfo> PickUpList,List<GameObject> list)
     {
         BagListitem bagListitem = null;
 
         {
             for (int i = 0; i < PickUpList.Count; i++)
             {
-                BagItem[i].SetActive(true);
-                bagListitem = BagItem[i].GetComponent<BagListitem>();
+                list[i].SetActive(true);
+                bagListitem = list[i].GetComponent<BagListitem>();
                 bagListitem.Item = PickUpList[i];
                 bagListitem.SetInfo(PickUpList[i].ItemName, ResourcesManager.Instance.GetUITexture(PickUpList[i].ResName), gameObject);
                 bagListitem.Index = i;
                 bagListitem.img.color = Color.white;
             }
         }
-
     }
+
+
+
+
     private void SetEquippedItems(Dictionary<EquippedItem,SingleItemInfo> EquippedList)
     {
 
@@ -203,7 +219,7 @@ public class BagUI : BaseUI
     /// 实例化BagItem，加入列表
     /// </summary>
     /// <param name="parent"></param>
-    private void InitBagItem(Transform parent)
+    private void InitBagItem(Transform parent,List<GameObject> list)
     {
         GameObject Loaded = Resources.Load("UIPrefab/BagItem") as GameObject;
         GameObject tmp;
@@ -212,7 +228,7 @@ public class BagUI : BaseUI
             tmp = Instantiate(Loaded, parent);
             tmp.GetComponent<BagListitem>().cv = gameObject;
 
-            BagItem.Add(tmp);
+            list.Add(tmp);
             tmp.gameObject.SetActive(false);
         }
     }

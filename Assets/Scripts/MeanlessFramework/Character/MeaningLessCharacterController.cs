@@ -80,7 +80,7 @@ namespace Meaningless
         public abstract bool CheckCanAttack(GameObject center, GameObject enemy, float distance, float angle);
         public abstract void SearchEnemy(float Range);
 
-        public virtual void ChangeWeapon() { }
+        public virtual void ChangeWeapon(int currentSelected) { }
         public virtual void FindTranform(Body type ) { }
         public virtual SingleItemInfo GetCurSelectedWeaponInfo() { return null; }
 

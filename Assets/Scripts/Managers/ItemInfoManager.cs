@@ -12,7 +12,7 @@ public enum ItemType
     Armor,
     Expendable,
     Magic,
-    Gem
+    Gem,
 }
 /// <summary>
 /// 武器类型

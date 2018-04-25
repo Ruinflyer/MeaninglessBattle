@@ -67,7 +67,6 @@ public class DropItem : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHan
                                 bagListitem.UseItem();
 
                                 canDrag = true;
-
                             }
                         }
                         if (dropItem != null)
@@ -88,6 +87,156 @@ public class DropItem : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHan
                             }
                         }
                         break;
+                    case EquippedItem.Head:
+                        if (bagListitem != null)
+                        {
+                            if (bagListitem.Item.itemType == ItemType.Armor)
+                            {
+                                if (bagListitem.Item.armorProperties.armorType == ArmorType.Head)
+                                {
+                                    image.sprite = bagListitem.img.sprite;
+                                    object[] param = new object[2];
+
+                                    param[0] = equippedItemType;
+                                    param[1] = bagListitem.Item;
+                                    MessageCenter.Send_Multparam(Meaningless.EMessageType.EquipItem, param);
+
+                                    ItemInfo = bagListitem.Item;
+
+                                    bagListitem.Equip();
+                                    CameraBase.Instance.player.GetComponent<PlayerController>().EquipHelmet(bagListitem.Item.ItemID);
+
+                                    canDrag = true;
+                                }
+                            }
+                        }
+                        break;
+                    case EquippedItem.Body:
+                        if (bagListitem != null)
+                        {
+                            if (bagListitem.Item.itemType == ItemType.Armor)
+                            {
+                                if (bagListitem.Item.armorProperties.armorType == ArmorType.Body)
+                                {
+                                    image.sprite = bagListitem.img.sprite;
+                                    object[] param = new object[2];
+
+                                    param[0] = equippedItemType;
+                                    param[1] = bagListitem.Item;
+                                    MessageCenter.Send_Multparam(Meaningless.EMessageType.EquipItem, param);
+
+                                    ItemInfo = bagListitem.Item;
+
+                                    bagListitem.Equip();
+                                    CameraBase.Instance.player.GetComponent<PlayerController>().EquipClothes(bagListitem.Item.ItemID);
+
+                                    canDrag = true;
+                                }
+                            }
+                        }
+                        
+                        break;
+                    case EquippedItem.Weapon1:
+                        if (bagListitem != null)
+                        {
+                            if (bagListitem.Item.itemType == ItemType.Weapon)
+                            {
+                                if (bagListitem.Item.weaponProperties.weaponType != WeaponType.Shield)
+                                {
+                                    image.sprite = bagListitem.img.sprite;
+                                    object[] param = new object[2];
+
+                                    param[0] = equippedItemType;
+                                    param[1] = bagListitem.Item;
+                                    // MessageCenter.Send_Multparam(Meaningless.EMessageType.EquipItem, param);
+                                    BagManager.Instance.EquipItem(equippedItemType, bagListitem.Item);
+                                    BagManager.Instance.CurrentSelected = 1;
+                                    CameraBase.Instance.player.GetComponent<PlayerController>().ChangeWeapon(1);
+
+                                    ItemInfo = bagListitem.Item;
+
+                                    bagListitem.Equip();
+
+                                    canDrag = true;
+                                }
+                            }
+                        }
+                        break;
+                    case EquippedItem.Weapon2:
+                        if (bagListitem != null)
+                        {
+                            if (bagListitem.Item.itemType == ItemType.Weapon)
+                            {
+                                if (bagListitem.Item.weaponProperties.weaponType != WeaponType.Shield)
+                                {
+                                    image.sprite = bagListitem.img.sprite;
+                                    object[] param = new object[2];
+
+                                    param[0] = equippedItemType;
+                                    param[1] = bagListitem.Item;
+                                    //MessageCenter.Send_Multparam(Meaningless.EMessageType.EquipItem, param);
+                                    BagManager.Instance.EquipItem(equippedItemType, bagListitem.Item);
+                                    BagManager.Instance.CurrentSelected = 2;
+                                    CameraBase.Instance.player.GetComponent<PlayerController>().ChangeWeapon(2);
+
+                                    ItemInfo = bagListitem.Item;
+
+                                    bagListitem.Equip();
+
+                                    canDrag = true;
+                                }
+                            }
+                        }
+                        break;
+                    case EquippedItem.Magic1:
+                    case EquippedItem.Magic2:
+                        if (bagListitem != null)
+                        {
+                            if (bagListitem.Item.itemType == ItemType.Magic)
+                            {
+                                image.sprite = bagListitem.img.sprite;
+                                object[] param = new object[2];
+
+                                param[0] = equippedItemType;
+                                param[1] = bagListitem.Item;
+                                MessageCenter.Send_Multparam(Meaningless.EMessageType.EquipItem, param);
+
+                                ItemInfo = bagListitem.Item;
+
+                                bagListitem.Equip();
+
+                                canDrag = true;
+                            }
+                        }
+                       
+                        break;
+                    case EquippedItem.Shield:
+                        if (bagListitem != null)
+                        {
+                            if (bagListitem.Item.itemType == ItemType.Weapon)
+                            {
+                                if(bagListitem.Item.weaponProperties.weaponType==WeaponType.Shield)
+                                {
+                                    image.sprite = bagListitem.img.sprite;
+                                    object[] param = new object[2];
+
+                                    //param[0] = equippedItemType;
+                                    // param[1] = bagListitem.Item;
+                                    //MessageCenter.Send_Multparam(Meaningless.EMessageType.EquipItem, param);
+                                    BagManager.Instance.EquipItem(equippedItemType, bagListitem.Item);
+
+                                    ItemInfo = bagListitem.Item;
+
+                                    bagListitem.Equip();
+
+                                    canDrag = true;
+                                }
+                                
+                            }
+                        }
+
+                        break;
+
                 }
 
 
@@ -146,8 +295,14 @@ public class DropItem : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHan
         if (!bagListFull)
         {
             image.sprite = ResourcesManager.Instance.GetUITexture("Null");
-            MessageCenter.Send(Meaningless.EMessageType.PickedupItem, ItemInfo.ItemID);
-            MessageCenter.Send(Meaningless.EMessageType.UnEquipItem, equippedItemType);
+            BagManager.Instance.PickItem(ItemInfo.ItemID);
+            BagManager.Instance.UnequipItem(equippedItemType);
+            if(ItemInfo.itemType!=ItemType.Gem)
+            {
+                CameraBase.Instance.player.GetComponent<PlayerController>().UnEquip(equippedItemType);
+            }
+            //MessageCenter.Send(Meaningless.EMessageType.PickedupItem, ItemInfo.ItemID);
+            //MessageCenter.Send(Meaningless.EMessageType.UnEquipItem, equippedItemType);
 
             canDrag = false;
             ItemInfo = null;
@@ -159,6 +314,19 @@ public class DropItem : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHan
         image.sprite = ResourcesManager.Instance.GetUITexture("Null");
         MessageCenter.Send(Meaningless.EMessageType.UnEquipItem, equippedItemType);
 
+        canDrag = false;
+        ItemInfo = null;
+    }
+
+    public void ThrowAway()
+    {
+        image.sprite = ResourcesManager.Instance.GetUITexture("Null");
+        BagManager.Instance.UnequipItem(equippedItemType);
+        if (ItemInfo.itemType != ItemType.Gem)
+        {
+            CameraBase.Instance.player.GetComponent<PlayerController>().UnEquip(equippedItemType);
+        }
+        CameraBase.Instance.player.GetComponent<PlayerController>().DiscardItem(ItemInfo.ItemID);
         canDrag = false;
         ItemInfo = null;
     }

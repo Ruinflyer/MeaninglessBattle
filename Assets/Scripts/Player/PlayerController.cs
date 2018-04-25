@@ -61,11 +61,11 @@ public class PlayerController : MeaninglessCharacterController
     }
     */
 
-    
+
     public void EquipClothes(int itemID)
     {
         string itemName = ItemInfoManager.Instance.GetResname(itemID);
-        
+
         GameObject itemObj = ResourcesManager.Instance.GetItem(itemName);
         Material clothesMat = itemObj.GetComponent<MeshRenderer>().sharedMaterial;
         GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().material = clothesMat;
@@ -103,7 +103,7 @@ public class PlayerController : MeaninglessCharacterController
         GameObject Shield = Instantiate(itemObj, LHand);
         Shield.transform.parent = LHand;
     }
-    
+
 
 
     public void UnEquip(EquippedItem equippedItem)
@@ -114,7 +114,6 @@ public class PlayerController : MeaninglessCharacterController
                 if (Head.childCount != 0)
                 {
                     GameObject preHead = Head.GetChild(0).gameObject;
-                    int preHeadID = preHead.GetComponent<GroundItem>().ItemID;
                     Destroy(preHead);
                 }
                 break;
@@ -127,35 +126,36 @@ public class PlayerController : MeaninglessCharacterController
                 if ((RHand.childCount != 0))
                 {
                     GameObject preWeapon1 = RHand.GetChild(0).gameObject;
-                    int preWeaponID1 = preWeapon1.GetComponent<GroundItem>().ItemID;
+                    string preWeaponName = preWeapon1.name;
                     //销毁
                     Destroy(preWeapon1);
-                    if (ItemInfoManager.Instance.GetWeaponWeaponType(preWeaponID1) == WeaponType.DoubleHands)
-                    {
-                        //销毁
-                        Destroy(LHand.GetChild(0).gameObject);
-                    }
+                    if (LHand.childCount != 0)
+                        if (LHand.GetChild(0).name == preWeaponName)
+                        {
+                            //销毁
+                            Destroy(LHand.GetChild(0).gameObject);
+                        }
                 }
                 break;
             case EquippedItem.Weapon2:
-                if ((RHand.childCount != 0))
+                if (RHand.childCount != 0)
                 {
                     GameObject preWeapon2 = RHand.GetChild(0).gameObject;
-                    int preWeaponID2 = preWeapon2.GetComponent<GroundItem>().ItemID;
+                    string preWeaponName = preWeapon2.name;
                     //销毁
                     Destroy(preWeapon2);
-                    if (ItemInfoManager.Instance.GetWeaponWeaponType(preWeaponID2) == WeaponType.DoubleHands)
-                    {
-                        //销毁
-                        Destroy(LHand.GetChild(0).gameObject);
-                    }
+                    if (LHand.childCount != 0)
+                        if (LHand.GetChild(0).name == preWeaponName)
+                        {
+                            //销毁
+                            Destroy(LHand.GetChild(0).gameObject);
+                        }
                 }
                 break;
             case EquippedItem.Shield:
                 if (LHand.childCount != 0)
                 {
                     GameObject preShield = LHand.GetChild(0).gameObject;
-                    int preWeaponID2 = preShield.GetComponent<GroundItem>().ItemID;
                     //销毁
                     Destroy(preShield);
                 }
@@ -194,9 +194,9 @@ public class PlayerController : MeaninglessCharacterController
         CC.Move(moveDirection * Time.fixedDeltaTime);
     }
 
-    public override void ChangeWeapon()
+    public override void ChangeWeapon(int currentSelected)
     {
-        switch (CurrentSelected)
+        switch (currentSelected)
         {
             case 1:
                 if (EquippedDict[EquippedItem.Weapon1] != null)
@@ -214,7 +214,7 @@ public class PlayerController : MeaninglessCharacterController
 
                     if (EquippedDict[EquippedItem.Weapon2] != null)
                     {
-                        BagManager.Instance.UnequipItem(EquippedItem.Weapon2);
+                        //BagManager.Instance.UnequipItem(EquippedItem.Weapon2);
                         UnEquip(EquippedItem.Weapon2);
                     }
 
@@ -237,7 +237,7 @@ public class PlayerController : MeaninglessCharacterController
                     }
                     if (EquippedDict[EquippedItem.Weapon1] != null)
                     {
-                        BagManager.Instance.UnequipItem(EquippedItem.Weapon1);
+                        //BagManager.Instance.UnequipItem(EquippedItem.Weapon1);
                         UnEquip(EquippedItem.Weapon1);
                     }
                     //BagManager.Instance.EquipItem(EquippedItem.Weapon2, ItemInfoManager.Instance.GetItemInfo(EquippedDict[EquippedItem.Weapon2].ItemID));
@@ -373,8 +373,7 @@ public class PlayerController : MeaninglessCharacterController
         CurrentSelected = BagManager.Instance.CurrentSelected;
         EquippedDict = BagManager.Instance.Dict_Equipped;
         OpenBag();
-        ChangeWeapon();
-        MessageCenter.Send(EMessageType.CurrentselectedWeapon, CurrentSelected);
+        //MessageCenter.Send(EMessageType.CurrentselectedWeapon, CurrentSelected);
         SearchEnemy(10);
     }
 

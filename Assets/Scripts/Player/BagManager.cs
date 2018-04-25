@@ -8,7 +8,9 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
     public int CurrentSelected = 1;
     public Dictionary<EquippedItem, SingleItemInfo> Dict_Equipped;
     public List<SingleItemInfo> List_PickUp = new List<SingleItemInfo>();
+    public List<SingleItemInfo> List_Equip = new List<SingleItemInfo>();
     private int preSelected;
+    private GameObject player;
 
     private struct BasicAttributes
     {
@@ -59,6 +61,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
 
     void Start()
     {
+        player = CameraBase.Instance.player;
 
         Dict_Equipped = new Dictionary<EquippedItem, SingleItemInfo>();
 
@@ -68,7 +71,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
         }
         defaultCharacterStatus = MeaninglessJson.LoadJsonFromFile<CharacterStatus>(MeaninglessJson.Path_StreamingAssets + "CharacterStatus.json");
         characterStatus = defaultCharacterStatus;
-        MessageCenter.AddListener_Multparam(EMessageType.EquipItem, (object[] obj) => { EquipItem((EquippedItem)obj[0], (SingleItemInfo)obj[1]); });
+        //MessageCenter.AddListener_Multparam(EMessageType.EquipItem, (object[] obj) => { EquipItem((EquippedItem)obj[0], (SingleItemInfo)obj[1]); });
         MessageCenter.AddListener(EMessageType.UseItem, (object obj) => { UseItem((int)obj); });
     }
 
@@ -78,12 +81,12 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
         if (Input.GetButtonDown("Bar1"))
         {
             CurrentSelected = 1;
-
+            player.GetComponent<PlayerController>().ChangeWeapon(1);
         }
         if (Input.GetButtonDown("Bar2"))
         {
             CurrentSelected = 2;
-
+            player.GetComponent<PlayerController>().ChangeWeapon(2);
         }
         if (Input.GetButtonDown("Bar3"))
         {
@@ -222,74 +225,14 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
             switch (ItemInfo.itemType)
             {
                 case ItemType.Armor:
-                    switch (ItemInfo.armorProperties.armorType)
-                    {
-                        case ArmorType.NULL:
-                            break;
-                        case ArmorType.Head:
-                            if (Dict_Equipped[EquippedItem.Head] == null)
-                            {
-                                EquipItem(EquippedItem.Head, ItemInfo);
-                            }
-                            break;
-                        case ArmorType.Body:
-                            if (Dict_Equipped[EquippedItem.Body] == null)
-                            {
-                                EquipItem(EquippedItem.Body, ItemInfo);
-                            }
-                            break;
-                    }
-
-                    break;
                 case ItemType.Weapon:
-                    if (ItemInfo.weaponProperties.weaponType != WeaponType.Shield)
+                case ItemType.Magic:
+                    if(List_Equip.Count<=10)
                     {
-                        if (Dict_Equipped[EquippedItem.Weapon1] == null)
-                        {
-                            CurrentSelected = 1;
-                            EquipItem(EquippedItem.Weapon1, ItemInfo);
-                        }
-                        else if (Dict_Equipped[EquippedItem.Weapon1] != null)
-                        {
-                            if (Dict_Equipped[EquippedItem.Weapon2] == null)
-                            {
-                                CurrentSelected = 2;
-                                EquipItem(EquippedItem.Weapon2, ItemInfo);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (Dict_Equipped[EquippedItem.Shield] == null)
-                        {
-                            EquipItem(EquippedItem.Shield, ItemInfo);
-                        }
+                        List_Equip.Add(ItemInfo);
                     }
                     break;
                 case ItemType.Expendable:
-
-                    if (List_PickUp.Count <= 10)
-                    {
-                        List_PickUp.Add(ItemInfo);
-                    }
-
-                    break;
-                case ItemType.Magic:
-
-                    if (Dict_Equipped[EquippedItem.Magic1] == null)
-                    {
-                        CurrentSelected = 3;
-                        EquipItem(EquippedItem.Magic1, ItemInfo);
-                    }
-                    else if (Dict_Equipped[EquippedItem.Magic1] != null)
-                    {
-                        if (Dict_Equipped[EquippedItem.Magic2] == null)
-                        {
-                            CurrentSelected = 4;
-                            EquipItem(EquippedItem.Magic2, ItemInfo);
-                        }
-                    }
-                    break;
                 case ItemType.Gem:
                     if (List_PickUp.Count <= 10)
                     {

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2386160322
+CRC: 2451050449
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c5fb97ab1b87a6359b636a7634bbe185
+    Hash: 8632e78ddc0ef51d120303153fdc7132
   TypeTreeHash:
     serializedVersion: 2
     Hash: 30f6c2b0e0ae3bf4568422598a44648b
@@ -38,31 +38,31 @@ Assets:
 - Assets/Models/Character/Expendable/HealthPotion.prefab
 - Assets/Models/Character/Weapon/ForgeHammer.prefab
 - Assets/Models/Character/Armor/Helmet_Knight.prefab
-- Assets/Models/Character/Armor/Body/Ground_Armor_Santa.prefab
+- Assets/Models/Character/Armor/Body/Armor_Santa.prefab
 - Assets/Models/Character/Gem/Crystal_Pink.prefab
 - Assets/Models/Character/Armor/Helmet_Swordman.prefab
 - Assets/Models/Character/Weapon/Chopper.prefab
 - Assets/Models/Character/Weapon/Axe.prefab
-- Assets/Models/Character/Armor/Body/Ground_Armor_Doctor.prefab
+- Assets/Models/Character/Armor/Body/Armor_Doctor.prefab
 - Assets/Models/Character/Armor/Helmet_Green.prefab
 - Assets/Models/Character/Gem/Crystal_Purple.prefab
 - Assets/Models/Character/Weapon/StabHammer.prefab
-- Assets/Models/Character/Armor/Body/Ground_Armor_Knight.prefab
+- Assets/Models/Character/Armor/Body/Armor_Knight.prefab
 - Assets/Models/Character/Gem/Crystal_Orange.prefab
 - Assets/Models/Character/Weapon/Scythe.prefab
 - Assets/Models/Character/Armor/Helmet_Gladiator.prefab
-- Assets/Models/Character/Armor/Body/Ground_Armor_Casual.prefab
+- Assets/Models/Character/Armor/Body/Armor_Casual.prefab
 - Assets/Models/Character/Weapon/TeethClub.prefab
 - Assets/Models/Character/Gem/Crystal_Green.prefab
 - Assets/Models/Character/Weapon/WoodShield.prefab
-- Assets/Models/Character/Armor/Body/Ground_Armor_Horde.prefab
+- Assets/Models/Character/Armor/Body/Armor_Horde.prefab
 - Assets/Models/Character/Weapon/Claw.prefab
 - Assets/Models/Character/Weapon/Knuckles.prefab
 - Assets/Models/Character/Weapon/Rake.prefab
 - Assets/Models/Character/Weapon/Sword.prefab
 - Assets/Models/Character/Gem/Crystal_Red.prefab
 - Assets/Models/Character/Magic/Thunderbolt.prefab
-- Assets/Models/Character/Armor/Body/Ground_Armor_Wizard.prefab
+- Assets/Models/Character/Armor/Body/Armor_Wizard.prefab
 - Assets/Models/Character/Weapon/IronShield.prefab
 - Assets/Models/Character/Magic/ChoshimArrow.prefab
 - Assets/Models/Character/Magic/KillerQueen.prefab
@@ -70,7 +70,7 @@ Assets:
 - Assets/Models/Character/Magic/IceArrow.prefab
 - Assets/Models/Character/Weapon/TeethHammer.prefab
 - Assets/Models/Character/Gem/Crystal_Light_Blue.prefab
-- Assets/Models/Character/Armor/Body/Ground_Armor_Chain.prefab
+- Assets/Models/Character/Armor/Body/Armor_Chain.prefab
 - Assets/Models/Character/Weapon/Bat.prefab
 - Assets/Models/Character/Magic/Stygian_Desolator.prefab
 - Assets/Models/Character/Weapon/Spear.prefab

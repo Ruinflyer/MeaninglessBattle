@@ -46,7 +46,7 @@ public class BagListitem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
                 if (Item.itemType == ItemType.Expendable)
                 {
                     UseItem();
-                    
+
                 }
 
             }
@@ -62,7 +62,7 @@ public class BagListitem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if(Item.itemType==ItemType.Gem)
+        if (Item.itemType == ItemType.Gem || Item.itemType == ItemType.Armor || Item.itemType == ItemType.Magic || Item.itemType == ItemType.Weapon)
         {
             dragObj = new GameObject("Dragitem");
             dragObj.transform.SetParent(cv.transform);
@@ -73,7 +73,7 @@ public class BagListitem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             tmp_Img.sprite = img.sprite;
             dragObj.GetComponent<RectTransform>().sizeDelta = new Vector2(28f, 28f);
         }
-        
+
     }
     public void OnDrag(PointerEventData eventData)
     {
@@ -100,13 +100,13 @@ public class BagListitem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if(Item.itemType==ItemType.Expendable)
+        if (Item.itemType == ItemType.Expendable)
         {
             timeBeginpressed = Time.time;
             isPointerDown = true;
             isLongPressed = false;
         }
-       
+
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -120,6 +120,16 @@ public class BagListitem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
     }
 
+    public void Equip()
+    {
+        PressedSlider.value = 0;
+        txt.text = "";
+        img.sprite = null;
+        BagManager.Instance.List_Equip.RemoveAt(Index);
+        gameObject.SetActive(false);
+        Destroy(dragObj);
+    }
+
     public void UseItem()
     {
         MessageCenter.Send(Meaningless.EMessageType.UseItem, Index);
@@ -129,6 +139,20 @@ public class BagListitem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         gameObject.SetActive(false);
         Destroy(dragObj);
     }
-    
+
+    public void ThrowAway()
+    {
+        if (Item.itemType == ItemType.Gem || Item.itemType == ItemType.Expendable)
+            BagManager.Instance.List_PickUp.RemoveAt(Index);
+        else
+            BagManager.Instance.List_Equip.RemoveAt(Index);
+        CameraBase.Instance.player.GetComponent<PlayerController>().DiscardItem(Item.ItemID);
+        PressedSlider.value = 0;
+        txt.text = "";
+        img.sprite = null;
+        Item = null;
+        gameObject.SetActive(false);
+        Destroy(dragObj);
+    }
 
 }

@@ -37,7 +37,7 @@ public class IdleState : FSMState
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.CanPickUp,
             FSM.GetComponent<NetworkPlayer>(),
-            Input.GetButtonDown("PickUp") && isFound
+            Input.GetButtonUp("PickUp") && isFound
             );
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.AttackWithSingleWield,
