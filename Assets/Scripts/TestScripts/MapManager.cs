@@ -51,6 +51,7 @@ public class MapManager : MonoSingleton<MapManager>
         }
 
         ProbabilityValue = ItemInfoManager.Instance.GetTotalOccurrenceProbability();
+        ItemsID = ItemInfoManager.Instance.GetAllItemsID();
     }
 
     // Update is called once per frame
@@ -138,14 +139,17 @@ public class MapManager : MonoSingleton<MapManager>
         GameObject tmp = null;
         int tmp_ID = 0;
         GroundItem tmp_groundItem;
+        
         for (int j = 0; j < itemSpawnPoint.ItemSpawnPoints.Length; j++)
         {
             tmp_ID = ItemsID[CalcIndex(j, ProbabilityValue)];
-            tmp =Instantiate(ResourcesManager.Instance.GetItem(ItemInfoManager.Instance.GetItemName(tmp_ID)),
+            Debug.LogError("ID: "+tmp_ID+" ResName: "+"ResName: "+ItemInfoManager.Instance.GetResname(tmp_ID) +" ItemName: "+ ItemInfoManager.Instance.GetItemName(tmp_ID));
+            tmp =Instantiate(ResourcesManager.Instance.GetItem(ItemInfoManager.Instance.GetResname(tmp_ID)),
                 new Vector3(itemSpawnPoint.ItemSpawnPoints[j].position.x, 0, itemSpawnPoint.ItemSpawnPoints[j].position.z), Quaternion.identity);
             tmp_groundItem = tmp.AddComponent<GroundItem>();
             tmp_groundItem.ItemID = tmp_ID;
             tmp_groundItem.GroundItemID = j;
+            //tmp.transform.SetParent(itemSpawnPoint.ItemSpawnPoints[j]);
             Items.Add(j, tmp_groundItem);
         }
 
