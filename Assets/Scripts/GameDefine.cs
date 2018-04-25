@@ -28,6 +28,8 @@ namespace Meaningless
         PickedupItem,
         //当前选择的武器
         CurrentselectedWeapon,
+        //发送当前生命值
+        CurrentHP,
         //发送一个int型血量补充值补血
         Heal,
         //发送一个int型充能值

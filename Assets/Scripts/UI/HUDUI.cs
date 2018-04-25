@@ -23,6 +23,7 @@ public class HUDUI : BaseUI
     private Image Img_FrontSight=null;
     private Text Text_Skill1_Count = null;
     private Text Text_Skill2_Count = null;
+    private Slider Slider_HP = null;
 
    
 
@@ -39,9 +40,9 @@ public class HUDUI : BaseUI
         Img_FrontSight = GameTool.GetTheChildComponent<Image>(gameObject, "Img_FrontSight");
         Text_Skill1_Count= GameTool.GetTheChildComponent<Text>(this.gameObject, "Text_Count3");
         Text_Skill2_Count = GameTool.GetTheChildComponent<Text>(this.gameObject, "Text_Count4");
-
+        Slider_HP = GameTool.GetTheChildComponent<Slider>(this.gameObject, "Slider");
         MessageCenter.AddListener(EMessageType.FoundItem, AwakePickUpTip);
-        
+        MessageCenter.AddListener(EMessageType.CurrentHP, UpdateHP);
     }
 
     private void Update()
@@ -68,6 +69,10 @@ public class HUDUI : BaseUI
         Img_Skill2_Mask.fillAmount = BagManager.Instance.skillAttributesList[1].Timer / BagManager.Instance.skillAttributesList[1].skillInfo.magicProperties.CDTime;
     }
 
+    private void UpdateHP(object HP)
+    {
+        Slider_HP.value = (float)HP/100;
+    }
 
     private void SetBarIcon(Dictionary<EquippedItem,SingleItemInfo> EquippedList)
     {

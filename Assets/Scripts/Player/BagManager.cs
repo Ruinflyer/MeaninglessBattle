@@ -163,6 +163,8 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
             if (skillAttributesList[1].isUse && skillAttributesList[1].remainCount > 0)
                 skillAttributesList[1].Timer -= Time.deltaTime;
         }
+
+        MessageCenter.Send(EMessageType.CurrentHP, characterStatus.HP);
     }
 
     /// <summary>
