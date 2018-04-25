@@ -22,6 +22,11 @@ public class MapManager : MonoSingleton<MapManager>
     /// 门字典 ID,Transform
     /// </summary>
     public Dictionary<int, Transform> Doors = new Dictionary<int, Transform>();
+
+    /// <summary>
+    /// 地面物件字典,GroundItemID唯一标识
+    /// </summary>
+    public Dictionary<int, GroundItem> Items = new Dictionary<int, GroundItem>();
     #region 物品变量
     private float[] ProbabilityValue=null;
     private int[] ItemsID =null;
@@ -37,7 +42,7 @@ public class MapManager : MonoSingleton<MapManager>
         NetworkManager.ServerConnection.msgDistribution.AddEventListener("GetMapItemData", OnGetMapItemDataBack);
         NetworkManager.ServerConnection.msgDistribution.AddEventListener("Circlefield", OnCirclefieldBack);
         NetworkManager.ServerConnection.msgDistribution.AddEventListener("DoorOpen", OnDoorOpen);
-        NetworkManager.ServerConnection.msgDistribution.AddEventListener("AllPlayerLoaded", OnDoorOpen);
+        NetworkManager.ServerConnection.msgDistribution.AddEventListener("AllPlayerLoaded", OnAllPlayerLoaded);
         
         //门加入字典
         for (int i=0;i<itemSpawnPoint.DoorSpawnPoints.Length;i++)
@@ -113,9 +118,6 @@ public class MapManager : MonoSingleton<MapManager>
         {
             Debug.LogError("Seed异常 "+Seed.ToString()+" 无法加载");
         }
-
-
-      
     }
     //生成地面道具
     public void GenerateItem()
@@ -135,17 +137,18 @@ public class MapManager : MonoSingleton<MapManager>
         //地上物品生成：
         GameObject tmp = null;
         int tmp_ID = 0;
-        
+        GroundItem tmp_groundItem;
         for (int j = 0; j < itemSpawnPoint.ItemSpawnPoints.Length; j++)
         {
-            //tmp_ID = ItemsID[CalcIndex(, )];
+            tmp_ID = ItemsID[CalcIndex(j,probabilityValue)];
             tmp =Instantiate(ResourcesManager.Instance.GetItem(ItemInfoManager.Instance.GetItemName(tmp_ID)),
                 new Vector3(itemSpawnPoint.ItemSpawnPoints[j].position.x, 0, itemSpawnPoint.ItemSpawnPoints[j].position.z), Quaternion.identity);
-            tmp.AddComponent<GroundItem>().ItemID = tmp_ID;
+            tmp_groundItem = tmp.AddComponent<GroundItem>();
+            tmp_groundItem.ItemID = tmp_ID;
+            tmp_groundItem.GroundItemID = j;
+            Items.Add(j, tmp_groundItem);
         }
 
-
-        
         param[0] = "地图物品生成完毕";
         param[1] = 2;
         MessageCenter.Send_Multparam(EMessageType.LoadingUI, param);
@@ -233,6 +236,10 @@ public class MapManager : MonoSingleton<MapManager>
         }
     }
 
+    /// <summary>
+    /// 所有人加载完毕后的处理
+    /// </summary>
+    /// <param name="protocol"></param>
     public void OnAllPlayerLoaded(BaseProtocol protocol)
     {
 
