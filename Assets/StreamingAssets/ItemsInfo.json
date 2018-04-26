@@ -578,7 +578,7 @@
         {
             "ItemID": 601,
             "ItemName": "穿心攻击",
-            "ResName": "Heart_Attack",
+            "ResName": "HeartAttack",
             "OccurrenceProbability": 0.12,
             "itemType": 3,
             "magicProperties":{
