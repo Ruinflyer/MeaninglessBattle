@@ -18,22 +18,25 @@ public class PickUpState : FSMState
     public override void Act(BaseFSM FSM)
     {
         pickUpItemTran = Camera.main.GetComponent<CameraCollision>().itemTran;
+        if(FSM.picked)
+        {
+            if (pickUpItemTran != null)
+                if (pickUpItemTran.GetComponent<GroundItem>() != null)
+                {
+                    pickedupItemID = pickUpItemTran.GetComponent<GroundItem>().ItemID;
+                    SingleItemInfo ItemInfo;
+                    ItemInfo = ItemInfoManager.Instance.GetItemInfo(pickedupItemID);
+                    BagManager.Instance.PickItem(pickedupItemID);
+                    FSM.GetComponent<PlayerController>().PickItem(pickUpItemTran);
+                    FSM.animationManager.PlayAnimation("Pick Up");
 
-        if (pickUpItemTran != null)
-            if (pickUpItemTran.GetComponent<GroundItem>() != null)
-            {
-                pickedupItemID = pickUpItemTran.GetComponent<GroundItem>().ItemID;
-                SingleItemInfo ItemInfo;
-                ItemInfo = ItemInfoManager.Instance.GetItemInfo(pickedupItemID);
-                BagManager.Instance.PickItem(pickedupItemID);
-                FSM.GetComponent<PlayerController>().PickItem(pickUpItemTran);
-                FSM.animationManager.PlayAnimation("Pick Up");
-
-            }
+                }
+                else
+                    Debug.LogError("拾起失败");
             else
                 Debug.LogError("拾起失败");
-        else
-            Debug.LogError("拾起失败");
+        }
+        FSM.picked = false;
     }
 
     public override void Reason(BaseFSM FSM)

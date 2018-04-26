@@ -33,12 +33,7 @@ public class IdleState : FSMState
             FSM.GetComponent<NetworkPlayer>(),
             Input.GetButton("Defend") && FSM.characterStatus.magicType == MagicType.NULL && FSM.characterStatus.weaponType == WeaponType.Shield
             );
-
-        CharacterMessageDispatcher.Instance.DispatchMesssage
-            (FSMTransitionType.CanPickUp,
-            FSM.GetComponent<NetworkPlayer>(),
-            Input.GetButtonUp("PickUp") && isFound
-            );
+        
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.AttackWithSingleWield,
             FSM.GetComponent<NetworkPlayer>(),
@@ -88,6 +83,12 @@ public class IdleState : FSMState
             FSM.GetComponent<NetworkPlayer>(),
             FSM.transform.position.y > 20
             );
+
+        if (Input.GetButtonUp("PickUp") && isFound)
+        {
+            FSM.picked = true;
+            FSM.PerformTransition(FSMTransitionType.CanPickUp);
+        }
     }
 
     /*

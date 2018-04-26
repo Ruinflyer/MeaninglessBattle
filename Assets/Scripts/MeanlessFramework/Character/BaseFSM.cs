@@ -12,6 +12,7 @@ namespace Meaningless
         public AnimationManager animationManager;
         public int comboCount{ get; set; }
         public bool Attacked=false;
+        public bool picked = false;
 
         //FSM中的所有状态(多个FSMState)组成的列表
         private List<FSMState> fsmStates;

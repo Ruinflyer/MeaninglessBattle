@@ -65,10 +65,11 @@ public class PlayerController : MeaninglessCharacterController
     public void EquipClothes(int itemID)
     {
         string itemName = ItemInfoManager.Instance.GetResname(itemID);
-
+       
         GameObject itemObj = ResourcesManager.Instance.GetItem(itemName);
         Material clothesMat = itemObj.GetComponent<MeshRenderer>().sharedMaterial;
-        GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().materials[0] = clothesMat;
+        GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().sharedMaterials.SetValue(clothesMat, 1);
+
     }
 
     public void EquipHelmet(int itemID)
@@ -120,7 +121,7 @@ public class PlayerController : MeaninglessCharacterController
             case EquippedItem.Body:
                 GameObject itemObj = ResourcesManager.Instance.GetItem("Ground_Armor_Casual");
                 Material clothesMat = itemObj.GetComponent<MeshRenderer>().sharedMaterial;
-                GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().materials[0] = clothesMat;
+                GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().sharedMaterials.SetValue(clothesMat, 1);
                 break;
             case EquippedItem.Weapon1:
                 if ((RHand.childCount != 0))
@@ -346,57 +347,55 @@ public class PlayerController : MeaninglessCharacterController
         }
     }
 
-    private void GetDeBuff(DebuffType Debuff)
+    private void GetBuff(BuffType buff)
     {
-
-        Material debuffMat = Resources.Load("Debuff" + Debuff.ToString()) as Material;
+        Material buffMat = Resources.Load("Debuff/" + buff.ToString()) as Material;
         debuffStatus = BagManager.Instance.GetCharacterStatus();
-        switch (Debuff)
+        switch (buff)
         {
-            case DebuffType.SlowDown:
-                if (debuffMat != null)
-                    GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().materials[1] = debuffMat;
-                debuffStatus.moveSpeed *=0.7f;
+            case BuffType.SlowDown:
+                if (buffMat != null)
+                    GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().sharedMaterials.SetValue(buffMat, 0);
+                debuffStatus.moveSpeed *= 0.7f;
                 break;
-            case DebuffType.Freeze:
-                if (debuffMat != null)
-                    GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().materials[1] = debuffMat;
+            case BuffType.Freeze:
+                if (buffMat != null)
+                    GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().sharedMaterials.SetValue(buffMat, 0);
                 debuffStatus.moveSpeed = 0;
                 break;
-            case DebuffType.Blind:
+            case BuffType.Blind:
                 Camera.main.GetComponent<BlindEffect>().enabled = true;
                 break;
         }
         deBuffFlag = true;
     }
 
-    private void LoseDebuff(DebuffType Debuff)
+    private void Losebuff(BuffType buff)
     {
-        switch (Debuff)
+        Material noBuffMat = Resources.Load("Debuff/NoBuff") as Material;
+        switch (buff)
         {
-            case DebuffType.SlowDown:
-                GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().materials[1] = null;
+            case BuffType.SlowDown:
+            case BuffType.Freeze:
+                GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().sharedMaterials.SetValue(noBuffMat, 0);
                 break;
-            case DebuffType.Freeze:
-                GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().materials[1] = null;
-                break;
-            case DebuffType.Blind:
+            case BuffType.Blind:
                 Camera.main.GetComponent<BlindEffect>().enabled = false;
                 break;
         }
         deBuffFlag = false;
     }
 
-    public override void GetDeBuffInTime(DebuffType debuff, float time)
+    public override void GetDeBuffInTime(BuffType debuff, float time)
     {
-        deBuffTime += Time.time;
-        GetDeBuff(debuff);
-        if (deBuffTime > time)
+        Buff buff = new Buff(debuff, time, GetBuff, Losebuff);
+        buffList.Add(buff);
+        foreach (Buff Buff in buffList)
         {
-            LoseDebuff(debuff);
+            Buff.OnEnter();
         }
     }
-
+   
     public override void UseGravity(float Gravity)
     {
         Vector3 moveDirection = Vector3.zero;
@@ -425,6 +424,21 @@ public class PlayerController : MeaninglessCharacterController
         OpenBag();
         //MessageCenter.Send(EMessageType.CurrentselectedWeapon, CurrentSelected);
         SearchEnemy(10);
+
+        if (buffList.Count > 0)
+        {
+            foreach (Buff buff in buffList)
+            {
+                if (buff.canUpdate)
+                    buff.OnUpdate();
+                if (buff.canDestory)
+                {
+                    buff.OnExit();
+                    buffList.Remove(buff);
+                }
+            }
+        }
+
     }
 
     protected override void CCFixedUpdate()

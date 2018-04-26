@@ -35,6 +35,19 @@ public class PlayerFSM :BaseFSM
     protected override void FSMUpdate()
     {
         characterStatus = controller.characterStatus;
+
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+            controller.GetDeBuffInTime(BuffType.Freeze,5);
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            controller.GetDeBuffInTime(BuffType.Blind, 5);
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            controller.GetDeBuffInTime(BuffType.SlowDown, 5);
+        }
     }
 
     private void ConstructFSM()

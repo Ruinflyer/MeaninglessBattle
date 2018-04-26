@@ -60,7 +60,7 @@ namespace Meaningless
         //
     }
 
-    public enum DebuffType
+    public enum BuffType
     {
         Freeze,
         SlowDown,
