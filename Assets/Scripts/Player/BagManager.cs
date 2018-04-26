@@ -788,7 +788,6 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                 break;
 
             case 3:
-                characterStatus.weaponType = Dict_Equipped[EquippedItem.Magic1].weaponProperties.weaponType;
                 characterStatus.magicType = Dict_Equipped[EquippedItem.Magic1].magicProperties.magicType;
 
                 characterStatus.Attack_Physics = 0;

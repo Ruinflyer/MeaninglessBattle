@@ -18,7 +18,6 @@ namespace Meaningless
         public CharacterStatus characterStatus;
 
         protected bool deBuffFlag;
-        protected CharacterStatus debuffStatus;
 
         //测试用敌人列表
         public List<NetworkPlayer> List_Enemy = new List<NetworkPlayer>();
@@ -52,14 +51,9 @@ namespace Meaningless
 
         void Update()
         {
-            if(deBuffFlag)
-            {
-                characterStatus = debuffStatus;
-            }
-            else
-            {
+    
                 characterStatus = BagManager.Instance.GetCharacterStatus();
-            }
+            
             CCUpdate();
         }
 

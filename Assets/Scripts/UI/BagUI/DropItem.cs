@@ -195,11 +195,9 @@ public class DropItem : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHan
                             if (bagListitem.Item.itemType == ItemType.Magic)
                             {
                                 image.sprite = bagListitem.img.sprite;
-                                object[] param = new object[2];
 
-                                param[0] = equippedItemType;
-                                param[1] = bagListitem.Item;
-                                MessageCenter.Send_Multparam(Meaningless.EMessageType.EquipItem, param);
+                                BagManager.Instance.EquipItem(equippedItemType, bagListitem.Item);
+                                
 
                                 ItemInfo = bagListitem.Item;
 

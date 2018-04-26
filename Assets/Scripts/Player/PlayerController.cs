@@ -65,10 +65,10 @@ public class PlayerController : MeaninglessCharacterController
     public void EquipClothes(int itemID)
     {
         string itemName = ItemInfoManager.Instance.GetResname(itemID);
-       
+
         GameObject itemObj = ResourcesManager.Instance.GetItem(itemName);
         Material clothesMat = itemObj.GetComponent<MeshRenderer>().sharedMaterial;
-        GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().sharedMaterials.SetValue(clothesMat, 1);
+        GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().material = clothesMat;
 
     }
 
@@ -119,9 +119,9 @@ public class PlayerController : MeaninglessCharacterController
                 }
                 break;
             case EquippedItem.Body:
-                GameObject itemObj = ResourcesManager.Instance.GetItem("Ground_Armor_Casual");
+                GameObject itemObj = ResourcesManager.Instance.GetItem("Armor_Casual");
                 Material clothesMat = itemObj.GetComponent<MeshRenderer>().sharedMaterial;
-                GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().sharedMaterials.SetValue(clothesMat, 1);
+                GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().material = clothesMat;
                 break;
             case EquippedItem.Weapon1:
                 if ((RHand.childCount != 0))
@@ -348,26 +348,25 @@ public class PlayerController : MeaninglessCharacterController
     }
 
     private void GetBuff(BuffType buff)
-    {
+    {;
         Material buffMat = Resources.Load("Debuff/" + buff.ToString()) as Material;
-        debuffStatus = BagManager.Instance.GetCharacterStatus();
         switch (buff)
         {
             case BuffType.SlowDown:
                 if (buffMat != null)
-                    GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().sharedMaterials.SetValue(buffMat, 0);
-                debuffStatus.moveSpeed *= 0.7f;
+                    GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().material = buffMat;
+                characterStatus.moveSpeed *= 0.7f;
                 break;
             case BuffType.Freeze:
                 if (buffMat != null)
-                    GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().sharedMaterials.SetValue(buffMat, 0);
-                debuffStatus.moveSpeed = 0;
+                    GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().material = buffMat;
+                characterStatus.moveSpeed *=0.001f;
                 break;
             case BuffType.Blind:
                 Camera.main.GetComponent<BlindEffect>().enabled = true;
                 break;
         }
-        deBuffFlag = true;
+        
     }
 
     private void Losebuff(BuffType buff)
@@ -376,14 +375,24 @@ public class PlayerController : MeaninglessCharacterController
         switch (buff)
         {
             case BuffType.SlowDown:
+                characterStatus.moveSpeed /= 0.7f;
+                if (BagManager.Instance.Dict_Equipped[EquippedItem.Body] == null)
+                    UnEquip(EquippedItem.Body);
+                else
+                    EquipClothes(BagManager.Instance.Dict_Equipped[EquippedItem.Body].ItemID);
+                break;
             case BuffType.Freeze:
-                GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().sharedMaterials.SetValue(noBuffMat, 0);
+                if (BagManager.Instance.Dict_Equipped[EquippedItem.Body] == null)
+                    UnEquip(EquippedItem.Body);
+                else
+                    EquipClothes(BagManager.Instance.Dict_Equipped[EquippedItem.Body].ItemID);
+                characterStatus.moveSpeed /= 0.001f;
                 break;
             case BuffType.Blind:
                 Camera.main.GetComponent<BlindEffect>().enabled = false;
                 break;
         }
-        deBuffFlag = false;
+        
     }
 
     public override void GetDeBuffInTime(BuffType debuff, float time)
@@ -395,7 +404,7 @@ public class PlayerController : MeaninglessCharacterController
             Buff.OnEnter();
         }
     }
-   
+
     public override void UseGravity(float Gravity)
     {
         Vector3 moveDirection = Vector3.zero;
