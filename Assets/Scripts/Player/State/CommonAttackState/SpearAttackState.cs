@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Meaningless;
+using MeaninglessNetwork;
 
 public class SpearAttackState : FSMState
 {
@@ -24,8 +25,9 @@ public class SpearAttackState : FSMState
         {
             if (FSM.controller.CheckCanAttack(FSM.gameObject, enemy.gameObject, attackDistance, 45))
             {
+                NetworkManager.PlayerHitSomeone(enemy.name, FSM.characterStatus.Attack_Physics * (1 - enemy.status.Defend_Physics / 100));
                 //单机测试
-                enemy.playerFSM.characterStatus.HP -= FSM.characterStatus.Attack_Physics * (1 - enemy.playerFSM.characterStatus.Defend_Physics / 100);
+                //enemy.status.HP -= FSM.characterStatus.Attack_Physics * (1 - enemy.status.Defend_Physics / 100);
             }
         }
         FSM.animationManager.PlayAnimation("Spear Melee Attack 02");

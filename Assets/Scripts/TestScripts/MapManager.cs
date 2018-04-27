@@ -143,7 +143,7 @@ public class MapManager : MonoSingleton<MapManager>
         for (int j = 0; j < itemSpawnPoint.ItemSpawnPoints.Length; j++)
         {
             tmp_ID = ItemsID[CalcIndex(j, ProbabilityValue)];
-            Debug.LogError("ID: "+tmp_ID+" ResName: "+"ResName: "+ItemInfoManager.Instance.GetResname(tmp_ID) +" ItemName: "+ ItemInfoManager.Instance.GetItemName(tmp_ID));
+            //Debug.LogError("ID: "+tmp_ID+" ResName: "+"ResName: "+ItemInfoManager.Instance.GetResname(tmp_ID) +" ItemName: "+ ItemInfoManager.Instance.GetItemName(tmp_ID));
             tmp =Instantiate(ResourcesManager.Instance.GetItem(ItemInfoManager.Instance.GetResname(tmp_ID)),
                 new Vector3(itemSpawnPoint.ItemSpawnPoints[j].position.x, 0, itemSpawnPoint.ItemSpawnPoints[j].position.z), Quaternion.identity);
             tmp_groundItem = tmp.AddComponent<GroundItem>();
@@ -157,6 +157,7 @@ public class MapManager : MonoSingleton<MapManager>
         param[1] = 2;
         MessageCenter.Send_Multparam(EMessageType.LoadingUI, param);
         isLoaded = true;
+
 
         yield return true;
     }

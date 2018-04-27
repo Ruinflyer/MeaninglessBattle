@@ -7,15 +7,19 @@ using MeaninglessNetwork;
 
 public class NetworkPlayer : MonoBehaviour {
 
-    public PlayerFSM playerFSM;
+    
     public PlayerController playerController;
     public AnimationManager animationManager;
 
     public string PlayerName="";
-    private int headItemID;
-    private int bodyItemID;
-    private int weaponID;
-    private int currentAction;
+    
+    public int headItemID;
+    public int bodyItemID;
+    public int weaponID;
+    public int currentAction;
+    public int curActionLayer;
+    public CharacterStatus status;
+    public float hp=100f;
 
     #region 记录上一次刷新的变量
     public long LastUpdateTime;
@@ -27,7 +31,6 @@ public class NetworkPlayer : MonoBehaviour {
 
     private void Start()
     {
-        playerFSM = GetComponent<PlayerFSM>();
         playerController = GetComponent<PlayerController>();
         animationManager = GetComponent<AnimationManager>();
     }
@@ -56,12 +59,12 @@ public class NetworkPlayer : MonoBehaviour {
     /// </summary>
     public void SetPlayerInfo(float HP,int HeadItemID,int BodyItemID,int WeaponID,int CurrentAction)
     {
-        playerFSM.characterStatus.HP = HP;
+        hp = HP;
         headItemID = HeadItemID;
         bodyItemID = BodyItemID;
         weaponID = WeaponID;
         currentAction = CurrentAction;
-        SetPlayerAnimation(currentAction);
+        animationManager.NetPlayClip();
     }
 
     /// <summary>
@@ -70,28 +73,6 @@ public class NetworkPlayer : MonoBehaviour {
     public void SetPlayerName(string playerName)
     {
         PlayerName = playerName;
-        playerFSM.characterStatus.characterName = playerName;
-    }
-
-    /// <summary>
-    /// 设置玩家播放指定动画
-    /// </summary>
-    /// <param name="animationName"></param>
-    public void SetPlayerAnimation(int TransitionType)
-    {
-        playerFSM.PerformTransition((FSMTransitionType)TransitionType);
-        /*
-        MethodInfo methodInfo= animationManager.GetType().GetMethod("Play"+animationName);
-        if(methodInfo==null)
-        {
-            Debug.LogError("动画: "+animationName+" 不存在! 请去AnimationManager类里添加 Play"+animationName+"() 方法");
-            return;
-        }
-        object[] param = new object[] {};
-        methodInfo.Invoke(animationManager,param);
-
-        playerFSM.PerformTransition(FSMTransitionType.AttackWithSingleWield);
-        */
     }
 
     /// <summary>
@@ -102,7 +83,7 @@ public class NetworkPlayer : MonoBehaviour {
         BytesProtocol protocol = new BytesProtocol();
 
         protocol.SpliceString("UpdatePlayerInfo");
-        protocol.SpliceFloat(playerFSM.characterStatus.HP);
+        protocol.SpliceFloat(hp);
         protocol.SpliceFloat(transform.position.x);
         protocol.SpliceFloat(transform.position.y);
         protocol.SpliceFloat(transform.position.z);

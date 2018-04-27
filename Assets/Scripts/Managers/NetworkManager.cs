@@ -39,4 +39,18 @@ public class NetworkManager : MonoSingleton<NetworkManager>
         return Convert.ToInt64(timeSpan.TotalSeconds);
 
     }
+
+    /// <summary>
+    /// 发送击中玩家消息
+    /// </summary>
+    /// <param name="Name">玩家名</param>
+    /// <param name="Damage">伤害值</param>
+    public static void PlayerHitSomeone(string Name,float Damage)
+    {
+        BytesProtocol protocol = new BytesProtocol();
+        protocol.SpliceString("PlayerHitSomeone");
+        protocol.SpliceString(Name);
+        protocol.SpliceFloat(Damage);
+        ServerConnection.Send(protocol);
+    }
 }

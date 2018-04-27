@@ -98,6 +98,7 @@ public class LoadingUI : BaseUI, IPointerDownHandler
         //创建组件完毕 发送PlayerReady协议
         if(mapManager.isLoaded)
         {
+            
             BytesProtocol ready = new BytesProtocol();
             ready.SpliceString("PlayerReady");
             ready.SpliceString(NetworkManager.PlayerName);
