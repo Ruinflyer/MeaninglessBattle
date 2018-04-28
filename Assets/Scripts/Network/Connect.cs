@@ -124,7 +124,7 @@ public class Connect
     /// <param name="callbackName">返回的协议名callbackName时即调用委托事件</param>
     /// <param name="delegateEvent">返回后调用的事件</param>
     /// <returns></returns>
-    public bool Send(BaseProtocol protocol, string callbackName, MsgDistribution.DelegateEvent delegateEvent)
+    public bool Send(BaseProtocol protocol, string callbackName, DelegateEvent delegateEvent)
     {
         if (connectionStatus != ConnectionStatus.Connected)
         {
@@ -142,7 +142,7 @@ public class Connect
     /// <param name="protocol">发送的协议</param>
     /// <param name="delegateEvent">返回后调用的事件</param>
     /// <returns></returns>
-    public bool Send(BaseProtocol protocol, MsgDistribution.DelegateEvent delegateEvent)
+    public bool Send(BaseProtocol protocol, DelegateEvent delegateEvent)
     {
         return Send(protocol, protocol.GetProtocolName(), delegateEvent);
     }

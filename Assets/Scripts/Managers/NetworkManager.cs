@@ -41,6 +41,14 @@ public class NetworkManager : MonoSingleton<NetworkManager>
     }
 
     /// <summary>
+    /// 发送消息
+    /// </summary>
+    /// <param name="protocol"></param>
+    public static void Send(BaseProtocol protocol)
+    {
+        ServerConnection.Send(protocol);
+    }
+    /// <summary>
     /// 添加网络事件监听
     /// </summary>
     /// <param name="MethodName">消息名</param>

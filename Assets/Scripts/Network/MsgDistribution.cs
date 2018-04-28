@@ -5,6 +5,7 @@ using MeaninglessNetwork;
 
 //协议委托
 public delegate void DelegateEvent(BaseProtocol protocol);
+
 //消息分发类
 public class MsgDistribution
 {
