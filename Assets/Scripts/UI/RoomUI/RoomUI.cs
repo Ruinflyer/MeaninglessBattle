@@ -26,8 +26,8 @@ public class RoomUI : BaseUI
         Btn_Start.onClick.AddListener(RequestStartGame);
         MemberList = GameTool.GetTheChildComponent<ScrollRect>(this.gameObject, "MemberList");
 
-        NetworkManager.ServerConnection.msgDistribution.AddEventListener("GetRoomInfo", GetRoomInfo);
-        NetworkManager.ServerConnection.msgDistribution.AddEventListener("StartGame", OnStartGameBack);
+        NetworkManager.AddEventListener("GetRoomInfo", GetRoomInfo);
+        NetworkManager.AddEventListener("StartGame", OnStartGameBack);
 
 
     }

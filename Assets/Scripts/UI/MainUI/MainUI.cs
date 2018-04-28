@@ -44,7 +44,7 @@ public class MainUI : BaseUI
     protected override void InitDataOnAwake()
     {
         this.uiId = UIid.MainUI;
-        NetworkManager.ServerConnection.msgDistribution.AddEventListener("GetRoomList", GetRoomList);
+        NetworkManager.AddEventListener("GetRoomList", GetRoomList);
     }
 
     protected override void OnEnable()
@@ -63,7 +63,7 @@ public class MainUI : BaseUI
 
     private void OnJoinRoomBack(BaseProtocol protocol)
     {
-        BytesProtocol p = (BytesProtocol)protocol;
+        BytesProtocol p = protocol as BytesProtocol;
         int startIndex = 0;
         p.GetString(startIndex, ref startIndex);
         int returnCode = p.GetInt(startIndex, ref startIndex);
@@ -92,7 +92,7 @@ public class MainUI : BaseUI
 
     private void OnCreateRoomBack(BaseProtocol protocol)
     {
-        BytesProtocol p = (BytesProtocol)protocol;
+        BytesProtocol p = protocol as BytesProtocol;
         int startIndex = 0;
         p.GetString(startIndex, ref startIndex);
         int returnCode = p.GetInt(startIndex, ref startIndex);
@@ -127,7 +127,7 @@ public class MainUI : BaseUI
             Destroy(RoomList.content.GetChild(j).gameObject);
         }
 
-        BytesProtocol p = (BytesProtocol)protocol;
+        BytesProtocol p = protocol as BytesProtocol;
         int startIndex = 0;
         string MethodName = p.GetString(startIndex, ref startIndex);
         int RoomCount = p.GetInt(startIndex, ref startIndex);

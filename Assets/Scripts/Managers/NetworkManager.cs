@@ -41,6 +41,26 @@ public class NetworkManager : MonoSingleton<NetworkManager>
     }
 
     /// <summary>
+    /// 添加网络事件监听
+    /// </summary>
+    /// <param name="MethodName">消息名</param>
+    /// <param name="Callback">回调</param>
+    public static void AddEventListener(string MethodName, DelegateEvent Callback)
+    {
+        ServerConnection.msgDistribution.AddEventListener(MethodName, Callback);
+    }
+    /// <summary>
+    /// 添加单次网络事件监听，接收后回调一次事件监听将回收
+    /// </summary>
+    /// <param name="MethodName">消息名</param>
+    /// <param name="Callback">回调</param>
+    public static void AddOnceEventListener(string MethodName, DelegateEvent Callback)
+    {
+        ServerConnection.msgDistribution.AddOnceEventListener(MethodName, Callback);
+    }
+
+
+    /// <summary>
     /// 发送击中玩家消息
     /// </summary>
     /// <param name="Name">玩家名</param>
@@ -64,5 +84,14 @@ public class NetworkManager : MonoSingleton<NetworkManager>
         ServerConnection.Send(protocol);
     }
 
+    /// <summary>
+    /// 地图加载完毕时上报服务端统计
+    /// </summary>
+    public static void SendMapLoaded()
+    {
+        BytesProtocol p = new BytesProtocol();
+        p.SpliceString("MapLoaded");
+        ServerConnection.Send(p);
+    }
 
 }

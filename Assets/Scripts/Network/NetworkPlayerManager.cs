@@ -13,8 +13,8 @@ public class NetworkPlayerManager : MonoBehaviour
     void Start()
     {
 
-        NetworkManager.ServerConnection.msgDistribution.AddEventListener("GetPlayersInfo", OnGetPlayersInfo);
-        NetworkManager.ServerConnection.msgDistribution.AddEventListener("UpdatePlayerInfo", UpdatePlayerInfo);
+        NetworkManager.AddEventListener("GetPlayersInfo", OnGetPlayersInfo);
+        NetworkManager.AddEventListener("UpdatePlayerInfo", UpdatePlayerInfo);
     }
 
     // Update is called once per frame

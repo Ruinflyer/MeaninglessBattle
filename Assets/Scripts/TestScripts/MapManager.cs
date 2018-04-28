@@ -39,10 +39,10 @@ public class MapManager : MonoSingleton<MapManager>
         itemSpawnPoint = GetComponent<ItemSpawnPoint>();
         //LoadCirclefieldInfo();
         //初始化网络事件
-        NetworkManager.ServerConnection.msgDistribution.AddEventListener("GetMapItemData", OnGetMapItemDataBack);
-        NetworkManager.ServerConnection.msgDistribution.AddEventListener("Circlefield", OnCirclefieldBack);
-        NetworkManager.ServerConnection.msgDistribution.AddEventListener("DoorOpen", OnDoorOpen);
-        NetworkManager.ServerConnection.msgDistribution.AddEventListener("AllPlayerLoaded", OnAllPlayerLoaded);
+        NetworkManager.AddEventListener("GetMapItemData", OnGetMapItemDataBack);
+        NetworkManager.AddEventListener("Circlefield", OnCirclefieldBack);
+        NetworkManager.AddEventListener("DoorOpen", OnDoorOpen);
+        NetworkManager.AddEventListener("AllPlayerLoaded", OnAllPlayerLoaded);
         
         //门加入字典
         for (int i=0;i<itemSpawnPoint.DoorSpawnPoints.Length;i++)
