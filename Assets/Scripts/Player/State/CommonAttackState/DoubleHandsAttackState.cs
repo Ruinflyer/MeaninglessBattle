@@ -26,7 +26,7 @@ public class DoubleHandsAttackState : FSMState
         {
             if (FSM.controller.CheckCanAttack(FSM.gameObject, enemy.gameObject, attackDistance, 45))
             {
-                NetworkManager.PlayerHitSomeone(enemy.name, FSM.characterStatus.Attack_Physics * (1 - enemy.status.Defend_Physics / 100));
+                NetworkManager.SendPlayerHitSomeone(enemy.name, FSM.characterStatus.Attack_Physics * (1 - enemy.status.Defend_Physics / 100));
                 //单机测试
                 //enemy.playerFSM.characterStatus.HP -= FSM.characterStatus.Attack_Physics * (1 - enemy.playerFSM.characterStatus.Defend_Physics / 100);
             }

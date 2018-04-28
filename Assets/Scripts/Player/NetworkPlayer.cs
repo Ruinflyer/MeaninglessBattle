@@ -16,7 +16,7 @@ public class NetworkPlayer : MonoBehaviour {
     public int headItemID;
     public int bodyItemID;
     public int weaponID;
-    public int currentAction;
+    public string currentAction;
     public int curActionLayer;
     public CharacterStatus status;
     public float hp=100f;
@@ -57,14 +57,14 @@ public class NetworkPlayer : MonoBehaviour {
     /// <summary>
     /// 设置玩家状态信息,生命值,头盔物品ID,当前动画名称等
     /// </summary>
-    public void SetPlayerInfo(float HP,int HeadItemID,int BodyItemID,int WeaponID,int CurrentAction)
+    public void SetPlayerInfo(float HP,int HeadItemID,int BodyItemID,int WeaponID,int Layer,string CurrentAction)
     {
         hp = HP;
         headItemID = HeadItemID;
         bodyItemID = BodyItemID;
         weaponID = WeaponID;
         currentAction = CurrentAction;
-        animationManager.NetPlayClip();
+        animationManager.NetPlayClip(Layer, CurrentAction);
     }
 
     /// <summary>

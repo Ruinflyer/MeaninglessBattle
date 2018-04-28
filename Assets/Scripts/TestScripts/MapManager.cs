@@ -72,7 +72,7 @@ public class MapManager : MonoSingleton<MapManager>
     /* DeadCode
     private void OnGetMapDataBack(BaseProtocol protocol)
     {
-        BytesProtocol p = (BytesProtocol)protocol;
+        BytesProtocol p = protocol as BytesProtocol;
         int startIndex = 0;
         p.GetString(startIndex, ref startIndex);
         MapData = new List<string>();
@@ -95,7 +95,7 @@ public class MapManager : MonoSingleton<MapManager>
     /// </summary>
     private void OnGetMapItemDataBack(BaseProtocol protocol)
     {
-        BytesProtocol p = (BytesProtocol)protocol;
+        BytesProtocol p = protocol as BytesProtocol;
         int startIndex = 0;
         p.GetString(startIndex, ref startIndex);
         Seed = p.GetInt(startIndex, ref startIndex);
@@ -213,7 +213,7 @@ public class MapManager : MonoSingleton<MapManager>
     /// <param name="protocol"></param>
     public void OnCirclefieldBack(BaseProtocol protocol)
     {
-        BytesProtocol p = (BytesProtocol)protocol;
+        BytesProtocol p = protocol as BytesProtocol;
         int startIndex = 0;
         p.GetString(startIndex, ref startIndex);
         float X = p.GetFloat(startIndex, ref startIndex);
@@ -231,7 +231,7 @@ public class MapManager : MonoSingleton<MapManager>
     /// <param name="protocol"></param>
     public void OnDoorOpen(BaseProtocol protocol)
     {
-        BytesProtocol p = (BytesProtocol)protocol;
+        BytesProtocol p = protocol as BytesProtocol;
         int startIndex = 0;
         p.GetString(startIndex, ref startIndex);
         int DoorID = p.GetInt(startIndex, ref startIndex);

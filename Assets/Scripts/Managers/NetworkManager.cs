@@ -45,7 +45,7 @@ public class NetworkManager : MonoSingleton<NetworkManager>
     /// </summary>
     /// <param name="Name">玩家名</param>
     /// <param name="Damage">伤害值</param>
-    public static void PlayerHitSomeone(string Name,float Damage)
+    public static void SendPlayerHitSomeone(string Name,float Damage)
     {
         BytesProtocol protocol = new BytesProtocol();
         protocol.SpliceString("PlayerHitSomeone");
@@ -53,4 +53,16 @@ public class NetworkManager : MonoSingleton<NetworkManager>
         protocol.SpliceFloat(Damage);
         ServerConnection.Send(protocol);
     }
+
+    /// <summary>
+    /// 发送获取玩家列表消息
+    /// </summary>
+    public static void SendGetPlayersInfo()
+    {
+        BytesProtocol protocol = new BytesProtocol();
+        protocol.SpliceString("GetPlayersInfo");
+        ServerConnection.Send(protocol);
+    }
+
+
 }

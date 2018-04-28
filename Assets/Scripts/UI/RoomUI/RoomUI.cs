@@ -55,7 +55,7 @@ public class RoomUI : BaseUI
 
     private void OnLeaveRoomBack(BaseProtocol protocol)
     {
-        BytesProtocol p = (BytesProtocol)protocol;
+        BytesProtocol p = protocol as BytesProtocol;
         int startIndex = 0;
         p.GetString(startIndex, ref startIndex);
         int returnCode = p.GetInt(startIndex, ref startIndex);
@@ -82,7 +82,7 @@ public class RoomUI : BaseUI
 
     private void OnRequestStartGameBack(BaseProtocol protocol)
     {
-        BytesProtocol p = (BytesProtocol)protocol;
+        BytesProtocol p = protocol as BytesProtocol;
         int startIndex = 0;
         p.GetString(startIndex, ref startIndex);
         int returnCode = p.GetInt(startIndex, ref startIndex);
@@ -100,7 +100,7 @@ public class RoomUI : BaseUI
 
     private void OnStartGameBack(BaseProtocol protocol)
     {
-        BytesProtocol p = (BytesProtocol)protocol;
+        BytesProtocol p = protocol as BytesProtocol;
         int startIndex = 0;
         p.GetString(startIndex, ref startIndex);
         UIManager.Instance.ShowUI(UIid.LoadingUI);
@@ -113,7 +113,7 @@ public class RoomUI : BaseUI
             MemberListItems[j].SetActive(false);
         }
         MemberListItem memberListItem;
-        BytesProtocol p = (BytesProtocol)protocol;
+        BytesProtocol p = protocol as BytesProtocol;
         int startIndex = 0;
         p.GetString(startIndex, ref startIndex);
         int PlayerNum = p.GetInt(startIndex, ref startIndex);

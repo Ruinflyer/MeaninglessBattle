@@ -30,7 +30,7 @@ public class CharacterMessageDispatcher : Singleton<CharacterMessageDispatcher>
 
         if (message.condition)
         {
-            message.Receiver.playerFSM.PerformTransition(message.Msg);
+            //message.Receiver.playerFSM.PerformTransition(message.Msg);
         }
 
     }

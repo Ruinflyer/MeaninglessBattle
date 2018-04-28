@@ -25,7 +25,7 @@ public class SpearAttackState : FSMState
         {
             if (FSM.controller.CheckCanAttack(FSM.gameObject, enemy.gameObject, attackDistance, 45))
             {
-                NetworkManager.PlayerHitSomeone(enemy.name, FSM.characterStatus.Attack_Physics * (1 - enemy.status.Defend_Physics / 100));
+                NetworkManager.SendPlayerHitSomeone(enemy.name, FSM.characterStatus.Attack_Physics * (1 - enemy.status.Defend_Physics / 100));
                 //单机测试
                 //enemy.status.HP -= FSM.characterStatus.Attack_Physics * (1 - enemy.status.Defend_Physics / 100);
             }
