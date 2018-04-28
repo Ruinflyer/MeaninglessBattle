@@ -52,7 +52,7 @@ namespace Meaningless
         void Update()
         {
     
-                characterStatus = BagManager.Instance.GetCharacterStatus();
+            characterStatus = BagManager.Instance.GetCharacterStatus();
             
             CCUpdate();
         }

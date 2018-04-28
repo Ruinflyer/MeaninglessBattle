@@ -39,7 +39,7 @@ public class ThunderBoltState : FSMState
     {
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.IsIdle,
-            FSM.GetComponent<NetworkPlayer>(),
+            FSM,
             FSM.animationManager.baseStateInfo.IsName("Idle")
             );
     }

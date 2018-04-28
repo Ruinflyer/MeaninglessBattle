@@ -57,14 +57,14 @@ public class NetworkPlayer : MonoBehaviour {
     /// <summary>
     /// 设置玩家状态信息,生命值,头盔物品ID,当前动画名称等
     /// </summary>
-    public void SetPlayerInfo(float HP,int HeadItemID,int BodyItemID,int WeaponID,int CurrentAction)
+    public void SetPlayerInfo(float HP,int HeadItemID,int BodyItemID,int WeaponID,int CurrentAction,int layer=0)
     {
         hp = HP;
         headItemID = HeadItemID;
         bodyItemID = BodyItemID;
         weaponID = WeaponID;
         currentAction = CurrentAction;
-        animationManager.NetPlayClip();
+        //animationManager.NetPlayClip(layer);
     }
 
     /// <summary>
@@ -117,10 +117,12 @@ public class NetworkPlayer : MonoBehaviour {
             protocol.SpliceInt(BagManager.Instance.Dict_Equipped[EquippedItem.Body].ItemID);
         }
 
-       // protocol.SpliceInt(WeaponID);
-       // protocol.SpliceString(CurrentAction);
+        // protocol.SpliceInt(WeaponID);
+        // protocol.SpliceString(CurrentAction);
 
         //playerFSM.characterStatus.HP;
+        status = BagManager.Instance.characterStatus;
+
         return protocol;
     }
 

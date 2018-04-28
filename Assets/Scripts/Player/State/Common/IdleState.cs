@@ -25,62 +25,62 @@ public class IdleState : FSMState
         MessageCenter.AddListener(EMessageType.FoundItem, (object obj) => { isFound = (bool)obj; });
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.CanBeMove,
-            FSM.GetComponent<NetworkPlayer>(),
+            FSM,
             (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.5 || Mathf.Abs(Input.GetAxis("Vertical")) > 0.5) && FSM.controller.CC.isGrounded
             );
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.CanDefend,
-            FSM.GetComponent<NetworkPlayer>(),
+            FSM,
             Input.GetButton("Defend") && FSM.characterStatus.magicType == MagicType.NULL && FSM.characterStatus.weaponType == WeaponType.Shield
             );
         
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.AttackWithSingleWield,
-            FSM.GetComponent<NetworkPlayer>(),
+            FSM,
             Input.GetButtonDown("Fire1") && (FSM.characterStatus.weaponType == WeaponType.Sword || FSM.characterStatus.weaponType == WeaponType.Club)
             );
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.AttackWithDoubleHands,
-            FSM.GetComponent<NetworkPlayer>(),
+            FSM,
             Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.DoubleHands
             );
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.AttackWithSpear,
-            FSM.GetComponent<NetworkPlayer>(),
+            FSM,
              Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.Spear
             );
 
 
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.UsingRipple,
-            FSM.GetComponent<NetworkPlayer>(),
+            FSM,
             Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.NULL && FSM.characterStatus.magicType == MagicType.Ripple
             );
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.UsingHeartAttack,
-            FSM.GetComponent<NetworkPlayer>(),
+            FSM,
             Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.NULL && FSM.characterStatus.magicType == MagicType.HeartAttack
             );
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.UsingStygianDesolator,
-            FSM.GetComponent<NetworkPlayer>(),
+            FSM,
             Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.NULL && FSM.characterStatus.magicType == MagicType.StygianDesolator
             );
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.UsingChoshimArrow,
-            FSM.GetComponent<NetworkPlayer>(),
+            FSM,
             Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.NULL && FSM.characterStatus.magicType == MagicType.ChoshimArrow
             );
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.UsingThunderBolt,
-            FSM.GetComponent<NetworkPlayer>(),
+            FSM,
             Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.NULL && FSM.characterStatus.magicType == MagicType.Thunderbolt
             );
 
         CharacterMessageDispatcher.Instance.DispatchMesssage
            (
             FSMTransitionType.Falling,
-            FSM.GetComponent<NetworkPlayer>(),
+            FSM,
             FSM.transform.position.y > 20
             );
 

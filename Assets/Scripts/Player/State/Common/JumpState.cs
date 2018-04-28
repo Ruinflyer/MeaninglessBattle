@@ -22,13 +22,13 @@ public class JumpState : FSMState
   
         CharacterMessageDispatcher.Instance.DispatchMesssage
            (FSMTransitionType.IsIdle,
-           FSM.GetComponent<NetworkPlayer>(),
+           FSM,
             FSM.controller.CC.isGrounded
            );
 
         CharacterMessageDispatcher.Instance.DispatchMesssage
           (FSMTransitionType.CanBeMove,
-          FSM.GetComponent<NetworkPlayer>(),
+          FSM,
            (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.5 || Mathf.Abs(Input.GetAxis("Vertical")) > 0.5) && FSM.controller.CC.isGrounded
           );
 

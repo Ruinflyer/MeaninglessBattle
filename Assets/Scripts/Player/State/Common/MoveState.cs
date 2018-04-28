@@ -22,31 +22,31 @@ public class MoveState : FSMState
     {
         CharacterMessageDispatcher.Instance.DispatchMesssage
         (FSMTransitionType.IsIdle,
-        FSM.GetComponent<NetworkPlayer>(),
+        FSM,
         Mathf.Abs(Input.GetAxis("Horizontal")) <= 0.5 && Mathf.Abs(Input.GetAxis("Vertical")) <= 0.5 && FSM.controller.CC.isGrounded
         );
 
         CharacterMessageDispatcher.Instance.DispatchMesssage
         (FSMTransitionType.CanBeJump,
-        FSM.GetComponent<NetworkPlayer>(),
+        FSM,
        Input.GetButton("Jump")
         );
 
         CharacterMessageDispatcher.Instance.DispatchMesssage
         (FSMTransitionType.AttackWithSingleWield,
-        FSM.GetComponent<NetworkPlayer>(),
+        FSM,
         Input.GetButtonDown("Fire1") && (FSM.characterStatus.weaponType == WeaponType.Sword || FSM.characterStatus.weaponType == WeaponType.Club)
         );
 
         CharacterMessageDispatcher.Instance.DispatchMesssage
         (FSMTransitionType.AttackWithDoubleHands,
-        FSM.GetComponent<NetworkPlayer>(),
+        FSM,
         Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.DoubleHands
         );
 
         CharacterMessageDispatcher.Instance.DispatchMesssage
         (FSMTransitionType.AttackWithSpear,
-        FSM.GetComponent<NetworkPlayer>(),
+        FSM,
         Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.Spear
         );
 

@@ -38,7 +38,7 @@ public class IceArrowState : FSMState {
     {
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.IsIdle,
-            FSM.GetComponent<NetworkPlayer>(),
+            FSM,
             FSM.animationManager.baseStateInfo.IsName("Idle")
             );
     }

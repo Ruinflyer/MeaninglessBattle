@@ -56,19 +56,19 @@ public class SingleWieldAttackState : FSMState
 
         CharacterMessageDispatcher.Instance.DispatchMesssage
         (FSMTransitionType.IsIdle,
-        FSM.GetComponent<NetworkPlayer>(),
+        FSM,
         FSM.animationManager.baseStateInfo.IsName("Idle") && FSM.animationManager.attackStateInfo.normalizedTime > 1.15f
         );
 
         CharacterMessageDispatcher.Instance.DispatchMesssage
        (FSMTransitionType.AttackWithSingleWield,
-       FSM.GetComponent<NetworkPlayer>(),
+       FSM,
        Input.GetButtonDown("Fire1") && (FSM.characterStatus.weaponType == WeaponType.Sword || FSM.characterStatus.weaponType == WeaponType.Club)
        );
 
         CharacterMessageDispatcher.Instance.DispatchMesssage
       (FSMTransitionType.CanBeMove,
-      FSM.GetComponent<NetworkPlayer>(),
+      FSM,
       (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.5 || Mathf.Abs(Input.GetAxis("Vertical")) > 0.5) && FSM.controller.CC.isGrounded
       );
         /*
