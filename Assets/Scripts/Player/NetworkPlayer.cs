@@ -62,6 +62,7 @@ public class NetworkPlayer : MonoBehaviour {
         bodyItemID = BodyItemID;
         weaponID = WeaponID;
         currentAction = CurrentAction;
+        curActionLayer = Layer;
         animationManager.NetPlayClip(Layer, CurrentAction);
     }
 

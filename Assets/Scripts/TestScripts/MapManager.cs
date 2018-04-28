@@ -102,7 +102,7 @@ public class MapManager : MonoSingleton<MapManager>
 
         object[] param = new object[2];
         param[0] = "正在接收道具数据...";
-        param[1] = 2;
+        param[1] = 0;
         MessageCenter.Send_Multparam(EMessageType.LoadingUI, param);
 
         if(Seed!=0)
@@ -110,7 +110,7 @@ public class MapManager : MonoSingleton<MapManager>
             //220个物品生成点的随机数
             RandomList = InitTotalProbabilityValue(ProbabilityValue);
             param[0] = "道具数据接收完毕";
-            param[1] = 2;
+            param[1] = 0;
             MessageCenter.Send_Multparam(EMessageType.LoadingUI, param);
 
             GenerateItem();
@@ -131,7 +131,7 @@ public class MapManager : MonoSingleton<MapManager>
         //LoadingUI提示：
         object[] param = new object[2];
         param[0] = "正在生成地图物品...";
-        param[1] = 2;
+        param[1] =0;
         MessageCenter.Send_Multparam(EMessageType.LoadingUI, param);
 
 
@@ -249,6 +249,7 @@ public class MapManager : MonoSingleton<MapManager>
     {
 
     }
+
 }
 
 

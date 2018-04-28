@@ -72,7 +72,6 @@ public class NetworkPlayerManager : MonoBehaviour
         int Playernum = p.GetInt(startIndex, ref startIndex);
         UnityEngine.Object playerprefab = Resources.Load("PlayerPrefab");
         GameObject tmp_player = null;
-        tmp_player.transform.SetParent(transform);
         for (int i = 0; i < Playernum; i++)
         {
             string playerName = p.GetString(startIndex, ref startIndex);
@@ -80,6 +79,9 @@ public class NetworkPlayerManager : MonoBehaviour
             if (playerName!=NetworkManager.PlayerName)
             {
                 tmp_player = Instantiate(playerprefab) as GameObject;
+                tmp_player.name = playerName;
+                tmp_player.transform.SetParent(transform);
+
                 NetworkPlayer nPlayer = tmp_player.GetComponent<NetworkPlayer>();
                 nPlayer.SetPlayerName(playerName);
                 ScenePlayers.Add(playerName, nPlayer);

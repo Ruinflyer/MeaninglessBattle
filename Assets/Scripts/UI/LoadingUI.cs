@@ -105,6 +105,12 @@ public class LoadingUI : BaseUI, IPointerDownHandler
             NetworkManager.ServerConnection.Send(ready);
             text.text = "资源加载完毕，即将进入游戏";
             sequence = 2;
+
+            UIManager.Instance.HideTheUI(UIid.LoginUI, delegate { });
+            UIManager.Instance.HideTheUI(UIid.MainUI, delegate { });
+            UIManager.Instance.HideTheUI(UIid.RoomUI, delegate { });
+            UIManager.Instance.HideTheUI(UIid.LoadingUI, delegate { });
+            UIManager.Instance.ShowUI(UIid.HUDUI);
         }
         
 
