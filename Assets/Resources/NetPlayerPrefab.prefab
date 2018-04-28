@@ -502,11 +502,9 @@ GameObject:
   - component: {fileID: 4767247552130254}
   - component: {fileID: 95014117889530798}
   - component: {fileID: 143543580159298868}
-  - component: {fileID: 114741006302730294}
   - component: {fileID: 114622247498669894}
   - component: {fileID: 114081480928468718}
-  - component: {fileID: 114932105834645800}
-  - component: {fileID: 114831709945802748}
+  - component: {fileID: 114373383458492224}
   m_Layer: 0
   m_Name: NetPlayerPrefab
   m_TagString: Player
@@ -1113,6 +1111,40 @@ MonoBehaviour:
   RHand: {fileID: 0}
   Head: {fileID: 0}
   Wings: {fileID: 0}
+--- !u!114 &114373383458492224
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1887132482691962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ce32eab80e6bc34180f3e7fa8100ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
+  animationManager: {fileID: 0}
+  PlayerName: 
+  headItemID: 0
+  bodyItemID: 0
+  weaponID: 0
+  currentAction: 
+  curActionLayer: 0
+  status:
+    characterName: 
+    weaponType: 0
+    magicType: 0
+    moveSpeed: 0
+    jumpSpeed: 0
+    HP: 0
+    Attack_Physics: 0
+    Attack_Magic: 0
+    RecoveryValue: 0
+    Defend_Physics: 0
+    Defend_Magic: 0
+    DecreaseDurationTime_Magic: 0
+  hp: 100
+  LastUpdateTime: 0
 --- !u!114 &114622247498669894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1127,61 +1159,6 @@ MonoBehaviour:
   anim: {fileID: 0}
   animCur: 
   LayerCur: 0
---- !u!114 &114741006302730294
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1887132482691962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 196cf343363cfb44393cfcc9a2c501b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterStatus:
-    characterName: 
-    weaponType: 0
-    magicType: 0
-    moveSpeed: 0
-    jumpSpeed: 0
-    HP: 0
-    Attack_Physics: 0
-    Attack_Magic: 0
-    RecoveryValue: 0
-    Defend_Physics: 0
-    Defend_Magic: 0
-    DecreaseDurationTime_Magic: 0
-  animationManager: {fileID: 0}
-  Attacked: 0
---- !u!114 &114831709945802748
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1887132482691962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e6cbcf63d4d5e640a2a2b1ee45b9289, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerFSM: {fileID: 0}
-  playerController: {fileID: 0}
-  animationManager: {fileID: 0}
-  PlayerName: 
-  LastUpdateTime: 0
---- !u!114 &114932105834645800
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1887132482691962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9b23d93c467ccf48b8ce845e49269b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  List_Equipped: []
-  List_PickUp: []
 --- !u!137 &137165593950433346
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

@@ -7,6 +7,7 @@ public class MagicBehaviour : MonoBehaviour {
 
     public MagicType magicType;
     public PlayerController player;
+    private 
 
 	// Use this for initialization
 	void Start () {
@@ -42,54 +43,50 @@ public class MagicBehaviour : MonoBehaviour {
 
     void Damage(float distance,float angle)
     {
-        foreach (NetworkPlayer enemy in player.List_Enemy)
+        foreach (KeyValuePair<string, NetworkPlayer> enemy in player.ScenePlayers)
         {
-            if (player.CheckCanAttack(gameObject, enemy.gameObject, distance, angle))
+            if (player.CheckCanAttack(gameObject, enemy.Value.gameObject, distance, angle))
             {
-<<<<<<< HEAD
-                
-                NetworkManager.PlayerHitSomeone(enemy.name, player.characterStatus.Attack_Magic * (1 - enemy.status.Defend_Magic / 100));
-=======
-                NetworkManager.SendPlayerHitSomeone(enemy.name, player.characterStatus.Attack_Magic * (1 - enemy.status.Defend_Magic / 100));
-                //单机测试
-                //enemy.playerFSM.characterStatus.HP -= player.characterStatus.Attack_Magic* (1 - enemy.playerFSM.characterStatus.Defend_Magic / 100);
->>>>>>> 1a51eab3e825a677dbbcb5be8c3de490da77168f
+         
+                NetworkManager.SendPlayerHitSomeone(enemy.Value.name, player.characterStatus.Attack_Magic * (1 - enemy.Value.status.Defend_Magic / 100));
+
+
             }
         }
     }
 
     void Freeze(float buffTime, float distance, float angle)
     {
-        foreach (NetworkPlayer enemy in player.List_Enemy)
+        foreach (KeyValuePair<string, NetworkPlayer> enemy in player.ScenePlayers)
         {
-            if (player.CheckCanAttack(gameObject, enemy.gameObject, distance, angle))
+            if (player.CheckCanAttack(gameObject, enemy.Value.gameObject, distance, angle))
             {
-                //单机测试
-                enemy.playerController.GetDeBuffInTime(BuffType.Freeze, buffTime);
+                //本地效果
+                enemy.Value.playerController.GetDeBuffInTime(BuffType.Freeze, buffTime);
             }
         }
     }
 
     void Blind(float buffTime,float distance, float angle)
     {
-        foreach (NetworkPlayer enemy in player.List_Enemy)
+        foreach (KeyValuePair<string, NetworkPlayer> enemy in player.ScenePlayers)
         {
-            if (player.CheckCanAttack(gameObject, enemy.gameObject, distance, angle))
+            if (player.CheckCanAttack(gameObject, enemy.Value.gameObject, distance, angle))
             {
-                //单机测试
-                enemy.playerController.GetDeBuffInTime(BuffType.Blind, buffTime);
+                //本地效果
+                enemy.Value.playerController.GetDeBuffInTime(BuffType.Blind, buffTime);
             }
         }
     }
 
     void SlowDown(float buffTime, float distance, float angle)
     {
-        foreach (NetworkPlayer enemy in player.List_Enemy)
+        foreach (KeyValuePair<string, NetworkPlayer> enemy in player.ScenePlayers)
         {
-            if (player.CheckCanAttack(gameObject, enemy.gameObject, distance, angle))
+            if (player.CheckCanAttack(gameObject, enemy.Value.gameObject, distance, angle))
             {
-                //单机测试
-                enemy.playerController.GetDeBuffInTime(BuffType.SlowDown, buffTime);
+                //本地效果
+                enemy.Value.playerController.GetDeBuffInTime(BuffType.SlowDown, buffTime);
             }
         }
     }

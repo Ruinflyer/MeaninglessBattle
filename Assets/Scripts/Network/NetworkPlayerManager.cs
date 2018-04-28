@@ -7,7 +7,7 @@ using Meaningless;
 public class NetworkPlayerManager : MonoBehaviour
 {
 
-    private Dictionary<string, NetworkPlayer> ScenePlayers = new Dictionary<string, NetworkPlayer>();
+    public Dictionary<string, NetworkPlayer> ScenePlayers = new Dictionary<string, NetworkPlayer>();
 
     // Use this for initialization
     void Start()

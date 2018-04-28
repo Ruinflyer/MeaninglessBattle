@@ -19,10 +19,9 @@ namespace Meaningless
 
         protected bool deBuffFlag;
 
-        //测试用敌人列表
-        public List<NetworkPlayer> List_Enemy = new List<NetworkPlayer>();
-
         public List<Buff> buffList = new List<Buff>();
+
+        public Dictionary<string, NetworkPlayer> ScenePlayers = new Dictionary<string, NetworkPlayer>();
 
 
         //测试用身体坐标
@@ -45,6 +44,7 @@ namespace Meaningless
         void Start()
         {
             this.CC = this.GetComponent<CharacterController>();
+            ScenePlayers = GameObject.Find("NetworkPlayerManager").GetComponent<NetworkPlayerManager>().ScenePlayers;
             Initialize();
         }
 
@@ -89,7 +89,6 @@ namespace Meaningless
         public abstract void FallingCtrl(float Speed);
         public abstract void Jump(float jumpSpeed);
         public abstract bool CheckCanAttack(GameObject center, GameObject enemy, float distance, float angle);
-        public abstract void SearchEnemy(float Range);
         public abstract void GetDeBuffInTime(BuffType debuff, float time);
 
         public virtual void ChangeWeapon(int currentSelected) { }

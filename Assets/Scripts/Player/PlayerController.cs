@@ -303,23 +303,6 @@ public class PlayerController : MeaninglessCharacterController
     }
 
 
-
-    //单人测试用搜索敌人
-    public override void SearchEnemy(float Range)
-    {
-        Collider[] colliderArr = Physics.OverlapSphere(transform.position, Range, LayerMask.GetMask("Player"));
-        for (int i = 0; i < colliderArr.Length; i++)
-        {
-            if (colliderArr[i].GetComponent<BaseFSM>() != null && colliderArr[i] != gameObject)
-            {
-                if (!List_Enemy.Contains(colliderArr[i].GetComponent<NetworkPlayer>()))
-                    List_Enemy.Add(colliderArr[i].GetComponent<NetworkPlayer>());
-            }
-        }
-    }
-
-
-
     /// <summary>
     /// 检测敌人是否处于攻击范围
     /// </summary>
@@ -432,7 +415,6 @@ public class PlayerController : MeaninglessCharacterController
         EquippedDict = BagManager.Instance.Dict_Equipped;
         OpenBag();
         //MessageCenter.Send(EMessageType.CurrentselectedWeapon, CurrentSelected);
-        SearchEnemy(10);
 
         if (buffList.Count > 0)
         {

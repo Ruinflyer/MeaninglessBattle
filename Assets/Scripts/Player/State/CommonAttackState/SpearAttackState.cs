@@ -21,11 +21,12 @@ public class SpearAttackState : FSMState
             attackDistance = FSM.controller.GetCurSelectedWeaponInfo().weaponProperties.weaponLength;
         }
 
-        foreach (NetworkPlayer enemy in FSM.controller.List_Enemy)
+
+        foreach (KeyValuePair<string, NetworkPlayer> enemy in FSM.controller.ScenePlayers)
         {
-            if (FSM.controller.CheckCanAttack(FSM.gameObject, enemy.gameObject, attackDistance, 45))
+            if (FSM.controller.CheckCanAttack(FSM.gameObject, enemy.Value.gameObject, attackDistance, 45))
             {
-                NetworkManager.SendPlayerHitSomeone(enemy.name, FSM.characterStatus.Attack_Physics * (1 - enemy.status.Defend_Physics / 100));
+                NetworkManager.SendPlayerHitSomeone(enemy.Value.name, FSM.characterStatus.Attack_Physics * (1 - enemy.Value.status.Defend_Physics / 100));
                 //单机测试
                 //enemy.status.HP -= FSM.characterStatus.Attack_Physics * (1 - enemy.status.Defend_Physics / 100);
             }
