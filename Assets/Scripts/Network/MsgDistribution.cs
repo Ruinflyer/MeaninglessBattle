@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using MeaninglessNetwork;
 
+//协议委托
+public delegate void DelegateEvent(BaseProtocol protocol);
+
 //消息分发类
 public class MsgDistribution
 {
@@ -10,8 +13,7 @@ public class MsgDistribution
     public int HandleNum = 15;
     //消息列表
     public List<BaseProtocol> msgList = new List<BaseProtocol>();
-    //协议委托
-    public delegate void DelegateEvent(BaseProtocol protocol);
+   
     //事件监听表：
     //监听事件：注册后永久可执行
     private Dictionary<string, DelegateEvent> Dict_Event = new Dictionary<string, DelegateEvent>();

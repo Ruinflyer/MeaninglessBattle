@@ -29,7 +29,11 @@ public class CharacterMessageDispatcher : Singleton<CharacterMessageDispatcher>
         CharacterMessage message = new CharacterMessage(msg, receiverId, condition);
         if (message.condition)
         {
+<<<<<<< HEAD
             message.Receiver.PerformTransition(message.Msg);
+=======
+            //message.Receiver.playerFSM.PerformTransition(message.Msg);
+>>>>>>> 1a51eab3e825a677dbbcb5be8c3de490da77168f
         }
 
     }

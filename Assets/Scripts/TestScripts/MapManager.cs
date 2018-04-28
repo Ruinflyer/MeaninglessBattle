@@ -39,10 +39,10 @@ public class MapManager : MonoSingleton<MapManager>
         itemSpawnPoint = GetComponent<ItemSpawnPoint>();
         //LoadCirclefieldInfo();
         //初始化网络事件
-        NetworkManager.ServerConnection.msgDistribution.AddEventListener("GetMapItemData", OnGetMapItemDataBack);
-        NetworkManager.ServerConnection.msgDistribution.AddEventListener("Circlefield", OnCirclefieldBack);
-        NetworkManager.ServerConnection.msgDistribution.AddEventListener("DoorOpen", OnDoorOpen);
-        NetworkManager.ServerConnection.msgDistribution.AddEventListener("AllPlayerLoaded", OnAllPlayerLoaded);
+        NetworkManager.AddEventListener("GetMapItemData", OnGetMapItemDataBack);
+        NetworkManager.AddEventListener("Circlefield", OnCirclefieldBack);
+        NetworkManager.AddEventListener("DoorOpen", OnDoorOpen);
+        NetworkManager.AddEventListener("AllPlayerLoaded", OnAllPlayerLoaded);
         
         //门加入字典
         for (int i=0;i<itemSpawnPoint.DoorSpawnPoints.Length;i++)
@@ -72,7 +72,7 @@ public class MapManager : MonoSingleton<MapManager>
     /* DeadCode
     private void OnGetMapDataBack(BaseProtocol protocol)
     {
-        BytesProtocol p = (BytesProtocol)protocol;
+        BytesProtocol p = protocol as BytesProtocol;
         int startIndex = 0;
         p.GetString(startIndex, ref startIndex);
         MapData = new List<string>();
@@ -95,7 +95,7 @@ public class MapManager : MonoSingleton<MapManager>
     /// </summary>
     private void OnGetMapItemDataBack(BaseProtocol protocol)
     {
-        BytesProtocol p = (BytesProtocol)protocol;
+        BytesProtocol p = protocol as BytesProtocol;
         int startIndex = 0;
         p.GetString(startIndex, ref startIndex);
         Seed = p.GetInt(startIndex, ref startIndex);
@@ -213,7 +213,7 @@ public class MapManager : MonoSingleton<MapManager>
     /// <param name="protocol"></param>
     public void OnCirclefieldBack(BaseProtocol protocol)
     {
-        BytesProtocol p = (BytesProtocol)protocol;
+        BytesProtocol p = protocol as BytesProtocol;
         int startIndex = 0;
         p.GetString(startIndex, ref startIndex);
         float X = p.GetFloat(startIndex, ref startIndex);
@@ -231,7 +231,7 @@ public class MapManager : MonoSingleton<MapManager>
     /// <param name="protocol"></param>
     public void OnDoorOpen(BaseProtocol protocol)
     {
-        BytesProtocol p = (BytesProtocol)protocol;
+        BytesProtocol p = protocol as BytesProtocol;
         int startIndex = 0;
         p.GetString(startIndex, ref startIndex);
         int DoorID = p.GetInt(startIndex, ref startIndex);
