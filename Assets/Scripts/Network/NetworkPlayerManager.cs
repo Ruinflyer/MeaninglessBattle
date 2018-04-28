@@ -13,7 +13,7 @@ public class NetworkPlayerManager : MonoBehaviour
     void Start()
     {
 
-        NetworkManager.ServerConnection.msgDistribution.AddEventListener("GetRoomInfo", OnGetRoomInfo);
+        NetworkManager.ServerConnection.msgDistribution.AddEventListener("GetPlayersInfo", OnGetRoomInfo);
         NetworkManager.ServerConnection.msgDistribution.AddEventListener("UpdatePlayerInfo", UpdatePlayerInfo);
 
     }
