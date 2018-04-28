@@ -97,6 +97,17 @@ public class NetworkManager : MonoSingleton<NetworkManager>
     }
 
     /// <summary>
+    /// 发送玩家可以开玩
+    /// </summary>
+    public static void SendPlayerReady()
+    {
+        BytesProtocol ready = new BytesProtocol();
+        ready.SpliceString("PlayerReady");
+        ready.SpliceString(NetworkManager.PlayerName);
+        Send(ready);
+    }
+
+    /// <summary>
     /// 地图加载完毕时上报服务端统计
     /// </summary>
     public static void SendMapLoaded()
@@ -105,6 +116,8 @@ public class NetworkManager : MonoSingleton<NetworkManager>
         p.SpliceString("MapLoaded");
         ServerConnection.Send(p);
     }
+
+
 
     /// <summary>
     /// 发送 玩家有害状态

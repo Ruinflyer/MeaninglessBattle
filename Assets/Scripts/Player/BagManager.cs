@@ -6,7 +6,7 @@ using Meaningless;
 public class BagManager : Mono_DDOLSingleton<BagManager>
 {
     public int CurrentSelected = 1;
-    public Dictionary<EquippedItem, SingleItemInfo> Dict_Equipped;
+    public Dictionary<EquippedItem, SingleItemInfo> Dict_Equipped=new Dictionary<EquippedItem, SingleItemInfo>();
     public List<SingleItemInfo> List_PickUp = new List<SingleItemInfo>();
     public List<SingleItemInfo> List_Equip = new List<SingleItemInfo>();
     private int preSelected;
@@ -38,14 +38,14 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
 
 
 
-    private BasicAttributes armorAttributes;
+    private BasicAttributes armorAttributes=new BasicAttributes();
     private BasicAttributes[] List_WeaponAttributes = new BasicAttributes[2];
     public SkillAttributes[] skillAttributesList = new SkillAttributes[2];
 
     //默认角色属性值
-    private CharacterStatus defaultCharacterStatus;
+    private CharacterStatus defaultCharacterStatus=new CharacterStatus();
     //角色属性值
-    public CharacterStatus characterStatus;
+    public CharacterStatus characterStatus=new CharacterStatus();
 
     //开始补血的时间
     private float timeBeginheal;
@@ -64,11 +64,20 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
         player = CameraBase.Instance.player;
 
         Dict_Equipped = new Dictionary<EquippedItem, SingleItemInfo>();
-
+        SingleItemInfo NULLiteminfo = new SingleItemInfo();
+        NULLiteminfo.armorProperties = new ArmorProperties();
+        NULLiteminfo.weaponProperties = new WeaponProperties();
+        NULLiteminfo.magicProperties = new MagicProperties();
+        NULLiteminfo.expendableProperties = new ExpendableProperties();
+        NULLiteminfo.gemProperties = new GemProperties();
         for (EquippedItem i = EquippedItem.Head; i <= EquippedItem.Magic2; i++)
         {
-            Dict_Equipped.Add(i, null);
+            Dict_Equipped.Add(i, NULLiteminfo);
         }
+        skillAttributesList[0].skillInfo = new SingleItemInfo();
+        skillAttributesList[0].skillInfo.magicProperties = new MagicProperties();
+        skillAttributesList[1].skillInfo = new SingleItemInfo();
+        skillAttributesList[1].skillInfo.magicProperties = new MagicProperties();
         defaultCharacterStatus = MeaninglessJson.LoadJsonFromFile<CharacterStatus>(MeaninglessJson.Path_StreamingAssets + "CharacterStatus.json");
         characterStatus = defaultCharacterStatus;
         //MessageCenter.AddListener_Multparam(EMessageType.EquipItem, (object[] obj) => { EquipItem((EquippedItem)obj[0], (SingleItemInfo)obj[1]); });
@@ -130,6 +139,8 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
 
         if (Dict_Equipped[EquippedItem.Magic1] != null)
         {
+            
+
             if (skillAttributesList[0].isOn && skillAttributesList[0].isUse && skillAttributesList[0].remainCount > 0)
             {
                 skillAttributesList[0].isOn = false;
@@ -706,44 +717,49 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
             case 1:
 
                 //未装备Weapon1而使用Weapon1槽位攻击时，返回无武器属性
-                if (Dict_Equipped[EquippedItem.Weapon1] == null)
+                if(Dict_Equipped.ContainsKey(EquippedItem.Weapon1))
                 {
-                    GetNonWeaponCharacterStatus();
-                }
-                else
-                {
-                    characterStatus.weaponType = Dict_Equipped[EquippedItem.Weapon1].weaponProperties.weaponType;
-                    characterStatus.magicType = MagicType.NULL;
-
-                    characterStatus.Attack_Physics = Dict_Equipped[EquippedItem.Weapon1].weaponProperties.Damage +
-                        (Dict_Equipped[EquippedItem.Weapon1].weaponProperties.Damage * armorAttributes.rate_Attack_Physics) +
-                        (Dict_Equipped[EquippedItem.Weapon1].weaponProperties.Damage * List_WeaponAttributes[0].rate_Attack_Physics);
-
-                    characterStatus.Attack_Magic = defaultCharacterStatus.Attack_Magic + (defaultCharacterStatus.Attack_Magic * armorAttributes.rate_Attack_Magic) +
-                        (List_WeaponAttributes[0].rate_Attack_Magic * defaultCharacterStatus.Attack_Magic);
-
-                    characterStatus.DecreaseDurationTime_Magic = 1 - armorAttributes.rate_DurationTime_Magic - List_WeaponAttributes[0].rate_DurationTime_Magic;
-
-                    characterStatus.Defend_Magic = armorAttributes.rate_Defend_Magic + List_WeaponAttributes[0].rate_Defend_Magic;
-                    characterStatus.Defend_Physics = armorAttributes.rate_Defend_Physics + List_WeaponAttributes[0].rate_Defend_Physics;
-
-                    characterStatus.moveSpeed = defaultCharacterStatus.moveSpeed + (defaultCharacterStatus.moveSpeed * armorAttributes.rate_MoveSpeed) +
-                        (defaultCharacterStatus.moveSpeed * List_WeaponAttributes[0].rate_MoveSpeed);
-
-                    characterStatus.RecoveryValue = defaultCharacterStatus.RecoveryValue + (defaultCharacterStatus.RecoveryValue * armorAttributes.rate_Recovery) +
-                        (defaultCharacterStatus.RecoveryValue * List_WeaponAttributes[0].rate_Recovery);
-
-
-                    if (Dict_Equipped[(int)EquippedItem.Head] != null)
+                    if (Dict_Equipped[EquippedItem.Weapon1] == null)
                     {
-                        //头盔指定的武器和现在选择的武器一样，攻击+x%
-                        if (Dict_Equipped[EquippedItem.Weapon1].weaponProperties.weaponType == Dict_Equipped[(int)EquippedItem.Head].armorProperties.ForWeaponType)
-                        {
-                            characterStatus.Attack_Physics += (Dict_Equipped[EquippedItem.Weapon1].weaponProperties.Damage * Dict_Equipped[(int)EquippedItem.Head].armorProperties.Rate_Attack);
-                        }
+                        GetNonWeaponCharacterStatus();
                     }
+                    else
+                    {
 
+                        characterStatus.weaponType = Dict_Equipped[EquippedItem.Weapon1].weaponProperties.weaponType;
+                        characterStatus.magicType = MagicType.NULL;
+
+                        characterStatus.Attack_Physics = Dict_Equipped[EquippedItem.Weapon1].weaponProperties.Damage +
+                            (Dict_Equipped[EquippedItem.Weapon1].weaponProperties.Damage * armorAttributes.rate_Attack_Physics) +
+                            (Dict_Equipped[EquippedItem.Weapon1].weaponProperties.Damage * List_WeaponAttributes[0].rate_Attack_Physics);
+
+                        characterStatus.Attack_Magic = defaultCharacterStatus.Attack_Magic + (defaultCharacterStatus.Attack_Magic * armorAttributes.rate_Attack_Magic) +
+                            (List_WeaponAttributes[0].rate_Attack_Magic * defaultCharacterStatus.Attack_Magic);
+
+                        characterStatus.DecreaseDurationTime_Magic = 1 - armorAttributes.rate_DurationTime_Magic - List_WeaponAttributes[0].rate_DurationTime_Magic;
+
+                        characterStatus.Defend_Magic = armorAttributes.rate_Defend_Magic + List_WeaponAttributes[0].rate_Defend_Magic;
+                        characterStatus.Defend_Physics = armorAttributes.rate_Defend_Physics + List_WeaponAttributes[0].rate_Defend_Physics;
+
+                        characterStatus.moveSpeed = defaultCharacterStatus.moveSpeed + (defaultCharacterStatus.moveSpeed * armorAttributes.rate_MoveSpeed) +
+                            (defaultCharacterStatus.moveSpeed * List_WeaponAttributes[0].rate_MoveSpeed);
+
+                        characterStatus.RecoveryValue = defaultCharacterStatus.RecoveryValue + (defaultCharacterStatus.RecoveryValue * armorAttributes.rate_Recovery) +
+                            (defaultCharacterStatus.RecoveryValue * List_WeaponAttributes[0].rate_Recovery);
+
+
+                        if (Dict_Equipped[(int)EquippedItem.Head] != null)
+                        {
+                            //头盔指定的武器和现在选择的武器一样，攻击+x%
+                            if (Dict_Equipped[EquippedItem.Weapon1].weaponProperties.weaponType == Dict_Equipped[(int)EquippedItem.Head].armorProperties.ForWeaponType)
+                            {
+                                characterStatus.Attack_Physics += (Dict_Equipped[EquippedItem.Weapon1].weaponProperties.Damage * Dict_Equipped[(int)EquippedItem.Head].armorProperties.Rate_Attack);
+                            }
+                        }
+
+                    }
                 }
+               
                 break;
             case 2:
                 //未装备Weapon2而使用Weapon2槽位攻击时，返回无武器属性
@@ -848,6 +864,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
     /// <returns>无武器状态的角色数据</returns>
     public CharacterStatus GetNonWeaponCharacterStatus()
     {
+
         characterStatus.weaponType = WeaponType.NULL;
 
         characterStatus.Attack_Physics = defaultCharacterStatus.Attack_Physics + (defaultCharacterStatus.Attack_Physics * armorAttributes.rate_Attack_Physics);

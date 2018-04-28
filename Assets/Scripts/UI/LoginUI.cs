@@ -78,7 +78,7 @@ public class LoginUI : BaseUI
     private void OnConnectCallback(BaseProtocol protocol)
     {
         
-        BytesProtocol p = (BytesProtocol)protocol;
+        BytesProtocol p = protocol as BytesProtocol;
         int startIndex = 0;
         string MethodName = p.GetString(startIndex, ref startIndex);
         int returnCode = p.GetInt(startIndex, ref startIndex);

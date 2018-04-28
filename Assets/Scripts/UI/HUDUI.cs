@@ -74,18 +74,33 @@ public class HUDUI : BaseUI
         Slider_HP.value = (float)HP/100;
     }
 
-    private void SetBarIcon(Dictionary<EquippedItem,SingleItemInfo> EquippedList)
+    private void SetBarIcon(Dictionary<EquippedItem, SingleItemInfo> EquippedList)
     {
-        if (EquippedList[EquippedItem.Weapon1] != null)
-            Img_Weapon1.sprite=ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Weapon1].ResName);
-        if (EquippedList[EquippedItem.Weapon2] != null)
-            Img_Weapon2.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Weapon2].ResName);
-        if (EquippedList[EquippedItem.Magic1] != null)
-            Img_Skill1.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Magic1].ResName);
-        if (EquippedList[EquippedItem.Magic2] != null)
-            Img_Skill2.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Magic2].ResName);
-        if (EquippedList[EquippedItem.Shield] != null)
-            Img_Shield.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Shield].ResName);
+        if (EquippedList.ContainsKey(EquippedItem.Weapon1))
+        {
+            if (EquippedList[EquippedItem.Weapon1] != null && EquippedList[EquippedItem.Weapon1].ResName!=null)
+                Img_Weapon1.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Weapon1].ResName);
+        }
+        if (EquippedList.ContainsKey(EquippedItem.Weapon2) )
+        {
+            if (EquippedList[EquippedItem.Weapon2] != null && EquippedList[EquippedItem.Weapon2].ResName != null)
+                Img_Weapon2.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Weapon2].ResName);
+        }
+        if (EquippedList.ContainsKey(EquippedItem.Magic1) )
+        {
+            if (EquippedList[EquippedItem.Magic1] != null && EquippedList[EquippedItem.Magic1].ResName != null)
+                Img_Skill1.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Magic1].ResName);
+        }
+        if (EquippedList.ContainsKey(EquippedItem.Magic2))
+        {
+            if (EquippedList[EquippedItem.Magic2] != null && EquippedList[EquippedItem.Magic2].ResName != null)
+                Img_Skill2.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Magic2].ResName);
+        }
+        if (EquippedList.ContainsKey(EquippedItem.Shield) && EquippedList[EquippedItem.Shield].ResName != null)
+        {
+            if (EquippedList[EquippedItem.Shield] != null)
+                Img_Shield.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Shield].ResName);
+        }
 
     }
     
