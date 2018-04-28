@@ -43,6 +43,7 @@ public class MapManager : MonoSingleton<MapManager>
         NetworkManager.AddEventListener("Circlefield", OnCirclefieldBack);
         NetworkManager.AddEventListener("DoorOpen", OnDoorOpen);
         NetworkManager.AddEventListener("AllPlayerLoaded", OnAllPlayerLoaded);
+
         
         //门加入字典
         for (int i=0;i<itemSpawnPoint.DoorSpawnPoints.Length;i++)
@@ -67,7 +68,7 @@ public class MapManager : MonoSingleton<MapManager>
     {
         BytesProtocol p = new BytesProtocol();
         p.SpliceString("GetMapItemData");
-        NetworkManager.ServerConnection.Send(p);
+        NetworkManager.Send(p);
     }
     /* DeadCode
     private void OnGetMapDataBack(BaseProtocol protocol)
@@ -102,7 +103,7 @@ public class MapManager : MonoSingleton<MapManager>
 
         object[] param = new object[2];
         param[0] = "正在接收道具数据...";
-        param[1] = 2;
+        param[1] = 0;
         MessageCenter.Send_Multparam(EMessageType.LoadingUI, param);
 
         if(Seed!=0)
@@ -110,7 +111,7 @@ public class MapManager : MonoSingleton<MapManager>
             //220个物品生成点的随机数
             RandomList = InitTotalProbabilityValue(ProbabilityValue);
             param[0] = "道具数据接收完毕";
-            param[1] = 2;
+            param[1] = 0;
             MessageCenter.Send_Multparam(EMessageType.LoadingUI, param);
 
             GenerateItem();
@@ -131,7 +132,7 @@ public class MapManager : MonoSingleton<MapManager>
         //LoadingUI提示：
         object[] param = new object[2];
         param[0] = "正在生成地图物品...";
-        param[1] = 2;
+        param[1] =0;
         MessageCenter.Send_Multparam(EMessageType.LoadingUI, param);
 
 
@@ -143,7 +144,7 @@ public class MapManager : MonoSingleton<MapManager>
         for (int j = 0; j < itemSpawnPoint.ItemSpawnPoints.Length; j++)
         {
             tmp_ID = ItemsID[CalcIndex(j, ProbabilityValue)];
-            //Debug.LogError("ID: "+tmp_ID+" ResName: "+"ResName: "+ItemInfoManager.Instance.GetResname(tmp_ID) +" ItemName: "+ ItemInfoManager.Instance.GetItemName(tmp_ID));
+            //Debug.LogError("Index: "+j +" ID: "+tmp_ID+" ResName: "+"ResName: "+ItemInfoManager.Instance.GetResname(tmp_ID) +" ItemName: "+ ItemInfoManager.Instance.GetItemName(tmp_ID));
             tmp =Instantiate(ResourcesManager.Instance.GetItem(ItemInfoManager.Instance.GetResname(tmp_ID)),
                 new Vector3(itemSpawnPoint.ItemSpawnPoints[j].position.x, 0, itemSpawnPoint.ItemSpawnPoints[j].position.z), Quaternion.identity);
             tmp_groundItem = tmp.AddComponent<GroundItem>();
@@ -156,7 +157,7 @@ public class MapManager : MonoSingleton<MapManager>
         param[0] = "地图物品生成完毕";
         param[1] = 2;
         MessageCenter.Send_Multparam(EMessageType.LoadingUI, param);
-        isLoaded = true;
+        NetworkManager.SendPlayerReady();
 
 
         yield return true;
@@ -247,8 +248,17 @@ public class MapManager : MonoSingleton<MapManager>
     /// <param name="protocol"></param>
     public void OnAllPlayerLoaded(BaseProtocol protocol)
     {
+        BytesProtocol p = protocol as BytesProtocol;
+        int startIndex = 0;
+        p.GetString(startIndex, ref startIndex);
+        UIManager.Instance.HideTheUI(UIid.LoginUI, delegate { });
+        UIManager.Instance.HideTheUI(UIid.MainUI, delegate { });
+        UIManager.Instance.HideTheUI(UIid.RoomUI, delegate { });
+        UIManager.Instance.HideTheUI(UIid.LoadingUI, delegate { });
+        UIManager.Instance.ShowUI(UIid.HUDUI);
 
     }
+
 }
 
 

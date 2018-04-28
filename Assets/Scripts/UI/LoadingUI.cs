@@ -94,25 +94,6 @@ public class LoadingUI : BaseUI, IPointerDownHandler
         //请求地图数据
         mapManager.RequestItemData();
 
-
-        //创建组件完毕 发送PlayerReady协议
-        if(mapManager.isLoaded)
-        {
-            
-            BytesProtocol ready = new BytesProtocol();
-            ready.SpliceString("PlayerReady");
-            ready.SpliceString(NetworkManager.PlayerName);
-            NetworkManager.ServerConnection.Send(ready);
-            text.text = "资源加载完毕，即将进入游戏";
-            sequence = 2;
-        }
-        
-
-        
-
-        
-        
-
     }
 
     public void OnPointerDown(PointerEventData eventData)

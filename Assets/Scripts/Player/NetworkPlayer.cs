@@ -54,9 +54,13 @@ public class NetworkPlayer : MonoBehaviour {
         LastUpdateTime = CurUpdateTime;
     }
 
+<<<<<<< HEAD
     /// <summary>
     /// 设置玩家状态信息,生命值,头盔物品ID,当前动画名称等
     /// </summary>
+=======
+
+>>>>>>> 6f47cbe27dec7f2371ed3ce6561216c863c37b7b
     public void SetPlayerInfo(float HP,int HeadItemID,int BodyItemID,int WeaponID,int Layer,string CurrentAction)
     {
         hp = HP;
@@ -64,9 +68,14 @@ public class NetworkPlayer : MonoBehaviour {
         bodyItemID = BodyItemID;
         weaponID = WeaponID;
         currentAction = CurrentAction;
+<<<<<<< HEAD
 
         animationManager.NetPlayClip(Layer, CurrentAction);
 
+=======
+        curActionLayer = Layer;
+        animationManager.NetPlayClip(Layer, CurrentAction);
+>>>>>>> 6f47cbe27dec7f2371ed3ce6561216c863c37b7b
     }
 
     /// <summary>

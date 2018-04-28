@@ -47,10 +47,16 @@ public class MagicBehaviour : MonoBehaviour {
         {
             if (player.CheckCanAttack(gameObject, enemy.Value.gameObject, distance, angle))
             {
+<<<<<<< HEAD
          
                 NetworkManager.SendPlayerHitSomeone(enemy.Value.name, player.characterStatus.Attack_Magic * (1 - enemy.Value.status.Defend_Magic / 100));
 
 
+=======
+                NetworkManager.SendPlayerHitSomeone(enemy.name, player.characterStatus.Attack_Magic * (1 - enemy.status.Defend_Magic / 100));
+                //单机测试
+                //enemy.playerFSM.characterStatus.HP -= player.characterStatus.Attack_Magic* (1 - enemy.playerFSM.characterStatus.Defend_Magic / 100);
+>>>>>>> 6f47cbe27dec7f2371ed3ce6561216c863c37b7b
             }
         }
     }
@@ -61,8 +67,14 @@ public class MagicBehaviour : MonoBehaviour {
         {
             if (player.CheckCanAttack(gameObject, enemy.Value.gameObject, distance, angle))
             {
+<<<<<<< HEAD
                 //本地效果
                 enemy.Value.playerController.GetDeBuffInTime(BuffType.Freeze, buffTime);
+=======
+
+                //单机测试
+                enemy.playerController.GetDeBuffInTime(BuffType.Freeze, buffTime);
+>>>>>>> 6f47cbe27dec7f2371ed3ce6561216c863c37b7b
             }
         }
     }
