@@ -48,6 +48,10 @@ public class NetworkManager : MonoSingleton<NetworkManager>
     {
         ServerConnection.Send(protocol);
     }
+    public static void Send(BaseProtocol protocol, DelegateEvent delegateEvent)
+    {
+        ServerConnection.Send(protocol,delegateEvent);
+    }
     /// <summary>
     /// 添加网络事件监听
     /// </summary>
@@ -101,5 +105,19 @@ public class NetworkManager : MonoSingleton<NetworkManager>
         p.SpliceString("MapLoaded");
         ServerConnection.Send(p);
     }
+
+    /// <summary>
+    /// 发送 玩家有害状态
+    /// </summary>
+    public static void SendPlayerGetBuff(string playerName,BuffType buffType,float buffTime)
+    {
+        BytesProtocol p = new BytesProtocol();
+        p.SpliceString("PlayerGetBuff");
+        p.SpliceString(playerName);
+        p.SpliceInt((int)buffType);
+        p.SpliceFloat(buffTime);
+        Send(p);
+    }
+
 
 }
