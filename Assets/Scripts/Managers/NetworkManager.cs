@@ -139,13 +139,13 @@ public class NetworkManager : MonoSingleton<NetworkManager>
         
         BytesProtocol protocol = new BytesProtocol();
         protocol.SpliceString("UpdatePlayerInfo");
-        protocol.SpliceString(PlayerName);
+        protocol.SpliceFloat(HP);
         protocol.SpliceFloat(pos.x);
         protocol.SpliceFloat(pos.y);
         protocol.SpliceFloat(pos.z);
-        protocol.SpliceFloat(rot.x);
-        protocol.SpliceFloat(rot.y);
-        protocol.SpliceFloat(rot.z);
+        //protocol.SpliceFloat(rot.x);
+        //protocol.SpliceFloat(rot.y);
+        //protocol.SpliceFloat(rot.z);
         protocol.SpliceInt(HeadItem);
         protocol.SpliceInt(BodyItem);
         protocol.SpliceInt(WeaponID);
