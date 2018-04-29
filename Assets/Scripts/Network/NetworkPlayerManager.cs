@@ -12,7 +12,6 @@ public class NetworkPlayerManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         NetworkManager.AddEventListener("GetPlayersInfo", OnGetPlayersInfo);
         NetworkManager.AddEventListener("UpdatePlayerInfo", UpdatePlayerInfo);
     }
@@ -70,7 +69,7 @@ public class NetworkPlayerManager : MonoBehaviour
         int startIndex = 0;
         p.GetString(startIndex, ref startIndex);
         int Playernum = p.GetInt(startIndex, ref startIndex);
-        UnityEngine.Object playerprefab = Resources.Load("PlayerPrefab");
+        UnityEngine.Object playerprefab = Resources.Load("NetPlayerPrefab");
         GameObject tmp_player = null;
         for (int i = 0; i < Playernum; i++)
         {

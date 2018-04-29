@@ -29,9 +29,9 @@ public class BagUI : BaseUI
     private Image Shield;
 
     [SerializeField]
-    private List<GameObject> BagItem;
+    private List<GameObject> BagItem=new List<GameObject>();
     [SerializeField]
-    private List<GameObject> EquipItem;
+    private List<GameObject> EquipItem=new List<GameObject>();
 
     protected override void InitUiOnAwake()
     {
@@ -134,7 +134,7 @@ public class BagUI : BaseUI
     {
         BagListitem bagListitem = null;
 
-        {
+        
             for (int i = 0; i < PickUpList.Count; i++)
             {
                 list[i].SetActive(true);
@@ -144,7 +144,7 @@ public class BagUI : BaseUI
                 bagListitem.Index = i;
                 bagListitem.img.color = Color.white;
             }
-        }
+        
     }
 
 

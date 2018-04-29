@@ -96,9 +96,9 @@ public class HUDUI : BaseUI
             if (EquippedList[EquippedItem.Magic2] != null && EquippedList[EquippedItem.Magic2].ResName != null)
                 Img_Skill2.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Magic2].ResName);
         }
-        if (EquippedList.ContainsKey(EquippedItem.Shield) && EquippedList[EquippedItem.Shield].ResName != null)
+        if (EquippedList.ContainsKey(EquippedItem.Shield) )
         {
-            if (EquippedList[EquippedItem.Shield] != null)
+            if (EquippedList[EquippedItem.Shield] != null && EquippedList[EquippedItem.Shield].ResName != null)
                 Img_Shield.sprite = ResourcesManager.Instance.GetUITexture(EquippedList[EquippedItem.Shield].ResName);
         }
 

@@ -30,6 +30,7 @@ public class PlayerFSM :BaseFSM
         CurrentState.Reason(this);
         CurrentState.Act(this);
         
+        NetworkManager.SendUpdatePlayerInfo(characterStatus.HP,transform.position, transform.rotation.eulerAngles,0,0,0, animationManager.LayerCur, animationManager.animCur);
     }
 
     protected override void FSMUpdate()

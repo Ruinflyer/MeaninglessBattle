@@ -916,7 +916,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1887132482691962}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -54.68, y: 58.31, z: -54.58}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4752028758809324}
@@ -1106,7 +1106,6 @@ MonoBehaviour:
     Defend_Physics: 0
     Defend_Magic: 0
     DecreaseDurationTime_Magic: 0
-  List_Enemy: []
   LHand: {fileID: 0}
   RHand: {fileID: 0}
   Head: {fileID: 0}
