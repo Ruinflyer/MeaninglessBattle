@@ -140,7 +140,7 @@ namespace MeaninglessNetwork
                 return 0;
             }
             end = startIndex + sizeof(float);
-            return BitConverter.ToInt32(bytes, startIndex);
+            return BitConverter.ToSingle(bytes, startIndex);
         }
         public float GetFloat(int startIndex)
         {

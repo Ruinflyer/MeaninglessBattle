@@ -36,6 +36,7 @@ public class MapManager : MonoSingleton<MapManager>
     // Use this for initialization
     void Start()
     {
+        Circlefield = GameObject.Find("CircleField");
         itemSpawnPoint = GetComponent<ItemSpawnPoint>();
         //LoadCirclefieldInfo();
         //初始化网络事件
@@ -221,8 +222,8 @@ public class MapManager : MonoSingleton<MapManager>
         float Y = p.GetFloat(startIndex, ref startIndex);
         float shrinkPercent = p.GetFloat(startIndex, ref startIndex);
         int Movetime = p.GetInt(startIndex, ref startIndex);
-
-        iTween.ScaleTo(Circlefield, iTween.Hash("x", Circlefield.transform.localScale.x * shrinkPercent, "z", Circlefield.transform.localScale.z * shrinkPercent, "time", Movetime));
+        
+        iTween.ScaleTo(Circlefield, iTween.Hash("x", Circlefield.transform.localScale.x*shrinkPercent, "z", Circlefield.transform.localScale.z*shrinkPercent, "time", Movetime));
         iTween.MoveTo(Circlefield, iTween.Hash("position", new Vector3(X, 0, Y), "time", Movetime));
     }
 
@@ -257,6 +258,7 @@ public class MapManager : MonoSingleton<MapManager>
         UIManager.Instance.HideTheUI(UIid.LoadingUI, delegate { });
         UIManager.Instance.ShowUI(UIid.HUDUI);
 
+        NetworkManager.SendGetPlayersInfo();
     }
 
 }

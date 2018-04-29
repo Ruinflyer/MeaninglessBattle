@@ -70,6 +70,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
         NULLiteminfo.magicProperties = new MagicProperties();
         NULLiteminfo.expendableProperties = new ExpendableProperties();
         NULLiteminfo.gemProperties = new GemProperties();
+
         for (EquippedItem i = EquippedItem.Head; i <= EquippedItem.Magic2; i++)
         {
             Dict_Equipped.Add(i, NULLiteminfo);
