@@ -13,7 +13,6 @@ public class JumpState : FSMState
     public override void Act(BaseFSM FSM)
     {
         FSM.PlayAnimation("Jump");
-        FSM.controller.Move(FSM.characterStatus.moveSpeed);
         FSM.controller.Jump(FSM.characterStatus.jumpSpeed);
     }
 

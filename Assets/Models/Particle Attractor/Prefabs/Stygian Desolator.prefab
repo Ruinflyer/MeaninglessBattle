@@ -37,6 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4083538909224012}
   - component: {fileID: 114900555631261052}
+  - component: {fileID: 114218856370490324}
   m_Layer: 0
   m_Name: Stygian Desolator
   m_TagString: Untagged
@@ -133,6 +134,19 @@ Transform:
   m_Father: {fileID: 4083538909224012}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114218856370490324
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1500179845184416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 447b0ef8daf21384aa07cbd6ad822189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magicType: 3
+  player: {fileID: 0}
 --- !u!114 &114900555631261052
 MonoBehaviour:
   m_ObjectHideFlags: 1

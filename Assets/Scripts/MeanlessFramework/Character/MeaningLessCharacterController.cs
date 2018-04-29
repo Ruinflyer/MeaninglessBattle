@@ -85,11 +85,11 @@ namespace Meaningless
             }
         }
 
-        public abstract void Move(float walkSpeed);
+        public abstract void Move(float walkSpeed, float jumpSpeed);
         public abstract void FallingCtrl(float Speed);
         public abstract void Jump(float jumpSpeed);
         public abstract bool CheckCanAttack(GameObject center, GameObject enemy, float distance, float angle);
-        public abstract void GetDeBuffInTime(BuffType debuff, float time);
+        public abstract void GetDeBuffInTime(BuffType debuff, float time,CharacterStatus status);
 
         public virtual void ChangeWeapon(int currentSelected) { }
         public virtual void FindTranform(Body type ) { }

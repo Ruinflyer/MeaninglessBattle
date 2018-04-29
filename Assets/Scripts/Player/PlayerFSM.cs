@@ -35,26 +35,12 @@ public class PlayerFSM :BaseFSM
     protected override void FSMUpdate()
     {
         characterStatus = controller.characterStatus;
-
-        if(Input.GetKeyDown(KeyCode.H))
-        {
-            controller.GetDeBuffInTime(BuffType.Freeze,5);
-        }
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            controller.GetDeBuffInTime(BuffType.Blind, 5);
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            controller.GetDeBuffInTime(BuffType.SlowDown, 5);
-        }
     }
 
     private void ConstructFSM()
     {
         IdleState idle = new IdleState();
         idle.AddTransition(FSMTransitionType.CanBeMove, FSMStateType.Move);
-        idle.AddTransition(FSMTransitionType.CanBeJump, FSMStateType.Jump);
         idle.AddTransition(FSMTransitionType.AttackWithSingleWield, FSMStateType.SingleWieldAttack);
         idle.AddTransition(FSMTransitionType.AttackWithDoubleHands, FSMStateType.DoubleHandsAttack);
         idle.AddTransition(FSMTransitionType.UsingRipple, FSMStateType.RippleAttack);
@@ -67,17 +53,16 @@ public class PlayerFSM :BaseFSM
         idle.AddTransition(FSMTransitionType.AttackWithSpear, FSMStateType.SpearAttack);
         idle.AddTransition(FSMTransitionType.CanDefend, FSMStateType.Defend);
         idle.AddTransition(FSMTransitionType.Falling, FSMStateType.Fall);
+        idle.AddTransition(FSMTransitionType.CanRoll, FSMStateType.Roll);
 
         MoveState move = new MoveState();
         move.AddTransition(FSMTransitionType.IsIdle, FSMStateType.Idle);
-        move.AddTransition(FSMTransitionType.CanBeJump, FSMStateType.Jump);
         move.AddTransition(FSMTransitionType.AttackWithSingleWield, FSMStateType.SingleWieldAttack);
         move.AddTransition(FSMTransitionType.AttackWithDoubleHands, FSMStateType.DoubleHandsAttack);
         move.AddTransition(FSMTransitionType.AttackWithSpear, FSMStateType.SpearAttack);
+        move.AddTransition(FSMTransitionType.CanRoll, FSMStateType.Roll);
 
-        JumpState jump = new JumpState();
-        jump.AddTransition(FSMTransitionType.IsIdle, FSMStateType.Idle);
-        jump.AddTransition(FSMTransitionType.CanBeMove, FSMStateType.Move);
+       
 
         DefendState defend = new DefendState();
         defend.AddTransition(FSMTransitionType.IsIdle, FSMStateType.Idle);
@@ -120,10 +105,12 @@ public class PlayerFSM :BaseFSM
         FallState fall = new FallState();
         fall.AddTransition(FSMTransitionType.IsIdle, FSMStateType.Idle);
 
+        RollState roll = new RollState();
+        roll.AddTransition(FSMTransitionType.IsIdle, FSMStateType.Idle);
+
 
         AddFSMState(idle);
         AddFSMState(move);
-        AddFSMState(jump);
         AddFSMState(defend);
         AddFSMState(singleWieldAttack);
         AddFSMState(dualWieldAttack);
@@ -136,6 +123,7 @@ public class PlayerFSM :BaseFSM
         AddFSMState(pickUp);
         AddFSMState(spearAttack);
         AddFSMState(fall);
+        AddFSMState(roll);
     }
 
 

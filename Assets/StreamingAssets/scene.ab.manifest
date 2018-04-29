@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1782122547
+CRC: 2409103333
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c125bbd9863edd7f3daab0c82e7c46aa
+    Hash: 6e6a9b3a7d468dffabaace3df77737d9
   TypeTreeHash:
     serializedVersion: 2
     Hash: 31d6cfe0d16ae931b73c59d7e0c089c0
@@ -12,4 +12,4 @@ ClassTypes: []
 Assets:
 - Assets/Scene/Map1.unity
 Dependencies:
-- C:/Users/ruinf/Documents/GitHub/MeaninglessBattle/AssetBundles/StandaloneWindows/map.ab
+- "D:/\u65E0\u754F\u4E4B\u4E89_\u8D44\u6599/github\u4EE3\u7801/MeaninglessBattle/AssetBundles/StandaloneWindows/map.ab"

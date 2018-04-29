@@ -26,8 +26,9 @@ public class IdleState : FSMState
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.CanBeMove,
             FSM,
-            (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.5 || Mathf.Abs(Input.GetAxis("Vertical")) > 0.5) && FSM.controller.CC.isGrounded
+            (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.5 || Mathf.Abs(Input.GetAxis("Vertical")) > 0.5)||Input.GetButton("Jump")||Input.GetButton("Roll")
             );
+
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.CanDefend,
             FSM,
@@ -83,6 +84,8 @@ public class IdleState : FSMState
             FSM,
             FSM.transform.position.y > 20
             );
+
+
 
         if (Input.GetButtonUp("PickUp") && isFound)
         {

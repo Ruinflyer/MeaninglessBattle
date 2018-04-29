@@ -13,9 +13,18 @@ public class MoveState : FSMState
 
     public override void Act(BaseFSM FSM)
     {
-        FSM.PlayAnimation("Run");
-        FSM.controller.Move(FSM.characterStatus.moveSpeed);
-        
+        if (Input.GetButtonDown("Jump"))
+        {
+            FSM.animationManager.anim.SetBool("Jump",true);
+        }
+        else if (Input.GetButton("Roll"))
+        {
+            FSM.animationManager.anim.SetBool("Roll",true);
+        }
+        else
+            FSM.PlayAnimation("Run");
+        FSM.controller.Move(FSM.characterStatus.moveSpeed, FSM.characterStatus.jumpSpeed);
+
     }
 
     public override void Reason(BaseFSM FSM)
@@ -26,11 +35,6 @@ public class MoveState : FSMState
         Mathf.Abs(Input.GetAxis("Horizontal")) <= 0.5 && Mathf.Abs(Input.GetAxis("Vertical")) <= 0.5 && FSM.controller.CC.isGrounded
         );
 
-        CharacterMessageDispatcher.Instance.DispatchMesssage
-        (FSMTransitionType.CanBeJump,
-        FSM,
-       Input.GetButton("Jump")
-        );
 
         CharacterMessageDispatcher.Instance.DispatchMesssage
         (FSMTransitionType.AttackWithSingleWield,
@@ -49,6 +53,7 @@ public class MoveState : FSMState
         FSM,
         Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.Spear
         );
+
 
     }
 }

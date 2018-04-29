@@ -174,7 +174,7 @@ public class PlayerController : MeaninglessCharacterController
         CC.Move(moveDirection * Time.fixedDeltaTime);
     }
 
-    public override void Move(float walkSpeed)
+    public override void Move(float walkSpeed, float jumpSpeed)
     {
         Vector3 moveDirection = Vector3.zero;
         if (CC.isGrounded)
@@ -182,6 +182,8 @@ public class PlayerController : MeaninglessCharacterController
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             moveDirection = transform.TransformDirection(moveDirection);
             moveDirection *= walkSpeed;
+            if (Input.GetButtonDown("Jump"))
+                moveDirection.y = jumpSpeed;
         }
         CC.Move(moveDirection * Time.fixedDeltaTime);
     }
@@ -313,10 +315,11 @@ public class PlayerController : MeaninglessCharacterController
     /// <returns></returns>
     public override bool CheckCanAttack(GameObject center, GameObject enemy, float distance, float angle)
     {
+        float dis = (enemy.transform.position - center.transform.position).magnitude;
         Vector3 relativeVector = enemy.transform.position - center.transform.position;
-        float dot = Vector3.Dot(center.transform.forward, relativeVector);
+        float ang = Vector3.Angle(relativeVector, center.transform.forward);
 
-        if (dot > Mathf.Cos(angle) * distance)
+        if (dis < distance && ang < angle)
         {
             if (!List_CanAttack.Contains(enemy.GetComponent<NetworkPlayer>()))
                 List_CanAttack.Add(enemy.GetComponent<NetworkPlayer>());
@@ -330,7 +333,7 @@ public class PlayerController : MeaninglessCharacterController
         }
     }
 
-    private void GetBuff(BuffType buff)
+    private void GetBuff(BuffType buff,CharacterStatus status)
     {;
         Material buffMat = Resources.Load("Debuff/" + buff.ToString()) as Material;
         switch (buff)
@@ -338,12 +341,12 @@ public class PlayerController : MeaninglessCharacterController
             case BuffType.SlowDown:
                 if (buffMat != null)
                     GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().material = buffMat;
-                characterStatus.moveSpeed *= 0.7f;
+                status.moveSpeed *= 0.7f;
                 break;
             case BuffType.Freeze:
                 if (buffMat != null)
                     GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().material = buffMat;
-                characterStatus.moveSpeed *=0.001f;
+                status.moveSpeed *=0.001f;
                 break;
             case BuffType.Blind:
                 Camera.main.GetComponent<BlindEffect>().enabled = true;
@@ -352,13 +355,13 @@ public class PlayerController : MeaninglessCharacterController
         
     }
 
-    private void Losebuff(BuffType buff)
+    private void Losebuff(BuffType buff, CharacterStatus status)
     {
         Material noBuffMat = Resources.Load("Debuff/NoBuff") as Material;
         switch (buff)
         {
             case BuffType.SlowDown:
-                characterStatus.moveSpeed /= 0.7f;
+                status.moveSpeed /= 0.7f;
                 if (BagManager.Instance.Dict_Equipped[EquippedItem.Body] == null)
                     UnEquip(EquippedItem.Body);
                 else
@@ -369,7 +372,7 @@ public class PlayerController : MeaninglessCharacterController
                     UnEquip(EquippedItem.Body);
                 else
                     EquipClothes(BagManager.Instance.Dict_Equipped[EquippedItem.Body].ItemID);
-                characterStatus.moveSpeed /= 0.001f;
+                status.moveSpeed /= 0.001f;
                 break;
             case BuffType.Blind:
                 Camera.main.GetComponent<BlindEffect>().enabled = false;
@@ -378,9 +381,9 @@ public class PlayerController : MeaninglessCharacterController
         
     }
 
-    public override void GetDeBuffInTime(BuffType debuff, float time)
+    public override void GetDeBuffInTime(BuffType debuff, float time,CharacterStatus status)
     {
-        Buff buff = new Buff(debuff, time, GetBuff, Losebuff);
+        Buff buff = new Buff(debuff, time,status ,GetBuff, Losebuff);
         buffList.Add(buff);
         foreach (Buff Buff in buffList)
         {

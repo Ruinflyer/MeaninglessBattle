@@ -54,6 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4281295968374980}
   - component: {fileID: 114943857260437372}
+  - component: {fileID: 114918188594299132}
   m_Layer: 0
   m_Name: Heart Attack
   m_TagString: Untagged
@@ -102,6 +103,19 @@ Transform:
   m_Father: {fileID: 4247865847746940}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &114918188594299132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1889567401141772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 447b0ef8daf21384aa07cbd6ad822189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magicType: 2
+  player: {fileID: 0}
 --- !u!114 &114943857260437372
 MonoBehaviour:
   m_ObjectHideFlags: 1

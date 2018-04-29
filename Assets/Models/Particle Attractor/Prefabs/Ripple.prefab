@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4937564577570682}
   - component: {fileID: 114986171838690278}
+  - component: {fileID: 114168625502594744}
   m_Layer: 0
   m_Name: Ripple
   m_TagString: Untagged
@@ -102,6 +103,19 @@ Transform:
   m_Father: {fileID: 4937564577570682}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &114168625502594744
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1573591142728172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 447b0ef8daf21384aa07cbd6ad822189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magicType: 1
+  player: {fileID: 0}
 --- !u!114 &114986171838690278
 MonoBehaviour:
   m_ObjectHideFlags: 1
