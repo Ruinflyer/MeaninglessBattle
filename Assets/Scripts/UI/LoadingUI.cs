@@ -6,7 +6,7 @@ using System.Collections;
 using Meaningless;
 using MeaninglessNetwork;
 using UnityEngine.SceneManagement;
-
+using System.Collections.Generic;
 
 public class LoadingUI : BaseUI, IPointerDownHandler
 {
@@ -64,6 +64,7 @@ public class LoadingUI : BaseUI, IPointerDownHandler
         yield return ResourcesManager.Instance.LoadItems();
         //yield return ResourcesManager.Instance.LoadMapTiles();
         ResourcesManager.Instance.LoadUITextures();
+       
         ResourcesManager.Instance.LoadSceneAndGetSceneName();
 
         //网络管理器
@@ -76,6 +77,8 @@ public class LoadingUI : BaseUI, IPointerDownHandler
             sequence = 1;
             text.text = "资源加载完毕，点击进入游戏";
         }
+
+        
 
     }
 
@@ -93,8 +96,9 @@ public class LoadingUI : BaseUI, IPointerDownHandler
 
         //请求地图数据
         mapManager.RequestItemData();
-
     }
+
+
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -116,4 +120,5 @@ public class LoadingUI : BaseUI, IPointerDownHandler
 
 
     }
+
 }

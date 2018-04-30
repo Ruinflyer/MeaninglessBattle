@@ -6,7 +6,6 @@ using Meaningless;
 public class PlayerController : MeaninglessCharacterController
 {
 
-    private Dictionary<EquippedItem, SingleItemInfo> EquippedDict = new Dictionary<EquippedItem, SingleItemInfo>();
 
     private Dictionary<Transform, int> Dict_PickUp_Tran = new Dictionary<Transform, int>();
 
@@ -202,49 +201,23 @@ public class PlayerController : MeaninglessCharacterController
         switch (currentSelected)
         {
             case 1:
-                if (EquippedDict[EquippedItem.Weapon1] != null)
+                if (BagManager.Instance.Weapon1!= null)
                 {
-                    if (EquippedDict[EquippedItem.Shield] != null && EquippedDict[EquippedItem.Weapon1].weaponProperties.weaponType != WeaponType.DoubleHands)
-                    {
-                        BagManager.Instance.EquipItem(EquippedItem.Shield, ItemInfoManager.Instance.GetItemInfo(EquippedDict[EquippedItem.Shield].ItemID));
-                        EquipShield(EquippedDict[EquippedItem.Shield].ItemID);
-                    }
-                    else if (EquippedDict[EquippedItem.Weapon1].weaponProperties.weaponType == WeaponType.DoubleHands)
-                    {
-                        BagManager.Instance.UnequipItem(EquippedItem.Shield);
-                        UnEquip(EquippedItem.Shield);
-                    }
-
-                    if (EquippedDict[EquippedItem.Weapon2] != null)
-                    {
-                        //BagManager.Instance.UnequipItem(EquippedItem.Weapon2);
+                    if (BagManager.Instance.Weapon2 != null)
+                    {           
                         UnEquip(EquippedItem.Weapon2);
                     }
-
-                    //BagManager.Instance.EquipItem(EquippedItem.Weapon1, ItemInfoManager.Instance.GetItemInfo(EquippedDict[EquippedItem.Weapon1].ItemID));
-                    EquipWeapon(EquippedDict[EquippedItem.Weapon1].ItemID);
+                    EquipWeapon(BagManager.Instance.Weapon1.ItemID);
                 }
                 break;
             case 2:
-                if (EquippedDict[EquippedItem.Weapon2] != null)
+                if (BagManager.Instance.Weapon2 != null)
                 {
-                    if (EquippedDict[EquippedItem.Shield] != null && EquippedDict[EquippedItem.Weapon2].weaponProperties.weaponType != WeaponType.DoubleHands)
+                    if (BagManager.Instance.Weapon1 != null)
                     {
-                        BagManager.Instance.EquipItem(EquippedItem.Shield, ItemInfoManager.Instance.GetItemInfo(EquippedDict[EquippedItem.Shield].ItemID));
-                        EquipShield(EquippedDict[EquippedItem.Shield].ItemID);
-                    }
-                    else if (EquippedDict[EquippedItem.Weapon2].weaponProperties.weaponType == WeaponType.DoubleHands)
-                    {
-                        BagManager.Instance.UnequipItem(EquippedItem.Shield);
-                        UnEquip(EquippedItem.Shield);
-                    }
-                    if (EquippedDict[EquippedItem.Weapon1] != null)
-                    {
-                        //BagManager.Instance.UnequipItem(EquippedItem.Weapon1);
                         UnEquip(EquippedItem.Weapon1);
                     }
-                    //BagManager.Instance.EquipItem(EquippedItem.Weapon2, ItemInfoManager.Instance.GetItemInfo(EquippedDict[EquippedItem.Weapon2].ItemID));
-                    EquipWeapon(EquippedDict[EquippedItem.Weapon2].ItemID);
+                    EquipWeapon(BagManager.Instance.Weapon2.ItemID);
                 }
                 break;
             case 3:
@@ -286,19 +259,16 @@ public class PlayerController : MeaninglessCharacterController
                 itemInfo = null;
                 break;
             case 1:
-                itemInfo = EquippedDict[EquippedItem.Weapon1];
+                itemInfo = BagManager.Instance.Weapon1;
                 break;
             case 2:
-                itemInfo = EquippedDict[EquippedItem.Weapon2];
+                itemInfo = BagManager.Instance.Weapon2;
                 break;
             case 3:
-                itemInfo = EquippedDict[EquippedItem.Magic1];
+                itemInfo = BagManager.Instance.Magic1;
                 break;
             case 4:
-                itemInfo = EquippedDict[EquippedItem.Magic2];
-                break;
-            case 5:
-                itemInfo = EquippedDict[EquippedItem.Shield];
+                itemInfo = BagManager.Instance.Magic2;
                 break;
         }
         return itemInfo;
@@ -362,16 +332,16 @@ public class PlayerController : MeaninglessCharacterController
         {
             case BuffType.SlowDown:
                 status.moveSpeed /= 0.7f;
-                if (BagManager.Instance.Dict_Equipped[EquippedItem.Body] == null)
+                if (BagManager.Instance.Body== null)
                     UnEquip(EquippedItem.Body);
                 else
-                    EquipClothes(BagManager.Instance.Dict_Equipped[EquippedItem.Body].ItemID);
+                    EquipClothes(BagManager.Instance.Body.ItemID);
                 break;
             case BuffType.Freeze:
-                if (BagManager.Instance.Dict_Equipped[EquippedItem.Body] == null)
+                if (BagManager.Instance.Body == null)
                     UnEquip(EquippedItem.Body);
                 else
-                    EquipClothes(BagManager.Instance.Dict_Equipped[EquippedItem.Body].ItemID);
+                    EquipClothes(BagManager.Instance.Body.ItemID);
                 status.moveSpeed /= 0.001f;
                 break;
             case BuffType.Blind:
@@ -415,7 +385,6 @@ public class PlayerController : MeaninglessCharacterController
     protected override void CCUpdate()
     {
         CurrentSelected = BagManager.Instance.CurrentSelected;
-        EquippedDict = BagManager.Instance.Dict_Equipped;
         OpenBag();
         //MessageCenter.Send(EMessageType.CurrentselectedWeapon, CurrentSelected);
 

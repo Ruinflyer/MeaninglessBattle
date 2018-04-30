@@ -26,7 +26,7 @@ public class BagUI : BaseUI
     private Image Weapon2Gem2;
     private Image Magic1;
     private Image Magic2;
-    private Image Shield;
+
 
     [SerializeField]
     private List<GameObject> BagItem=new List<GameObject>();
@@ -53,14 +53,11 @@ public class BagUI : BaseUI
         Weapon2Gem2 = GameTool.GetTheChildComponent<Image>(GameTool.FindTheChild(this.gameObject, "Weapon2Gem2").gameObject, "Image");
         Magic1 = GameTool.GetTheChildComponent<Image>(GameTool.FindTheChild(this.gameObject, "MagicSlot1").gameObject, "Image");
         Magic2 = GameTool.GetTheChildComponent<Image>(GameTool.FindTheChild(this.gameObject, "MagicSlot2").gameObject, "Image");
-        Shield = GameTool.GetTheChildComponent<Image>(GameTool.FindTheChild(this.gameObject, "ShieldSlot").gameObject, "Image");
         Btn_Close.onClick.AddListener(CloseBagUI);
-       // PickUpList = new List<SingleItemInfo>();
-       // EquippedList = new List<SingleItemInfo>();
+
         BagItem = new List<GameObject>();
         EquipItem = new List<GameObject>();
-        //PickUpList = CameraBase.Instance.player.GetComponent<PlayerBag>().List_PickUp;
-        //EquippedList = CameraBase.Instance.player.GetComponent<PlayerBag>().List_Equipped;
+
 
 
         MessageCenter.AddListener(EMessageType.RefreshBagList, RefreshBagList);

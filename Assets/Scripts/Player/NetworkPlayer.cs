@@ -111,30 +111,30 @@ public class NetworkPlayer : MonoBehaviour {
         protocol.SpliceFloat(transform.rotation.y);
         protocol.SpliceFloat(transform.rotation.z);
 
-        if(BagManager.Instance.Dict_Equipped[EquippedItem.Head]==null)
+        if(BagManager.Instance.Head==null)
         {
             protocol.SpliceInt(0);
         }
         else
         {
-            protocol.SpliceInt(BagManager.Instance.Dict_Equipped[EquippedItem.Head].ItemID);
+            protocol.SpliceInt(BagManager.Instance.Head.ItemID);
         }
 
-        if (BagManager.Instance.Dict_Equipped[EquippedItem.Body] == null)
+        if (BagManager.Instance.Body == null)
         {
             protocol.SpliceInt(0);
         }
         else
         {
-            protocol.SpliceInt(BagManager.Instance.Dict_Equipped[EquippedItem.Body].ItemID);
+            protocol.SpliceInt(BagManager.Instance.Body.ItemID);
         }
-        if (BagManager.Instance.Dict_Equipped[EquippedItem.Weapon1] == null && BagManager.Instance.Dict_Equipped[EquippedItem.Weapon2] == null)
+        if (BagManager.Instance.Weapon1 == null && BagManager.Instance.Weapon2 == null)
         {
             protocol.SpliceInt(0);
         }
         else
         {
-            protocol.SpliceInt(BagManager.Instance.Dict_Equipped[EquippedItem.Body].ItemID);
+            protocol.SpliceInt(BagManager.Instance.Body .ItemID);
         }
 
         // protocol.SpliceInt(WeaponID);

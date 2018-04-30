@@ -79,6 +79,12 @@ public class IdleState : FSMState
             );
 
         CharacterMessageDispatcher.Instance.DispatchMesssage
+          (FSMTransitionType.UsingIceArrow,
+          FSM,
+          Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.NULL && FSM.characterStatus.magicType == MagicType.IceArrow
+          );
+
+        CharacterMessageDispatcher.Instance.DispatchMesssage
            (
             FSMTransitionType.Falling,
             FSM,

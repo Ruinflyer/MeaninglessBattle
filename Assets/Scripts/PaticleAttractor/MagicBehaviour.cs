@@ -57,7 +57,7 @@ public class MagicBehaviour : MonoBehaviour {
         {
             if (player.CheckCanAttack(gameObject, enemy.Value.gameObject, distance, angle))
             {
-                NetworkManager.SendPlayerHitSomeone(enemy.Value.name, player.characterStatus.Attack_Magic * (1 - enemy.Value.status.Defend_Magic / 100));
+                NetworkManager.SendPlayerHitSomeone(enemy.Value.name, BagManager.Instance.GetCharacterStatus().Attack_Magic * (1 - enemy.Value.status.Defend_Magic / 100));
             }
         }
     }

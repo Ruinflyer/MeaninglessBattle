@@ -20,7 +20,6 @@ public class PlayerFSM :BaseFSM
         animationManager = GetComponent<AnimationManager>();
         controller = GetComponent<MeaninglessCharacterController>();
         ConstructFSM();
-        characterStatus = controller.characterStatus;
         //LoadCharacterStatus();
 
     }
@@ -39,7 +38,7 @@ public class PlayerFSM :BaseFSM
 
     protected override void FSMUpdate()
     {
-        characterStatus = controller.characterStatus;
+        characterStatus=BagManager.Instance.GetCharacterStatus();
     }
 
     private void ConstructFSM()

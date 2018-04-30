@@ -14,8 +14,7 @@ namespace Meaningless
         public float deBuffTime = 0;
         
         public List<NetworkPlayer> List_CanAttack = new List<NetworkPlayer>();
-        [HideInInspector]
-        public CharacterStatus characterStatus;
+
 
         protected bool deBuffFlag;
 
@@ -50,10 +49,7 @@ namespace Meaningless
 
 
         void Update()
-        {
-    
-            characterStatus = BagManager.Instance.GetCharacterStatus();
-            
+        {          
             CCUpdate();
         }
 

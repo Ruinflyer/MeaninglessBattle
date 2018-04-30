@@ -95,12 +95,8 @@ public class DropItem : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHan
                                 if (bagListitem.Item.armorProperties.armorType == ArmorType.Head)
                                 {
                                     image.sprite = bagListitem.img.sprite;
-                                    object[] param = new object[2];
 
-                                    param[0] = equippedItemType;
-                                    param[1] = bagListitem.Item;
-                                    MessageCenter.Send_Multparam(Meaningless.EMessageType.EquipItem, param);
-
+                                    BagManager.Instance.EquipItem(equippedItemType, bagListitem.Item);
                                     ItemInfo = bagListitem.Item;
 
                                     bagListitem.Equip();
@@ -119,12 +115,8 @@ public class DropItem : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHan
                                 if (bagListitem.Item.armorProperties.armorType == ArmorType.Body)
                                 {
                                     image.sprite = bagListitem.img.sprite;
-                                    object[] param = new object[2];
 
-                                    param[0] = equippedItemType;
-                                    param[1] = bagListitem.Item;
-                                    MessageCenter.Send_Multparam(Meaningless.EMessageType.EquipItem, param);
-
+                                    BagManager.Instance.EquipItem(equippedItemType, bagListitem.Item);
                                     ItemInfo = bagListitem.Item;
 
                                     bagListitem.Equip();
@@ -144,10 +136,6 @@ public class DropItem : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHan
                                 if (bagListitem.Item.weaponProperties.weaponType != WeaponType.Shield)
                                 {
                                     image.sprite = bagListitem.img.sprite;
-                                    object[] param = new object[2];
-
-                                    param[0] = equippedItemType;
-                                    param[1] = bagListitem.Item;
                                     // MessageCenter.Send_Multparam(Meaningless.EMessageType.EquipItem, param);
                                     BagManager.Instance.EquipItem(equippedItemType, bagListitem.Item);
                                     BagManager.Instance.CurrentSelected = 1;
@@ -170,11 +158,7 @@ public class DropItem : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHan
                                 if (bagListitem.Item.weaponProperties.weaponType != WeaponType.Shield)
                                 {
                                     image.sprite = bagListitem.img.sprite;
-                                    object[] param = new object[2];
 
-                                    param[0] = equippedItemType;
-                                    param[1] = bagListitem.Item;
-                                    //MessageCenter.Send_Multparam(Meaningless.EMessageType.EquipItem, param);
                                     BagManager.Instance.EquipItem(equippedItemType, bagListitem.Item);
                                     BagManager.Instance.CurrentSelected = 2;
                                     CameraBase.Instance.player.GetComponent<PlayerController>().ChangeWeapon(2);
@@ -197,7 +181,6 @@ public class DropItem : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHan
                                 image.sprite = bagListitem.img.sprite;
 
                                 BagManager.Instance.EquipItem(equippedItemType, bagListitem.Item);
-                                
 
                                 ItemInfo = bagListitem.Item;
 
@@ -207,32 +190,6 @@ public class DropItem : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHan
                             }
                         }
                        
-                        break;
-                    case EquippedItem.Shield:
-                        if (bagListitem != null)
-                        {
-                            if (bagListitem.Item.itemType == ItemType.Weapon)
-                            {
-                                if(bagListitem.Item.weaponProperties.weaponType==WeaponType.Shield)
-                                {
-                                    image.sprite = bagListitem.img.sprite;
-                                    object[] param = new object[2];
-
-                                    //param[0] = equippedItemType;
-                                    // param[1] = bagListitem.Item;
-                                    //MessageCenter.Send_Multparam(Meaningless.EMessageType.EquipItem, param);
-                                    BagManager.Instance.EquipItem(equippedItemType, bagListitem.Item);
-
-                                    ItemInfo = bagListitem.Item;
-
-                                    bagListitem.Equip();
-
-                                    canDrag = true;
-                                }
-                                
-                            }
-                        }
-
                         break;
 
                 }
@@ -301,7 +258,7 @@ public class DropItem : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHan
             }
             //MessageCenter.Send(Meaningless.EMessageType.PickedupItem, ItemInfo.ItemID);
             //MessageCenter.Send(Meaningless.EMessageType.UnEquipItem, equippedItemType);
-
+            MessageCenter.Send(Meaningless.EMessageType.RefreshBagList, null);
             canDrag = false;
             ItemInfo = null;
         }
@@ -325,6 +282,7 @@ public class DropItem : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHan
             CameraBase.Instance.player.GetComponent<PlayerController>().UnEquip(equippedItemType);
         }
         CameraBase.Instance.player.GetComponent<PlayerController>().DiscardItem(ItemInfo.ItemID);
+        MessageCenter.Send(Meaningless.EMessageType.RefreshBagList, null);
         canDrag = false;
         ItemInfo = null;
     }

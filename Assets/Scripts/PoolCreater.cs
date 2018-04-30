@@ -3,45 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using Meaningless;
 
-public struct PoolObject
-{
-    public GameObject go;
-    public int num;
-}
 
 public class PoolCreater : MonoBehaviour
 {
 
 
-    public List<PoolObject> poolObjectlist = new List<PoolObject>();
-
     private void Start()
     {
-        StartCoroutine(LoadResources());
+
+        CreatePool(20);
     }
 
-    IEnumerator LoadResources()
+    private void CreatePool(int num)
     {
-        yield return new WaitForEndOfFrame();
-
-        PoolObject poolObject;
-        List<string> list = new List<string>();
-        foreach (string key in ResourcesManager.Dict_Magic.Keys)
+        ResourcesManager.Instance.LoadMagic_sync();
+        foreach (KeyValuePair<string, GameObject> go in ResourcesManager.Dict_Magic)
         {
-            list.Add(key);
-        }
-        for (int i = 0; i < ResourcesManager.Dict_Magic.Count; i++)
-        {
-            poolObject.go = ResourcesManager.Instance.GetMagic(list[i]);
-            poolObject.num = 50;
-            poolObjectlist.Add(poolObject);
+            NetPoolManager.InitPrefab(go.Value, num);
         }
 
-        foreach (PoolObject po in poolObjectlist)
-        {
-            NetPoolManager.InitPrefab(po.go, po.num);
-            Debug.Log("已建立" + po.go.name + "池");
-        }
     }
 
 }

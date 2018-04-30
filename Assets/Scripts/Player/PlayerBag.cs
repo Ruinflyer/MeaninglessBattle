@@ -3,15 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Meaningless;
 
-public enum EquippedItem
-{
-    Head = 0, HeadGem1, HeadGem2,
-    Body, BodyGem1, BodyGem2,
-    Shield,
-    Weapon1, Weapon1_Gem1, Weapon1_Gem2,
-    Weapon2, Weapon2_Gem1, Weapon2_Gem2,
-    Magic1, Magic2
-}
+
 
 public class PlayerBag : MonoBehaviour
 {

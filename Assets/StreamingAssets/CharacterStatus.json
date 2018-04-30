@@ -2,7 +2,7 @@
     "characterName": "",
     "weaponType": 0,
     "magicType": 0,
-    "moveSpeed": 3,
+    "moveSpeed": 5,
     "iumpSpeed": 1,
     "HP": 100,
     "Attack_Physics": 20,
