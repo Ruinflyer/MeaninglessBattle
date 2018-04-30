@@ -244,7 +244,7 @@ public class BagUI : BaseUI
     private void CloseBagUI()
     {
         //UIManager.Instance.HideTheUI(UIid.BagUI,()=> { });
-        UIManager.Instance.ReturnUI(this.beforeUIid);
+        UIManager.Instance.ReturnUI(UIid.HUDUI);
         CameraBase.Instance.isFollowing = true;
     }
 }

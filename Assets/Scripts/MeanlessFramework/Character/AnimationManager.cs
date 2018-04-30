@@ -54,7 +54,16 @@ namespace Meaningless
         {
             if (anim.GetCurrentAnimatorClipInfo(Layer)[0].clip.name != ClipName)
             {
+                if(ClipName=="Run")
+                {
+                    anim.SetBool("Run",true);
+                }
+                else
+                {
+                    anim.SetBool("Run", false);
+                }
                 anim.Play(ClipName, Layer, normalizedTime);
+                
             }
         }
 

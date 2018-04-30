@@ -24,7 +24,7 @@ public class Connect
     public BaseProtocol protocol;
     //心跳时间
     public float lastTick = 0;
-    public float HeartBeatTime = 30;
+    public float HeartBeatTime = 150;
     //消息分发
     public MsgDistribution msgDistribution = new MsgDistribution();
 
@@ -86,7 +86,7 @@ public class Connect
             return;
         }
         BaseProtocol p = protocol.Decode(buff, sizeof(Int32), msgLength);
-        Debug.Log("收到消息：" + p.GetDescription());
+        //Debug.Log("收到消息：" + p.GetDescription());
         //多线程-处理需为msgList加锁
         lock (msgDistribution)
         {
@@ -113,7 +113,7 @@ public class Connect
         byte[] length = BitConverter.GetBytes(encode.Length);
         byte[] sendbyte = length.Concat(encode).ToArray();
         socket.Send(sendbyte);
-        Debug.Log("发送消息：" + protocol.GetDescription());
+        //Debug.Log("发送消息：" + protocol.GetDescription());
         return true;
     }
 

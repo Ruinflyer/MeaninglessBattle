@@ -136,16 +136,15 @@ public class NetworkManager : MonoSingleton<NetworkManager>
     /// </summary>
     public static void SendUpdatePlayerInfo(float HP,Vector3 pos , Vector3 rot , int HeadItem, int BodyItem, int WeaponID, int ActionLayer, string CurrentAction)
     {
-        
         BytesProtocol protocol = new BytesProtocol();
         protocol.SpliceString("UpdatePlayerInfo");
         protocol.SpliceFloat(HP);
         protocol.SpliceFloat(pos.x);
         protocol.SpliceFloat(pos.y);
         protocol.SpliceFloat(pos.z);
-        //protocol.SpliceFloat(rot.x);
-        //protocol.SpliceFloat(rot.y);
-        //protocol.SpliceFloat(rot.z);
+        protocol.SpliceFloat(rot.x);
+        protocol.SpliceFloat(rot.y);
+        protocol.SpliceFloat(rot.z);
         protocol.SpliceInt(HeadItem);
         protocol.SpliceInt(BodyItem);
         protocol.SpliceInt(WeaponID);

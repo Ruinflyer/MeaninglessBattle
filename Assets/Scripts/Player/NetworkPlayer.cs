@@ -22,9 +22,13 @@ public class NetworkPlayer : MonoBehaviour {
     public float hp=100f;
 
     #region 记录上一次刷新的变量
-    public long LastUpdateTime;
+    public float LastUpdateTime=0;
     private Vector3 lastPos=Vector3.zero;
-    private Quaternion lastRot = Quaternion.identity;
+    private Vector3 lastRot = Vector3.zero;
+    //预测坐标
+    private Vector3 forseePos= Vector3.zero;
+    //预测旋转度
+    private Vector3 forseeRot = Vector3.zero;
     #endregion
 
     private AnimationState animState;
@@ -38,20 +42,35 @@ public class NetworkPlayer : MonoBehaviour {
     /// <summary>
     /// 设置玩家变换数据与更新时间
     /// </summary>
-    public void SetPlayerTransform(float posX,float posY,float posZ,float rotX,float rotY,float rotZ,long CurUpdateTime)
+    public void SetPlayerTransform(float posX,float posY,float posZ,float rotX,float rotY,float rotZ)
     {
-        //位置插值
-        lastPos = transform.position;
-        Vector3 curPos = new Vector3(posX, posY, posZ);
-        transform.position = Vector3.Lerp(lastPos, curPos, (CurUpdateTime -LastUpdateTime));
+        float DeltaTime = Time.time - LastUpdateTime;
 
-        //角度插值
-        lastRot = transform.rotation;
-        Quaternion curRot = Quaternion.Euler(rotX,rotY,rotZ);
-        transform.rotation = Quaternion.Lerp(lastRot,curRot, (CurUpdateTime - LastUpdateTime));
+        Vector3 recvPos = new Vector3(posX,posY,posZ);
+        Vector3 recvRot = new Vector3(rotX, rotY, rotZ);
+        
+        forseePos = lastPos + (recvPos - lastPos) * 2;
+        forseeRot = lastRot + (recvRot - lastRot) * 2;
+        if (Time.time -LastUpdateTime>0.3f)
+        {
+            forseePos = recvPos;
+            forseeRot = recvRot;
+        }
+
+        if(DeltaTime>0)
+        {
+            //位置插值
+            Vector3 curPos = transform.position;
+            transform.position = Vector3.Lerp(curPos, recvPos, DeltaTime);
+
+            //角度插值
+            Vector3 curRot = transform.eulerAngles;
+            transform.rotation = Quaternion.Lerp(Quaternion.Euler(curRot), Quaternion.Euler(recvRot), DeltaTime);
+        }
+       
 
         //刷新更新时间
-        LastUpdateTime = CurUpdateTime;
+        LastUpdateTime = Time.time;
     }
 
     /// <summary>

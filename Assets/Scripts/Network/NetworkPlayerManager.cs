@@ -45,17 +45,11 @@ public class NetworkPlayerManager : MonoBehaviour
         int Layer= p.GetInt(startIndex, ref startIndex);
         string CurrentAction = p.GetString(startIndex, ref startIndex);
 
-        //跳过自己的消息
-        if(playerName==NetworkManager.PlayerName)
-        {
-            return;
-        }
-
         if (ScenePlayers.ContainsKey(playerName))
         {
             NetworkPlayer nPlayer = ScenePlayers[playerName].GetComponent<NetworkPlayer>();
             nPlayer.SetPlayerInfo(HP, HeadItem, BodyItem, WeaponID, Layer,CurrentAction);
-            nPlayer.SetPlayerTransform(posX, posY, posZ, rotX, rotY, rotZ, NetworkManager.GetTimeStamp());
+            nPlayer.SetPlayerTransform(posX, posY, posZ, rotX, rotY, rotZ);
         }
     }
 

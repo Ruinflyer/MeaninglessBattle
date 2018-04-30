@@ -17,10 +17,6 @@ public class MoveState : FSMState
         {
             FSM.animationManager.anim.SetBool("Jump",true);
         }
-        else if (Input.GetButton("Roll"))
-        {
-            FSM.animationManager.anim.SetBool("Roll",true);
-        }
         else
             FSM.PlayAnimation("Run");
         FSM.controller.Move(FSM.characterStatus.moveSpeed, FSM.characterStatus.jumpSpeed);

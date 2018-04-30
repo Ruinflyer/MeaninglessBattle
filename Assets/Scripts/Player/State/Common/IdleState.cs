@@ -26,7 +26,7 @@ public class IdleState : FSMState
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.CanBeMove,
             FSM,
-            (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.5 || Mathf.Abs(Input.GetAxis("Vertical")) > 0.5)||Input.GetButton("Jump")||Input.GetButton("Roll")
+            (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.5 || Mathf.Abs(Input.GetAxis("Vertical")) > 0.5)||Input.GetButton("Jump")
             );
 
         CharacterMessageDispatcher.Instance.DispatchMesssage

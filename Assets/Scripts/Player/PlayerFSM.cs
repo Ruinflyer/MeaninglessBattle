@@ -13,7 +13,7 @@ public class PlayerFSM :BaseFSM
             characterStatus = MeaninglessJson.LoadJsonFromFile<CharacterStatus>(MeaninglessJson.Path_StreamingAssets+ path);
     }
     */
-
+    float lastTime=0;
     protected override void Initialize()
     {
         comboCount = 0;
@@ -29,8 +29,12 @@ public class PlayerFSM :BaseFSM
     {
         CurrentState.Reason(this);
         CurrentState.Act(this);
+        if(Time.time-lastTime>0.2f)
+        {
+            NetworkManager.SendUpdatePlayerInfo(characterStatus.HP, transform.position, transform.rotation.eulerAngles, 102, 204, 300, animationManager.LayerCur, animationManager.animCur);
+            lastTime = Time.time;
+        }
         
-        NetworkManager.SendUpdatePlayerInfo(characterStatus.HP,transform.position, transform.rotation.eulerAngles,0,0,0, animationManager.LayerCur, animationManager.animCur);
     }
 
     protected override void FSMUpdate()
