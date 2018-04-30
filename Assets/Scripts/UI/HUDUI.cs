@@ -45,7 +45,7 @@ public class HUDUI : BaseUI
         Text_Remain = GameTool.GetTheChildComponent<Text>(this.gameObject, "Text_Remain");
         MessageCenter.AddListener(EMessageType.FoundItem, AwakePickUpTip);
         MessageCenter.AddListener(EMessageType.CurrentHP, UpdateHP);
-        MessageCenter.AddListener(EMessageType.Remain, (object obj) => { Text_Remain.text = "" + (int)obj+1; });
+        MessageCenter.AddListener(EMessageType.Remain, (object obj) => { Text_Remain.text = "" + (int)obj; });
     }
 
     private void Update()

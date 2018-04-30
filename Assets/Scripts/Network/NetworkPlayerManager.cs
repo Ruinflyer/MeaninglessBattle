@@ -19,7 +19,7 @@ public class NetworkPlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MessageCenter.Send(EMessageType.Remain, ScenePlayers.Count);
+        MessageCenter.Send(EMessageType.Remain, ScenePlayers.Count+1);
         Debug.Log(ScenePlayers.Count+"Name"+NetworkManager.PlayerName);
     }
 
