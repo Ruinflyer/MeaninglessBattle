@@ -86,6 +86,8 @@ public class NetworkManager : MonoSingleton<NetworkManager>
         ServerConnection.Send(protocol);
     }
 
+
+
     /// <summary>
     /// 发送获取玩家列表消息
     /// </summary>
