@@ -44,11 +44,13 @@ public class MapManager : MonoSingleton<MapManager>
         NetworkManager.AddEventListener("Circlefield", OnCirclefieldBack);
         NetworkManager.AddEventListener("DoorOpen", OnDoorOpen);
         NetworkManager.AddEventListener("AllPlayerLoaded", OnAllPlayerLoaded);
+        NetworkManager.AddEventListener("PickItem",OnPickItem);
 
         
         //门加入字典
         for (int i=0;i<itemSpawnPoint.DoorSpawnPoints.Length;i++)
         {
+            itemSpawnPoint.DoorSpawnPoints[i].GetComponent<DoorControl>().DoorID = i;
             Doors.Add(i,itemSpawnPoint.DoorSpawnPoints[i]);
         }
 
@@ -260,6 +262,24 @@ public class MapManager : MonoSingleton<MapManager>
 
         NetworkManager.SendGetPlayersInfo();
     }
+
+    /// <summary>
+    /// 游戏物品被拾取处理
+    /// </summary>
+    /// <param name="protocol"></param>
+    public void OnPickItem(BaseProtocol protocol)
+    {
+        BytesProtocol p = protocol as BytesProtocol;
+        int startIndex = 0;
+        p.GetString(startIndex, ref startIndex);
+        int GroundItemID = p.GetInt(startIndex, ref startIndex);
+        if(Items.ContainsKey(GroundItemID))
+        {
+            Items[GroundItemID].Hide();
+        }
+        
+    }
+
 
 }
 

@@ -29,6 +29,7 @@ public class NetworkPlayer : MonoBehaviour {
     private Vector3 forseePos= Vector3.zero;
     //预测旋转度
     private Vector3 forseeRot = Vector3.zero;
+    private float DeltaTime;
     #endregion
 
     private AnimationState animState;
@@ -44,8 +45,6 @@ public class NetworkPlayer : MonoBehaviour {
     /// </summary>
     public void SetPlayerTransform(float posX,float posY,float posZ,float rotX,float rotY,float rotZ)
     {
-        float DeltaTime = Time.time - LastUpdateTime;
-
         Vector3 recvPos = new Vector3(posX,posY,posZ);
         Vector3 recvRot = new Vector3(rotX, rotY, rotZ);
         
@@ -56,18 +55,10 @@ public class NetworkPlayer : MonoBehaviour {
             forseePos = recvPos;
             forseeRot = recvRot;
         }
+         DeltaTime= Time.time - LastUpdateTime;
+        lastPos = recvPos;
+        lastRot = recvRot;
 
-        if(DeltaTime>0)
-        {
-            //位置插值
-            Vector3 curPos = transform.position;
-            transform.position = Vector3.Lerp(curPos, recvPos, DeltaTime);
-
-            //角度插值
-            Vector3 curRot = transform.eulerAngles;
-            transform.rotation = Quaternion.Lerp(Quaternion.Euler(curRot), Quaternion.Euler(recvRot), DeltaTime);
-        }
-       
 
         //刷新更新时间
         LastUpdateTime = Time.time;
@@ -146,4 +137,24 @@ public class NetworkPlayer : MonoBehaviour {
         return protocol;
     }
 
+    /// <summary>
+    /// 预测行走
+    /// </summary>
+    private void ForseeMove()
+    {
+        if (DeltaTime > 0)
+        {
+            //位置插值
+            Vector3 curPos = transform.position;
+            transform.position = Vector3.Lerp(curPos, forseePos, DeltaTime);
+
+            //角度插值
+            Vector3 curRot = transform.eulerAngles;
+            transform.rotation = Quaternion.Lerp(Quaternion.Euler(curRot), Quaternion.Euler(forseeRot), DeltaTime);
+        }
+    }
+    private void Update()
+    {
+        ForseeMove();  
+    }
 }

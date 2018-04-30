@@ -153,7 +153,30 @@ public class NetworkManager : MonoSingleton<NetworkManager>
         protocol.SpliceInt(ActionLayer);
         protocol.SpliceString(CurrentAction);
         Send(protocol);
-    }                                                                  
+    }                      
+    
+    /// <summary>
+    /// 发送拾取物品消息
+    /// </summary>
+    public static void SendPickItem(int GroundItemID)
+    {
+        BytesProtocol protocol = new BytesProtocol();
+        protocol.SpliceString("PickItem");
+        protocol.SpliceInt(GroundItemID);
+        Send(protocol);
+    }
+
+    /// <summary>
+    /// 发送门打开消息
+    /// </summary>
+    /// <param name="DoorID">门ID</param>
+    public static void SendDoorOpen(int DoorID)
+    {
+        BytesProtocol protocol = new BytesProtocol();
+        protocol.SpliceString("DoorOpen");
+        protocol.SpliceInt(DoorID);
+        Send(protocol);
+    }
 }                                                                      
                                                                        
                                             

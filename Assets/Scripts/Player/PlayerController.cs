@@ -232,8 +232,10 @@ public class PlayerController : MeaninglessCharacterController
 
     public void PickItem(Transform Item)
     {
-        Dict_PickUp_Tran.Add(Item, Item.GetComponent<GroundItem>().ItemID);
+        GroundItem GItem = Item.GetComponent<GroundItem>();
+        Dict_PickUp_Tran.Add(Item, GItem.ItemID);
         Item.SetParent(transform);
+        NetworkManager.SendPickItem(GItem.GroundItemID);
         Item.gameObject.SetActive(false);
     }
 

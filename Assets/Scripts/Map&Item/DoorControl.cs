@@ -8,6 +8,7 @@ public class DoorControl : MonoBehaviour
     public string DoorCloseAnimationName = null;
     private bool EnterDoorAera = false;
     private bool isDoorOpen = false;
+    public int DoorID;
     private Animation anim;
     // Use this for initialization
     void Start()
@@ -17,7 +18,14 @@ public class DoorControl : MonoBehaviour
 
     private void Update()
     {
-        
+        if(Input.GetKeyUp(KeyCode.E))
+        {
+            if (EnterDoorAera)
+            {
+                NetworkManager.SendDoorOpen(DoorID);
+            }
+        }
+       
     }
 
     /// <summary>
@@ -34,11 +42,15 @@ public class DoorControl : MonoBehaviour
         {
             CloseDoor();
         }
+
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         EnterDoorAera = true;
+        
+        
     }
     private void OnTriggerExit(Collider other)
     {
