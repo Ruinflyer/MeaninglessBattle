@@ -24,8 +24,9 @@ public class HUDUI : BaseUI
     private Text Text_Skill1_Count = null;
     private Text Text_Skill2_Count = null;
     private Slider Slider_HP = null;
+    private Text Text_Remain = null;
+    
 
-   
 
     protected override void InitUiOnAwake()
     {
@@ -41,8 +42,10 @@ public class HUDUI : BaseUI
         Text_Skill1_Count= GameTool.GetTheChildComponent<Text>(this.gameObject, "Text_Count3");
         Text_Skill2_Count = GameTool.GetTheChildComponent<Text>(this.gameObject, "Text_Count4");
         Slider_HP = GameTool.GetTheChildComponent<Slider>(this.gameObject, "Slider");
+        Text_Remain = GameTool.GetTheChildComponent<Text>(this.gameObject, "Text_Remain");
         MessageCenter.AddListener(EMessageType.FoundItem, AwakePickUpTip);
         MessageCenter.AddListener(EMessageType.CurrentHP, UpdateHP);
+        MessageCenter.AddListener(EMessageType.Remain, (object obj) => { Text_Remain.text = "" + (int)obj+1; });
     }
 
     private void Update()

@@ -57,6 +57,7 @@ namespace Meaningless
         PlayerName,
         LoadingUI,
         LoadingScene,
+        Remain,
         //
     }
 
@@ -86,7 +87,6 @@ namespace Meaningless
         ThunderBolt,
         Defend,
         TakeDamage,
-        Roll
     }
 
     public enum FSMTransitionType
@@ -108,7 +108,6 @@ namespace Meaningless
         UsingThunderBolt,
         CanDefend,
         Hurt,
-        CanRoll,
     }
     public class GameDefine : MonoBehaviour
     {
