@@ -31,6 +31,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
     public SingleItemInfo Weapon2_Gem2 = new SingleItemInfo();
     public SingleItemInfo Magic1 = new SingleItemInfo();
     public SingleItemInfo Magic2 = new SingleItemInfo();
+    public SingleItemInfo NullInfo = new SingleItemInfo();
     public List<SingleItemInfo> List_PickUp = new List<SingleItemInfo>();
     public List<SingleItemInfo> List_Equip = new List<SingleItemInfo>();
     private int preSelected;
@@ -87,20 +88,36 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
     {
         player = CameraBase.Instance.player;
 
-        Head = null;
-        HeadGem1 = null;
-        HeadGem2 = null;
-        Body = null;
-        BodyGem1 = null;
-        BodyGem2 = null;
-        Weapon1 = null;
-        Weapon1_Gem1 = null;
-        Weapon1_Gem2 = null;
-        Weapon2 = null;
-        Weapon2_Gem1 = null;
-        Weapon2_Gem2 = null;
-        Magic1 = null;
-        Magic2 = null;
+        NullInfo.weaponProperties = new WeaponProperties();
+        NullInfo.weaponProperties = null;
+        NullInfo.magicProperties = new MagicProperties();
+        NullInfo.magicProperties = null;
+        NullInfo.armorProperties = new ArmorProperties();
+        NullInfo.armorProperties = null;
+        NullInfo.expendableProperties = new ExpendableProperties();
+        NullInfo.expendableProperties = null;
+        NullInfo.gemProperties = new GemProperties();
+        NullInfo.gemProperties = null;
+        NullInfo.magicProperties = new MagicProperties();
+        NullInfo.magicProperties = null;
+        NullInfo.ItemID = 0;
+        NullInfo.ItemName = null;
+        NullInfo.ResName = null;
+
+        Head = NullInfo;
+        HeadGem1 = NullInfo;
+        HeadGem2 = NullInfo;
+        Body = NullInfo;
+        BodyGem1 = NullInfo;
+        BodyGem2 = NullInfo;
+        Weapon1 = NullInfo;
+        Weapon1_Gem1 = NullInfo;
+        Weapon1_Gem2 = NullInfo;
+        Weapon2 = NullInfo;
+        Weapon2_Gem1 = NullInfo;
+        Weapon2_Gem2 = NullInfo;
+        Magic1 = NullInfo;
+        Magic2 = NullInfo;
 
 
         skillAttributesList[0].skillInfo = new SingleItemInfo();
@@ -565,7 +582,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                         armorAttributes.rate_Recovery -=HeadGem2.gemProperties.Rate_Recovery;
                     }
 
-                    Head= null;
+                    Head= NullInfo;
                     break;
                 case EquippedItem.HeadGem1:
                     if (Head!= null)
@@ -578,7 +595,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                         armorAttributes.rate_MoveSpeed -= HeadGem1.gemProperties.Rate_MoveSpeed;
                         armorAttributes.rate_Recovery -= HeadGem1.gemProperties.Rate_Recovery;
                     }
-                  HeadGem1= null;
+                  HeadGem1= NullInfo;
                     break;
                 case EquippedItem.HeadGem2:
                     if (Head!= null)
@@ -591,7 +608,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                         armorAttributes.rate_MoveSpeed -= HeadGem2.gemProperties.Rate_MoveSpeed;
                         armorAttributes.rate_Recovery -=HeadGem2.gemProperties.Rate_Recovery;
                     }
-                    HeadGem2= null;
+                    HeadGem2= NullInfo;
                     break;
                 case EquippedItem.Body:
                     //当身体防具脱下，身体防具上的宝石将不再生效
@@ -622,7 +639,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                     armorAttributes.rate_MoveSpeed -= Body.armorProperties.Rate_MoveSpeed;
                     armorAttributes.rate_Recovery -= Body.armorProperties.Rate_Recovery;
 
-                    Body = null;
+                    Body = NullInfo;
                     break;
                 case EquippedItem.BodyGem1:
                     if (Body != null)
@@ -635,7 +652,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                         armorAttributes.rate_MoveSpeed -=BodyGem1.gemProperties.Rate_MoveSpeed;
                         armorAttributes.rate_Recovery -= BodyGem1.gemProperties.Rate_Recovery;
                     }
-                    BodyGem1 = null;
+                    BodyGem1 = NullInfo;
                     break;
                 case EquippedItem.BodyGem2:
                     if (Body!= null)
@@ -648,7 +665,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                         armorAttributes.rate_MoveSpeed -= BodyGem2.gemProperties.Rate_MoveSpeed;
                         armorAttributes.rate_Recovery -= BodyGem2.gemProperties.Rate_Recovery;
                     }
-                   BodyGem2= null;
+                   BodyGem2= NullInfo;
                     break;
 
                 case EquippedItem.Weapon1_Gem1:
@@ -659,7 +676,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                     List_WeaponAttributes[0].rate_DurationTime_Magic -= Weapon1_Gem1.gemProperties.Rate_DecreasedDurationTime;
                     List_WeaponAttributes[0].rate_MoveSpeed -= Weapon1_Gem1.gemProperties.Rate_MoveSpeed;
                     List_WeaponAttributes[0].rate_Recovery -= Weapon1_Gem1.gemProperties.Rate_Recovery;
-                  Weapon1_Gem1= null;
+                  Weapon1_Gem1= NullInfo;
                     break;
                 case EquippedItem.Weapon1_Gem2:
                     List_WeaponAttributes[0].rate_Attack_Magic -= Weapon1_Gem2.gemProperties.Rate_MagicalAttack;
@@ -669,7 +686,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                     List_WeaponAttributes[0].rate_DurationTime_Magic -=Weapon1_Gem2.gemProperties.Rate_DecreasedDurationTime;
                     List_WeaponAttributes[0].rate_MoveSpeed -= Weapon1_Gem2.gemProperties.Rate_MoveSpeed;
                     List_WeaponAttributes[0].rate_Recovery -= Weapon1_Gem2.gemProperties.Rate_Recovery;
-                   Weapon1_Gem2= null;
+                   Weapon1_Gem2= NullInfo;
                     break;
                 case EquippedItem.Weapon2_Gem1:
                     List_WeaponAttributes[1].rate_Attack_Magic -= Weapon2_Gem1.gemProperties.Rate_MagicalAttack;
@@ -679,7 +696,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                     List_WeaponAttributes[1].rate_DurationTime_Magic -=Weapon2_Gem1.gemProperties.Rate_DecreasedDurationTime;
                     List_WeaponAttributes[1].rate_MoveSpeed -= Weapon2_Gem1.gemProperties.Rate_MoveSpeed;
                     List_WeaponAttributes[1].rate_Recovery -= Weapon2_Gem1.gemProperties.Rate_Recovery;
-                    Weapon2_Gem1 = null;
+                    Weapon2_Gem1 = NullInfo;
                     break;
 
                 case EquippedItem.Weapon2_Gem2:
@@ -690,20 +707,20 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                     List_WeaponAttributes[1].rate_DurationTime_Magic -= Weapon2_Gem2.gemProperties.Rate_DecreasedDurationTime;
                     List_WeaponAttributes[1].rate_MoveSpeed -= Weapon2_Gem2.gemProperties.Rate_MoveSpeed;
                     List_WeaponAttributes[1].rate_Recovery -=Weapon2_Gem2.gemProperties.Rate_Recovery;
-                   Weapon2_Gem2 = null;
+                   Weapon2_Gem2 = NullInfo;
                     break;
 
                 case EquippedItem.Weapon1:
-                   Weapon1= null;
+                   Weapon1= NullInfo;
                     break;
                 case EquippedItem.Weapon2:
-                   Weapon2 = null;
+                   Weapon2 = NullInfo;
                     break;
                 case EquippedItem.Magic1:
-                    Magic1 = null;
+                    Magic1 = NullInfo;
                     break;
                 case EquippedItem.Magic2:
-                   Magic2= null;
+                   Magic2= NullInfo;
                     break;
             }
     }
@@ -883,9 +900,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
         characterStatus.Defend_Physics = defaultCharacterStatus.Defend_Physics + armorAttributes.rate_Defend_Physics;
 
         characterStatus.moveSpeed = defaultCharacterStatus.moveSpeed + (defaultCharacterStatus.moveSpeed * armorAttributes.rate_MoveSpeed);
-        Debug.LogError("D"+defaultCharacterStatus.moveSpeed);
-        Debug.LogError("D" + defaultCharacterStatus.moveSpeed);
-        Debug.LogError("D" + defaultCharacterStatus.moveSpeed);
+
 
         characterStatus.RecoveryValue = defaultCharacterStatus.RecoveryValue + (defaultCharacterStatus.RecoveryValue * armorAttributes.rate_Recovery);
         return characterStatus;
