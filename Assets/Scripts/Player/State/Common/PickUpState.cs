@@ -16,10 +16,10 @@ public class PickUpState : FSMState
     }
 
     public override void Act(BaseFSM FSM)
-    {
-        pickUpItemTran = Camera.main.GetComponent<CameraCollision>().itemTran;
+    {     
         if(FSM.picked)
         {
+            pickUpItemTran = Camera.main.GetComponent<CameraCollision>().itemTran;
             if (pickUpItemTran != null)
                 if (pickUpItemTran.GetComponent<GroundItem>() != null)
                 {

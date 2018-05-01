@@ -5,7 +5,6 @@ using Meaningless;
 
 public class IdleState : FSMState
 {
-    public bool isFound;
 
     public IdleState()
     {
@@ -22,7 +21,7 @@ public class IdleState : FSMState
 
     public override void Reason(BaseFSM FSM)
     {
-        MessageCenter.AddListener(EMessageType.FoundItem, (object obj) => { isFound = (bool)obj; });
+        
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.CanBeMove,
             FSM,
@@ -93,7 +92,7 @@ public class IdleState : FSMState
 
 
 
-        if (Input.GetButtonUp("PickUp") && isFound)
+        if (Input.GetButtonUp("PickUp") && FSM.isFound)
         {
             FSM.picked = true;
             FSM.PerformTransition(FSMTransitionType.CanPickUp);

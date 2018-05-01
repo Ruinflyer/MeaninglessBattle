@@ -182,7 +182,7 @@ public class PlayerController : MeaninglessCharacterController
             moveDirection = transform.TransformDirection(moveDirection);
             moveDirection *= walkSpeed;
             if (Input.GetButtonDown("Jump"))
-                moveDirection.y = jumpSpeed;
+                moveDirection.y += jumpSpeed;
         }
         CC.Move(moveDirection * Time.fixedDeltaTime);
     }

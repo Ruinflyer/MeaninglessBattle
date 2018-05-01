@@ -40,26 +40,43 @@ public class CameraCollision : MonoBehaviour
             float distance = Vector3.Distance(rayToItem.origin, hitToItem.point);
             if (hitToItem.collider != null)
             {
-                if (distance <= 10)
+                if(distance<15)
                 {
-                    if (hitToItem.collider.GetComponent<GroundItem>() != null)
+                    if (distance <= 5)
                     {
-                        MessageCenter.Send(Meaningless.EMessageType.FoundItem, true);
-                        itemTran = hitToItem.collider.transform;
+                        if (hitToItem.collider.GetComponent<GroundItem>() != null)
+                        {
+                            MessageCenter.Send(Meaningless.EMessageType.FoundItem, true);
+                            itemTran = hitToItem.collider.transform;
 
-                    }
-                    else if (hitToItem.collider.tag== "Terrain")
-                    {
-
-                        MessageCenter.Send(Meaningless.EMessageType.GetHitPoint, hitToItem.point);
+                        }
+                        else
+                        {
+                            MessageCenter.Send(Meaningless.EMessageType.FoundItem, false);
+                            itemTran = null;
+                        }
                     }
                     else
                     {
                         MessageCenter.Send(Meaningless.EMessageType.FoundItem, false);
+                        itemTran = null;
                     }
+                    if (hitToItem.collider.tag == "Terrain")
+                        MessageCenter.Send(Meaningless.EMessageType.GetHitPoint, hitToItem.point);
                 }
+          
+            }
+            else
+            {
+                MessageCenter.Send(Meaningless.EMessageType.FoundItem, false);
+                itemTran = null;
             }
 
+        }
+        else
+        {
+            MessageCenter.Send(Meaningless.EMessageType.FoundItem, false);
+            itemTran = null;
         }
 
 

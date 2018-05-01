@@ -21,7 +21,7 @@ public class PlayerFSM :BaseFSM
         controller = GetComponent<MeaninglessCharacterController>();
         ConstructFSM();
         //LoadCharacterStatus();
-
+        MessageCenter.AddListener(EMessageType.FoundItem, (object obj) => { isFound = (bool)obj; });
     }
 
     protected override void FSMFixedUpdate()
