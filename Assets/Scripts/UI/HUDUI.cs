@@ -79,24 +79,24 @@ public class HUDUI : BaseUI
 
     private void SetBarIcon()
     {
-        if (BagManager.Instance.Weapon1!=null)
+        if (BagManager.Instance.Weapon1.weaponProperties!=null)
         {
-            if (BagManager.Instance.Weapon1.ResName!=null)
+            if (BagManager.Instance.Weapon1.ResName!="")
                 Img_Weapon1.sprite = ResourcesManager.Instance.GetUITexture(BagManager.Instance.Weapon1.ResName);
         }
-        if (BagManager.Instance.Weapon2 != null)
+        if (BagManager.Instance.Weapon2.weaponProperties != null)
         {
-            if (BagManager.Instance.Weapon2.ResName != null)
+            if (BagManager.Instance.Weapon2.ResName != "")
                 Img_Weapon2.sprite = ResourcesManager.Instance.GetUITexture(BagManager.Instance.Weapon2.ResName);
         }
-        if (BagManager.Instance.Magic1 != null)
+        if (BagManager.Instance.Magic1.magicProperties != null)
         {
-            if (BagManager.Instance.Magic1.ResName != null)
+            if (BagManager.Instance.Magic1.ResName != "")
                 Img_Skill1.sprite = ResourcesManager.Instance.GetUITexture(BagManager.Instance.Magic1.ResName);
         }
-        if(BagManager.Instance.Magic2 != null)
+        if(BagManager.Instance.Magic2.magicProperties != null)
         {
-            if (BagManager.Instance.Magic2.ResName != null)
+            if (BagManager.Instance.Magic2.ResName != "")
                 Img_Skill2.sprite = ResourcesManager.Instance.GetUITexture(BagManager.Instance.Magic2.ResName);
         }
 

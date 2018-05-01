@@ -176,7 +176,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
             }
         }
 
-        if (Magic1 != null)
+        if (Magic1 != NullInfo)
         {
             
 
@@ -196,7 +196,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
             if (skillAttributesList[0].isUse && skillAttributesList[0].remainCount > 0)
                 skillAttributesList[0].Timer -= Time.deltaTime;
         }
-        if (Magic2!= null)
+        if (Magic2!= NullInfo)
         {
             if (skillAttributesList[1].isOn && skillAttributesList[1].isUse && skillAttributesList[0].remainCount > 0)
             {
@@ -747,13 +747,12 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
 
                 //未装备Weapon1而使用Weapon1槽位攻击时，返回无武器属性
 
-                    if (Weapon1 == NullInfo)
+                    if (Weapon1.weaponProperties==null)
                     {
                         GetNonWeaponCharacterStatus();
                     }
                     else
                     {
-                        
                         characterStatus.weaponType = Weapon1.weaponProperties.weaponType;
                         characterStatus.magicType = MagicType.NULL;
 
@@ -791,7 +790,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                 break;
             case 2:
                 //未装备Weapon2而使用Weapon2槽位攻击时，返回无武器属性
-                if (Weapon2 == NullInfo)
+                if (Weapon2.weaponProperties == null)
                 {
                     GetNonWeaponCharacterStatus();
                 }
