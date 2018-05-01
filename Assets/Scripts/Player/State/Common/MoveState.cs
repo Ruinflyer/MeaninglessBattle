@@ -13,11 +13,6 @@ public class MoveState : FSMState
 
     public override void Act(BaseFSM FSM)
     {
-        if (Input.GetButtonDown("Jump"))
-        {
-            FSM.animationManager.anim.SetBool("Jump",true);
-        }
-        else
             FSM.PlayAnimation("Run");
         FSM.controller.Move(FSM.characterStatus.moveSpeed, FSM.characterStatus.jumpSpeed);
 
