@@ -14,6 +14,7 @@ public class NetworkPlayerManager : MonoBehaviour
     {
         NetworkManager.AddEventListener("GetPlayersInfo", OnGetPlayersInfo);
         NetworkManager.AddEventListener("UpdatePlayerInfo", UpdatePlayerInfo);
+        NetworkManager.AddEventListener("PlayerKilled",OnPlayerKilled);
     }
 
     // Update is called once per frame
@@ -93,6 +94,7 @@ public class NetworkPlayerManager : MonoBehaviour
     {
         if (ScenePlayers.ContainsKey(playerName))
         {
+            ScenePlayers[playerName].gameObject.SetActive(false);
             ScenePlayers.Remove(playerName);
         }
     }
@@ -104,7 +106,7 @@ public class NetworkPlayerManager : MonoBehaviour
     {
         BytesProtocol p = new BytesProtocol();
         p.SpliceString("LeaveRoom");
-        NetworkManager.ServerConnection.Send(p, OnLeaveRoomBack);
+        NetworkManager.Send(p, OnLeaveRoomBack);
         DelPlayer(playerName);
 
     }
@@ -122,5 +124,28 @@ public class NetworkPlayerManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 玩家死亡处理
+    /// </summary>
+    /// <param name="protocol"></param>
+    private void OnPlayerKilled(BaseProtocol protocol)
+    {
+        BytesProtocol p = protocol as BytesProtocol;
+        int startIndex = 0;
+        p.GetString(startIndex, ref startIndex);
+        //杀手名
+        string KillerName= p.GetString(startIndex, ref startIndex);
+        //被杀玩家名
+        string KilledPlayerName= p.GetString(startIndex, ref startIndex); 
+
+        //玩家死亡处理
+        if(KilledPlayerName==NetworkManager.PlayerName)
+        {
+            return;
+        }
+
+        DelPlayer(KilledPlayerName);
+        
+    }
 
 }

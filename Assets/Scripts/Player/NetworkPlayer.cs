@@ -12,14 +12,14 @@ public class NetworkPlayer : MonoBehaviour {
     public AnimationManager animationManager;
 
     public string PlayerName="";
-    
+    public float hp = 100f;
     public int headItemID;
     public int bodyItemID;
     public int weaponID;
     public string currentAction;
     public int curAttackID;
     public CharacterStatus status;
-    public float hp=100f;
+    
 
     #region 记录上一次刷新的变量
     public float LastUpdateTime=0;

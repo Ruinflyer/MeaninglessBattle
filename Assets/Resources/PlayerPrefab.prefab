@@ -1348,6 +1348,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   animCur: 
   LayerCur: 0
+  AnimLock: 0
 --- !u!114 &114077224636845404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1359,10 +1360,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ce32eab80e6bc34180f3e7fa8100ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerFSM: {fileID: 0}
   playerController: {fileID: 0}
   animationManager: {fileID: 0}
   PlayerName: oasis
+  hp: 100
+  headItemID: 0
+  bodyItemID: 0
+  weaponID: 0
+  currentAction: 
+  curAttackID: 0
+  status:
+    characterName: 
+    weaponType: 0
+    magicType: 0
+    moveSpeed: 0
+    jumpSpeed: 0
+    HP: 0
+    Attack_Physics: 0
+    Attack_Magic: 0
+    RecoveryValue: 0
+    Defend_Physics: 0
+    Defend_Magic: 0
+    DecreaseDurationTime_Magic: 0
   LastUpdateTime: 0
 --- !u!114 &114204814270107972
 MonoBehaviour:
@@ -1391,6 +1410,7 @@ MonoBehaviour:
   animationManager: {fileID: 0}
   Attacked: 0
   picked: 0
+  isFound: 0
 --- !u!114 &114374854292299490
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1407,20 +1427,6 @@ MonoBehaviour:
   CurrentSelected: 0
   deBuffTime: 0
   List_CanAttack: []
-  characterStatus:
-    characterName: 
-    weaponType: 0
-    magicType: 0
-    moveSpeed: 0
-    jumpSpeed: 0
-    HP: 0
-    Attack_Physics: 0
-    Attack_Magic: 0
-    RecoveryValue: 0
-    Defend_Physics: 0
-    Defend_Magic: 0
-    DecreaseDurationTime_Magic: 0
-  List_Enemy: []
   LHand: {fileID: 0}
   RHand: {fileID: 0}
   Head: {fileID: 0}
@@ -1433,7 +1439,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1532040738782690}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
@@ -1561,13 +1567,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 1.7
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!198 &198471720988499346
 ParticleSystem:
   m_ObjectHideFlags: 1

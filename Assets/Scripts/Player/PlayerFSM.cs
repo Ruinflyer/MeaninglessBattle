@@ -30,7 +30,7 @@ public class PlayerFSM :BaseFSM
         CurrentState.Act(this);
         if(Time.time-lastTime>0.2f)
         {
-            NetworkManager.SendUpdatePlayerInfo(characterStatus.HP, transform.position, transform.rotation.eulerAngles, 102, 204, 300, animationManager.LayerCur, animationManager.animCur);
+            NetworkManager.SendUpdatePlayerInfo(transform.position, transform.rotation.eulerAngles, 102, 204, 300, animationManager.GetAttackID(), animationManager.animCur);
             lastTime = Time.time;
         }
         

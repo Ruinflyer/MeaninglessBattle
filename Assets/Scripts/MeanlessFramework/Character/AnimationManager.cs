@@ -124,7 +124,14 @@ namespace Meaningless
             //}
         }
 
-
+        /// <summary>
+        /// 获取当前Attack ID
+        /// </summary>
+        /// <returns></returns>
+        public int GetAttackID()
+        {
+            return anim.GetInteger("Attack ID");
+        }
         #region 动画事件
         public void MagicShootEnd()
         {
