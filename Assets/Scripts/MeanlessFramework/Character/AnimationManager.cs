@@ -51,7 +51,7 @@ namespace Meaningless
         /// <summary>
         /// 网络用播放动画
         /// </summary>
-        public void NetPlayClip(int Layer, string ClipName, float normalizedTime = 0f)
+        public void NetPlayClip(string ClipName, int AttackID)
         {
 
             if (ClipName == "Idle")
@@ -59,11 +59,8 @@ namespace Meaningless
                 if (AnimLock == false)
                 {
                     anim.SetBool("Run", false);
-                    anim.SetBool("Spear Melee Attack 02", false);
-                    anim.SetBool("Spin Attack", false);
-                    anim.SetBool("Pick Up", false);
-                    anim.SetBool("Jump", false);
-                    anim.SetBool("Magic Shoot Attack", false);
+                    anim.SetBool("Falling", false);
+                    anim.SetBool("Defend", false);
                 }
             }
             if (ClipName == "Run")
@@ -71,11 +68,6 @@ namespace Meaningless
                 if (AnimLock == false)
                 {
                     anim.SetBool("Run", true);
-                    anim.SetBool("Spear Melee Attack 02", false);
-                    anim.SetBool("Spin Attack", false);
-                    anim.SetBool("Pick Up", false);
-                    anim.SetBool("Jump", false);
-                    anim.SetBool("Magic Shoot Attack", false);
                 }
             }
 
@@ -83,51 +75,38 @@ namespace Meaningless
             {
                 AnimLock = true;
                 anim.SetBool("Run", false);
-                anim.SetBool("Spear Melee Attack 02", true);
-                anim.SetBool("Spin Attack", false);
-                anim.SetBool("Pick Up", false);
-                anim.SetBool("Jump", false);
-                anim.SetBool("Magic Shoot Attack", false);
+                anim.SetTrigger("Spear Melee Attack 02");
             }
             if (ClipName == "Spin Attack")
             {
                 AnimLock = true;
                 anim.SetBool("Run", false);
-                anim.SetBool("Spear Melee Attack 02", false);
-                anim.SetBool("Spin Attack", true);
-                anim.SetBool("Pick Up", false);
-                anim.SetBool("Jump", false);
-                anim.SetBool("Magic Shoot Attack", false);
+                anim.SetTrigger("Spin Attack");
             }
             if (ClipName == "Pick Up")
             {
                 AnimLock = true;
                 anim.SetBool("Run", false);
-                anim.SetBool("Spear Melee Attack 02", false);
-                anim.SetBool("Spin Attack", false);
-                anim.SetBool("Pick Up", true);
-                anim.SetBool("Jump", false);
-                anim.SetBool("Magic Shoot Attack", false);
+                anim.SetTrigger("Pick Up");
             }
             if (ClipName == "Jump")
             {
                 AnimLock = true;
                 anim.SetBool("Run", false);
-                anim.SetBool("Spear Melee Attack 02", false);
-                anim.SetBool("Spin Attack", false);
-                anim.SetBool("Pick Up", false);
-                anim.SetBool("Jump", true);
-                anim.SetBool("Magic Shoot Attack", false);
+                anim.SetTrigger("Jump");
+
             }
             if (ClipName == "Magic Shoot Attack")
             {
                 AnimLock = true;
                 anim.SetBool("Run", false);
-                anim.SetBool("Spear Melee Attack 02", false);
-                anim.SetBool("Spin Attack", false);
-                anim.SetBool("Pick Up", false);
-                anim.SetBool("Jump", false);
-                anim.SetBool("Magic Shoot Attack", true);
+                anim.SetTrigger("Magic Shoot Attack");
+            }
+            if(ClipName=="Attack ID")
+            {
+                AnimLock = true;
+                anim.SetBool("Run", false);
+                anim.SetInteger("Attack ID", AttackID);
             }
             //if (anim.GetCurrentAnimatorClipInfo(Layer)[0].clip.name != ClipName)
             //{
@@ -168,6 +147,34 @@ namespace Meaningless
             AnimLock = false;
         }
         public void SpinEnd()
+        {
+            AnimLock = false;
+        }
+        public void SingleWieldAttack1End()
+        {
+            AnimLock = false;
+        }
+        public void SingleWieldAttack2End()
+        {
+            AnimLock = false;
+        }
+        public void SingleWieldAttack3End()
+        {
+            AnimLock = false;
+        }
+        public void DoubleHandsAttack1End()
+        {
+            AnimLock = false;
+        }
+        public void DoubleHandsAttack2End()
+        {
+            AnimLock = false;
+        }
+        public void DoubleHandsAttack3End()
+        {
+            AnimLock = false;
+        }
+        public void DoubleHandsAttack4End()
         {
             AnimLock = false;
         }

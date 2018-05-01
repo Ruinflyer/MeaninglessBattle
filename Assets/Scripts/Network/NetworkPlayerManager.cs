@@ -43,13 +43,13 @@ public class NetworkPlayerManager : MonoBehaviour
         int HeadItem = p.GetInt(startIndex, ref startIndex);
         int BodyItem = p.GetInt(startIndex, ref startIndex);
         int WeaponID = p.GetInt(startIndex, ref startIndex);
-        int Layer= p.GetInt(startIndex, ref startIndex);
+        int AttackID= p.GetInt(startIndex, ref startIndex);
         string CurrentAction = p.GetString(startIndex, ref startIndex);
 
         if (ScenePlayers.ContainsKey(playerName))
         {
             NetworkPlayer nPlayer = ScenePlayers[playerName].GetComponent<NetworkPlayer>();
-            nPlayer.SetPlayerInfo(HP, HeadItem, BodyItem, WeaponID, Layer,CurrentAction);
+            nPlayer.SetPlayerInfo(HP, HeadItem, BodyItem, WeaponID, AttackID, CurrentAction);
             nPlayer.SetPlayerTransform(posX, posY, posZ, rotX, rotY, rotZ);
         }
     }

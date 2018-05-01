@@ -136,7 +136,7 @@ public class NetworkManager : MonoSingleton<NetworkManager>
     /// <summary>
     /// 发送角色同步信息
     /// </summary>
-    public static void SendUpdatePlayerInfo(float HP,Vector3 pos , Vector3 rot , int HeadItem, int BodyItem, int WeaponID, int ActionLayer, string CurrentAction)
+    public static void SendUpdatePlayerInfo(float HP,Vector3 pos , Vector3 rot , int HeadItem, int BodyItem, int WeaponID, int AttackID, string CurrentAction)
     {
         BytesProtocol protocol = new BytesProtocol();
         protocol.SpliceString("UpdatePlayerInfo");
@@ -150,7 +150,7 @@ public class NetworkManager : MonoSingleton<NetworkManager>
         protocol.SpliceInt(HeadItem);
         protocol.SpliceInt(BodyItem);
         protocol.SpliceInt(WeaponID);
-        protocol.SpliceInt(ActionLayer);
+        protocol.SpliceInt(AttackID);//用于动画AttackID变量
         protocol.SpliceString(CurrentAction);
         Send(protocol);
     }                      

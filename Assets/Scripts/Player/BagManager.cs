@@ -742,7 +742,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
 
                 //未装备Weapon1而使用Weapon1槽位攻击时，返回无武器属性
 
-                    if (Weapon1 == null)
+                    if (Weapon1 == NullInfo)
                     {
                         GetNonWeaponCharacterStatus();
                     }
@@ -771,7 +771,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                             (defaultCharacterStatus.RecoveryValue * List_WeaponAttributes[0].rate_Recovery);
 
 
-                        if (Head != null)
+                        if (Head != NullInfo)
                         {
                             //头盔指定的武器和现在选择的武器一样，攻击+x%
                             if (Weapon1.weaponProperties.weaponType == Head.armorProperties.ForWeaponType)
@@ -786,7 +786,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                 break;
             case 2:
                 //未装备Weapon2而使用Weapon2槽位攻击时，返回无武器属性
-                if (Weapon2 == null)
+                if (Weapon2 == NullInfo)
                 {
                     GetNonWeaponCharacterStatus();
                 }
@@ -813,7 +813,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                     characterStatus.RecoveryValue = defaultCharacterStatus.RecoveryValue + (defaultCharacterStatus.RecoveryValue * armorAttributes.rate_Recovery) +
                         (defaultCharacterStatus.RecoveryValue * List_WeaponAttributes[1].rate_Recovery);
 
-                    if (Head!= null)
+                    if (Head!= NullInfo)
                     {
                         //头盔指定的武器和现在选择的武器一样，攻击+x%
                         if (Weapon2.weaponProperties.weaponType == Head.armorProperties.ForWeaponType)
