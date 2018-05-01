@@ -81,15 +81,16 @@ public class BagUI : BaseUI
         Weapon2Gem2.sprite = ResourcesManager.Instance.GetUITexture("Null");
         Magic1.sprite = ResourcesManager.Instance.GetUITexture("Null");
         Magic2.sprite = ResourcesManager.Instance.GetUITexture("Null");
+        InitBagItem(scrollRect.content, BagItem);
+        InitBagItem(equipScrollRect.content, EquipItem);
+        //SetEquippedItems();
+        SetBagListItems(BagManager.Instance.List_PickUp, BagItem);
+        SetBagListItems(BagManager.Instance.List_Equip, EquipItem);
     }
 
     protected override void InitInStart()
     {
-        InitBagItem(scrollRect.content,BagItem);
-        InitBagItem(equipScrollRect.content, EquipItem);
-        //SetEquippedItems();
-        SetBagListItems(BagManager.Instance.List_PickUp,BagItem);
-        SetBagListItems(BagManager.Instance.List_Equip, EquipItem);
+        
     }
 
     protected override void OnEnable()

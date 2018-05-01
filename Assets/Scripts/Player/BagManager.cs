@@ -171,7 +171,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
             }
         }
 
-        if (Magic1 != null)
+        if (Magic1 != NullInfo)
         {
             
 
@@ -191,7 +191,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
             if (skillAttributesList[0].isUse && skillAttributesList[0].remainCount > 0)
                 skillAttributesList[0].Timer -= Time.deltaTime;
         }
-        if (Magic2!= null)
+        if (Magic2!= NullInfo)
         {
             if (skillAttributesList[1].isOn && skillAttributesList[1].isUse && skillAttributesList[0].remainCount > 0)
             {
@@ -307,7 +307,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
             case EquippedItem.Head:
                 //1.使用UnequipItem(EquippedItem.Head)后，直接脱下头盔将会减去头盔上宝石的属性，所以装备头盔时，当宝石存在，即再次加上宝石属性.
                 //2.先装备了宝石再装备头盔，宝石属性仍未添加，所以装备头盔时，当宝石存在，即再次加上宝石属性.
-                if (HeadGem1!= null)
+                if (HeadGem1!= NullInfo)
                 {
                     armorAttributes.rate_Attack_Physics += HeadGem1.gemProperties.Rate_PhysicalAttack;
                     armorAttributes.rate_Attack_Magic += HeadGem1.gemProperties.Rate_MagicalAttack;
@@ -317,7 +317,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                     armorAttributes.rate_MoveSpeed += HeadGem1.gemProperties.Rate_MoveSpeed;
                     armorAttributes.rate_Recovery += HeadGem1.gemProperties.Rate_Recovery;
                 }
-                if (HeadGem2 != null)
+                if (HeadGem2 != NullInfo)
                 {
                     armorAttributes.rate_Attack_Physics += HeadGem2.gemProperties.Rate_PhysicalAttack;
                     armorAttributes.rate_Attack_Magic += HeadGem2.gemProperties.Rate_MagicalAttack;
@@ -332,7 +332,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
             case EquippedItem.Body:
                 //1.使用UnequipItem(EquippedItem.Body)后，直接脱下身体防具将会减去身体防具上宝石的属性，所以装备身体防具时，当宝石存在，即再次加上宝石属性.
                 //2.先装备了宝石再装备身体防具，宝石属性仍未添加，所以装备身体防具时，当宝石存在，即再次加上宝石属性.
-                if (BodyGem1!= null)
+                if (BodyGem1!= NullInfo)
                 {
                     armorAttributes.rate_Attack_Physics += BodyGem1.gemProperties.Rate_PhysicalAttack;
                     armorAttributes.rate_Attack_Magic +=BodyGem1.gemProperties.Rate_MagicalAttack;
@@ -342,7 +342,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                     armorAttributes.rate_MoveSpeed += BodyGem1.gemProperties.Rate_MoveSpeed;
                     armorAttributes.rate_Recovery += BodyGem1.gemProperties.Rate_Recovery;
                 }
-                if (BodyGem2 != null)
+                if (BodyGem2 != NullInfo)
                 {
                     armorAttributes.rate_Attack_Physics += BodyGem2.gemProperties.Rate_PhysicalAttack;
                     armorAttributes.rate_Attack_Magic += BodyGem2.gemProperties.Rate_MagicalAttack;
@@ -365,7 +365,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
 
             case EquippedItem.HeadGem1:
                 HeadGem1 = itemInfo;
-                if (Head!= null)
+                if (Head!= NullInfo)
                 {
                     armorAttributes.rate_Attack_Physics += itemInfo.gemProperties.Rate_PhysicalAttack;
                     armorAttributes.rate_Attack_Magic += itemInfo.gemProperties.Rate_MagicalAttack;
@@ -378,7 +378,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                 break;
             case EquippedItem.HeadGem2:
                HeadGem2 = itemInfo;
-                if (Head!= null)
+                if (Head!= NullInfo)
                 {
                     armorAttributes.rate_Attack_Physics += itemInfo.gemProperties.Rate_PhysicalAttack;
                     armorAttributes.rate_Attack_Magic += itemInfo.gemProperties.Rate_MagicalAttack;
@@ -392,7 +392,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                 break;
             case EquippedItem.BodyGem1:
                 BodyGem1= itemInfo;
-                if (Body != null)
+                if (Body != NullInfo)
                 {
                     armorAttributes.rate_Attack_Physics += itemInfo.gemProperties.Rate_PhysicalAttack;
                     armorAttributes.rate_Attack_Magic += itemInfo.gemProperties.Rate_MagicalAttack;
@@ -405,7 +405,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                 break;
             case EquippedItem.BodyGem2:
               BodyGem2= itemInfo;
-                if (Body != null)
+                if (Body != NullInfo)
                 {
                     armorAttributes.rate_Attack_Physics += itemInfo.gemProperties.Rate_PhysicalAttack;
                     armorAttributes.rate_Attack_Magic += itemInfo.gemProperties.Rate_MagicalAttack;
@@ -421,7 +421,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
             case EquippedItem.Weapon1:
                 //1.使用UnequipItem(EquippedItem.Weapon1)后，直接脱下武器将会减去武器上宝石的属性，所以装备武器时，当宝石存在，即再次加上宝石属性.
                 //2.先装备了宝石再装备Weapon1，宝石属性仍未添加，所以装备武器时，当宝石存在，即再次加上宝石属性.
-                if (Weapon1_Gem1!= null)
+                if (Weapon1_Gem1!= NullInfo)
                 {
                     List_WeaponAttributes[0].rate_Attack_Magic += Weapon1_Gem1.gemProperties.Rate_MagicalAttack;
                     List_WeaponAttributes[0].rate_Attack_Physics +=Weapon1_Gem1.gemProperties.Rate_PhysicalAttack;
@@ -431,7 +431,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                     List_WeaponAttributes[0].rate_MoveSpeed +=Weapon1_Gem1.gemProperties.Rate_MoveSpeed;
                     List_WeaponAttributes[0].rate_Recovery += Weapon1_Gem1.gemProperties.Rate_Recovery;
                 }
-                if( Weapon1_Gem2!= null)
+                if( Weapon1_Gem2!= NullInfo)
                 {
                     List_WeaponAttributes[0].rate_Attack_Magic += Weapon1_Gem2.gemProperties.Rate_MagicalAttack;
                     List_WeaponAttributes[0].rate_Attack_Physics += Weapon1_Gem2.gemProperties.Rate_PhysicalAttack;
@@ -449,7 +449,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
             case EquippedItem.Weapon2:
                 //1.使用UnequipItem(EquippedItem.Weapon2)后，直接脱下武器将会减去武器上宝石的属性，所以装备武器时，当宝石存在，即再次加上宝石属性.
                 //2.先装备了宝石再装备Weapon2，宝石属性仍未添加，所以装备武器时，当宝石存在，即再次加上宝石属性.
-                if (Weapon2_Gem1 != null)
+                if (Weapon2_Gem1 != NullInfo)
                 {
                     List_WeaponAttributes[1].rate_Attack_Magic += Weapon2_Gem1.gemProperties.Rate_MagicalAttack;
                     List_WeaponAttributes[1].rate_Attack_Physics += Weapon2_Gem1.gemProperties.Rate_PhysicalAttack;
@@ -459,7 +459,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                     List_WeaponAttributes[1].rate_MoveSpeed += Weapon2_Gem1.gemProperties.Rate_MoveSpeed;
                     List_WeaponAttributes[1].rate_Recovery += Weapon2_Gem1.gemProperties.Rate_Recovery;
                 }
-                if (Weapon2_Gem2!= null)
+                if (Weapon2_Gem2!= NullInfo)
                 {
                     List_WeaponAttributes[1].rate_Attack_Magic +=Weapon2_Gem2.gemProperties.Rate_MagicalAttack;
                     List_WeaponAttributes[1].rate_Attack_Physics +=Weapon2_Gem2.gemProperties.Rate_PhysicalAttack;
@@ -475,7 +475,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
 
             case EquippedItem.Weapon1_Gem1:
                Weapon1_Gem1 = itemInfo;
-                if (Weapon1!= null)
+                if (Weapon1!= NullInfo)
                 {
                     List_WeaponAttributes[0].rate_Attack_Magic += itemInfo.gemProperties.Rate_MagicalAttack;
                     List_WeaponAttributes[0].rate_Attack_Physics += itemInfo.gemProperties.Rate_PhysicalAttack;
@@ -489,7 +489,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                 break;
             case EquippedItem.Weapon1_Gem2:
                Weapon1_Gem2= itemInfo;
-                if (Weapon1!= null)
+                if (Weapon1!= NullInfo)
                 {
                     List_WeaponAttributes[0].rate_Attack_Magic += itemInfo.gemProperties.Rate_MagicalAttack;
                     List_WeaponAttributes[0].rate_Attack_Physics += itemInfo.gemProperties.Rate_PhysicalAttack;
@@ -502,7 +502,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                 break;
             case EquippedItem.Weapon2_Gem1:
                Weapon2_Gem1 = itemInfo;
-                if (Weapon2 != null)
+                if (Weapon2 != NullInfo)
                 {
                     List_WeaponAttributes[1].rate_Attack_Magic += itemInfo.gemProperties.Rate_MagicalAttack;
                     List_WeaponAttributes[1].rate_Attack_Physics += itemInfo.gemProperties.Rate_PhysicalAttack;
@@ -515,7 +515,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                 break;
             case EquippedItem.Weapon2_Gem2:
               Weapon2_Gem2 = itemInfo;
-                if (Weapon2 != null)
+                if (Weapon2 != NullInfo)
                 {
                     List_WeaponAttributes[1].rate_Attack_Magic += itemInfo.gemProperties.Rate_MagicalAttack;
                     List_WeaponAttributes[1].rate_Attack_Physics += itemInfo.gemProperties.Rate_PhysicalAttack;
@@ -562,7 +562,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
             {
                 case EquippedItem.Head:
                     //当头盔脱下，头盔上的宝石将不再生效
-                    if (HeadGem1 != null)
+                    if (HeadGem1 != NullInfo)
                     {
                         armorAttributes.rate_Attack_Magic -= HeadGem1.gemProperties.Rate_MagicalAttack;
                         armorAttributes.rate_Attack_Physics -=HeadGem1.gemProperties.Rate_PhysicalAttack;
@@ -572,7 +572,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                         armorAttributes.rate_MoveSpeed -= HeadGem1.gemProperties.Rate_MoveSpeed;
                         armorAttributes.rate_Recovery -= HeadGem1.gemProperties.Rate_Recovery;
                     }
-                    if (HeadGem2 != null)
+                    if (HeadGem2 != NullInfo)
                     {
                         armorAttributes.rate_Attack_Magic -= HeadGem2.gemProperties.Rate_MagicalAttack;
                         armorAttributes.rate_Attack_Physics -= HeadGem2.gemProperties.Rate_PhysicalAttack;
@@ -586,7 +586,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                     Head= NullInfo;
                     break;
                 case EquippedItem.HeadGem1:
-                    if (Head!= null)
+                    if (Head!= NullInfo)
                     {
                         armorAttributes.rate_Attack_Magic -=HeadGem1.gemProperties.Rate_MagicalAttack;
                         armorAttributes.rate_Attack_Physics -= HeadGem1.gemProperties.Rate_PhysicalAttack;
@@ -599,7 +599,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                   HeadGem1= NullInfo;
                     break;
                 case EquippedItem.HeadGem2:
-                    if (Head!= null)
+                    if (Head!= NullInfo)
                     {
                         armorAttributes.rate_Attack_Magic -= HeadGem2.gemProperties.Rate_MagicalAttack;
                         armorAttributes.rate_Attack_Physics -= HeadGem2.gemProperties.Rate_PhysicalAttack;
@@ -613,7 +613,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                     break;
                 case EquippedItem.Body:
                     //当身体防具脱下，身体防具上的宝石将不再生效
-                    if (BodyGem1 != null)
+                    if (BodyGem1 != NullInfo)
                     {
                         armorAttributes.rate_Attack_Magic -= BodyGem1.gemProperties.Rate_MagicalAttack;
                         armorAttributes.rate_Attack_Physics -= BodyGem1.gemProperties.Rate_PhysicalAttack;
@@ -623,7 +623,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                         armorAttributes.rate_MoveSpeed -=BodyGem1.gemProperties.Rate_MoveSpeed;
                         armorAttributes.rate_Recovery -= BodyGem1.gemProperties.Rate_Recovery;
                     }
-                    if (BodyGem2 != null)
+                    if (BodyGem2 != NullInfo)
                     {
                         armorAttributes.rate_Attack_Magic -=BodyGem2.gemProperties.Rate_MagicalAttack;
                         armorAttributes.rate_Attack_Physics -= BodyGem2 .gemProperties.Rate_PhysicalAttack;
@@ -643,7 +643,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                     Body = NullInfo;
                     break;
                 case EquippedItem.BodyGem1:
-                    if (Body != null)
+                    if (Body != NullInfo)
                     {
                         armorAttributes.rate_Attack_Magic -= BodyGem1.gemProperties.Rate_MagicalAttack;
                         armorAttributes.rate_Attack_Physics -= BodyGem1.gemProperties.Rate_PhysicalAttack;
@@ -656,7 +656,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                     BodyGem1 = NullInfo;
                     break;
                 case EquippedItem.BodyGem2:
-                    if (Body!= null)
+                    if (Body!= NullInfo)
                     {
                         armorAttributes.rate_Attack_Magic -= BodyGem2.gemProperties.Rate_MagicalAttack;
                         armorAttributes.rate_Attack_Physics -= BodyGem2.gemProperties.Rate_PhysicalAttack;
@@ -742,13 +742,12 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
 
                 //未装备Weapon1而使用Weapon1槽位攻击时，返回无武器属性
 
-                    if (Weapon1 == NullInfo)
+                    if (Weapon1.weaponProperties==null)
                     {
                         GetNonWeaponCharacterStatus();
                     }
                     else
                     {
-                        
                         characterStatus.weaponType = Weapon1.weaponProperties.weaponType;
                         characterStatus.magicType = MagicType.NULL;
 
@@ -786,7 +785,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                 break;
             case 2:
                 //未装备Weapon2而使用Weapon2槽位攻击时，返回无武器属性
-                if (Weapon2 == NullInfo)
+                if (Weapon2.weaponProperties == null)
                 {
                     GetNonWeaponCharacterStatus();
                 }
