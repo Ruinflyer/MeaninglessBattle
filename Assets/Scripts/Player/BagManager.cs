@@ -32,6 +32,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
     public SingleItemInfo Magic1 = new SingleItemInfo();
     public SingleItemInfo Magic2 = new SingleItemInfo();
     public SingleItemInfo NullInfo = new SingleItemInfo();
+
     public List<SingleItemInfo> List_PickUp = new List<SingleItemInfo>();
     public List<SingleItemInfo> List_Equip = new List<SingleItemInfo>();
     private int preSelected;
@@ -740,14 +741,14 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
             case 1:
 
                 //未装备Weapon1而使用Weapon1槽位攻击时，返回无武器属性
-               
+
                     if (Weapon1 == null)
                     {
                         GetNonWeaponCharacterStatus();
                     }
                     else
                     {
-
+                        
                         characterStatus.weaponType = Weapon1.weaponProperties.weaponType;
                         characterStatus.magicType = MagicType.NULL;
 
@@ -888,7 +889,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
     {
         characterStatus.characterName = NetworkManager.PlayerName;
         characterStatus.weaponType = WeaponType.NULL;
-
+        
         characterStatus.Attack_Physics = defaultCharacterStatus.Attack_Physics + (defaultCharacterStatus.Attack_Physics * armorAttributes.rate_Attack_Physics);
 
         characterStatus.Attack_Magic = 0;
@@ -900,7 +901,6 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
         characterStatus.Defend_Physics = defaultCharacterStatus.Defend_Physics + armorAttributes.rate_Defend_Physics;
 
         characterStatus.moveSpeed = defaultCharacterStatus.moveSpeed + (defaultCharacterStatus.moveSpeed * armorAttributes.rate_MoveSpeed);
-
 
         characterStatus.RecoveryValue = defaultCharacterStatus.RecoveryValue + (defaultCharacterStatus.RecoveryValue * armorAttributes.rate_Recovery);
         return characterStatus;

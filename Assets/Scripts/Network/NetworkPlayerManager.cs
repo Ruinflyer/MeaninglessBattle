@@ -20,7 +20,7 @@ public class NetworkPlayerManager : MonoBehaviour
     void Update()
     {
         MessageCenter.Send(EMessageType.Remain, ScenePlayers.Count+1);
-        Debug.Log(ScenePlayers.Count+"Name"+NetworkManager.PlayerName);
+        //Debug.Log(ScenePlayers.Count+"Name"+NetworkManager.PlayerName);
     }
 
     /// <summary>
