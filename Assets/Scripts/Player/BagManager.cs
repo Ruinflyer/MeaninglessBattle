@@ -17,20 +17,20 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
 {
     public int CurrentSelected = 1;
     // public Dictionary<EquippedItem, SingleItemInfo> Dict_Equipped=new Dictionary<EquippedItem, SingleItemInfo>();
-    public SingleItemInfo Head=new SingleItemInfo();
-    public SingleItemInfo HeadGem1 = new SingleItemInfo();
-    public SingleItemInfo HeadGem2 = new SingleItemInfo();
-    public SingleItemInfo Body = new SingleItemInfo();
-    public SingleItemInfo BodyGem1 = new SingleItemInfo();
-    public SingleItemInfo BodyGem2 = new SingleItemInfo();
-    public SingleItemInfo Weapon1 = new SingleItemInfo();
-    public SingleItemInfo Weapon2 = new SingleItemInfo();
-    public SingleItemInfo Weapon1_Gem1 = new SingleItemInfo();
-    public SingleItemInfo Weapon1_Gem2 = new SingleItemInfo();
-    public SingleItemInfo Weapon2_Gem1 = new SingleItemInfo();
-    public SingleItemInfo Weapon2_Gem2 = new SingleItemInfo();
-    public SingleItemInfo Magic1 = new SingleItemInfo();
-    public SingleItemInfo Magic2 = new SingleItemInfo();
+    public SingleItemInfo;/*Head=new SingleItemInfo();*/
+    public SingleItemInfo;/*HeadGem1 = new SingleItemInfo();*/
+    public SingleItemInfo;/*HeadGem2 = new SingleItemInfo();*/
+    public SingleItemInfo;/*Body = new SingleItemInfo();*/
+    public SingleItemInfo;/*BodyGem1 = new SingleItemInfo();*/
+    public SingleItemInfo;/*BodyGem2 = new SingleItemInfo();*/
+    public SingleItemInfo;/*Weapon1 = new SingleItemInfo();*/
+    public SingleItemInfo;/*Weapon2 = new SingleItemInfo();*/
+    public SingleItemInfo;/*Weapon1_Gem1 = new SingleItemInfo();*/
+    public SingleItemInfo;/*Weapon1_Gem2 = new SingleItemInfo();*/
+    public SingleItemInfo;/*Weapon2_Gem1 = new SingleItemInfo();*/
+    public SingleItemInfo;/*Weapon2_Gem2 = new SingleItemInfo();*/
+    public SingleItemInfo;/*Magic1 = new SingleItemInfo();*/
+    public SingleItemInfo;/*Magic2 = new SingleItemInfo();*/
     public List<SingleItemInfo> List_PickUp = new List<SingleItemInfo>();
     public List<SingleItemInfo> List_Equip = new List<SingleItemInfo>();
     private int preSelected;
@@ -723,14 +723,14 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
             case 1:
 
                 //未装备Weapon1而使用Weapon1槽位攻击时，返回无武器属性
-               
+
                     if (Weapon1 == null)
                     {
                         GetNonWeaponCharacterStatus();
                     }
                     else
                     {
-
+                        
                         characterStatus.weaponType = Weapon1.weaponProperties.weaponType;
                         characterStatus.magicType = MagicType.NULL;
 
@@ -871,7 +871,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
     {
         characterStatus.characterName = NetworkManager.PlayerName;
         characterStatus.weaponType = WeaponType.NULL;
-
+        
         characterStatus.Attack_Physics = defaultCharacterStatus.Attack_Physics + (defaultCharacterStatus.Attack_Physics * armorAttributes.rate_Attack_Physics);
 
         characterStatus.Attack_Magic = 0;
@@ -883,9 +883,9 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
         characterStatus.Defend_Physics = defaultCharacterStatus.Defend_Physics + armorAttributes.rate_Defend_Physics;
 
         characterStatus.moveSpeed = defaultCharacterStatus.moveSpeed + (defaultCharacterStatus.moveSpeed * armorAttributes.rate_MoveSpeed);
-        Debug.LogError("D"+defaultCharacterStatus.moveSpeed);
-        Debug.LogError("D" + defaultCharacterStatus.moveSpeed);
-        Debug.LogError("D" + defaultCharacterStatus.moveSpeed);
+        //Debug.LogError("D"+defaultCharacterStatus.moveSpeed);
+        //Debug.LogError("D" + defaultCharacterStatus.moveSpeed);
+        //Debug.LogError("D" + defaultCharacterStatus.moveSpeed);
 
         characterStatus.RecoveryValue = defaultCharacterStatus.RecoveryValue + (defaultCharacterStatus.RecoveryValue * armorAttributes.rate_Recovery);
         return characterStatus;
