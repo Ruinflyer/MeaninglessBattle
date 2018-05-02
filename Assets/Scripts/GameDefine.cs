@@ -61,6 +61,7 @@ namespace Meaningless
         LoadingScene,
         Remain,
         FinishUI,//结算界面
+        CountdownTime,//倒计时
         //
     }
 

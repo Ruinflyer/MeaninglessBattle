@@ -42,6 +42,7 @@ public class MapManager : MonoSingleton<MapManager>
         //初始化网络事件
         NetworkManager.AddEventListener("GetMapItemData", OnGetMapItemDataBack);
         NetworkManager.AddEventListener("Circlefield", OnCirclefieldBack);
+        NetworkManager.AddEventListener("CirclefieldTime",OnCirclefieldTimeBack);
         NetworkManager.AddEventListener("DoorOpen", OnDoorOpen);
         NetworkManager.AddEventListener("AllPlayerLoaded", OnAllPlayerLoaded);
         NetworkManager.AddEventListener("PickItem",OnPickItem);
@@ -224,11 +225,28 @@ public class MapManager : MonoSingleton<MapManager>
         float Y = p.GetFloat(startIndex, ref startIndex);
         float shrinkPercent = p.GetFloat(startIndex, ref startIndex);
         int Movetime = p.GetInt(startIndex, ref startIndex);
-        
+        //HUDUI倒计时显示
+        object[] param = new object[2];
+        param[0] = Movetime;
+        param[1] = true;
+        MessageCenter.Send(EMessageType.CountdownTime, param);
+
         iTween.ScaleTo(Circlefield, iTween.Hash("x", Circlefield.transform.localScale.x*shrinkPercent, "z", Circlefield.transform.localScale.z*shrinkPercent, "time", Movetime));
         iTween.MoveTo(Circlefield, iTween.Hash("position", new Vector3(X, 0, Y), "time", Movetime));
     }
-
+    public void OnCirclefieldTimeBack(BaseProtocol protocol)
+    {
+        BytesProtocol p = protocol as BytesProtocol;
+        int startIndex = 0;
+        p.GetString(startIndex, ref startIndex);
+        int HoldTime = p.GetInt(startIndex, ref startIndex);
+        //HUDUI倒计时显示
+        object[] param = new object[2];
+        param[0] = HoldTime;
+        param[1] = false;
+        MessageCenter.Send(EMessageType.CountdownTime, param);
+       
+    }
     /// <summary>
     /// 开门
     /// </summary>
