@@ -205,7 +205,6 @@ public class NetworkManager : MonoSingleton<NetworkManager>
         protocol.SpliceInt(ItemID);
         Send(protocol);
     }
-
     /// <summary>
     /// 发送社保魔法
     /// </summary>

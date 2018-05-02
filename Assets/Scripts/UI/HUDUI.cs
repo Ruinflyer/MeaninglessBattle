@@ -113,9 +113,11 @@ public class HUDUI : BaseUI
     
     private void UpdateTime()
     {
+        Debug.Log("RefreshTime "+ RefreshTime);
         if(Time.time- lastTime>1f)
         {
             countdownTime -= 1;
+
             if (RefreshTime)
             {
                 if (isMoving)
