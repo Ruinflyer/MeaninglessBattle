@@ -32,10 +32,7 @@ public class RippleAttackState : FSMState
                     FSM.PlayAnimation("Magic Shoot Attack");
                     GameObject go = NetPoolManager.Instantiate("Ripple", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
                 }
-
             }
-
-
 
     }
 

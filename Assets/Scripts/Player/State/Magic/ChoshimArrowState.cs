@@ -22,6 +22,7 @@ public class ChoshimArrowState : FSMState
                     FSM.PlayAnimation("Magic Shoot Attack");
                     GameObject go = NetPoolManager.Instantiate("Choshim Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
                 }
+
             }
     
         if (BagManager.Instance.skillAttributesList[1].skillInfo != BagManager.Instance.NullInfo)

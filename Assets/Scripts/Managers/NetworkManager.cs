@@ -184,7 +184,6 @@ public class NetworkManager : MonoSingleton<NetworkManager>
         protocol.SpliceString("PlayerEquipHelmet");
         protocol.SpliceInt(ItemID);
         Send(protocol);
-        Debug.Log("成功发送戴头盔");
     }
     /// <summary>
     /// 发送拿衣服 衣服ID
@@ -206,6 +205,23 @@ public class NetworkManager : MonoSingleton<NetworkManager>
         protocol.SpliceInt(ItemID);
         Send(protocol);
     }
+    /// <summary>
+    /// 发送社保魔法
+    /// </summary>
+    public static void SendPlayerMagic(string MagicName,Vector3 pos,Quaternion rot )
+    {
+        BytesProtocol protocol = new BytesProtocol();
+        protocol.SpliceString("PlayerMagic");
+        protocol.SpliceString(MagicName);
+        protocol.SpliceFloat(pos.x);
+        protocol.SpliceFloat(pos.y);
+        protocol.SpliceFloat(pos.z);
+        protocol.SpliceFloat(rot.eulerAngles.x);
+        protocol.SpliceFloat(rot.eulerAngles.y);
+        protocol.SpliceFloat(rot.eulerAngles.z);
+        Send(protocol);
+    }
+
 }                                                                      
                                                                        
                                             

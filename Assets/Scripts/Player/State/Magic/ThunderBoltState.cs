@@ -27,11 +27,13 @@ public class ThunderBoltState : FSMState
         if (BagManager.Instance.skillAttributesList[1].skillInfo != BagManager.Instance.NullInfo)
             if (BagManager.Instance.skillAttributesList[1].skillInfo.magicProperties.magicType == MagicType.Thunderbolt)
             {
+
                 if (BagManager.Instance.skillAttributesList[1].isOn)
                 {
                     BagManager.Instance.UseMagic(1);
                     GameObject go = NetPoolManager.Instantiate("ThunderBolt", FSM.transform.position + FSM.transform.forward * 5, FSM.transform.rotation);
                 }
+
             }
     }
 

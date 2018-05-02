@@ -4,7 +4,7 @@
             "ItemID": 300,
             "ItemName": "棍棒",
             "ResName": "Bat",
-            "OccurrenceProbability": 0.10,
+            "OccurrenceProbability": 0.30,
             "itemType": 0,
           "weaponProperties": {
             "weaponType": 1,
@@ -17,7 +17,7 @@
             "ItemID": 301,
             "ItemName": "狼牙木棒",
             "ResName": "TeethClub",
-            "OccurrenceProbability": 0.08,
+            "OccurrenceProbability": 0.28,
             "itemType": 0,
           "weaponProperties": {
             "weaponType": 1,
@@ -30,7 +30,7 @@
             "ItemID": 302,
             "ItemName": "狼牙锤",
             "ResName": "TeethHammer",
-            "OccurrenceProbability": 0.07,
+            "OccurrenceProbability": 0.27,
             "itemType": 0,
           "weaponProperties": {
             "weaponType": 1,
@@ -43,7 +43,7 @@
             "ItemID": 303,
             "ItemName": "锻造锤",
             "ResName": "ForgeHammer",
-            "OccurrenceProbability": 0.06,
+            "OccurrenceProbability": 0.26,
             "itemType": 0,
           "weaponProperties": {
             "weaponType": 1,
@@ -56,7 +56,7 @@
             "ItemID": 304,
             "ItemName": "突刺锤",
             "ResName": "StabHammer",
-            "OccurrenceProbability": 0.06,
+            "OccurrenceProbability": 0.26,
             "itemType": 0,
           "weaponProperties": {
             "weaponType": 1,
@@ -69,7 +69,7 @@
             "ItemID": 305,
             "ItemName": "狼牙棒",
             "ResName": "Mace",
-            "OccurrenceProbability": 0.04,
+            "OccurrenceProbability": 0.24,
             "itemType": 0,
           "weaponProperties": {
             "weaponType": 1,
@@ -82,7 +82,7 @@
             "ItemID": 306,
             "ItemName": "匕首",
             "ResName": "Dagger",
-            "OccurrenceProbability": 0.12,
+            "OccurrenceProbability": 0.32,
             "itemType": 0,
           "weaponProperties": {
             "weaponType": 2,
@@ -95,7 +95,7 @@
             "ItemID": 307,
             "ItemName": "剑",
             "ResName": "Sword",
-            "OccurrenceProbability": 0.07,
+            "OccurrenceProbability": 0.27,
             "itemType": 0,
           "weaponProperties": {
             "weaponType": 2,
@@ -108,7 +108,7 @@
             "ItemID": 308,
             "ItemName": "镰刀",
             "ResName": "Scythe",
-            "OccurrenceProbability": 0.04,
+            "OccurrenceProbability": 0.24,
             "itemType": 0,
           "weaponProperties": {
             "weaponType": 2,
@@ -121,7 +121,7 @@
             "ItemID": 309,
             "ItemName": "大砍刀",
             "ResName": "Chopper",
-            "OccurrenceProbability": 0.04,
+            "OccurrenceProbability": 0.24,
             "itemType": 0,
           "weaponProperties": {
             "weaponType": 2,
@@ -134,7 +134,7 @@
             "ItemID": 310,
             "ItemName": "爪",
             "ResName": "Claw",
-            "OccurrenceProbability": 0.07,
+            "OccurrenceProbability": 0.27,
             "itemType": 0,
           "weaponProperties": {
             "weaponType": 3,
@@ -147,7 +147,7 @@
             "ItemID": 311,
             "ItemName": "斧头",
             "ResName": "Axe",
-            "OccurrenceProbability": 0.07,
+            "OccurrenceProbability": 0.27,
             "itemType": 0,
           "weaponProperties": {
             "weaponType": 3,
@@ -160,7 +160,7 @@
             "ItemID": 312,
             "ItemName": "手指虎",
             "ResName": "Knuckles",
-            "OccurrenceProbability": 0.08,
+            "OccurrenceProbability": 0.28,
             "itemType": 0,
           "weaponProperties": {
             "weaponType": 3,
@@ -173,7 +173,7 @@
             "ItemID": 313,
             "ItemName": "长矛",
             "ResName": "Spear",
-            "OccurrenceProbability": 0.01,
+            "OccurrenceProbability": 0.21,
             "itemType": 0,
           "weaponProperties": {
             "weaponType": 4,
@@ -186,39 +186,13 @@
             "ItemID": 314,
             "ItemName": "耙",
             "ResName": "Rake",
-            "OccurrenceProbability": 0.02,
+            "OccurrenceProbability": 0.22,
             "itemType": 0,
           "weaponProperties": {
             "weaponType": 4,
             "Damage": 80.0,
             "weaponLength": 1.8,
             "CDTime": 0.0
-          }
-        },
-        {
-            "ItemID": 315,
-            "ItemName": "方木盾",
-            "ResName": "WoodShield",
-            "OccurrenceProbability": 0.04,
-            "itemType": 0,
-          "weaponProperties": {
-            "weaponType": 5,
-            "Damage": 0.0,
-            "weaponLength": 0.2,
-            "CDTime": 5.0
-          }
-        },
-        {
-            "ItemID": 316,
-            "ItemName": "黑铁盾",
-            "ResName": "IronShield",
-            "OccurrenceProbability": 0.03,
-            "itemType": 0,
-          "weaponProperties": {
-            "weaponType": 5,
-            "Damage": 0.0,
-            "weaponLength": 0.2,
-            "CDTime": 5.0
           }
         },
         {

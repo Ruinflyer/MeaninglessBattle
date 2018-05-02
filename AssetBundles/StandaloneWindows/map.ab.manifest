@@ -1,0 +1,66 @@
+ManifestFileVersion: 0
+CRC: 3048362263
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 2dafb88e5ad49f75eb47f22cb0ee2e97
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: b7b80fc5e56bbc04d0e75fac246534a9
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 111
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 7bd325fc6759b7142be7c8541d3ca88b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9ead6d2dae03fb84baac7f1d745f7ba7, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/Models/MapItem/5.prefab
+- Assets/Models/MapItem/6.prefab
+- Assets/Models/MapItem/1.prefab
+- Assets/Models/MapItem/10.prefab
+- Assets/Models/MapItem/3.prefab
+- Assets/Models/MapItem/2.prefab
+- Assets/Models/MapItem/16.prefab
+- Assets/Models/MapItem/Edge.prefab
+- Assets/Models/MapItem/8.prefab
+- Assets/Models/MapItem/9.prefab
+- Assets/Models/MapItem/7.prefab
+- Assets/Models/MapItem/CircleField.prefab
+- Assets/Models/MapItem/15.prefab
+- Assets/Models/MapItem/17.prefab
+- Assets/Models/MapItem/19.prefab
+- Assets/Models/MapItem/12.prefab
+- Assets/Models/MapItem/18.prefab
+- Assets/Models/MapItem/4.prefab
+- Assets/Models/MapItem/11.prefab
+- Assets/Models/MapItem/13.prefab
+- Assets/Models/MapItem/14.prefab
+Dependencies: []

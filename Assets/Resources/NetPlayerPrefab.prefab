@@ -916,7 +916,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1887132482691962}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.124, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4752028758809324}
@@ -1111,11 +1111,12 @@ MonoBehaviour:
   playerController: {fileID: 0}
   animationManager: {fileID: 0}
   PlayerName: 
+  hp: 100
   headItemID: 0
   bodyItemID: 0
   weaponID: 0
   currentAction: 
-  curActionLayer: 0
+  curAttackID: 0
   status:
     characterName: 
     weaponType: 0
@@ -1129,7 +1130,6 @@ MonoBehaviour:
     Defend_Physics: 0
     Defend_Magic: 0
     DecreaseDurationTime_Magic: 0
-  hp: 100
   LastUpdateTime: 0
 --- !u!114 &114622247498669894
 MonoBehaviour:
@@ -1146,6 +1146,7 @@ MonoBehaviour:
   animCur: 
   LayerCur: 0
   AnimLock: 0
+  AnimStartName: Idle
 --- !u!137 &137165593950433346
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -1227,4 +1228,4 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.89, z: 0}
+  m_Center: {x: 0, y: 0.75, z: 0}

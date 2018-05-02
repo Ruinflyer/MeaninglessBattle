@@ -1,0 +1,663 @@
+﻿{
+    "ItemInfoList": [
+        {
+            "ItemID": 300,
+            "ItemName": "棍棒",
+            "ResName": "Bat",
+            "OccurrenceProbability": 0.30,
+            "itemType": 0,
+          "weaponProperties": {
+            "weaponType": 1,
+            "Damage": 40.0,
+            "weaponLength": 0.8,
+            "CDTime": 0.0
+          }
+        },
+        {
+            "ItemID": 301,
+            "ItemName": "狼牙木棒",
+            "ResName": "TeethClub",
+            "OccurrenceProbability": 0.28,
+            "itemType": 0,
+          "weaponProperties": {
+            "weaponType": 1,
+            "Damage": 48.0,
+            "weaponLength": 0.8,
+            "CDTime": 0.0
+          }
+        },
+        {
+            "ItemID": 302,
+            "ItemName": "狼牙锤",
+            "ResName": "TeethHammer",
+            "OccurrenceProbability": 0.27,
+            "itemType": 0,
+          "weaponProperties": {
+            "weaponType": 1,
+            "Damage": 54.0,
+            "weaponLength": 0.8,
+            "CDTime": 0.0
+          }
+        },
+        {
+            "ItemID": 303,
+            "ItemName": "锻造锤",
+            "ResName": "ForgeHammer",
+            "OccurrenceProbability": 0.26,
+            "itemType": 0,
+          "weaponProperties": {
+            "weaponType": 1,
+            "Damage": 62.0,
+            "weaponLength": 0.8,
+            "CDTime": 0.0
+          }
+        },
+        {
+            "ItemID": 304,
+            "ItemName": "突刺锤",
+            "ResName": "StabHammer",
+            "OccurrenceProbability": 0.26,
+            "itemType": 0,
+          "weaponProperties": {
+            "weaponType": 1,
+            "Damage": 70.0,
+            "weaponLength": 0.8,
+            "CDTime": 0.0
+          }
+        },
+        {
+            "ItemID": 305,
+            "ItemName": "狼牙棒",
+            "ResName": "Mace",
+            "OccurrenceProbability": 0.24,
+            "itemType": 0,
+          "weaponProperties": {
+            "weaponType": 1,
+            "Damage": 62.0,
+            "weaponLength": 0.8,
+            "CDTime": 0.0
+          }
+        },
+        {
+            "ItemID": 306,
+            "ItemName": "匕首",
+            "ResName": "Dagger",
+            "OccurrenceProbability": 0.32,
+            "itemType": 0,
+          "weaponProperties": {
+            "weaponType": 2,
+            "Damage": 35.0,
+            "weaponLength": 0.7,
+            "CDTime": 0.0
+          }
+        },
+        {
+            "ItemID": 307,
+            "ItemName": "剑",
+            "ResName": "Sword",
+            "OccurrenceProbability": 0.27,
+            "itemType": 0,
+          "weaponProperties": {
+            "weaponType": 2,
+            "Damage": 60.0,
+            "weaponLength": 1,
+            "CDTime": 0.0
+          }
+        },
+        {
+            "ItemID": 308,
+            "ItemName": "镰刀",
+            "ResName": "Scythe",
+            "OccurrenceProbability": 0.24,
+            "itemType": 0,
+          "weaponProperties": {
+            "weaponType": 2,
+            "Damage": 68.0,
+            "weaponLength": 1.2,
+            "CDTime": 0.0
+          }
+        },
+        {
+            "ItemID": 309,
+            "ItemName": "大砍刀",
+            "ResName": "Chopper",
+            "OccurrenceProbability": 0.24,
+            "itemType": 0,
+          "weaponProperties": {
+            "weaponType": 2,
+            "Damage": 68.0,
+            "weaponLength": 1,
+            "CDTime": 0.0
+          }
+        },
+        {
+            "ItemID": 310,
+            "ItemName": "爪",
+            "ResName": "Claw",
+            "OccurrenceProbability": 0.27,
+            "itemType": 0,
+          "weaponProperties": {
+            "weaponType": 3,
+            "Damage": 35.0,
+            "weaponLength": 0.5,
+            "CDTime": 0.0
+          }
+        },
+        {
+            "ItemID": 311,
+            "ItemName": "斧头",
+            "ResName": "Axe",
+            "OccurrenceProbability": 0.27,
+            "itemType": 0,
+          "weaponProperties": {
+            "weaponType": 3,
+            "Damage": 45.0,
+            "weaponLength": 0.7,
+            "CDTime": 0.0
+          }
+        },
+        {
+            "ItemID": 312,
+            "ItemName": "手指虎",
+            "ResName": "Knuckles",
+            "OccurrenceProbability": 0.28,
+            "itemType": 0,
+          "weaponProperties": {
+            "weaponType": 3,
+            "Damage": 35.0,
+            "weaponLength": 0.5,
+            "CDTime": 0.0
+          }
+        },
+        {
+            "ItemID": 313,
+            "ItemName": "长矛",
+            "ResName": "Spear",
+            "OccurrenceProbability": 0.21,
+            "itemType": 0,
+          "weaponProperties": {
+            "weaponType": 4,
+            "Damage": 95.0,
+            "weaponLength": 2,
+            "CDTime": 0.0
+          }
+        },
+        {
+            "ItemID": 314,
+            "ItemName": "耙",
+            "ResName": "Rake",
+            "OccurrenceProbability": 0.22,
+            "itemType": 0,
+          "weaponProperties": {
+            "weaponType": 4,
+            "Damage": 80.0,
+            "weaponLength": 1.8,
+            "CDTime": 0.0
+          }
+        },
+        {
+            "ItemID": 315,
+            "ItemName": "方木盾",
+            "ResName": "WoodShield",
+            "OccurrenceProbability": 0.04,
+            "itemType": 0,
+          "weaponProperties": {
+            "weaponType": 5,
+            "Damage": 0.0,
+            "weaponLength": 0.2,
+            "CDTime": 5.0
+          }
+        },
+        {
+            "ItemID": 316,
+            "ItemName": "黑铁盾",
+            "ResName": "IronShield",
+            "OccurrenceProbability": 0.03,
+            "itemType": 0,
+          "weaponProperties": {
+            "weaponType": 5,
+            "Damage": 0.0,
+            "weaponLength": 0.2,
+            "CDTime": 5.0
+          }
+        },
+        {
+            "ItemID": 101,
+            "ItemName": "角斗士头盔",
+            "ResName": "Helmet_Gladiator",
+            "OccurrenceProbability": 0.20,
+            "itemType": 1,
+            "armorProperties": {
+                "armorType": 1,
+                "ForWeaponType": 1,
+                "Rate_Attack": 1.05,
+                "Rate_PhysicalDefend": 1.00,
+                "Rate_MagicalDefend": 1.00,
+                "Rate_MoveSpeed": 1.00,
+                "Rate_Recovery": 1.00,
+                "Rate_DecreasedDurationTime": 1.00
+            }
+        },
+        {
+            "ItemID": 100,
+            "ItemName": "骑士头盔",
+            "ResName": "Helmet_Knight",
+            "OccurrenceProbability": 0.20,
+            "itemType": 1,
+            "armorProperties": {
+                "armorType": 1,
+                "ForWeaponType": 4,
+                "Rate_Attack": 1.05,
+                "Rate_PhysicalDefend": 1.00,
+                "Rate_MagicalDefend": 1.00,
+                "Rate_MoveSpeed": 1.00,
+                "Rate_Recovery": 1.00,
+                "Rate_DecreasedDurationTime": 1.00
+            }
+        },
+        {
+            "ItemID": 102,
+            "ItemName": "剑士头盔",
+            "ResName": "Helmet_Swordman",
+            "OccurrenceProbability": 0.20,
+            "itemType": 1,
+            "armorProperties": {
+                "armorType": 1,
+                "ForWeaponType": 2,
+                "Rate_Attack": 1.05,
+                "Rate_PhysicalDefend": 1.00,
+                "Rate_MagicalDefend": 1.00,
+                "Rate_MoveSpeed": 1.00,
+                "Rate_Recovery": 1.00,
+                "Rate_DecreasedDurationTime": 1.00
+            }
+        },
+        {
+            "ItemID": 103,
+            "ItemName": "绿帽头盔",
+            "ResName": "Helmet_Green",
+            "OccurrenceProbability": 0.20,
+            "itemType": 1,
+            "armorProperties": {
+                "armorType": 1,
+                "ForWeaponType": 0,
+                "Rate_Attack": 1.00,
+                "Rate_PhysicalDefend": 1.00,
+                "Rate_MagicalDefend": 1.00,
+                "Rate_MoveSpeed": 1.00,
+                "Rate_Recovery": 1.00,
+                "Rate_DecreasedDurationTime": 1.00
+            }
+        },
+        {
+            "ItemID": 104,
+            "ItemName": "酋长面具",
+            "ResName": "Mask_Emirate",
+            "OccurrenceProbability": 0.20,
+            "itemType": 1,
+            "armorProperties": {
+                "armorType": 1,
+                "ForWeaponType": 3,
+                "Rate_Attack": 1.05,
+                "Rate_PhysicalDefend": 1.00,
+                "Rate_MagicalDefend": 1.00,
+                "Rate_MoveSpeed": 1.00,
+                "Rate_Recovery": 1.00,
+                "Rate_DecreasedDurationTime": 1.00
+            }
+        },
+        {
+            "ItemID": 200,
+            "ItemName": "休闲便服",
+            "ResName": "Armor_Casual",
+            "OccurrenceProbability": 0.28,
+            "itemType": 1,
+            "armorProperties": {
+                "armorType": 2,
+                "ForWeaponType": 0,
+                "Rate_Attack": 1.00,
+                "Rate_PhysicalDefend": 1.00,
+                "Rate_MagicalDefend": 1.00,
+                "Rate_MoveSpeed": 1.00,
+                "Rate_Recovery": 1.00,
+                "Rate_DecreasedDurationTime": 1.00
+            }
+        },
+        {
+            "ItemID": 201,
+            "ItemName": "骑士铠甲",
+            "ResName": "Armor_Knight",
+            "OccurrenceProbability": 0.12,
+            "itemType": 1,
+            "armorProperties": {
+                "armorType": 2,
+                "ForWeaponType": 0,
+                "Rate_Attack": 1.00,
+                "Rate_PhysicalDefend": 1.30,
+                "Rate_MagicalDefend": 1.08,
+                "Rate_MoveSpeed": 1.00,
+                "Rate_Recovery": 1.00,
+                "Rate_DecreasedDurationTime": 1.00
+            }
+        },
+        {
+            "ItemID": 202,
+            "ItemName": "卫士链甲",
+            "ResName": "Armor_Chain",
+            "OccurrenceProbability": 0.12,
+            "itemType": 1,
+            "armorProperties": {
+                "armorType": 2,
+                "ForWeaponType": 0,
+                "Rate_Attack": 1.00,
+                "Rate_PhysicalDefend": 1.15,
+                "Rate_MagicalDefend": 1.15,
+                "Rate_MoveSpeed": 0.0,
+                "Rate_Recovery": 0.0,
+                "Rate_DecreasedDurationTime": 1.00
+            }
+        },
+        {
+            "ItemID": 203,
+            "ItemName": "医生便服",
+            "ResName": "Armor_Doctor",
+            "OccurrenceProbability": 0.12,
+            "itemType": 1,
+            "armorProperties": {
+                "armorType": 2,
+                "ForWeaponType": 0,
+                "Rate_Attack": 1.00,
+                "Rate_PhysicalDefend": 1.00,
+                "Rate_MagicalDefend": 1.00,
+                "Rate_MoveSpeed": 1.00,
+                "Rate_Recovery": 2.00,
+                "Rate_DecreasedDurationTime": 1.00
+            }
+        },
+        {
+            "ItemID": 204,
+            "ItemName": "圣诞老人服装",
+            "ResName": "Armor_Santa",
+            "OccurrenceProbability": 0.12,
+            "itemType": 1,
+            "armorProperties": {
+                "armorType": 2,
+                "ForWeaponType": 0,
+                "Rate_Attack": 1.00,
+                "Rate_PhysicalDefend": 1.00,
+                "Rate_MagicalDefend": 1.00,
+                "Rate_MoveSpeed": 1.05,
+                "Rate_Recovery": 1.00,
+                "Rate_DecreasedDurationTime": 1.00
+            }
+        },
+        {
+            "ItemID": 205,
+            "ItemName": "部落冲突服装",
+            "ResName": "Armor_Horde",
+            "OccurrenceProbability": 0.12,
+            "itemType": 1,
+            "armorProperties": {
+                "armorType": 2,
+                "ForWeaponType": 0,
+                "Rate_Attack": 1.05,
+                "Rate_PhysicalDefend": 1.00,
+                "Rate_MagicalDefend": 1.00,
+                "Rate_MoveSpeed": 1.00,
+                "Rate_Recovery": 1.00,
+                "Rate_DecreasedDurationTime": 1.00
+            }
+        },
+        {
+            "ItemID": 206,
+            "ItemName": "法术服",
+            "ResName": "Armor_Wizard",
+            "OccurrenceProbability": 0.12,
+            "itemType": 1,
+            "armorProperties": {
+                "armorType": 2,
+                "ForWeaponType": 0,
+                "Rate_Attack": 1.00,
+                "Rate_PhysicalDefend": 1.08,
+                "Rate_MagicalDefend": 1.25,
+                "Rate_MoveSpeed": 1.00,
+                "Rate_Recovery": 1.00,
+                "Rate_DecreasedDurationTime": 0.80
+            }
+        },
+        {
+            "ItemID": 400,
+            "ItemName": "物理防御宝石",
+            "ResName": "Crystal_Orange",
+            "OccurrenceProbability": 0.12,
+            "itemType": 4,
+            "gemProperties": {
+                "Rate_PhysicalAttack": 0,
+                "Rate_MagicalAttack": 0,
+                "Rate_PhysicalDefend": 0.05,
+                "Rate_MagicalDefend": 0,
+                "Rate_MoveSpeed": 0,
+                "Rate_Recovery": 0,
+                "Rate_DecreasedDurationTime": 0
+            }
+        },
+        {
+            "ItemID": 401,
+            "ItemName": "魔法防御宝石",
+            "ResName": "Crystal_Purple",
+            "OccurrenceProbability": 0.12,
+            "itemType": 4,
+            "gemProperties": {
+                "Rate_PhysicalAttack": 0,
+                "Rate_MagicalAttack": 0,
+                "Rate_PhysicalDefend": 0,
+                "Rate_MagicalDefend": 0.05,
+                "Rate_MoveSpeed": 0,
+                "Rate_Recovery": 0,
+                "Rate_DecreasedDurationTime": 0
+            }
+        },
+        {
+            "ItemID": 402,
+            "ItemName": "恢复宝石",
+            "ResName": "Crystal_Green",
+            "OccurrenceProbability": 0.12,
+            "itemType": 4,
+            "gemProperties": {
+                "Rate_PhysicalAttack": 0,
+                "Rate_MagicalAttack": 0,
+                "Rate_PhysicalDefend": 0,
+                "Rate_MagicalDefend": 0,
+                "Rate_MoveSpeed": 0,
+                "Rate_Recovery": 0.5,
+                "Rate_DecreasedDurationTime": 0
+            }
+        },
+        {
+            "ItemID": 403,
+            "ItemName": "狂化宝石",
+            "ResName": "Crystal_Red",
+            "OccurrenceProbability": 0.12,
+            "itemType": 4,
+            "gemProperties": {
+                "Rate_PhysicalAttack": 0.05,
+                "Rate_MagicalAttack": 0,
+                "Rate_PhysicalDefend": 0,
+                "Rate_MagicalDefend": 0,
+                "Rate_MoveSpeed": 0,
+                "Rate_Recovery": 0,
+                "Rate_DecreasedDurationTime": 0
+            }
+        },
+        {
+            "ItemID": 404,
+            "ItemName": "贤者宝石",
+            "ResName": "Crystal_Dark_Blue",
+            "OccurrenceProbability": 0.12,
+            "itemType": 4,
+            "gemProperties": {
+                "Rate_PhysicalAttack": 0,
+                "Rate_MagicalAttack": 0.05,
+                "Rate_PhysicalDefend": 0,
+                "Rate_MagicalDefend": 0,
+                "Rate_MoveSpeed": 0,
+                "Rate_Recovery": 0,
+                "Rate_DecreasedDurationTime": 0
+            }
+        },
+        {
+            "ItemID": 405,
+            "ItemName": "轻盈宝石",
+            "ResName": "Crystal_Light_Blue",
+            "OccurrenceProbability": 0.12,
+            "itemType": 4,
+            "gemProperties": {
+                "Rate_PhysicalAttack": 0,
+                "Rate_MagicalAttack": 0,
+                "Rate_PhysicalDefend": 0,
+                "Rate_MagicalDefend": 0,
+                "Rate_MoveSpeed": 0.05,
+                "Rate_Recovery": 0,
+                "Rate_DecreasedDurationTime": 0
+            }
+        },
+        {
+            "ItemID": 406,
+            "ItemName": "精神强化宝石",
+            "ResName": "Crystal_Pink",
+            "OccurrenceProbability": 0.12,
+            "itemType": 4,
+            "gemProperties": {
+                "Rate_PhysicalAttack": 0,
+                "Rate_MagicalAttack": 0,
+                "Rate_PhysicalDefend": 0,
+                "Rate_MagicalDefend": 0,
+                "Rate_MoveSpeed": 0,
+                "Rate_Recovery": 0,
+                "Rate_DecreasedDurationTime": 0.1
+            }
+        },
+        {
+            "ItemID": 500,
+            "ItemName": "生命恢复药水",
+            "ResName": "HealthPotion",
+            "OccurrenceProbability": 0.12,
+            "itemType": 2,
+            "expendableProperties":{
+                "Recovery_HP":50,
+                "Recovery_Time":5,
+                "RechargeValue":0
+            }
+        },
+        {
+            "ItemID": 501,
+            "ItemName": "魔晶石",
+            "ResName": "Crystal_Magic",
+            "OccurrenceProbability": 0.12,
+            "itemType": 2,
+            "expendableProperties":{
+                "Recovery_HP":0,
+                "Recovery_Time":0,
+                "RechargeValue":2
+            }
+        },
+        {
+            "ItemID": 600,
+            "ItemName": "波纹疾走",
+            "ResName": "Ripple",
+            "OccurrenceProbability": 0.12,
+            "itemType": 3,
+            "magicProperties":{
+                "magicType":1,
+                "Damage":30,
+                "Probability":0,
+                "UsableCount":10,
+                "CDTime":20
+            }
+        },
+        {
+            "ItemID": 601,
+            "ItemName": "穿心攻击",
+            "ResName": "HeartAttack",
+            "OccurrenceProbability": 0.12,
+            "itemType": 3,
+            "magicProperties":{
+                "magicType":2,
+                "Damage":50,
+                "Probability":0,
+                "UsableCount":5,
+                "CDTime":20
+            }
+        },
+        {
+            "ItemID": 602,
+            "ItemName": "黯灭",
+            "ResName": "Stygian_Desolator",
+            "OccurrenceProbability": 0.12,
+            "itemType": 3,
+            "magicProperties":{
+                "magicType":3,
+                "Damage":0,
+                "Probability":1,
+                "UsableCount":3,
+                "CDTime":20
+            }
+        },
+        {
+            "ItemID": 603,
+            "ItemName": "冰结之箭",
+            "ResName": "IceArrow",
+            "OccurrenceProbability": 0.12,
+            "itemType": 3,
+            "magicProperties":{
+                "magicType":4,
+                "Damage":20,
+                "Probability":0.33,
+                "UsableCount":2,
+                "CDTime":20
+            }
+        },
+        {
+            "ItemID": 604,
+            "ItemName": "初心之箭",
+            "ResName": "ChoshimArrow",
+            "OccurrenceProbability": 0.12,
+            "itemType": 3,
+            "magicProperties":{
+                "magicType":5,
+                "Damage":20,
+                "Probability":0.50,
+                "UsableCount":4,
+                "CDTime":20
+            }
+        },
+        {
+            "ItemID": 605,
+            "ItemName": "皇后杀手",
+            "ResName": "KillerQueen",
+            "OccurrenceProbability": 0.12,
+            "itemType": 3,
+            "magicProperties":{
+                "magicType":6,
+                "Damage":70,
+                "Probability":0,
+                "UsableCount":3,
+                "CDTime":20
+            }
+        },
+        {
+            "ItemID": 606,
+            "ItemName": "迅雷",
+            "ResName": "Thunderbolt",
+            "OccurrenceProbability": 0.12,
+            "itemType": 3,
+            "magicProperties":{
+                "magicType":7,
+                "Damage":60,
+                "Probability":0,
+                "UsableCount":2,
+                "CDTime":20
+            }
+        }
+    ]
+}

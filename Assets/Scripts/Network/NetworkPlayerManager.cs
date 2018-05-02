@@ -4,11 +4,13 @@ using UnityEngine;
 using MeaninglessNetwork;
 using Meaningless;
 
+/// <summary>
+/// 网络玩家管理器，一些战斗事件也在这里
+/// </summary>
 public class NetworkPlayerManager : MonoBehaviour
 {
 
     public Dictionary<string, NetworkPlayer> ScenePlayers = new Dictionary<string, NetworkPlayer>();
-
     // Use this for initialization
     void Start()
     {
@@ -18,7 +20,7 @@ public class NetworkPlayerManager : MonoBehaviour
         NetworkManager.AddEventListener("PlayerEquipHelmet", OnPlayerEquipHelmet);
         NetworkManager.AddEventListener("PlayerEquipClothe", OnPlayerEquipClothe);
         NetworkManager.AddEventListener("PlayerEquipWeapon", OnPlayerEquipWeapon);
-        
+        NetworkManager.AddEventListener("PlayerMagic",OnPlayerMagicBack);
             
     }
 
@@ -48,6 +50,12 @@ public class NetworkPlayerManager : MonoBehaviour
         float rotZ = p.GetFloat(startIndex, ref startIndex);
         int AttackID= p.GetInt(startIndex, ref startIndex);
         string CurrentAction = p.GetString(startIndex, ref startIndex);
+
+        //自己的消息
+        if(playerName==NetworkManager.PlayerName)
+        {
+            BagManager.Instance.characterStatus.HP = HP;
+        }
 
         if (ScenePlayers.ContainsKey(playerName))
         {
@@ -142,6 +150,12 @@ public class NetworkPlayerManager : MonoBehaviour
         //玩家死亡处理
         if(KilledPlayerName==NetworkManager.PlayerName)
         {
+            UIManager.Instance.ShowUI(UIid.FinishUI);
+            object[] param = new object[3];
+            param[0] = "无畏之争——无谓之争";
+            param[1] = "你被 "+KillerName+" 击杀";
+            param[2] = " ";
+            MessageCenter.Send_Multparam(EMessageType.FinishUI,param);
             return;
         }
 
@@ -185,5 +199,25 @@ public class NetworkPlayerManager : MonoBehaviour
         {
             ScenePlayers[Playername].SetPlayerWeapon(ItemID);
         }
+    }
+
+    /// <summary>
+    /// 魔法回调
+    /// </summary>
+    /// <param name="protocol"></param>
+    private void OnPlayerMagicBack(BaseProtocol protocol)
+    {
+        BytesProtocol p = protocol as BytesProtocol;
+        int startIndex = 0;
+        p.GetString(startIndex, ref startIndex);
+        string MagicName = p.GetString(startIndex, ref startIndex);
+        float posX = p.GetFloat(startIndex, ref startIndex);
+        float posY = p.GetFloat(startIndex, ref startIndex);
+        float posZ = p.GetFloat(startIndex, ref startIndex);
+        float rotX = p.GetFloat(startIndex, ref startIndex);
+        float rotY = p.GetFloat(startIndex, ref startIndex);
+        float rotZ = p.GetFloat(startIndex, ref startIndex);
+        
+        NetPoolManager.Instantiate(MagicName,new Vector3(posX,posY,posZ), Quaternion.Euler(rotX, rotY, rotZ));
     }
 }

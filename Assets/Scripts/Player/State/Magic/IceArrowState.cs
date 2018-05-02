@@ -24,10 +24,12 @@ public class IceArrowState : FSMState
                     GameObject go = NetPoolManager.Instantiate("Ice Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
                     Debug.Log("m1");
                 }
+
             }
         if (BagManager.Instance.skillAttributesList[1].skillInfo != BagManager.Instance.NullInfo)
             if (BagManager.Instance.skillAttributesList[1].skillInfo.magicProperties.magicType == MagicType.IceArrow)
             {
+
                 if (BagManager.Instance.skillAttributesList[1].isOn)
                 {
                     BagManager.Instance.UseMagic(1);
@@ -35,6 +37,7 @@ public class IceArrowState : FSMState
                     GameObject go = NetPoolManager.Instantiate("Ice Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
                     Debug.Log("m2");
                 }
+
             }
 
     }
