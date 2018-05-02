@@ -150,7 +150,7 @@ public class MapManager : MonoSingleton<MapManager>
             tmp_ID = ItemsID[CalcIndex(j, ProbabilityValue)];
             //Debug.LogError("Index: "+j +" ID: "+tmp_ID+" ResName: "+"ResName: "+ItemInfoManager.Instance.GetResname(tmp_ID) +" ItemName: "+ ItemInfoManager.Instance.GetItemName(tmp_ID));
             tmp =Instantiate(ResourcesManager.Instance.GetItem(ItemInfoManager.Instance.GetResname(tmp_ID)),
-                new Vector3(itemSpawnPoint.ItemSpawnPoints[j].position.x, 0, itemSpawnPoint.ItemSpawnPoints[j].position.z), Quaternion.identity);
+                new Vector3(itemSpawnPoint.ItemSpawnPoints[j].position.x, 0, itemSpawnPoint.ItemSpawnPoints[j].position.z), Quaternion.Euler(new Vector3(-90,0,0)));
             tmp_groundItem = tmp.AddComponent<GroundItem>();
             tmp_groundItem.ItemID = tmp_ID;
             tmp_groundItem.GroundItemID = j;
