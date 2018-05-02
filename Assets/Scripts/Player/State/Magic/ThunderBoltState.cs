@@ -22,6 +22,7 @@ public class ThunderBoltState : FSMState
             if (BagManager.Instance.skillAttributesList[0].isOn)
             {
                 BagManager.Instance.UseMagic(0);
+                NetworkManager.SendPlayerMagic("ThunderBolt", hitpoint, FSM.transform.rotation);
                 GameObject go = NetPoolManager.Instantiate("ThunderBolt", hitpoint, FSM.transform.rotation);
             }
         }
@@ -30,6 +31,7 @@ public class ThunderBoltState : FSMState
             if (BagManager.Instance.skillAttributesList[1].isOn)
             {
                 BagManager.Instance.UseMagic(1);
+                NetworkManager.SendPlayerMagic("ThunderBolt", hitpoint, FSM.transform.rotation);
                 GameObject go = NetPoolManager.Instantiate("ThunderBolt", hitpoint, FSM.transform.rotation);
             }
         }

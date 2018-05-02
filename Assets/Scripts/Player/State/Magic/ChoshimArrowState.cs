@@ -18,6 +18,7 @@ public class ChoshimArrowState : FSMState {
             {
                 BagManager.Instance.UseMagic(0);
                 FSM.PlayAnimation("Magic Shoot Attack");
+                NetworkManager.SendPlayerMagic("Choshim Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
                 GameObject go = NetPoolManager.Instantiate("Choshim Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
             }
         }
@@ -27,7 +28,8 @@ public class ChoshimArrowState : FSMState {
             {
                 BagManager.Instance.UseMagic(1);
                 FSM.PlayAnimation("Magic Shoot Attack");
-                GameObject go = NetPoolManager.Instantiate("Choshim Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
+                NetworkManager.SendPlayerMagic("Choshim Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
+               GameObject go = NetPoolManager.Instantiate("Choshim Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
             }
         }
     }

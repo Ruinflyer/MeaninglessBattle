@@ -19,6 +19,7 @@ public class HeartAttackState : FSMState
             {
                 BagManager.Instance.UseMagic(0);
                 FSM.PlayAnimation("Magic Shoot Attack");
+                NetworkManager.SendPlayerMagic("Heart Attack", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
                 GameObject go = NetPoolManager.Instantiate("Heart Attack", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
             }
         }
@@ -28,6 +29,7 @@ public class HeartAttackState : FSMState
             {
                 BagManager.Instance.UseMagic(1);
                 FSM.PlayAnimation("Magic Shoot Attack");
+                NetworkManager.SendPlayerMagic("Heart Attack", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
                 GameObject go = NetPoolManager.Instantiate("Heart Attack", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
             }
         }
