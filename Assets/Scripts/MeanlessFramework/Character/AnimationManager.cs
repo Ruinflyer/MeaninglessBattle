@@ -108,6 +108,51 @@ namespace Meaningless
                 anim.SetBool("Run", false);
                 anim.SetInteger("Attack ID", AttackID);
             }
+            //
+            if (ClipName=="AttackID1")
+            {
+                AnimLock = true;
+                anim.SetBool("Run", false);
+                anim.SetInteger("Attack ID", 1);
+            }
+            if (ClipName == "AttackID2")
+            {
+                AnimLock = true;
+                anim.SetBool("Run", false);
+                anim.SetInteger("Attack ID", 2);
+            }
+            if (ClipName == "AttackID3")
+            {
+                AnimLock = true;
+                anim.SetBool("Run", false);
+                anim.SetInteger("Attack ID", 3);
+            }
+            if (ClipName == "AttackID4")
+            {
+                AnimLock = true;
+                anim.SetBool("Run", false);
+                anim.SetInteger("Attack ID", 4);
+            }
+            if (ClipName == "AttackID5")
+            {
+                AnimLock = true;
+                anim.SetBool("Run", false);
+                anim.SetInteger("Attack ID", 5);
+            }
+            if (ClipName == "AttackID6")
+            {
+                AnimLock = true;
+                anim.SetBool("Run", false);
+                anim.SetInteger("Attack ID", 6);
+            }
+            if (ClipName == "AttackID7")
+            {
+
+                AnimLock = true;
+                anim.SetTrigger("Melee Left Attack 01");
+                anim.SetBool("Run", false);
+                anim.SetInteger("Attack ID", 7);
+            }
             //if (anim.GetCurrentAnimatorClipInfo(Layer)[0].clip.name != ClipName)
             //{
             //    if(ClipName=="Run" || ClipName == "Spear Melee Attack 02" || ClipName == "Spin Attack" || ClipName == "Pick Up" || ClipName == "Jump" || ClipName == "Magic Shoot Attack")
@@ -209,9 +254,33 @@ namespace Meaningless
         {
             AnimStartName = "Jump";
         }
-        public void LeftAttackStart()
+        public void AttackID1Start()
         {
-            AnimStartName = "Melee Left Attack 01";
+            AnimStartName = "AttackID1";
+        }
+        public void AttackID2Start()
+        {
+            AnimStartName = "AttackID2";
+        }
+        public void AttackID3Start()
+        {
+            AnimStartName = "AttackID3";
+        }
+        public void AttackID4Start()
+        {
+            AnimStartName = "AttackID4";
+        }
+        public void AttackID5Start()
+        {
+            AnimStartName = "AttackID5";
+        }
+        public void AttackID6Start()
+        {
+            AnimStartName = "AttackID6";
+        }
+        public void AttackID7Start()
+        {
+            AnimStartName = "AttackID7";
         }
         #endregion
     }

@@ -101,7 +101,7 @@ public class DropItem : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHan
 
                                     bagListitem.Equip();
                                     CameraBase.Instance.player.GetComponent<PlayerController>().EquipHelmet(bagListitem.Item.ItemID);
-
+                                    NetworkManager.SendPlayerEquipHelmet(bagListitem.Item.ItemID); //发送戴头盔消息
                                     canDrag = true;
                                 }
                             }
@@ -121,6 +121,7 @@ public class DropItem : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHan
 
                                     bagListitem.Equip();
                                     CameraBase.Instance.player.GetComponent<PlayerController>().EquipClothes(bagListitem.Item.ItemID);
+                                    NetworkManager.SendPlayerEquipClothe(bagListitem.Item.ItemID); //发送着衫消息
 
                                     canDrag = true;
                                 }
@@ -140,6 +141,7 @@ public class DropItem : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHan
                                     BagManager.Instance.EquipItem(equippedItemType, bagListitem.Item);
                                     BagManager.Instance.CurrentSelected = 1;
                                     CameraBase.Instance.player.GetComponent<PlayerController>().ChangeWeapon(1);
+                                    NetworkManager.SendPlayerEquipWeapon(bagListitem.Item.ItemID); //发送换武器消息
 
                                     ItemInfo = bagListitem.Item;
 
@@ -162,7 +164,7 @@ public class DropItem : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHan
                                     BagManager.Instance.EquipItem(equippedItemType, bagListitem.Item);
                                     BagManager.Instance.CurrentSelected = 2;
                                     CameraBase.Instance.player.GetComponent<PlayerController>().ChangeWeapon(2);
-
+                                    NetworkManager.SendPlayerEquipWeapon(bagListitem.Item.ItemID); //发送换武器消息
                                     ItemInfo = bagListitem.Item;
 
                                     bagListitem.Equip();

@@ -106,7 +106,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Inbetween bone
       rotation in copied configuration does not match rotation in animation file:\n\t'RigSpine1'
-      : rotation error = 1.284645 deg\n\t'RigNeck' : rotation error = 12.975890 deg\n"
+      : rotation error = 1.284645 deg\n\t'RigNeck' : rotation error = 12.975888 deg\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar to
@@ -150,6 +150,13 @@ ModelImporter:
       events:
       - time: 0.92957747
         functionName: SingleWieldAttack2End
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0
+        functionName: AttackID2Start
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
