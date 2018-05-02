@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Meaningless;
 
-public class IceArrowState : FSMState {
+public class IceArrowState : FSMState
+{
 
 
     public IceArrowState()
@@ -12,25 +13,29 @@ public class IceArrowState : FSMState {
     }
 
     public override void Act(BaseFSM FSM)
-    {        
-        if (BagManager.Instance.skillAttributesList[0].skillInfo.magicProperties.magicType == MagicType.IceArrow)
-        {
-            if (BagManager.Instance.skillAttributesList[0].isOn)
+    {
+        if (BagManager.Instance.skillAttributesList[0].skillInfo != BagManager.Instance.NullInfo)
+            if (BagManager.Instance.skillAttributesList[0].skillInfo.magicProperties.magicType == MagicType.IceArrow)
             {
-                BagManager.Instance.UseMagic(0);
-                FSM.PlayAnimation("Magic Shoot Attack");
-                GameObject go = NetPoolManager.Instantiate("Ice Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
+                if (BagManager.Instance.skillAttributesList[0].isOn)
+                {
+                    BagManager.Instance.UseMagic(0);
+                    FSM.PlayAnimation("Magic Shoot Attack");
+                    GameObject go = NetPoolManager.Instantiate("Ice Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
+                    Debug.Log("m1");
+                }
             }
-        }
-        else if (BagManager.Instance.skillAttributesList[1].skillInfo.magicProperties.magicType == MagicType.IceArrow)
-        {
-            if (BagManager.Instance.skillAttributesList[1].isOn)
+        if (BagManager.Instance.skillAttributesList[1].skillInfo != BagManager.Instance.NullInfo)
+            if (BagManager.Instance.skillAttributesList[1].skillInfo.magicProperties.magicType == MagicType.IceArrow)
             {
-                BagManager.Instance.UseMagic(1);
-                FSM.PlayAnimation("Magic Shoot Attack");
-                GameObject go = NetPoolManager.Instantiate("Ice Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
+                if (BagManager.Instance.skillAttributesList[1].isOn)
+                {
+                    BagManager.Instance.UseMagic(1);
+                    FSM.PlayAnimation("Magic Shoot Attack");
+                    GameObject go = NetPoolManager.Instantiate("Ice Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
+                    Debug.Log("m2");
+                }
             }
-        }
 
     }
 

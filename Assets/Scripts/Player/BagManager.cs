@@ -17,7 +17,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
 {
     public int CurrentSelected = 1;
     // public Dictionary<EquippedItem, SingleItemInfo> Dict_Equipped=new Dictionary<EquippedItem, SingleItemInfo>();
-    public SingleItemInfo Head=new SingleItemInfo();
+    public SingleItemInfo Head = new SingleItemInfo();
     public SingleItemInfo HeadGem1 = new SingleItemInfo();
     public SingleItemInfo HeadGem2 = new SingleItemInfo();
     public SingleItemInfo Body = new SingleItemInfo();
@@ -64,14 +64,14 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
 
 
 
-    private BasicAttributes armorAttributes=new BasicAttributes();
+    private BasicAttributes armorAttributes = new BasicAttributes();
     private BasicAttributes[] List_WeaponAttributes = new BasicAttributes[2];
     public SkillAttributes[] skillAttributesList = new SkillAttributes[2];
 
     //默认角色属性值
-    private CharacterStatus defaultCharacterStatus=new CharacterStatus();
+    private CharacterStatus defaultCharacterStatus = new CharacterStatus();
     //角色属性值
-    public CharacterStatus characterStatus=new CharacterStatus();
+    public CharacterStatus characterStatus = new CharacterStatus();
 
     //开始补血的时间
     private float timeBeginheal;
@@ -103,7 +103,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
         NullInfo.magicProperties = null;
         NullInfo.ItemID = 0;
         NullInfo.ItemName = null;
-        NullInfo.ResName = null;
+        NullInfo.ResName = "";
 
         Head = NullInfo;
         HeadGem1 = NullInfo;
@@ -127,8 +127,8 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
         skillAttributesList[1].skillInfo.magicProperties = new MagicProperties();
         defaultCharacterStatus = MeaninglessJson.LoadJsonFromFile<CharacterStatus>(MeaninglessJson.Path_StreamingAssets + "CharacterStatus.json");
         characterStatus.HP = defaultCharacterStatus.HP;
-       //MessageCenter.AddListener_Multparam(EMessageType.EquipItem, (object[] obj) => { EquipItem((EquippedItem)obj[0], (SingleItemInfo)obj[1]); });
-       MessageCenter.AddListener(EMessageType.UseItem, (object obj) => { UseItem((int)obj); });
+        //MessageCenter.AddListener_Multparam(EMessageType.EquipItem, (object[] obj) => { EquipItem((EquippedItem)obj[0], (SingleItemInfo)obj[1]); });
+        MessageCenter.AddListener(EMessageType.UseItem, (object obj) => { UseItem((int)obj); });
     }
 
 
@@ -178,7 +178,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
 
         if (Magic1 != NullInfo)
         {
-            
+
 
             if (skillAttributesList[0].isOn && skillAttributesList[0].isUse && skillAttributesList[0].remainCount > 0)
             {
@@ -196,9 +196,9 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
             if (skillAttributesList[0].isUse && skillAttributesList[0].remainCount > 0)
                 skillAttributesList[0].Timer -= Time.deltaTime;
         }
-        if (Magic2!= NullInfo)
+        if (Magic2 != NullInfo)
         {
-            if (skillAttributesList[1].isOn && skillAttributesList[1].isUse && skillAttributesList[0].remainCount > 0)
+            if (skillAttributesList[1].isOn && skillAttributesList[1].isUse && skillAttributesList[1].remainCount > 0)
             {
                 skillAttributesList[1].isOn = false;
                 skillAttributesList[1].remainCount -= 1;
@@ -230,7 +230,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                 if (List_PickUp[index].expendableProperties.RechargeValue != 0)
                 {
                     //MessageCenter.Send(EMessageType.Recharge, List_PickUp[index].expendableProperties.RechargeValue);
-                    if(CurrentSelected==4)
+                    if (CurrentSelected == 4)
                     {
                         skillAttributesList[1].remainCount += (int)List_PickUp[index].expendableProperties.RechargeValue;
                         if (skillAttributesList[1].remainCount > skillAttributesList[1].skillInfo.magicProperties.UsableCount)
@@ -257,7 +257,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                 List_PickUp.RemoveAt(index);
             }
 
-            if(List_PickUp[index].itemType == ItemType.Gem)
+            if (List_PickUp[index].itemType == ItemType.Gem)
             {
                 List_PickUp.RemoveAt(index);
             }
@@ -279,7 +279,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                 case ItemType.Armor:
                 case ItemType.Weapon:
                 case ItemType.Magic:
-                    if(List_Equip.Count<=10)
+                    if (List_Equip.Count <= 10)
                     {
                         List_Equip.Add(ItemInfo);
                     }
@@ -312,7 +312,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
             case EquippedItem.Head:
                 //1.使用UnequipItem(EquippedItem.Head)后，直接脱下头盔将会减去头盔上宝石的属性，所以装备头盔时，当宝石存在，即再次加上宝石属性.
                 //2.先装备了宝石再装备头盔，宝石属性仍未添加，所以装备头盔时，当宝石存在，即再次加上宝石属性.
-                if (HeadGem1!= NullInfo)
+                if (HeadGem1 != NullInfo)
                 {
                     armorAttributes.rate_Attack_Physics += HeadGem1.gemProperties.Rate_PhysicalAttack;
                     armorAttributes.rate_Attack_Magic += HeadGem1.gemProperties.Rate_MagicalAttack;
@@ -337,10 +337,10 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
             case EquippedItem.Body:
                 //1.使用UnequipItem(EquippedItem.Body)后，直接脱下身体防具将会减去身体防具上宝石的属性，所以装备身体防具时，当宝石存在，即再次加上宝石属性.
                 //2.先装备了宝石再装备身体防具，宝石属性仍未添加，所以装备身体防具时，当宝石存在，即再次加上宝石属性.
-                if (BodyGem1!= NullInfo)
+                if (BodyGem1 != NullInfo)
                 {
                     armorAttributes.rate_Attack_Physics += BodyGem1.gemProperties.Rate_PhysicalAttack;
-                    armorAttributes.rate_Attack_Magic +=BodyGem1.gemProperties.Rate_MagicalAttack;
+                    armorAttributes.rate_Attack_Magic += BodyGem1.gemProperties.Rate_MagicalAttack;
                     armorAttributes.rate_Defend_Physics += BodyGem1.gemProperties.Rate_PhysicalDefend;
                     armorAttributes.rate_Defend_Magic += BodyGem1.gemProperties.Rate_MagicalDefend;
                     armorAttributes.rate_DurationTime_Magic += BodyGem1.gemProperties.Rate_DecreasedDurationTime;
@@ -365,12 +365,12 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                 armorAttributes.rate_MoveSpeed += itemInfo.armorProperties.Rate_MoveSpeed;
                 armorAttributes.rate_Recovery += itemInfo.armorProperties.Rate_Recovery;
 
-               Body = itemInfo;
+                Body = itemInfo;
                 break;
 
             case EquippedItem.HeadGem1:
                 HeadGem1 = itemInfo;
-                if (Head!= NullInfo)
+                if (Head != NullInfo)
                 {
                     armorAttributes.rate_Attack_Physics += itemInfo.gemProperties.Rate_PhysicalAttack;
                     armorAttributes.rate_Attack_Magic += itemInfo.gemProperties.Rate_MagicalAttack;
@@ -382,8 +382,8 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                 }
                 break;
             case EquippedItem.HeadGem2:
-               HeadGem2 = itemInfo;
-                if (Head!= NullInfo)
+                HeadGem2 = itemInfo;
+                if (Head != NullInfo)
                 {
                     armorAttributes.rate_Attack_Physics += itemInfo.gemProperties.Rate_PhysicalAttack;
                     armorAttributes.rate_Attack_Magic += itemInfo.gemProperties.Rate_MagicalAttack;
@@ -396,7 +396,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                 HeadGem2 = itemInfo;
                 break;
             case EquippedItem.BodyGem1:
-                BodyGem1= itemInfo;
+                BodyGem1 = itemInfo;
                 if (Body != NullInfo)
                 {
                     armorAttributes.rate_Attack_Physics += itemInfo.gemProperties.Rate_PhysicalAttack;
@@ -409,7 +409,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                 }
                 break;
             case EquippedItem.BodyGem2:
-              BodyGem2= itemInfo;
+                BodyGem2 = itemInfo;
                 if (Body != NullInfo)
                 {
                     armorAttributes.rate_Attack_Physics += itemInfo.gemProperties.Rate_PhysicalAttack;
@@ -426,29 +426,29 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
             case EquippedItem.Weapon1:
                 //1.使用UnequipItem(EquippedItem.Weapon1)后，直接脱下武器将会减去武器上宝石的属性，所以装备武器时，当宝石存在，即再次加上宝石属性.
                 //2.先装备了宝石再装备Weapon1，宝石属性仍未添加，所以装备武器时，当宝石存在，即再次加上宝石属性.
-                if (Weapon1_Gem1!= NullInfo)
+                if (Weapon1_Gem1 != NullInfo)
                 {
                     List_WeaponAttributes[0].rate_Attack_Magic += Weapon1_Gem1.gemProperties.Rate_MagicalAttack;
-                    List_WeaponAttributes[0].rate_Attack_Physics +=Weapon1_Gem1.gemProperties.Rate_PhysicalAttack;
+                    List_WeaponAttributes[0].rate_Attack_Physics += Weapon1_Gem1.gemProperties.Rate_PhysicalAttack;
                     List_WeaponAttributes[0].rate_Defend_Magic += Weapon1_Gem1.gemProperties.Rate_MagicalDefend;
-                    List_WeaponAttributes[0].rate_Defend_Physics +=Weapon1_Gem1.gemProperties.Rate_PhysicalDefend;
-                    List_WeaponAttributes[0].rate_DurationTime_Magic +=Weapon1_Gem1.gemProperties.Rate_DecreasedDurationTime;
-                    List_WeaponAttributes[0].rate_MoveSpeed +=Weapon1_Gem1.gemProperties.Rate_MoveSpeed;
+                    List_WeaponAttributes[0].rate_Defend_Physics += Weapon1_Gem1.gemProperties.Rate_PhysicalDefend;
+                    List_WeaponAttributes[0].rate_DurationTime_Magic += Weapon1_Gem1.gemProperties.Rate_DecreasedDurationTime;
+                    List_WeaponAttributes[0].rate_MoveSpeed += Weapon1_Gem1.gemProperties.Rate_MoveSpeed;
                     List_WeaponAttributes[0].rate_Recovery += Weapon1_Gem1.gemProperties.Rate_Recovery;
                 }
-                if( Weapon1_Gem2!= NullInfo)
+                if (Weapon1_Gem2 != NullInfo)
                 {
                     List_WeaponAttributes[0].rate_Attack_Magic += Weapon1_Gem2.gemProperties.Rate_MagicalAttack;
                     List_WeaponAttributes[0].rate_Attack_Physics += Weapon1_Gem2.gemProperties.Rate_PhysicalAttack;
-                    List_WeaponAttributes[0].rate_Defend_Magic +=Weapon1_Gem2.gemProperties.Rate_MagicalDefend;
-                    List_WeaponAttributes[0].rate_Defend_Physics +=Weapon1_Gem2.gemProperties.Rate_PhysicalDefend;
-                    List_WeaponAttributes[0].rate_DurationTime_Magic +=Weapon1_Gem2.gemProperties.Rate_DecreasedDurationTime;
-                    List_WeaponAttributes[0].rate_MoveSpeed +=Weapon1_Gem2.gemProperties.Rate_MoveSpeed;
+                    List_WeaponAttributes[0].rate_Defend_Magic += Weapon1_Gem2.gemProperties.Rate_MagicalDefend;
+                    List_WeaponAttributes[0].rate_Defend_Physics += Weapon1_Gem2.gemProperties.Rate_PhysicalDefend;
+                    List_WeaponAttributes[0].rate_DurationTime_Magic += Weapon1_Gem2.gemProperties.Rate_DecreasedDurationTime;
+                    List_WeaponAttributes[0].rate_MoveSpeed += Weapon1_Gem2.gemProperties.Rate_MoveSpeed;
                     List_WeaponAttributes[0].rate_Recovery += Weapon1_Gem2.gemProperties.Rate_Recovery;
                 }
 
 
-            Weapon1= itemInfo;
+                Weapon1 = itemInfo;
 
                 break;
             case EquippedItem.Weapon2:
@@ -459,28 +459,28 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                     List_WeaponAttributes[1].rate_Attack_Magic += Weapon2_Gem1.gemProperties.Rate_MagicalAttack;
                     List_WeaponAttributes[1].rate_Attack_Physics += Weapon2_Gem1.gemProperties.Rate_PhysicalAttack;
                     List_WeaponAttributes[1].rate_Defend_Magic += Weapon2_Gem1.gemProperties.Rate_MagicalDefend;
-                    List_WeaponAttributes[1].rate_Defend_Physics +=Weapon2_Gem1.gemProperties.Rate_PhysicalDefend;
+                    List_WeaponAttributes[1].rate_Defend_Physics += Weapon2_Gem1.gemProperties.Rate_PhysicalDefend;
                     List_WeaponAttributes[1].rate_DurationTime_Magic += Weapon2_Gem1.gemProperties.Rate_DecreasedDurationTime;
                     List_WeaponAttributes[1].rate_MoveSpeed += Weapon2_Gem1.gemProperties.Rate_MoveSpeed;
                     List_WeaponAttributes[1].rate_Recovery += Weapon2_Gem1.gemProperties.Rate_Recovery;
                 }
-                if (Weapon2_Gem2!= NullInfo)
+                if (Weapon2_Gem2 != NullInfo)
                 {
-                    List_WeaponAttributes[1].rate_Attack_Magic +=Weapon2_Gem2.gemProperties.Rate_MagicalAttack;
-                    List_WeaponAttributes[1].rate_Attack_Physics +=Weapon2_Gem2.gemProperties.Rate_PhysicalAttack;
+                    List_WeaponAttributes[1].rate_Attack_Magic += Weapon2_Gem2.gemProperties.Rate_MagicalAttack;
+                    List_WeaponAttributes[1].rate_Attack_Physics += Weapon2_Gem2.gemProperties.Rate_PhysicalAttack;
                     List_WeaponAttributes[1].rate_Defend_Magic += Weapon2_Gem2.gemProperties.Rate_MagicalDefend;
                     List_WeaponAttributes[1].rate_Defend_Physics += Weapon2_Gem2.gemProperties.Rate_PhysicalDefend;
-                    List_WeaponAttributes[1].rate_DurationTime_Magic +=Weapon2_Gem2.gemProperties.Rate_DecreasedDurationTime;
+                    List_WeaponAttributes[1].rate_DurationTime_Magic += Weapon2_Gem2.gemProperties.Rate_DecreasedDurationTime;
                     List_WeaponAttributes[1].rate_MoveSpeed += Weapon2_Gem2.gemProperties.Rate_MoveSpeed;
                     List_WeaponAttributes[1].rate_Recovery += Weapon2_Gem2.gemProperties.Rate_Recovery;
                 }
 
-               Weapon2= itemInfo;
+                Weapon2 = itemInfo;
                 break;
 
             case EquippedItem.Weapon1_Gem1:
-               Weapon1_Gem1 = itemInfo;
-                if (Weapon1!= NullInfo)
+                Weapon1_Gem1 = itemInfo;
+                if (Weapon1 != NullInfo)
                 {
                     List_WeaponAttributes[0].rate_Attack_Magic += itemInfo.gemProperties.Rate_MagicalAttack;
                     List_WeaponAttributes[0].rate_Attack_Physics += itemInfo.gemProperties.Rate_PhysicalAttack;
@@ -493,8 +493,8 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                 Magic1 = itemInfo;
                 break;
             case EquippedItem.Weapon1_Gem2:
-               Weapon1_Gem2= itemInfo;
-                if (Weapon1!= NullInfo)
+                Weapon1_Gem2 = itemInfo;
+                if (Weapon1 != NullInfo)
                 {
                     List_WeaponAttributes[0].rate_Attack_Magic += itemInfo.gemProperties.Rate_MagicalAttack;
                     List_WeaponAttributes[0].rate_Attack_Physics += itemInfo.gemProperties.Rate_PhysicalAttack;
@@ -506,7 +506,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                 }
                 break;
             case EquippedItem.Weapon2_Gem1:
-               Weapon2_Gem1 = itemInfo;
+                Weapon2_Gem1 = itemInfo;
                 if (Weapon2 != NullInfo)
                 {
                     List_WeaponAttributes[1].rate_Attack_Magic += itemInfo.gemProperties.Rate_MagicalAttack;
@@ -519,7 +519,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                 }
                 break;
             case EquippedItem.Weapon2_Gem2:
-              Weapon2_Gem2 = itemInfo;
+                Weapon2_Gem2 = itemInfo;
                 if (Weapon2 != NullInfo)
                 {
                     List_WeaponAttributes[1].rate_Attack_Magic += itemInfo.gemProperties.Rate_MagicalAttack;
@@ -533,7 +533,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                 break;
 
             case EquippedItem.Magic1:
-              Magic1= itemInfo;
+                Magic1 = itemInfo;
                 skillAttributesList[0].skillInfo = itemInfo;
                 skillAttributesList[0].isOn = true;
                 skillAttributesList[0].isUse = false;
@@ -541,7 +541,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                 skillAttributesList[0].remainCount = (int)itemInfo.magicProperties.UsableCount;
                 break;
             case EquippedItem.Magic2:
-               Magic2= itemInfo;
+                Magic2 = itemInfo;
                 skillAttributesList[1].skillInfo = itemInfo;
                 skillAttributesList[1].isOn = true;
                 skillAttributesList[1].isUse = false;
@@ -563,172 +563,176 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
     /// <param name="equippedItem"></param>
     public void UnequipItem(EquippedItem equippedItem)
     {
-            switch (equippedItem)
-            {
-                case EquippedItem.Head:
-                    //当头盔脱下，头盔上的宝石将不再生效
-                    if (HeadGem1 != NullInfo)
-                    {
-                        armorAttributes.rate_Attack_Magic -= HeadGem1.gemProperties.Rate_MagicalAttack;
-                        armorAttributes.rate_Attack_Physics -=HeadGem1.gemProperties.Rate_PhysicalAttack;
-                        armorAttributes.rate_Defend_Magic -=HeadGem1.gemProperties.Rate_MagicalDefend;
-                        armorAttributes.rate_Defend_Physics -= HeadGem1.gemProperties.Rate_PhysicalDefend;
-                        armorAttributes.rate_DurationTime_Magic -= HeadGem1.gemProperties.Rate_DecreasedDurationTime;
-                        armorAttributes.rate_MoveSpeed -= HeadGem1.gemProperties.Rate_MoveSpeed;
-                        armorAttributes.rate_Recovery -= HeadGem1.gemProperties.Rate_Recovery;
-                    }
-                    if (HeadGem2 != NullInfo)
-                    {
-                        armorAttributes.rate_Attack_Magic -= HeadGem2.gemProperties.Rate_MagicalAttack;
-                        armorAttributes.rate_Attack_Physics -= HeadGem2.gemProperties.Rate_PhysicalAttack;
-                        armorAttributes.rate_Defend_Magic -= HeadGem2.gemProperties.Rate_MagicalDefend;
-                        armorAttributes.rate_Defend_Physics -= HeadGem2.gemProperties.Rate_PhysicalDefend;
-                        armorAttributes.rate_DurationTime_Magic -=HeadGem2.gemProperties.Rate_DecreasedDurationTime;
-                        armorAttributes.rate_MoveSpeed -= HeadGem2.gemProperties.Rate_MoveSpeed;
-                        armorAttributes.rate_Recovery -=HeadGem2.gemProperties.Rate_Recovery;
-                    }
+        switch (equippedItem)
+        {
+            case EquippedItem.Head:
+                //当头盔脱下，头盔上的宝石将不再生效
+                if (HeadGem1 != NullInfo)
+                {
+                    armorAttributes.rate_Attack_Magic -= HeadGem1.gemProperties.Rate_MagicalAttack;
+                    armorAttributes.rate_Attack_Physics -= HeadGem1.gemProperties.Rate_PhysicalAttack;
+                    armorAttributes.rate_Defend_Magic -= HeadGem1.gemProperties.Rate_MagicalDefend;
+                    armorAttributes.rate_Defend_Physics -= HeadGem1.gemProperties.Rate_PhysicalDefend;
+                    armorAttributes.rate_DurationTime_Magic -= HeadGem1.gemProperties.Rate_DecreasedDurationTime;
+                    armorAttributes.rate_MoveSpeed -= HeadGem1.gemProperties.Rate_MoveSpeed;
+                    armorAttributes.rate_Recovery -= HeadGem1.gemProperties.Rate_Recovery;
+                }
+                if (HeadGem2 != NullInfo)
+                {
+                    armorAttributes.rate_Attack_Magic -= HeadGem2.gemProperties.Rate_MagicalAttack;
+                    armorAttributes.rate_Attack_Physics -= HeadGem2.gemProperties.Rate_PhysicalAttack;
+                    armorAttributes.rate_Defend_Magic -= HeadGem2.gemProperties.Rate_MagicalDefend;
+                    armorAttributes.rate_Defend_Physics -= HeadGem2.gemProperties.Rate_PhysicalDefend;
+                    armorAttributes.rate_DurationTime_Magic -= HeadGem2.gemProperties.Rate_DecreasedDurationTime;
+                    armorAttributes.rate_MoveSpeed -= HeadGem2.gemProperties.Rate_MoveSpeed;
+                    armorAttributes.rate_Recovery -= HeadGem2.gemProperties.Rate_Recovery;
+                }
 
-                    Head= NullInfo;
-                    break;
-                case EquippedItem.HeadGem1:
-                    if (Head!= NullInfo)
-                    {
-                        armorAttributes.rate_Attack_Magic -=HeadGem1.gemProperties.Rate_MagicalAttack;
-                        armorAttributes.rate_Attack_Physics -= HeadGem1.gemProperties.Rate_PhysicalAttack;
-                        armorAttributes.rate_Defend_Magic -= HeadGem1.gemProperties.Rate_MagicalDefend;
-                        armorAttributes.rate_Defend_Physics -=HeadGem1.gemProperties.Rate_PhysicalDefend;
-                        armorAttributes.rate_DurationTime_Magic -= HeadGem1.gemProperties.Rate_DecreasedDurationTime;
-                        armorAttributes.rate_MoveSpeed -= HeadGem1.gemProperties.Rate_MoveSpeed;
-                        armorAttributes.rate_Recovery -= HeadGem1.gemProperties.Rate_Recovery;
-                    }
-                  HeadGem1= NullInfo;
-                    break;
-                case EquippedItem.HeadGem2:
-                    if (Head!= NullInfo)
-                    {
-                        armorAttributes.rate_Attack_Magic -= HeadGem2.gemProperties.Rate_MagicalAttack;
-                        armorAttributes.rate_Attack_Physics -= HeadGem2.gemProperties.Rate_PhysicalAttack;
-                        armorAttributes.rate_Defend_Magic -= HeadGem2.gemProperties.Rate_MagicalDefend;
-                        armorAttributes.rate_Defend_Physics -= HeadGem2.gemProperties.Rate_PhysicalDefend;
-                        armorAttributes.rate_DurationTime_Magic -= HeadGem2.gemProperties.Rate_DecreasedDurationTime;
-                        armorAttributes.rate_MoveSpeed -= HeadGem2.gemProperties.Rate_MoveSpeed;
-                        armorAttributes.rate_Recovery -=HeadGem2.gemProperties.Rate_Recovery;
-                    }
-                    HeadGem2= NullInfo;
-                    break;
-                case EquippedItem.Body:
-                    //当身体防具脱下，身体防具上的宝石将不再生效
-                    if (BodyGem1 != NullInfo)
-                    {
-                        armorAttributes.rate_Attack_Magic -= BodyGem1.gemProperties.Rate_MagicalAttack;
-                        armorAttributes.rate_Attack_Physics -= BodyGem1.gemProperties.Rate_PhysicalAttack;
-                        armorAttributes.rate_Defend_Magic -=BodyGem1.gemProperties.Rate_MagicalDefend;
-                        armorAttributes.rate_Defend_Physics -= BodyGem1.gemProperties.Rate_PhysicalDefend;
-                        armorAttributes.rate_DurationTime_Magic -= BodyGem1.gemProperties.Rate_DecreasedDurationTime;
-                        armorAttributes.rate_MoveSpeed -=BodyGem1.gemProperties.Rate_MoveSpeed;
-                        armorAttributes.rate_Recovery -= BodyGem1.gemProperties.Rate_Recovery;
-                    }
-                    if (BodyGem2 != NullInfo)
-                    {
-                        armorAttributes.rate_Attack_Magic -=BodyGem2.gemProperties.Rate_MagicalAttack;
-                        armorAttributes.rate_Attack_Physics -= BodyGem2 .gemProperties.Rate_PhysicalAttack;
-                        armorAttributes.rate_Defend_Magic -= BodyGem2.gemProperties.Rate_MagicalDefend;
-                        armorAttributes.rate_Defend_Physics -= BodyGem2.gemProperties.Rate_PhysicalDefend;
-                        armorAttributes.rate_DurationTime_Magic -= BodyGem2.gemProperties.Rate_DecreasedDurationTime;
-                        armorAttributes.rate_MoveSpeed -= BodyGem2.gemProperties.Rate_MoveSpeed;
-                        armorAttributes.rate_Recovery -= BodyGem2.gemProperties.Rate_Recovery;
-                    }
+                Head = NullInfo;
+                break;
+            case EquippedItem.HeadGem1:
+                if (Head != NullInfo)
+                {
+                    armorAttributes.rate_Attack_Magic -= HeadGem1.gemProperties.Rate_MagicalAttack;
+                    armorAttributes.rate_Attack_Physics -= HeadGem1.gemProperties.Rate_PhysicalAttack;
+                    armorAttributes.rate_Defend_Magic -= HeadGem1.gemProperties.Rate_MagicalDefend;
+                    armorAttributes.rate_Defend_Physics -= HeadGem1.gemProperties.Rate_PhysicalDefend;
+                    armorAttributes.rate_DurationTime_Magic -= HeadGem1.gemProperties.Rate_DecreasedDurationTime;
+                    armorAttributes.rate_MoveSpeed -= HeadGem1.gemProperties.Rate_MoveSpeed;
+                    armorAttributes.rate_Recovery -= HeadGem1.gemProperties.Rate_Recovery;
+                }
+                HeadGem1 = NullInfo;
+                break;
+            case EquippedItem.HeadGem2:
+                if (Head != NullInfo)
+                {
+                    armorAttributes.rate_Attack_Magic -= HeadGem2.gemProperties.Rate_MagicalAttack;
+                    armorAttributes.rate_Attack_Physics -= HeadGem2.gemProperties.Rate_PhysicalAttack;
+                    armorAttributes.rate_Defend_Magic -= HeadGem2.gemProperties.Rate_MagicalDefend;
+                    armorAttributes.rate_Defend_Physics -= HeadGem2.gemProperties.Rate_PhysicalDefend;
+                    armorAttributes.rate_DurationTime_Magic -= HeadGem2.gemProperties.Rate_DecreasedDurationTime;
+                    armorAttributes.rate_MoveSpeed -= HeadGem2.gemProperties.Rate_MoveSpeed;
+                    armorAttributes.rate_Recovery -= HeadGem2.gemProperties.Rate_Recovery;
+                }
+                HeadGem2 = NullInfo;
+                break;
+            case EquippedItem.Body:
+                //当身体防具脱下，身体防具上的宝石将不再生效
+                if (BodyGem1 != NullInfo)
+                {
+                    armorAttributes.rate_Attack_Magic -= BodyGem1.gemProperties.Rate_MagicalAttack;
+                    armorAttributes.rate_Attack_Physics -= BodyGem1.gemProperties.Rate_PhysicalAttack;
+                    armorAttributes.rate_Defend_Magic -= BodyGem1.gemProperties.Rate_MagicalDefend;
+                    armorAttributes.rate_Defend_Physics -= BodyGem1.gemProperties.Rate_PhysicalDefend;
+                    armorAttributes.rate_DurationTime_Magic -= BodyGem1.gemProperties.Rate_DecreasedDurationTime;
+                    armorAttributes.rate_MoveSpeed -= BodyGem1.gemProperties.Rate_MoveSpeed;
+                    armorAttributes.rate_Recovery -= BodyGem1.gemProperties.Rate_Recovery;
+                }
+                if (BodyGem2 != NullInfo)
+                {
+                    armorAttributes.rate_Attack_Magic -= BodyGem2.gemProperties.Rate_MagicalAttack;
+                    armorAttributes.rate_Attack_Physics -= BodyGem2.gemProperties.Rate_PhysicalAttack;
+                    armorAttributes.rate_Defend_Magic -= BodyGem2.gemProperties.Rate_MagicalDefend;
+                    armorAttributes.rate_Defend_Physics -= BodyGem2.gemProperties.Rate_PhysicalDefend;
+                    armorAttributes.rate_DurationTime_Magic -= BodyGem2.gemProperties.Rate_DecreasedDurationTime;
+                    armorAttributes.rate_MoveSpeed -= BodyGem2.gemProperties.Rate_MoveSpeed;
+                    armorAttributes.rate_Recovery -= BodyGem2.gemProperties.Rate_Recovery;
+                }
 
-                    armorAttributes.rate_Defend_Magic -= Body.armorProperties.Rate_MagicalDefend;
-                    armorAttributes.rate_Defend_Physics -=Body.armorProperties.Rate_PhysicalDefend;
-                    armorAttributes.rate_DurationTime_Magic -= Body.armorProperties.Rate_DecreasedDurationTime;
-                    armorAttributes.rate_MoveSpeed -= Body.armorProperties.Rate_MoveSpeed;
-                    armorAttributes.rate_Recovery -= Body.armorProperties.Rate_Recovery;
+                armorAttributes.rate_Defend_Magic -= Body.armorProperties.Rate_MagicalDefend;
+                armorAttributes.rate_Defend_Physics -= Body.armorProperties.Rate_PhysicalDefend;
+                armorAttributes.rate_DurationTime_Magic -= Body.armorProperties.Rate_DecreasedDurationTime;
+                armorAttributes.rate_MoveSpeed -= Body.armorProperties.Rate_MoveSpeed;
+                armorAttributes.rate_Recovery -= Body.armorProperties.Rate_Recovery;
 
-                    Body = NullInfo;
-                    break;
-                case EquippedItem.BodyGem1:
-                    if (Body != NullInfo)
-                    {
-                        armorAttributes.rate_Attack_Magic -= BodyGem1.gemProperties.Rate_MagicalAttack;
-                        armorAttributes.rate_Attack_Physics -= BodyGem1.gemProperties.Rate_PhysicalAttack;
-                        armorAttributes.rate_Defend_Magic -= BodyGem1.gemProperties.Rate_MagicalDefend;
-                        armorAttributes.rate_Defend_Physics -= BodyGem1.gemProperties.Rate_PhysicalDefend;
-                        armorAttributes.rate_DurationTime_Magic -= BodyGem1.gemProperties.Rate_DecreasedDurationTime;
-                        armorAttributes.rate_MoveSpeed -=BodyGem1.gemProperties.Rate_MoveSpeed;
-                        armorAttributes.rate_Recovery -= BodyGem1.gemProperties.Rate_Recovery;
-                    }
-                    BodyGem1 = NullInfo;
-                    break;
-                case EquippedItem.BodyGem2:
-                    if (Body!= NullInfo)
-                    {
-                        armorAttributes.rate_Attack_Magic -= BodyGem2.gemProperties.Rate_MagicalAttack;
-                        armorAttributes.rate_Attack_Physics -= BodyGem2.gemProperties.Rate_PhysicalAttack;
-                        armorAttributes.rate_Defend_Magic -= BodyGem2.gemProperties.Rate_MagicalDefend;
-                        armorAttributes.rate_Defend_Physics -= BodyGem2.gemProperties.Rate_PhysicalDefend;
-                        armorAttributes.rate_DurationTime_Magic -= BodyGem2.gemProperties.Rate_DecreasedDurationTime;
-                        armorAttributes.rate_MoveSpeed -= BodyGem2.gemProperties.Rate_MoveSpeed;
-                        armorAttributes.rate_Recovery -= BodyGem2.gemProperties.Rate_Recovery;
-                    }
-                   BodyGem2= NullInfo;
-                    break;
+                Body = NullInfo;
+                break;
+            case EquippedItem.BodyGem1:
+                if (Body != NullInfo)
+                {
+                    armorAttributes.rate_Attack_Magic -= BodyGem1.gemProperties.Rate_MagicalAttack;
+                    armorAttributes.rate_Attack_Physics -= BodyGem1.gemProperties.Rate_PhysicalAttack;
+                    armorAttributes.rate_Defend_Magic -= BodyGem1.gemProperties.Rate_MagicalDefend;
+                    armorAttributes.rate_Defend_Physics -= BodyGem1.gemProperties.Rate_PhysicalDefend;
+                    armorAttributes.rate_DurationTime_Magic -= BodyGem1.gemProperties.Rate_DecreasedDurationTime;
+                    armorAttributes.rate_MoveSpeed -= BodyGem1.gemProperties.Rate_MoveSpeed;
+                    armorAttributes.rate_Recovery -= BodyGem1.gemProperties.Rate_Recovery;
+                }
+                BodyGem1 = NullInfo;
+                break;
+            case EquippedItem.BodyGem2:
+                if (Body != NullInfo)
+                {
+                    armorAttributes.rate_Attack_Magic -= BodyGem2.gemProperties.Rate_MagicalAttack;
+                    armorAttributes.rate_Attack_Physics -= BodyGem2.gemProperties.Rate_PhysicalAttack;
+                    armorAttributes.rate_Defend_Magic -= BodyGem2.gemProperties.Rate_MagicalDefend;
+                    armorAttributes.rate_Defend_Physics -= BodyGem2.gemProperties.Rate_PhysicalDefend;
+                    armorAttributes.rate_DurationTime_Magic -= BodyGem2.gemProperties.Rate_DecreasedDurationTime;
+                    armorAttributes.rate_MoveSpeed -= BodyGem2.gemProperties.Rate_MoveSpeed;
+                    armorAttributes.rate_Recovery -= BodyGem2.gemProperties.Rate_Recovery;
+                }
+                BodyGem2 = NullInfo;
+                break;
 
-                case EquippedItem.Weapon1_Gem1:
-                    List_WeaponAttributes[0].rate_Attack_Magic -= Weapon1_Gem1.gemProperties.Rate_MagicalAttack;
-                    List_WeaponAttributes[0].rate_Attack_Physics -= Weapon1_Gem1.gemProperties.Rate_PhysicalAttack;
-                    List_WeaponAttributes[0].rate_Defend_Magic -= Weapon1_Gem1.gemProperties.Rate_MagicalDefend;
-                    List_WeaponAttributes[0].rate_Defend_Physics -= Weapon1_Gem1.gemProperties.Rate_PhysicalDefend;
-                    List_WeaponAttributes[0].rate_DurationTime_Magic -= Weapon1_Gem1.gemProperties.Rate_DecreasedDurationTime;
-                    List_WeaponAttributes[0].rate_MoveSpeed -= Weapon1_Gem1.gemProperties.Rate_MoveSpeed;
-                    List_WeaponAttributes[0].rate_Recovery -= Weapon1_Gem1.gemProperties.Rate_Recovery;
-                  Weapon1_Gem1= NullInfo;
-                    break;
-                case EquippedItem.Weapon1_Gem2:
-                    List_WeaponAttributes[0].rate_Attack_Magic -= Weapon1_Gem2.gemProperties.Rate_MagicalAttack;
-                    List_WeaponAttributes[0].rate_Attack_Physics -= Weapon1_Gem2.gemProperties.Rate_PhysicalAttack;
-                    List_WeaponAttributes[0].rate_Defend_Magic -= Weapon1_Gem2.gemProperties.Rate_MagicalDefend;
-                    List_WeaponAttributes[0].rate_Defend_Physics -= Weapon1_Gem2.gemProperties.Rate_PhysicalDefend;
-                    List_WeaponAttributes[0].rate_DurationTime_Magic -=Weapon1_Gem2.gemProperties.Rate_DecreasedDurationTime;
-                    List_WeaponAttributes[0].rate_MoveSpeed -= Weapon1_Gem2.gemProperties.Rate_MoveSpeed;
-                    List_WeaponAttributes[0].rate_Recovery -= Weapon1_Gem2.gemProperties.Rate_Recovery;
-                   Weapon1_Gem2= NullInfo;
-                    break;
-                case EquippedItem.Weapon2_Gem1:
-                    List_WeaponAttributes[1].rate_Attack_Magic -= Weapon2_Gem1.gemProperties.Rate_MagicalAttack;
-                    List_WeaponAttributes[1].rate_Attack_Physics -= Weapon2_Gem1.gemProperties.Rate_PhysicalAttack;
-                    List_WeaponAttributes[1].rate_Defend_Magic -= Weapon2_Gem1.gemProperties.Rate_MagicalDefend;
-                    List_WeaponAttributes[1].rate_Defend_Physics -= Weapon2_Gem1.gemProperties.Rate_PhysicalDefend;
-                    List_WeaponAttributes[1].rate_DurationTime_Magic -=Weapon2_Gem1.gemProperties.Rate_DecreasedDurationTime;
-                    List_WeaponAttributes[1].rate_MoveSpeed -= Weapon2_Gem1.gemProperties.Rate_MoveSpeed;
-                    List_WeaponAttributes[1].rate_Recovery -= Weapon2_Gem1.gemProperties.Rate_Recovery;
-                    Weapon2_Gem1 = NullInfo;
-                    break;
+            case EquippedItem.Weapon1_Gem1:
+                List_WeaponAttributes[0].rate_Attack_Magic -= Weapon1_Gem1.gemProperties.Rate_MagicalAttack;
+                List_WeaponAttributes[0].rate_Attack_Physics -= Weapon1_Gem1.gemProperties.Rate_PhysicalAttack;
+                List_WeaponAttributes[0].rate_Defend_Magic -= Weapon1_Gem1.gemProperties.Rate_MagicalDefend;
+                List_WeaponAttributes[0].rate_Defend_Physics -= Weapon1_Gem1.gemProperties.Rate_PhysicalDefend;
+                List_WeaponAttributes[0].rate_DurationTime_Magic -= Weapon1_Gem1.gemProperties.Rate_DecreasedDurationTime;
+                List_WeaponAttributes[0].rate_MoveSpeed -= Weapon1_Gem1.gemProperties.Rate_MoveSpeed;
+                List_WeaponAttributes[0].rate_Recovery -= Weapon1_Gem1.gemProperties.Rate_Recovery;
+                Weapon1_Gem1 = NullInfo;
+                break;
+            case EquippedItem.Weapon1_Gem2:
+                List_WeaponAttributes[0].rate_Attack_Magic -= Weapon1_Gem2.gemProperties.Rate_MagicalAttack;
+                List_WeaponAttributes[0].rate_Attack_Physics -= Weapon1_Gem2.gemProperties.Rate_PhysicalAttack;
+                List_WeaponAttributes[0].rate_Defend_Magic -= Weapon1_Gem2.gemProperties.Rate_MagicalDefend;
+                List_WeaponAttributes[0].rate_Defend_Physics -= Weapon1_Gem2.gemProperties.Rate_PhysicalDefend;
+                List_WeaponAttributes[0].rate_DurationTime_Magic -= Weapon1_Gem2.gemProperties.Rate_DecreasedDurationTime;
+                List_WeaponAttributes[0].rate_MoveSpeed -= Weapon1_Gem2.gemProperties.Rate_MoveSpeed;
+                List_WeaponAttributes[0].rate_Recovery -= Weapon1_Gem2.gemProperties.Rate_Recovery;
+                Weapon1_Gem2 = NullInfo;
+                break;
+            case EquippedItem.Weapon2_Gem1:
+                List_WeaponAttributes[1].rate_Attack_Magic -= Weapon2_Gem1.gemProperties.Rate_MagicalAttack;
+                List_WeaponAttributes[1].rate_Attack_Physics -= Weapon2_Gem1.gemProperties.Rate_PhysicalAttack;
+                List_WeaponAttributes[1].rate_Defend_Magic -= Weapon2_Gem1.gemProperties.Rate_MagicalDefend;
+                List_WeaponAttributes[1].rate_Defend_Physics -= Weapon2_Gem1.gemProperties.Rate_PhysicalDefend;
+                List_WeaponAttributes[1].rate_DurationTime_Magic -= Weapon2_Gem1.gemProperties.Rate_DecreasedDurationTime;
+                List_WeaponAttributes[1].rate_MoveSpeed -= Weapon2_Gem1.gemProperties.Rate_MoveSpeed;
+                List_WeaponAttributes[1].rate_Recovery -= Weapon2_Gem1.gemProperties.Rate_Recovery;
+                Weapon2_Gem1 = NullInfo;
+                break;
 
-                case EquippedItem.Weapon2_Gem2:
-                    List_WeaponAttributes[1].rate_Attack_Magic -=Weapon2_Gem2.gemProperties.Rate_MagicalAttack;
-                    List_WeaponAttributes[1].rate_Attack_Physics -= Weapon2_Gem2.gemProperties.Rate_PhysicalAttack;
-                    List_WeaponAttributes[1].rate_Defend_Magic -=Weapon2_Gem2.gemProperties.Rate_MagicalDefend;
-                    List_WeaponAttributes[1].rate_Defend_Physics -= Weapon2_Gem2.gemProperties.Rate_PhysicalDefend;
-                    List_WeaponAttributes[1].rate_DurationTime_Magic -= Weapon2_Gem2.gemProperties.Rate_DecreasedDurationTime;
-                    List_WeaponAttributes[1].rate_MoveSpeed -= Weapon2_Gem2.gemProperties.Rate_MoveSpeed;
-                    List_WeaponAttributes[1].rate_Recovery -=Weapon2_Gem2.gemProperties.Rate_Recovery;
-                   Weapon2_Gem2 = NullInfo;
-                    break;
+            case EquippedItem.Weapon2_Gem2:
+                List_WeaponAttributes[1].rate_Attack_Magic -= Weapon2_Gem2.gemProperties.Rate_MagicalAttack;
+                List_WeaponAttributes[1].rate_Attack_Physics -= Weapon2_Gem2.gemProperties.Rate_PhysicalAttack;
+                List_WeaponAttributes[1].rate_Defend_Magic -= Weapon2_Gem2.gemProperties.Rate_MagicalDefend;
+                List_WeaponAttributes[1].rate_Defend_Physics -= Weapon2_Gem2.gemProperties.Rate_PhysicalDefend;
+                List_WeaponAttributes[1].rate_DurationTime_Magic -= Weapon2_Gem2.gemProperties.Rate_DecreasedDurationTime;
+                List_WeaponAttributes[1].rate_MoveSpeed -= Weapon2_Gem2.gemProperties.Rate_MoveSpeed;
+                List_WeaponAttributes[1].rate_Recovery -= Weapon2_Gem2.gemProperties.Rate_Recovery;
+                Weapon2_Gem2 = NullInfo;
+                break;
 
-                case EquippedItem.Weapon1:
-                   Weapon1= NullInfo;
-                    break;
-                case EquippedItem.Weapon2:
-                   Weapon2 = NullInfo;
-                    break;
-                case EquippedItem.Magic1:
-                    Magic1 = NullInfo;
-                    break;
-                case EquippedItem.Magic2:
-                   Magic2= NullInfo;
-                    break;
-            }
+            case EquippedItem.Weapon1:
+                Weapon1 = NullInfo;
+                break;
+            case EquippedItem.Weapon2:
+                Weapon2 = NullInfo;
+                break;
+            case EquippedItem.Magic1:
+                skillAttributesList[0].skillInfo = NullInfo;
+                skillAttributesList[0].remainCount = 0;
+                Magic1 = NullInfo;
+                break;
+            case EquippedItem.Magic2:
+                skillAttributesList[1].skillInfo = NullInfo;
+                skillAttributesList[1].remainCount = 0;
+                Magic2 = NullInfo;
+                break;
+        }
     }
 
     /// <summary>
@@ -747,46 +751,46 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
 
                 //未装备Weapon1而使用Weapon1槽位攻击时，返回无武器属性
 
-                    if (Weapon1.weaponProperties==null)
+                if (Weapon1.weaponProperties == null)
+                {
+                    GetNonWeaponCharacterStatus();
+                }
+                else
+                {
+                    characterStatus.weaponType = Weapon1.weaponProperties.weaponType;
+                    characterStatus.magicType = MagicType.NULL;
+
+                    characterStatus.Attack_Physics = Weapon1.weaponProperties.Damage +
+                        (Weapon1.weaponProperties.Damage * armorAttributes.rate_Attack_Physics) +
+                        (Weapon1.weaponProperties.Damage * List_WeaponAttributes[0].rate_Attack_Physics);
+
+                    characterStatus.Attack_Magic = defaultCharacterStatus.Attack_Magic + (defaultCharacterStatus.Attack_Magic * armorAttributes.rate_Attack_Magic) +
+                        (List_WeaponAttributes[0].rate_Attack_Magic * defaultCharacterStatus.Attack_Magic);
+
+                    characterStatus.DecreaseDurationTime_Magic = 1 - armorAttributes.rate_DurationTime_Magic - List_WeaponAttributes[0].rate_DurationTime_Magic;
+
+                    characterStatus.Defend_Magic = armorAttributes.rate_Defend_Magic + List_WeaponAttributes[0].rate_Defend_Magic;
+                    characterStatus.Defend_Physics = armorAttributes.rate_Defend_Physics + List_WeaponAttributes[0].rate_Defend_Physics;
+
+                    characterStatus.moveSpeed = defaultCharacterStatus.moveSpeed + (defaultCharacterStatus.moveSpeed * armorAttributes.rate_MoveSpeed) +
+                        (defaultCharacterStatus.moveSpeed * List_WeaponAttributes[0].rate_MoveSpeed);
+
+                    characterStatus.RecoveryValue = defaultCharacterStatus.RecoveryValue + (defaultCharacterStatus.RecoveryValue * armorAttributes.rate_Recovery) +
+                        (defaultCharacterStatus.RecoveryValue * List_WeaponAttributes[0].rate_Recovery);
+
+
+                    if (Head != NullInfo)
                     {
-                        GetNonWeaponCharacterStatus();
-                    }
-                    else
-                    {
-                        characterStatus.weaponType = Weapon1.weaponProperties.weaponType;
-                        characterStatus.magicType = MagicType.NULL;
-
-                        characterStatus.Attack_Physics = Weapon1.weaponProperties.Damage +
-                            (Weapon1.weaponProperties.Damage * armorAttributes.rate_Attack_Physics) +
-                            (Weapon1.weaponProperties.Damage * List_WeaponAttributes[0].rate_Attack_Physics);
-
-                        characterStatus.Attack_Magic = defaultCharacterStatus.Attack_Magic + (defaultCharacterStatus.Attack_Magic * armorAttributes.rate_Attack_Magic) +
-                            (List_WeaponAttributes[0].rate_Attack_Magic * defaultCharacterStatus.Attack_Magic);
-
-                        characterStatus.DecreaseDurationTime_Magic = 1 - armorAttributes.rate_DurationTime_Magic - List_WeaponAttributes[0].rate_DurationTime_Magic;
-
-                        characterStatus.Defend_Magic = armorAttributes.rate_Defend_Magic + List_WeaponAttributes[0].rate_Defend_Magic;
-                        characterStatus.Defend_Physics = armorAttributes.rate_Defend_Physics + List_WeaponAttributes[0].rate_Defend_Physics;
-
-                        characterStatus.moveSpeed = defaultCharacterStatus.moveSpeed + (defaultCharacterStatus.moveSpeed * armorAttributes.rate_MoveSpeed) +
-                            (defaultCharacterStatus.moveSpeed * List_WeaponAttributes[0].rate_MoveSpeed);
-
-                        characterStatus.RecoveryValue = defaultCharacterStatus.RecoveryValue + (defaultCharacterStatus.RecoveryValue * armorAttributes.rate_Recovery) +
-                            (defaultCharacterStatus.RecoveryValue * List_WeaponAttributes[0].rate_Recovery);
-
-
-                        if (Head != NullInfo)
+                        //头盔指定的武器和现在选择的武器一样，攻击+x%
+                        if (Weapon1.weaponProperties.weaponType == Head.armorProperties.ForWeaponType)
                         {
-                            //头盔指定的武器和现在选择的武器一样，攻击+x%
-                            if (Weapon1.weaponProperties.weaponType == Head.armorProperties.ForWeaponType)
-                            {
-                                characterStatus.Attack_Physics += (Weapon1.weaponProperties.Damage * Head.armorProperties.Rate_Attack);
-                            }
+                            characterStatus.Attack_Physics += (Weapon1.weaponProperties.Damage * Head.armorProperties.Rate_Attack);
                         }
-
                     }
-                
-               
+
+                }
+
+
                 break;
             case 2:
                 //未装备Weapon2而使用Weapon2槽位攻击时，返回无武器属性
@@ -817,7 +821,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                     characterStatus.RecoveryValue = defaultCharacterStatus.RecoveryValue + (defaultCharacterStatus.RecoveryValue * armorAttributes.rate_Recovery) +
                         (defaultCharacterStatus.RecoveryValue * List_WeaponAttributes[1].rate_Recovery);
 
-                    if (Head!= NullInfo)
+                    if (Head != NullInfo)
                     {
                         //头盔指定的武器和现在选择的武器一样，攻击+x%
                         if (Weapon2.weaponProperties.weaponType == Head.armorProperties.ForWeaponType)
@@ -850,7 +854,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                 characterStatus.RecoveryValue = defaultCharacterStatus.RecoveryValue + (defaultCharacterStatus.RecoveryValue * armorAttributes.rate_Recovery);
                 break;
             case 4:
-                characterStatus.weaponType =Magic2.weaponProperties.weaponType;
+                characterStatus.weaponType = Magic2.weaponProperties.weaponType;
                 characterStatus.magicType = Magic2.magicProperties.magicType;
 
                 characterStatus.Attack_Physics = 0;
@@ -893,7 +897,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
     {
         characterStatus.characterName = NetworkManager.PlayerName;
         characterStatus.weaponType = WeaponType.NULL;
-        
+
         characterStatus.Attack_Physics = defaultCharacterStatus.Attack_Physics + (defaultCharacterStatus.Attack_Physics * armorAttributes.rate_Attack_Physics);
 
         characterStatus.Attack_Magic = 0;

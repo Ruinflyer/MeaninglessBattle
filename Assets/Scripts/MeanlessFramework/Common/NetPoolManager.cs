@@ -32,7 +32,7 @@ public class NetPoolManager : ObjectPoolManager
     }
 
 
-    public void Destroy(GameObject gameObject)
+    public static void Destroy(GameObject gameObject)
     {
         ObjectPoolManager.PushObjectFromPool(gameObject);
         //gameObject.DestroyToPool(gameObject);

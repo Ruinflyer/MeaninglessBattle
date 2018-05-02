@@ -60,7 +60,7 @@ public class HUDUI : BaseUI
     {
         SetBarIcon();
         UpdateSkillCount();
-        UpdateTime();
+       // UpdateTime();
     }
 
     protected override void InitDataOnAwake()
@@ -75,10 +75,31 @@ public class HUDUI : BaseUI
 
     private void UpdateSkillCount()
     {
-        Text_Skill1_Count.text = BagManager.Instance.skillAttributesList[0].remainCount+ "/" + BagManager.Instance.skillAttributesList[0].skillInfo.magicProperties.UsableCount;
-        Img_Skill1_Mask.fillAmount = BagManager.Instance.skillAttributesList[0].Timer / BagManager.Instance.skillAttributesList[0].skillInfo.magicProperties.CDTime;
-        Text_Skill2_Count.text = BagManager.Instance.skillAttributesList[1].remainCount + "/" + BagManager.Instance.skillAttributesList[1].skillInfo.magicProperties.UsableCount;
-        Img_Skill2_Mask.fillAmount = BagManager.Instance.skillAttributesList[1].Timer / BagManager.Instance.skillAttributesList[1].skillInfo.magicProperties.CDTime;
+        if(BagManager.Instance.Magic1!=BagManager.Instance.NullInfo)
+        {
+            Text_Skill1_Count.gameObject.SetActive(true);
+            Img_Skill1_Mask.gameObject.SetActive(true);
+            Text_Skill1_Count.text = BagManager.Instance.skillAttributesList[0].remainCount + "/" + BagManager.Instance.skillAttributesList[0].skillInfo.magicProperties.UsableCount;
+            Img_Skill1_Mask.fillAmount = BagManager.Instance.skillAttributesList[0].Timer / BagManager.Instance.skillAttributesList[0].skillInfo.magicProperties.CDTime;
+        }
+        else
+        {
+            Text_Skill1_Count.gameObject.SetActive(false);
+            Img_Skill1_Mask.gameObject.SetActive(false);
+        }
+
+        if (BagManager.Instance.Magic2 != BagManager.Instance.NullInfo)
+        {
+            Text_Skill2_Count.gameObject.SetActive(true);
+            Img_Skill2_Mask.gameObject.SetActive(true);
+            Text_Skill2_Count.text = BagManager.Instance.skillAttributesList[1].remainCount + "/" + BagManager.Instance.skillAttributesList[1].skillInfo.magicProperties.UsableCount;
+            Img_Skill2_Mask.fillAmount = BagManager.Instance.skillAttributesList[1].Timer / BagManager.Instance.skillAttributesList[1].skillInfo.magicProperties.CDTime;
+        }
+        else
+        {
+            Text_Skill2_Count.gameObject.SetActive(false);
+            Img_Skill2_Mask.gameObject.SetActive(false);
+        }
     }
 
     private void UpdateHP(object HP)
@@ -88,26 +109,37 @@ public class HUDUI : BaseUI
 
     private void SetBarIcon()
     {
-        if (BagManager.Instance.Weapon1.weaponProperties!=null)
+        if (BagManager.Instance.Weapon1.weaponProperties != null)
         {
-            if (BagManager.Instance.Weapon1.ResName!="")
+            if (BagManager.Instance.Weapon1.ResName != "")
                 Img_Weapon1.sprite = ResourcesManager.Instance.GetUITexture(BagManager.Instance.Weapon1.ResName);
         }
+        else
+            Img_Weapon1.sprite = ResourcesManager.Instance.GetUITexture("Null");
+
         if (BagManager.Instance.Weapon2.weaponProperties != null)
         {
             if (BagManager.Instance.Weapon2.ResName != "")
                 Img_Weapon2.sprite = ResourcesManager.Instance.GetUITexture(BagManager.Instance.Weapon2.ResName);
         }
+        else
+            Img_Weapon2.sprite = ResourcesManager.Instance.GetUITexture("Null");
+
         if (BagManager.Instance.Magic1.magicProperties != null)
         {
-            if (BagManager.Instance.Magic1.ResName != "")
-                Img_Skill1.sprite = ResourcesManager.Instance.GetUITexture(BagManager.Instance.Magic1.ResName);
+            if (BagManager.Instance.Magic1.ResName !="")
+                Img_Skill1.sprite = ResourcesManager.Instance.GetUITexture(BagManager.Instance.Magic1.ResName); 
         }
+        else
+            Img_Skill1.sprite = ResourcesManager.Instance.GetUITexture("Null");
+
         if(BagManager.Instance.Magic2.magicProperties != null)
         {
             if (BagManager.Instance.Magic2.ResName != "")
                 Img_Skill2.sprite = ResourcesManager.Instance.GetUITexture(BagManager.Instance.Magic2.ResName);
         }
+        else
+            Img_Skill2.sprite = ResourcesManager.Instance.GetUITexture("Null");
 
     }
     
