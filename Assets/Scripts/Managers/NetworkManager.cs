@@ -184,6 +184,7 @@ public class NetworkManager : MonoSingleton<NetworkManager>
         protocol.SpliceString("PlayerEquipHelmet");
         protocol.SpliceInt(ItemID);
         Send(protocol);
+        Debug.Log("成功发送戴头盔");
     }
     /// <summary>
     /// 发送拿衣服 衣服ID

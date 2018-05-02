@@ -14,7 +14,7 @@ namespace Meaningless
         public string animCur;
         public int LayerCur;
         public bool AnimLock=false;
-        public string AnimStartName;
+        public string AnimStartName="Idle";
         void Start()
         {
             anim = GetComponent<Animator>();
@@ -102,56 +102,50 @@ namespace Meaningless
                 anim.SetBool("Run", false);
                 anim.SetTrigger("Magic Shoot Attack");
             }
-            if(ClipName=="Attack ID")
-            {
-                AnimLock = true;
-                anim.SetBool("Run", false);
-                anim.SetInteger("Attack ID", AttackID);
-            }
+
             //
             if (ClipName=="AttackID1")
             {
                 AnimLock = true;
                 anim.SetBool("Run", false);
-                anim.SetInteger("Attack ID", 1);
+                anim.SetInteger("AttacID", 1);
             }
             if (ClipName == "AttackID2")
             {
                 AnimLock = true;
                 anim.SetBool("Run", false);
-                anim.SetInteger("Attack ID", 2);
+                anim.SetInteger("AttacID", 2);
             }
             if (ClipName == "AttackID3")
             {
                 AnimLock = true;
                 anim.SetBool("Run", false);
-                anim.SetInteger("Attack ID", 3);
+                anim.SetInteger("AttackID", 3);
             }
             if (ClipName == "AttackID4")
             {
                 AnimLock = true;
                 anim.SetBool("Run", false);
-                anim.SetInteger("Attack ID", 4);
+                anim.SetInteger("AttackID", 4);
             }
             if (ClipName == "AttackID5")
             {
                 AnimLock = true;
                 anim.SetBool("Run", false);
-                anim.SetInteger("Attack ID", 5);
+                anim.SetInteger("AttackID", 5);
             }
             if (ClipName == "AttackID6")
             {
                 AnimLock = true;
                 anim.SetBool("Run", false);
-                anim.SetInteger("Attack ID", 6);
+                anim.SetInteger("AttackID", 6);
             }
             if (ClipName == "AttackID7")
             {
-
                 AnimLock = true;
                 anim.SetTrigger("Melee Left Attack 01");
                 anim.SetBool("Run", false);
-                anim.SetInteger("Attack ID", 7);
+                anim.SetInteger("AttackID", 7);
             }
             //if (anim.GetCurrentAnimatorClipInfo(Layer)[0].clip.name != ClipName)
             //{
@@ -236,7 +230,7 @@ namespace Meaningless
         }
         public void IdleStart()
         {
-            AnimStartName = "Idle";
+            //AnimStartName = "Idle";
         }
         public void MagicShootStart()
         {
@@ -248,6 +242,7 @@ namespace Meaningless
         }
         public void RunStart()
         {
+            Debug.Log("Run");
             AnimStartName = "Run";
         }
         public void JumpStart()

@@ -51,9 +51,8 @@ public class NetworkPlayerManager : MonoBehaviour
 
         if (ScenePlayers.ContainsKey(playerName))
         {
-            NetworkPlayer nPlayer = ScenePlayers[playerName].GetComponent<NetworkPlayer>();
-            nPlayer.SetPlayerInfo(HP, AttackID, CurrentAction);
-            nPlayer.SetPlayerTransform(posX, posY, posZ, rotX, rotY, rotZ);
+            ScenePlayers[playerName].SetPlayerInfo(HP, AttackID, CurrentAction);
+            ScenePlayers[playerName].SetPlayerTransform(posX, posY, posZ, rotX, rotY, rotZ);
         }
     }
 
@@ -157,6 +156,7 @@ public class NetworkPlayerManager : MonoBehaviour
         p.GetString(startIndex, ref startIndex);
         string Playername= p.GetString(startIndex, ref startIndex);
         int ItemID = p.GetInt(startIndex, ref startIndex);
+        Debug.Log("网络玩家 "+Playername+"  又要威又要戴头盔");
         if(ScenePlayers.ContainsKey(Playername))
         {
             ScenePlayers[Playername].SetPlayerHelmet(ItemID);
