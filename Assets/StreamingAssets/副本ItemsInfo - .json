@@ -196,6 +196,32 @@
           }
         },
         {
+            "ItemID": 315,
+            "ItemName": "方木盾",
+            "ResName": "WoodShield",
+            "OccurrenceProbability": 0.04,
+            "itemType": 0,
+          "weaponProperties": {
+            "weaponType": 5,
+            "Damage": 0.0,
+            "weaponLength": 0.2,
+            "CDTime": 5.0
+          }
+        },
+        {
+            "ItemID": 316,
+            "ItemName": "黑铁盾",
+            "ResName": "IronShield",
+            "OccurrenceProbability": 0.03,
+            "itemType": 0,
+          "weaponProperties": {
+            "weaponType": 5,
+            "Damage": 0.0,
+            "weaponLength": 0.2,
+            "CDTime": 5.0
+          }
+        },
+        {
             "ItemID": 101,
             "ItemName": "角斗士头盔",
             "ResName": "Helmet_Gladiator",
