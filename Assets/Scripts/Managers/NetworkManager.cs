@@ -136,20 +136,16 @@ public class NetworkManager : MonoSingleton<NetworkManager>
     /// <summary>
     /// 发送角色同步信息
     /// </summary>
-    public static void SendUpdatePlayerInfo(float HP,Vector3 pos , Vector3 rot , int HeadItem, int BodyItem, int WeaponID, int AttackID, string CurrentAction)
+    public static void SendUpdatePlayerInfo(Vector3 pos , Vector3 rot, int AttackID, string CurrentAction)
     {
         BytesProtocol protocol = new BytesProtocol();
         protocol.SpliceString("UpdatePlayerInfo");
-        protocol.SpliceFloat(HP);
         protocol.SpliceFloat(pos.x);
         protocol.SpliceFloat(pos.y);
         protocol.SpliceFloat(pos.z);
         protocol.SpliceFloat(rot.x);
         protocol.SpliceFloat(rot.y);
         protocol.SpliceFloat(rot.z);
-        protocol.SpliceInt(HeadItem);
-        protocol.SpliceInt(BodyItem);
-        protocol.SpliceInt(WeaponID);
         protocol.SpliceInt(AttackID);//用于动画AttackID变量
         protocol.SpliceString(CurrentAction);
         Send(protocol);
@@ -175,6 +171,39 @@ public class NetworkManager : MonoSingleton<NetworkManager>
         BytesProtocol protocol = new BytesProtocol();
         protocol.SpliceString("DoorOpen");
         protocol.SpliceInt(DoorID);
+        Send(protocol);
+    }
+
+
+    /// <summary>
+    /// 发送戴头盔的ItemID
+    /// </summary>
+    public static void SendPlayerEquipHelmet(int ItemID)
+    {
+        BytesProtocol protocol = new BytesProtocol();
+        protocol.SpliceString("PlayerEquipHelmet");
+        protocol.SpliceInt(ItemID);
+        Send(protocol);
+        Debug.Log("成功发送戴头盔");
+    }
+    /// <summary>
+    /// 发送拿衣服 衣服ID
+    /// </summary>
+    public static void SendPlayerEquipClothe(int ItemID)
+    {
+        BytesProtocol protocol = new BytesProtocol();
+        protocol.SpliceString("PlayerEquipClothe");
+        protocol.SpliceInt(ItemID);
+        Send(protocol);
+    }
+    /// <summary>
+    /// 发送装备武器ID
+    /// </summary>
+    public static void SendPlayerEquipWeapon(int ItemID)
+    {
+        BytesProtocol protocol = new BytesProtocol();
+        protocol.SpliceString("PlayerEquipWeapon");
+        protocol.SpliceInt(ItemID);
         Send(protocol);
     }
 }                                                                      

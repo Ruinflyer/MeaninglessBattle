@@ -14,7 +14,7 @@ namespace Meaningless
         public string animCur;
         public int LayerCur;
         public bool AnimLock=false;
-
+        public string AnimStartName="Idle";
         void Start()
         {
             anim = GetComponent<Animator>();
@@ -102,11 +102,50 @@ namespace Meaningless
                 anim.SetBool("Run", false);
                 anim.SetTrigger("Magic Shoot Attack");
             }
-            if(ClipName=="Attack ID")
+
+            //
+            if (ClipName=="AttackID1")
             {
                 AnimLock = true;
                 anim.SetBool("Run", false);
-                anim.SetInteger("Attack ID", AttackID);
+                anim.SetInteger("AttacID", 1);
+            }
+            if (ClipName == "AttackID2")
+            {
+                AnimLock = true;
+                anim.SetBool("Run", false);
+                anim.SetInteger("AttacID", 2);
+            }
+            if (ClipName == "AttackID3")
+            {
+                AnimLock = true;
+                anim.SetBool("Run", false);
+                anim.SetInteger("AttackID", 3);
+            }
+            if (ClipName == "AttackID4")
+            {
+                AnimLock = true;
+                anim.SetBool("Run", false);
+                anim.SetInteger("AttackID", 4);
+            }
+            if (ClipName == "AttackID5")
+            {
+                AnimLock = true;
+                anim.SetBool("Run", false);
+                anim.SetInteger("AttackID", 5);
+            }
+            if (ClipName == "AttackID6")
+            {
+                AnimLock = true;
+                anim.SetBool("Run", false);
+                anim.SetInteger("AttackID", 6);
+            }
+            if (ClipName == "AttackID7")
+            {
+                AnimLock = true;
+                anim.SetTrigger("Melee Left Attack 01");
+                anim.SetBool("Run", false);
+                anim.SetInteger("AttackID", 7);
             }
             //if (anim.GetCurrentAnimatorClipInfo(Layer)[0].clip.name != ClipName)
             //{
@@ -124,7 +163,14 @@ namespace Meaningless
             //}
         }
 
-
+        /// <summary>
+        /// 获取当前Attack ID
+        /// </summary>
+        /// <returns></returns>
+        public int GetAttackID()
+        {
+            return anim.GetInteger("Attack ID");
+        }
         #region 动画事件
         public void MagicShootEnd()
         {
@@ -177,6 +223,59 @@ namespace Meaningless
         public void DoubleHandsAttack4End()
         {
             AnimLock = false;
+        }
+        public void SpinAttackStart()
+        {
+            AnimStartName = "Spin Attack";
+        }
+        public void IdleStart()
+        {
+            //AnimStartName = "Idle";
+        }
+        public void MagicShootStart()
+        {
+            AnimStartName = "Magic Shoot Attack";
+        }
+        public void SpearStart()
+        {
+            AnimStartName = "Spear Melee Attack 02";
+        }
+        public void RunStart()
+        {
+            Debug.Log("Run");
+            AnimStartName = "Run";
+        }
+        public void JumpStart()
+        {
+            AnimStartName = "Jump";
+        }
+        public void AttackID1Start()
+        {
+            AnimStartName = "AttackID1";
+        }
+        public void AttackID2Start()
+        {
+            AnimStartName = "AttackID2";
+        }
+        public void AttackID3Start()
+        {
+            AnimStartName = "AttackID3";
+        }
+        public void AttackID4Start()
+        {
+            AnimStartName = "AttackID4";
+        }
+        public void AttackID5Start()
+        {
+            AnimStartName = "AttackID5";
+        }
+        public void AttackID6Start()
+        {
+            AnimStartName = "AttackID6";
+        }
+        public void AttackID7Start()
+        {
+            AnimStartName = "AttackID7";
         }
         #endregion
     }

@@ -12,14 +12,14 @@ public class NetworkPlayer : MonoBehaviour {
     public AnimationManager animationManager;
 
     public string PlayerName="";
-    
+    public float hp = 100f;
     public int headItemID;
     public int bodyItemID;
     public int weaponID;
     public string currentAction;
     public int curAttackID;
     public CharacterStatus status;
-    public float hp=100f;
+    
 
     #region 记录上一次刷新的变量
     public float LastUpdateTime=0;
@@ -66,17 +66,42 @@ public class NetworkPlayer : MonoBehaviour {
     /// <summary>
     /// 设置玩家状态信息,生命值,头盔物品ID,当前动画名称等
     /// </summary>
-    public void SetPlayerInfo(float HP,int HeadItemID,int BodyItemID,int WeaponID,int AttackID,string CurrentAction)
+    public void SetPlayerInfo(float HP,int AttackID,string CurrentAction)
     {
         hp = HP;
-        headItemID = HeadItemID;
-        bodyItemID = BodyItemID;
-        weaponID = WeaponID;
+       
         currentAction = CurrentAction;
         curAttackID = AttackID;
         animationManager.NetPlayClip(CurrentAction,AttackID);
     }
 
+    /// <summary>
+    /// 设置玩家头盔
+    /// </summary>
+    /// <param name="ItemID"></param>
+    public void SetPlayerHelmet(int ItemID)
+    {
+        headItemID = ItemID;
+        playerController.EquipHelmet(ItemID);
+    }
+    /// <summary>
+    /// 设置玩家衣服
+    /// </summary>
+    /// <param name="ItemID"></param>
+    public void SetPlayeClothe(int ItemID)
+    {
+        bodyItemID = ItemID;
+        playerController.EquipClothes(ItemID);
+    }
+    /// <summary>
+    /// 设置玩家武器
+    /// </summary>
+    /// <param name="ItemID"></param>
+    public void SetPlayerWeapon(int ItemID)
+    {
+        weaponID = ItemID;
+        playerController.EquipWeapon(ItemID);
+    }
     /// <summary>
     /// 设置玩家名字
     /// </summary>

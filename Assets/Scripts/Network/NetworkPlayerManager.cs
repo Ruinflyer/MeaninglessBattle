@@ -14,6 +14,12 @@ public class NetworkPlayerManager : MonoBehaviour
     {
         NetworkManager.AddEventListener("GetPlayersInfo", OnGetPlayersInfo);
         NetworkManager.AddEventListener("UpdatePlayerInfo", UpdatePlayerInfo);
+        NetworkManager.AddEventListener("PlayerKilled",OnPlayerKilled);
+        NetworkManager.AddEventListener("PlayerEquipHelmet", OnPlayerEquipHelmet);
+        NetworkManager.AddEventListener("PlayerEquipClothe", OnPlayerEquipClothe);
+        NetworkManager.AddEventListener("PlayerEquipWeapon", OnPlayerEquipWeapon);
+        
+            
     }
 
     // Update is called once per frame
@@ -40,17 +46,13 @@ public class NetworkPlayerManager : MonoBehaviour
         float rotX = p.GetFloat(startIndex, ref startIndex);
         float rotY = p.GetFloat(startIndex, ref startIndex);
         float rotZ = p.GetFloat(startIndex, ref startIndex);
-        int HeadItem = p.GetInt(startIndex, ref startIndex);
-        int BodyItem = p.GetInt(startIndex, ref startIndex);
-        int WeaponID = p.GetInt(startIndex, ref startIndex);
         int AttackID= p.GetInt(startIndex, ref startIndex);
         string CurrentAction = p.GetString(startIndex, ref startIndex);
 
         if (ScenePlayers.ContainsKey(playerName))
         {
-            NetworkPlayer nPlayer = ScenePlayers[playerName].GetComponent<NetworkPlayer>();
-            nPlayer.SetPlayerInfo(HP, HeadItem, BodyItem, WeaponID, AttackID, CurrentAction);
-            nPlayer.SetPlayerTransform(posX, posY, posZ, rotX, rotY, rotZ);
+            ScenePlayers[playerName].SetPlayerInfo(HP, AttackID, CurrentAction);
+            ScenePlayers[playerName].SetPlayerTransform(posX, posY, posZ, rotX, rotY, rotZ);
         }
     }
 
@@ -93,6 +95,7 @@ public class NetworkPlayerManager : MonoBehaviour
     {
         if (ScenePlayers.ContainsKey(playerName))
         {
+            ScenePlayers[playerName].gameObject.SetActive(false);
             ScenePlayers.Remove(playerName);
         }
     }
@@ -104,7 +107,7 @@ public class NetworkPlayerManager : MonoBehaviour
     {
         BytesProtocol p = new BytesProtocol();
         p.SpliceString("LeaveRoom");
-        NetworkManager.ServerConnection.Send(p, OnLeaveRoomBack);
+        NetworkManager.Send(p, OnLeaveRoomBack);
         DelPlayer(playerName);
 
     }
@@ -122,5 +125,65 @@ public class NetworkPlayerManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 玩家死亡处理
+    /// </summary>
+    /// <param name="protocol"></param>
+    private void OnPlayerKilled(BaseProtocol protocol)
+    {
+        BytesProtocol p = protocol as BytesProtocol;
+        int startIndex = 0;
+        p.GetString(startIndex, ref startIndex);
+        //杀手名
+        string KillerName= p.GetString(startIndex, ref startIndex);
+        //被杀玩家名
+        string KilledPlayerName= p.GetString(startIndex, ref startIndex); 
 
+        //玩家死亡处理
+        if(KilledPlayerName==NetworkManager.PlayerName)
+        {
+            return;
+        }
+
+        DelPlayer(KilledPlayerName);
+        
+    }
+
+    private void OnPlayerEquipHelmet(BaseProtocol protocol)
+    {
+        BytesProtocol p = protocol as BytesProtocol;
+        int startIndex = 0;
+        p.GetString(startIndex, ref startIndex);
+        string Playername= p.GetString(startIndex, ref startIndex);
+        int ItemID = p.GetInt(startIndex, ref startIndex);
+        Debug.Log("网络玩家 "+Playername+"  又要威又要戴头盔");
+        if(ScenePlayers.ContainsKey(Playername))
+        {
+            ScenePlayers[Playername].SetPlayerHelmet(ItemID);
+        }
+    }
+    private void OnPlayerEquipClothe(BaseProtocol protocol)
+    {
+        BytesProtocol p = protocol as BytesProtocol;
+        int startIndex = 0;
+        p.GetString(startIndex, ref startIndex);
+        string Playername = p.GetString(startIndex, ref startIndex);
+        int ItemID = p.GetInt(startIndex, ref startIndex);
+        if (ScenePlayers.ContainsKey(Playername))
+        {
+            ScenePlayers[Playername].SetPlayeClothe(ItemID);
+        }
+    }
+    private void OnPlayerEquipWeapon(BaseProtocol protocol)
+    {
+        BytesProtocol p = protocol as BytesProtocol;
+        int startIndex = 0;
+        p.GetString(startIndex, ref startIndex);
+        string Playername = p.GetString(startIndex, ref startIndex);
+        int ItemID = p.GetInt(startIndex, ref startIndex);
+        if (ScenePlayers.ContainsKey(Playername))
+        {
+            ScenePlayers[Playername].SetPlayerWeapon(ItemID);
+        }
+    }
 }
