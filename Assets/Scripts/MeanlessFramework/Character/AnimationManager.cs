@@ -14,7 +14,7 @@ namespace Meaningless
         public string animCur;
         public int LayerCur;
         public bool AnimLock=false;
-
+        public string AnimStartName;
         void Start()
         {
             anim = GetComponent<Animator>();
@@ -184,6 +184,34 @@ namespace Meaningless
         public void DoubleHandsAttack4End()
         {
             AnimLock = false;
+        }
+        public void SpinAttackStart()
+        {
+            AnimStartName = "Spin Attack";
+        }
+        public void IdleStart()
+        {
+            AnimStartName = "Idle";
+        }
+        public void MagicShootStart()
+        {
+            AnimStartName = "Magic Shoot Attack";
+        }
+        public void SpearStart()
+        {
+            AnimStartName = "Spear Melee Attack 02";
+        }
+        public void RunStart()
+        {
+            AnimStartName = "Run";
+        }
+        public void JumpStart()
+        {
+            AnimStartName = "Jump";
+        }
+        public void LeftAttackStart()
+        {
+            AnimStartName = "Melee Left Attack 01";
         }
         #endregion
     }

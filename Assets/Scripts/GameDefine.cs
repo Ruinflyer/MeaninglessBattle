@@ -16,6 +16,8 @@ namespace Meaningless
 		,LoginUI
 		,RoomUI
 		,TipsUI
+		,Canvas
+		,FinishUI
 		/*UIIDHere*/
 
     }
@@ -58,6 +60,7 @@ namespace Meaningless
         LoadingUI,
         LoadingScene,
         Remain,
+        FinishUI,//结算界面
         //
     }
 
@@ -120,6 +123,8 @@ namespace Meaningless
 			{UIid.LoginUI,"UIPrefab/LoginUI"},
 			{UIid.RoomUI,"UIPrefab/RoomUI"},
 			{UIid.TipsUI,"UIPrefab/TipsUI"},
+			{UIid.Canvas,"UIPrefab/Canvas"},
+			{UIid.FinishUI,"UIPrefab/FinishUI"},
 			/*UIDictHere*/
                        
 
@@ -149,6 +154,12 @@ namespace Meaningless
 					break;
 				case UIid.TipsUI:
 					 scriptType=typeof(TipsUI);
+					break;
+				case UIid.Canvas:
+					 scriptType=typeof(Canvas);
+					break;
+				case UIid.FinishUI:
+					 scriptType=typeof(FinishUI);
 					break;
 				/*SwitchUIScriptType*/
                 case UIid.NullUI:
