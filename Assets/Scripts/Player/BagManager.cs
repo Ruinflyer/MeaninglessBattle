@@ -836,6 +836,7 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
 
             case 3:
                 characterStatus.magicType = Magic1.magicProperties.magicType;
+                characterStatus.weaponType = WeaponType.NULL;
 
                 characterStatus.Attack_Physics = 0;
 
@@ -854,8 +855,9 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                 characterStatus.RecoveryValue = defaultCharacterStatus.RecoveryValue + (defaultCharacterStatus.RecoveryValue * armorAttributes.rate_Recovery);
                 break;
             case 4:
-                characterStatus.weaponType = Magic2.weaponProperties.weaponType;
+                //characterStatus.weaponType = Magic2.weaponProperties.weaponType;
                 characterStatus.magicType = Magic2.magicProperties.magicType;
+                characterStatus.weaponType = WeaponType.NULL;
 
                 characterStatus.Attack_Physics = 0;
 

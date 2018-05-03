@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Meaningless;
+using UnityEngine.EventSystems;
 
 public class IdleState : FSMState
 {
@@ -28,59 +29,54 @@ public class IdleState : FSMState
             (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.5 || Mathf.Abs(Input.GetAxis("Vertical")) > 0.5)||Input.GetButton("Jump")
             );
 
-        CharacterMessageDispatcher.Instance.DispatchMesssage
-            (FSMTransitionType.CanDefend,
-            FSM,
-            Input.GetButton("Defend") && FSM.characterStatus.magicType == MagicType.NULL && FSM.characterStatus.weaponType == WeaponType.Shield
-            );
         
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.AttackWithSingleWield,
             FSM,
-            Input.GetButtonDown("Fire1") && (FSM.characterStatus.weaponType == WeaponType.Sword || FSM.characterStatus.weaponType == WeaponType.Club)
+            !EventSystem.current.IsPointerOverGameObject() && Input.GetButtonDown("Fire1") && (FSM.characterStatus.weaponType == WeaponType.Sword || FSM.characterStatus.weaponType == WeaponType.Club)
             );
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.AttackWithDoubleHands,
             FSM,
-            Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.DoubleHands
+             !EventSystem.current.IsPointerOverGameObject()&&Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.DoubleHands
             );
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.AttackWithSpear,
             FSM,
-             Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.Spear
+             !EventSystem.current.IsPointerOverGameObject() && Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.Spear
             );
 
 
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.UsingRipple,
             FSM,
-            Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.NULL && FSM.characterStatus.magicType == MagicType.Ripple
+             !EventSystem.current.IsPointerOverGameObject() && Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.NULL && FSM.characterStatus.magicType == MagicType.Ripple
             );
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.UsingHeartAttack,
             FSM,
-            Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.NULL && FSM.characterStatus.magicType == MagicType.HeartAttack
+             !EventSystem.current.IsPointerOverGameObject() && Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.NULL && FSM.characterStatus.magicType == MagicType.HeartAttack
             );
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.UsingStygianDesolator,
             FSM,
-            Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.NULL && FSM.characterStatus.magicType == MagicType.StygianDesolator
+             !EventSystem.current.IsPointerOverGameObject() && Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.NULL && FSM.characterStatus.magicType == MagicType.StygianDesolator
             );
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.UsingChoshimArrow,
             FSM,
-            Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.NULL && FSM.characterStatus.magicType == MagicType.ChoshimArrow
+             !EventSystem.current.IsPointerOverGameObject() && Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.NULL && FSM.characterStatus.magicType == MagicType.ChoshimArrow
             );
         CharacterMessageDispatcher.Instance.DispatchMesssage
             (FSMTransitionType.UsingThunderBolt,
             FSM,
-            Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.NULL && FSM.characterStatus.magicType == MagicType.Thunderbolt
+             !EventSystem.current.IsPointerOverGameObject() && Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.NULL && FSM.characterStatus.magicType == MagicType.Thunderbolt
             );
 
         CharacterMessageDispatcher.Instance.DispatchMesssage
           (FSMTransitionType.UsingIceArrow,
           FSM,
-          Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.NULL && FSM.characterStatus.magicType == MagicType.IceArrow
+           !EventSystem.current.IsPointerOverGameObject() && Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.NULL && FSM.characterStatus.magicType == MagicType.IceArrow
           );
 
         CharacterMessageDispatcher.Instance.DispatchMesssage
@@ -92,7 +88,7 @@ public class IdleState : FSMState
 
 
 
-        if (Input.GetButtonUp("PickUp") && FSM.isFound)
+        if (!EventSystem.current.IsPointerOverGameObject() && Input.GetButtonUp("PickUp") && FSM.isFound)
         {
             FSM.picked = true;
             FSM.PerformTransition(FSMTransitionType.CanPickUp);
