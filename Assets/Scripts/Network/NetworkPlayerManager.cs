@@ -21,7 +21,7 @@ public class NetworkPlayerManager : MonoBehaviour
         NetworkManager.AddEventListener("PlayerEquipClothe", OnPlayerEquipClothe);
         NetworkManager.AddEventListener("PlayerEquipWeapon", OnPlayerEquipWeapon);
         NetworkManager.AddEventListener("PlayerMagic",OnPlayerMagicBack);
-            
+        NetworkManager.AddEventListener("PlayerDead", OnPlayerDead);
     }
 
     // Update is called once per frame
@@ -161,6 +161,14 @@ public class NetworkPlayerManager : MonoBehaviour
 
         DelPlayer(KilledPlayerName);
         
+    }
+    private void OnPlayerDead(BaseProtocol protocol)
+    {
+        BytesProtocol p = protocol as BytesProtocol;
+        int startIndex = 0;
+        p.GetString(startIndex, ref startIndex);
+        string KilledPlayerName = p.GetString(startIndex, ref startIndex);
+        DelPlayer(KilledPlayerName);
     }
 
     private void OnPlayerEquipHelmet(BaseProtocol protocol)

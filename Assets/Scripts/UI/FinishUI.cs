@@ -29,6 +29,7 @@ public class FinishUI : BaseUI
     private void OnBackBtnClick()
     {
         UIManager.Instance.ShowUI(UIid.MainUI);
+        UIManager.Instance.HideTheUI(UIid.FinishUI,() => { });
     }
 
     private void SetData(object[] objs)

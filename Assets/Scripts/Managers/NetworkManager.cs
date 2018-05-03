@@ -245,6 +245,16 @@ public class NetworkManager : MonoSingleton<NetworkManager>
         protocol.SpliceFloat(trans.position.z);
         Send(protocol);
     }
+
+    /// <summary>
+    /// 发送玩家死亡消息，用于自杀
+    /// </summary>
+    public static void SendPlayerDead()
+    {
+        BytesProtocol protocol = new BytesProtocol();
+        protocol.SpliceString("PlayerDead");
+        Send(protocol);
+    }
 }                                                                      
                                                                        
                                             
