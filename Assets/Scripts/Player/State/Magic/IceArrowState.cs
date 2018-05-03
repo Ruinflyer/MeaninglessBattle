@@ -22,7 +22,7 @@ public class IceArrowState : FSMState
                     BagManager.Instance.UseMagic(0);
                     FSM.PlayAnimation("Magic Shoot Attack");
                     GameObject go = NetPoolManager.Instantiate("Ice Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
-                    Debug.Log("m1");
+                    go.GetComponent<MagicBehaviour>().isHit = true;
                 }
 
             }
@@ -35,7 +35,7 @@ public class IceArrowState : FSMState
                     BagManager.Instance.UseMagic(1);
                     FSM.PlayAnimation("Magic Shoot Attack");
                     GameObject go = NetPoolManager.Instantiate("Ice Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
-                    Debug.Log("m2");
+                    go.GetComponent<MagicBehaviour>().isHit = true;
                 }
 
             }

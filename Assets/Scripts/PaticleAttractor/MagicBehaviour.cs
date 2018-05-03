@@ -3,55 +3,61 @@ using System.Collections.Generic;
 using UnityEngine;
 using Meaningless;
 
-public class MagicBehaviour : MonoBehaviour {
+public class MagicBehaviour : MonoBehaviour
+{
 
     public MagicType magicType;
     public PlayerController player;
-    private 
+    public bool isHit = false;
 
-	// Use this for initialization
-	void Start () {
-        player = CameraBase.Instance.player.GetComponent<PlayerController>();
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    // Use this for initialization
+    void Start()
     {
-		switch(magicType)
+        player = CameraBase.Instance.player.GetComponent<PlayerController>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (isHit)
         {
-            case MagicType.Ripple:
-                Damage(1, 30);
-                break;
-            case MagicType.HeartAttack:
-                Damage(1, 30);
-                break;
-            case MagicType.IceArrow:
-                float IProbability = ItemInfoManager.Instance.GetItemInfo(603).magicProperties.Probability;
-                Damage(1, 30);
-                if (Random.value<IProbability)
-                {
-                    Freeze(2, 1, 30);
-                }
+            switch (magicType)
+            {
+                case MagicType.Ripple:
+                    Damage(1, 30);
                     break;
-            case MagicType.ChoshimArrow:
-                float CProbability = ItemInfoManager.Instance.GetItemInfo(604).magicProperties.Probability;
-                Damage(1, 30);
-                if (Random.value < CProbability)
-                {
-                    SlowDown(4, 1, 30);
-                }
+                case MagicType.HeartAttack:
+                    Damage(1, 30);
                     break;
-            case MagicType.StygianDesolator:
-                Blind(5, 5,360);
-                break;
-            case MagicType.Thunderbolt:
-                Damage(5, 360);
-                break;
+                case MagicType.IceArrow:
+                    float IProbability = ItemInfoManager.Instance.GetItemInfo(603).magicProperties.Probability;
+                    Damage(1, 30);
+                    if (Random.value < IProbability)
+                    {
+                        Freeze(2, 1, 30);
+                    }
+                    break;
+                case MagicType.ChoshimArrow:
+                    float CProbability = ItemInfoManager.Instance.GetItemInfo(604).magicProperties.Probability;
+                    Damage(1, 30);
+                    if (Random.value < CProbability)
+                    {
+                        SlowDown(4, 1, 30);
+                    }
+                    break;
+                case MagicType.StygianDesolator:
+                    Blind(5, 5, 360);
+                    break;
+                case MagicType.Thunderbolt:
+                    Damage(5, 360);
+                    break;
+            }
+            isHit = false;
         }
 
-	}
+    }
 
-    void Damage(float distance,float angle)
+    void Damage(float distance, float angle)
     {
         foreach (KeyValuePair<string, NetworkPlayer> enemy in player.ScenePlayers)
         {
@@ -68,13 +74,13 @@ public class MagicBehaviour : MonoBehaviour {
         {
             if (player.CheckCanAttack(gameObject, enemy.Value.gameObject, distance, angle))
             {
-                enemy.Value.playerController.GetDeBuffInTime(BuffType.Freeze, buffTime,enemy.Value.status);
+                enemy.Value.playerController.GetDeBuffInTime(BuffType.Freeze, buffTime, enemy.Value.status);
 
             }
         }
     }
 
-    void Blind(float buffTime,float distance, float angle)
+    void Blind(float buffTime, float distance, float angle)
     {
         foreach (KeyValuePair<string, NetworkPlayer> enemy in player.ScenePlayers)
         {
