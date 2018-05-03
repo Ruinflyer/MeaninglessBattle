@@ -20,7 +20,7 @@ public class SpearAttackState : FSMState
         {
             attackDistance = FSM.controller.GetCurSelectedWeaponInfo().weaponProperties.weaponLength;
         }
-        if(FSM.Attacked)
+        if (FSM.Attacked)
         {
             foreach (KeyValuePair<string, NetworkPlayer> enemy in FSM.controller.ScenePlayers)
             {
@@ -35,7 +35,7 @@ public class SpearAttackState : FSMState
             FSM.Attacked = false;
         }
 
-      
+
 
 
     }
@@ -47,6 +47,11 @@ public class SpearAttackState : FSMState
             FSM,
             FSM.animationManager.baseStateInfo.IsName("Idle")
             );
+        CharacterMessageDispatcher.Instance.DispatchMesssage
+    (FSMTransitionType.CanBeMove,
+    FSM,
+    (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.5 || Mathf.Abs(Input.GetAxis("Vertical")) > 0.5) && FSM.controller.CC.isGrounded
+    );
     }
 
 }

@@ -82,6 +82,7 @@ public class PlayerFSM :BaseFSM
 
         SpearAttackState spearAttack = new SpearAttackState();
         spearAttack.AddTransition(FSMTransitionType.IsIdle, FSMStateType.Idle);
+        spearAttack.AddTransition(FSMTransitionType.CanBeMove, FSMStateType.Move);
 
         RippleAttackState rippleAttack = new RippleAttackState();
         rippleAttack.AddTransition(FSMTransitionType.IsIdle, FSMStateType.Idle);

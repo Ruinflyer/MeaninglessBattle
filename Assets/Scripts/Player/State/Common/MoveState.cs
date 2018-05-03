@@ -23,7 +23,7 @@ public class MoveState : FSMState
         CharacterMessageDispatcher.Instance.DispatchMesssage
         (FSMTransitionType.IsIdle,
         FSM,
-        Mathf.Abs(Input.GetAxis("Horizontal")) <= 0.5 && Mathf.Abs(Input.GetAxis("Vertical")) <= 0.5 && FSM.controller.CC.isGrounded
+        Mathf.Abs(Input.GetAxis("Horizontal")) <= 0.5 && Mathf.Abs(Input.GetAxis("Vertical")) <= 0.5
         );
 
 
