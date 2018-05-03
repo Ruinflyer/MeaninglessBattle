@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 124924684542781132}
   - component: {fileID: 81110302565744718}
   - component: {fileID: 114136608729550686}
+  - component: {fileID: 114869234021575352}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -153,6 +154,21 @@ MonoBehaviour:
   canDistanceXToPlayer: 0
   canDistanceYToPlayer: 0
   canDistanceZToPlayer: 0
+--- !u!114 &114869234021575352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1782356822510166}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ead7af9c444304a9f928c42cee36f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCShader: {fileID: 4800000, guid: 31589518ba82d8b4296add8234b1b4da, type: 3}
+  Radius: 300
+  Factor: 200
+  FastFilter: 4
 --- !u!124 &124924684542781132
 Behaviour:
   m_ObjectHideFlags: 1

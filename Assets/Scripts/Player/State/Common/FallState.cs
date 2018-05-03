@@ -25,7 +25,7 @@ public class FallState :  FSMState
         CharacterMessageDispatcher.Instance.DispatchMesssage(
             FSMTransitionType.IsIdle,
             FSM,
-            FSM.transform.position.y <= 20
+            FSM.transform.position.y <= 10
             );
           
     }

@@ -20,18 +20,22 @@ public class SpearAttackState : FSMState
         {
             attackDistance = FSM.controller.GetCurSelectedWeaponInfo().weaponProperties.weaponLength;
         }
-
-
-        foreach (KeyValuePair<string, NetworkPlayer> enemy in FSM.controller.ScenePlayers)
+        if(FSM.Attacked)
         {
-            if (FSM.controller.CheckCanAttack(FSM.gameObject, enemy.Value.gameObject, attackDistance, 45))
+            foreach (KeyValuePair<string, NetworkPlayer> enemy in FSM.controller.ScenePlayers)
             {
-                NetworkManager.SendPlayerHitSomeone(enemy.Value.name, FSM.characterStatus.Attack_Physics * (1 - enemy.Value.status.Defend_Physics / 100));
-                //单机测试
-                //enemy.status.HP -= FSM.characterStatus.Attack_Physics * (1 - enemy.status.Defend_Physics / 100);
+                if (FSM.controller.CheckCanAttack(FSM.gameObject, enemy.Value.gameObject, attackDistance, 45))
+                {
+                    NetworkManager.SendPlayerHitSomeone(enemy.Value.name, FSM.characterStatus.Attack_Physics * (1 - enemy.Value.status.Defend_Physics / 100));
+                    //单机测试
+                    //enemy.status.HP -= FSM.characterStatus.Attack_Physics * (1 - enemy.status.Defend_Physics / 100);
+                }
             }
+            FSM.animationManager.PlayAnimation("Spear Melee Attack 02");
+            FSM.Attacked = false;
         }
-        FSM.animationManager.PlayAnimation("Spear Melee Attack 02");
+
+      
 
 
     }

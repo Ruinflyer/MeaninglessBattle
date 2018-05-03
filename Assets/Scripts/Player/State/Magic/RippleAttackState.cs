@@ -21,6 +21,7 @@ public class RippleAttackState : FSMState
                     BagManager.Instance.UseMagic(0);
                     FSM.PlayAnimation("Magic Shoot Attack");
                     GameObject go = NetPoolManager.Instantiate("Ripple", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
+                    go.GetComponent<MagicBehaviour>().isHit = true;
                 }
             }
         if (BagManager.Instance.skillAttributesList[1].skillInfo != BagManager.Instance.NullInfo)
@@ -31,6 +32,7 @@ public class RippleAttackState : FSMState
                     BagManager.Instance.UseMagic(1);
                     FSM.PlayAnimation("Magic Shoot Attack");
                     GameObject go = NetPoolManager.Instantiate("Ripple", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
+                    go.GetComponent<MagicBehaviour>().isHit = true;
                 }
             }
 
