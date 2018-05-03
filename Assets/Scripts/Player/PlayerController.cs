@@ -6,8 +6,10 @@ using Meaningless;
 public class PlayerController : MeaninglessCharacterController
 {
 
-
-    private Dictionary<Transform, int> Dict_PickUp_Tran = new Dictionary<Transform, int>();
+    /// <summary>
+    ///  Key:GroundItemID Value:ItemID
+    /// </summary>
+    private Dictionary<int, int> Dict_PickUp_Tran = new Dictionary<int, int>();
 
     /*
     public void Equip(int itemID)
@@ -201,10 +203,10 @@ public class PlayerController : MeaninglessCharacterController
         switch (currentSelected)
         {
             case 1:
-                if (BagManager.Instance.Weapon1!= null)
+                if (BagManager.Instance.Weapon1 != null)
                 {
                     if (BagManager.Instance.Weapon2 != null)
-                    {           
+                    {
                         UnEquip(EquippedItem.Weapon2);
                     }
                     EquipWeapon(BagManager.Instance.Weapon1.ItemID);
@@ -233,22 +235,29 @@ public class PlayerController : MeaninglessCharacterController
     public void PickItem(Transform Item)
     {
         GroundItem GItem = Item.GetComponent<GroundItem>();
-        Dict_PickUp_Tran.Add(Item, GItem.ItemID);
+        Dict_PickUp_Tran.Add(GItem.GroundItemID, GItem.ItemID);
         Item.SetParent(transform);
         NetworkManager.SendPickItem(GItem.GroundItemID);
+
         Item.gameObject.SetActive(false);
     }
 
     public void DiscardItem(int itemID)
     {
-        foreach (Transform key in Dict_PickUp_Tran.Keys)
+        foreach (int GID in Dict_PickUp_Tran.Keys)
         {
-            if (Dict_PickUp_Tran[key].Equals(itemID))
+            if(Dict_PickUp_Tran[GID]==itemID)
             {
-                key.SetParent(null);
-                key.gameObject.SetActive(true);
-                Dict_PickUp_Tran.Remove(key);
+                GroundItem GItem = MapManager.Instance.Items[GID];
+                //发送
+                NetworkManager.SendDropItem(GID, GItem.gameObject.transform);
+                GItem.gameObject.transform.SetParent(null);
+                GItem.gameObject.SetActive(true);
+                Dict_PickUp_Tran.Remove(GID);
+                break;
             }
+            
+           
         }
     }
 
@@ -305,8 +314,9 @@ public class PlayerController : MeaninglessCharacterController
         }
     }
 
-    private void GetBuff(BuffType buff,CharacterStatus status)
-    {;
+    private void GetBuff(BuffType buff, CharacterStatus status)
+    {
+        ;
         Material buffMat = Resources.Load("Debuff/" + buff.ToString()) as Material;
         switch (buff)
         {
@@ -318,13 +328,13 @@ public class PlayerController : MeaninglessCharacterController
             case BuffType.Freeze:
                 if (buffMat != null)
                     GameTool.FindTheChild(gameObject, "Base").GetComponent<SkinnedMeshRenderer>().material = buffMat;
-                status.moveSpeed *=0.001f;
+                status.moveSpeed *= 0.001f;
                 break;
             case BuffType.Blind:
                 Camera.main.GetComponent<BlindEffect>().enabled = true;
                 break;
         }
-        
+
     }
 
     private void Losebuff(BuffType buff, CharacterStatus status)
@@ -334,7 +344,7 @@ public class PlayerController : MeaninglessCharacterController
         {
             case BuffType.SlowDown:
                 status.moveSpeed /= 0.7f;
-                if (BagManager.Instance.Body== null)
+                if (BagManager.Instance.Body == null)
                     UnEquip(EquippedItem.Body);
                 else
                     EquipClothes(BagManager.Instance.Body.ItemID);
@@ -350,12 +360,12 @@ public class PlayerController : MeaninglessCharacterController
                 Camera.main.GetComponent<BlindEffect>().enabled = false;
                 break;
         }
-        
+
     }
 
-    public override void GetDeBuffInTime(BuffType debuff, float time,CharacterStatus status)
+    public override void GetDeBuffInTime(BuffType debuff, float time, CharacterStatus status)
     {
-        Buff buff = new Buff(debuff, time,status ,GetBuff, Losebuff);
+        Buff buff = new Buff(debuff, time, status, GetBuff, Losebuff);
         buffList.Add(buff);
         foreach (Buff Buff in buffList)
         {

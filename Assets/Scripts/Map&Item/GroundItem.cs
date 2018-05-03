@@ -10,5 +10,8 @@ public class GroundItem : MonoBehaviour {
     {
         gameObject.SetActive(false);
     }
-
+    public void Show()
+    {
+        gameObject.SetActive(true);
+    }
 }

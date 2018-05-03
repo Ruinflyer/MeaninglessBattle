@@ -1,20 +1,16 @@
 ManifestFileVersion: 0
-CRC: 4088937471
+CRC: 2146404443
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
       Name: scene.ab
-      Dependencies:
-        Dependency_0: map.ab
+      Dependencies: {}
     Info_1:
       Name: items.ab
       Dependencies: {}
     Info_2:
-      Name: map.ab
-      Dependencies: {}
-    Info_3:
       Name: magic.ab
       Dependencies: {}
-    Info_4:
+    Info_3:
       Name: uitextures.ab
       Dependencies: {}
