@@ -10,9 +10,9 @@ public class MapManager : MonoSingleton<MapManager>
 {
     public bool isLoaded = false;
 
-    //圈参数表
+   //毒圈
     private GameObject Circlefield;
-
+    //下降点
     public ItemSpawnPoint itemSpawnPoint;
     private List<float> RandomList = new List<float>();
     private int ItemListIndex = 0;
@@ -46,8 +46,7 @@ public class MapManager : MonoSingleton<MapManager>
         NetworkManager.AddEventListener("DoorOpen", OnDoorOpen);
         NetworkManager.AddEventListener("AllPlayerLoaded", OnAllPlayerLoaded);
         NetworkManager.AddEventListener("PickItem",OnPickItem);
-
-        
+       
         //门加入字典
         for (int i=0;i<itemSpawnPoint.DoorSpawnPoints.Length;i++)
         {
@@ -74,27 +73,7 @@ public class MapManager : MonoSingleton<MapManager>
         p.SpliceString("GetMapItemData");
         NetworkManager.Send(p);
     }
-    /* DeadCode
-    private void OnGetMapDataBack(BaseProtocol protocol)
-    {
-        BytesProtocol p = protocol as BytesProtocol;
-        int startIndex = 0;
-        p.GetString(startIndex, ref startIndex);
-        MapData = new List<string>();
-        int MapTileNum = p.GetInt(startIndex, ref startIndex);
-        object[] param = new object[2];
-        param[0] = "正在接收地图数据...";
-        param[1] = 2;
-        MessageCenter.Send_Multparam(EMessageType.LoadingUI, param);
-        for (int i = 0; i < MapTileNum; i++)
-        {
-            MapData.Add(p.GetString(startIndex, ref startIndex));
-        }
-        param[0] = "地图数据接收完毕";
-        param[1] = 2;
-        MessageCenter.Send_Multparam(EMessageType.LoadingUI, param);
-    }
-    */
+  
     /// <summary>
     /// 获取地图道具随机数种子
     /// </summary>
@@ -162,7 +141,7 @@ public class MapManager : MonoSingleton<MapManager>
         param[1] = 2;
         MessageCenter.Send_Multparam(EMessageType.LoadingUI, param);
         NetworkManager.SendPlayerReady();
-
+        NetworkManager.SendReqDroppoint();
 
         yield return true;
     }
@@ -298,7 +277,7 @@ public class MapManager : MonoSingleton<MapManager>
         
     }
 
-
+    
 }
 
 

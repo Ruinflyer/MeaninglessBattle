@@ -222,6 +222,15 @@ public class NetworkManager : MonoSingleton<NetworkManager>
         Send(protocol);
     }
 
+    /// <summary>
+    /// 发送请求下落点
+    /// </summary>
+    public static void SendReqDroppoint()
+    {
+        BytesProtocol protocol = new BytesProtocol();
+        protocol.SpliceString("Droppoint");
+        Send(protocol);
+    }
 }                                                                      
                                                                        
                                             
