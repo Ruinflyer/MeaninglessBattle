@@ -136,7 +136,7 @@ public class NetworkManager : MonoSingleton<NetworkManager>
     /// <summary>
     /// 发送角色同步信息
     /// </summary>
-    public static void SendUpdatePlayerInfo(Vector3 pos , Vector3 rot, int AttackID, string CurrentAction)
+    public static void SendUpdatePlayerInfo(Vector3 pos , Vector3 rot, string CurrentAction)
     {
         BytesProtocol protocol = new BytesProtocol();
         protocol.SpliceString("UpdatePlayerInfo");
@@ -146,7 +146,7 @@ public class NetworkManager : MonoSingleton<NetworkManager>
         protocol.SpliceFloat(rot.x);
         protocol.SpliceFloat(rot.y);
         protocol.SpliceFloat(rot.z);
-        protocol.SpliceInt(AttackID);//用于动画AttackID变量
+       
         protocol.SpliceString(CurrentAction);
         Send(protocol);
     }                      
@@ -229,6 +229,20 @@ public class NetworkManager : MonoSingleton<NetworkManager>
     {
         BytesProtocol protocol = new BytesProtocol();
         protocol.SpliceString("Droppoint");
+        Send(protocol);
+    }
+
+    /// <summary>
+    /// 发送扔物品消息
+    /// </summary>
+    public static void SendDropItem(int GroundItemID,Transform trans)
+    {
+        BytesProtocol protocol = new BytesProtocol();
+        protocol.SpliceString("DropItem");
+        protocol.SpliceInt(GroundItemID);
+        protocol.SpliceFloat(trans.position.x);
+        protocol.SpliceFloat(trans.position.y);
+        protocol.SpliceFloat(trans.position.z);
         Send(protocol);
     }
 }                                                                      

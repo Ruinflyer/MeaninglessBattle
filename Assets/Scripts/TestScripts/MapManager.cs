@@ -46,6 +46,7 @@ public class MapManager : MonoSingleton<MapManager>
         NetworkManager.AddEventListener("DoorOpen", OnDoorOpen);
         NetworkManager.AddEventListener("AllPlayerLoaded", OnAllPlayerLoaded);
         NetworkManager.AddEventListener("PickItem",OnPickItem);
+        NetworkManager.AddEventListener("DropItem", OnDropItem);
        
         //门加入字典
         for (int i=0;i<itemSpawnPoint.DoorSpawnPoints.Length;i++)
@@ -275,6 +276,25 @@ public class MapManager : MonoSingleton<MapManager>
             Items[GroundItemID].Hide();
         }
         
+    }
+
+    /// <summary>
+    /// 接收到物品被扔消息
+    /// </summary>
+    public void OnDropItem(BaseProtocol protocol)
+    {
+        BytesProtocol p = protocol as BytesProtocol;
+        int startIndex = 0;
+        p.GetString(startIndex, ref startIndex);
+        int GroundItemID = p.GetInt(startIndex, ref startIndex);
+        float posX= p.GetFloat(startIndex, ref startIndex);
+        float posY = p.GetFloat(startIndex, ref startIndex);
+        float posZ = p.GetFloat(startIndex, ref startIndex);
+        if (Items.ContainsKey(GroundItemID))
+        {
+            Items[GroundItemID].Show();
+            Items[GroundItemID].transform.position = new Vector3(posX, posY, posZ);
+        }
     }
 
     
