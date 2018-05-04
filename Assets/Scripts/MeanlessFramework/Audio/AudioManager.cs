@@ -9,7 +9,7 @@ using System;
 using Meaningless;
 
 //[RequireComponent(typeof(AudioListener))]
-public class AudioManager :MonoSingleton<AudioManager>
+public class AudioManager :Mono_DDOLSingleton<AudioManager>
 {
     
     static float s_globalVolume = 1;
@@ -223,9 +223,9 @@ public class AudioManager :MonoSingleton<AudioManager>
     public static AudioClip GetAudioClip(string l_soundName)
     {
         AudioClip clipTmp = null;
-        /*
-        clipTmp = ResourceManager.Load<AudioClip>(l_soundName);
-        */
+
+        clipTmp = Resources.Load("Audio/"+l_soundName) as AudioClip;
+        
         if (clipTmp == null)
         {
             Debug.LogError("AudioManager GetAudioClip error: " + l_soundName + "is not AudioClip ! ");

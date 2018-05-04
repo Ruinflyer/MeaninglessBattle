@@ -116,7 +116,9 @@ public class IdleState : FSMState
         if (!EventSystem.current.IsPointerOverGameObject() && Input.GetButtonDown("Fire1") && (FSM.characterStatus.weaponType == WeaponType.Sword || FSM.characterStatus.weaponType == WeaponType.Club))
         {
             FSM.Attacked = true;
+            
             FSM.PerformTransition(FSMTransitionType.AttackWithSingleWield);
+
         }
 
         if (!EventSystem.current.IsPointerOverGameObject() && Input.GetButtonDown("Fire1") && FSM.characterStatus.weaponType == WeaponType.DoubleHands)

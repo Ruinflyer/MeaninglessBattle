@@ -89,6 +89,7 @@ public class MapManager : MonoSingleton<MapManager>
                     if (chunkyEffect.enabled == false)
                     {
                         chunkyEffect.enabled = true;
+                        AudioManager.PlayMusic2D("Poison",true).Play();
                     }
                     //发送毒圈伤害消息
                     NetworkManager.SendPlayerPoison();
@@ -98,6 +99,7 @@ public class MapManager : MonoSingleton<MapManager>
                     if (chunkyEffect.enabled == true)
                     {
                         chunkyEffect.enabled = false;
+                        AudioManager.PlayMusic2D("Poison", true).Pause();
                     }
 
                 }

@@ -39,22 +39,39 @@ public class DoubleHandsAttackState : FSMState
             {
                 FSM.animationManager.PlayAnimation("AttackID", 4);
                 FSM.comboCount = 1;
+                if (FSM.characterStatus.weaponType == WeaponType.DoubleHands)
+                {
+                    AudioManager.PlaySound2D("Axe").Play();
+                }
+    
             }
             else if (FSM.animationManager.attackStateInfo.IsName("Right Punch Attack") && FSM.comboCount == 1 && FSM.animationManager.attackStateInfo.normalizedTime > 0.5F)
             {
                 FSM.animationManager.PlayAnimation("AttackID", 5);
                 FSM.comboCount = 2;
+                if (FSM.characterStatus.weaponType == WeaponType.DoubleHands)
+                {
+                    AudioManager.PlaySound2D("Axe").Play();
+                }
 
             }
             else if (FSM.animationManager.attackStateInfo.IsName("Left Punch Attack") && FSM.comboCount == 2 && FSM.animationManager.attackStateInfo.normalizedTime > 0.4F)
             {
                 FSM.animationManager.PlayAnimation("AttackID", 6);
                 FSM.comboCount = 3;
+                if (FSM.characterStatus.weaponType == WeaponType.DoubleHands)
+                {
+                    AudioManager.PlaySound2D("Axe").Play();
+                }
             }
             else if (FSM.animationManager.attackStateInfo.IsName("Left Punch Attack") && FSM.comboCount == 3 && FSM.animationManager.attackStateInfo.normalizedTime > 0.4F)
             {
                 FSM.animationManager.PlayAnimation("AttackID", 7);
                 FSM.comboCount = 4;
+                if (FSM.characterStatus.weaponType == WeaponType.DoubleHands)
+                {
+                    AudioManager.PlaySound2D("Axe").Play();
+                }
             }
             FSM.Attacked = false;
         }

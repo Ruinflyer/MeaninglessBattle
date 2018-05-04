@@ -1349,6 +1349,7 @@ MonoBehaviour:
   animCur: 
   LayerCur: 0
   AnimLock: 0
+  AnimStartName: Idle
 --- !u!114 &114077224636845404
 MonoBehaviour:
   m_ObjectHideFlags: 1

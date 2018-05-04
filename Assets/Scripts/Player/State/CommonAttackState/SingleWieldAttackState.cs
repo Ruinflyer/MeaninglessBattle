@@ -6,6 +6,7 @@ using Meaningless;
 public class SingleWieldAttackState : FSMState
 {
     private float attackDistance = 0;
+    private AudioSource audio=null;
 
     public SingleWieldAttackState()
     {
@@ -20,7 +21,7 @@ public class SingleWieldAttackState : FSMState
         {
             attackDistance = FSM.controller.GetCurSelectedWeaponInfo().weaponProperties.weaponLength;
         }
-        if(FSM.Attacked)
+        if (FSM.Attacked)
         {
             foreach (KeyValuePair<string, NetworkPlayer> enemy in FSM.controller.ScenePlayers)
             {
@@ -36,21 +37,46 @@ public class SingleWieldAttackState : FSMState
             {
                 FSM.animationManager.PlayAnimation("AttackID", 1);
                 FSM.comboCount = 1;
+                if (FSM.characterStatus.weaponType == WeaponType.Sword)
+                {
+                    AudioManager.PlaySound2D("Sword").Play();
+                }
+                if (FSM.characterStatus.weaponType == WeaponType.Club)
+                {
+                    AudioManager.PlaySound2D("Club").Play();
+                }
             }
             else if (FSM.animationManager.attackStateInfo.IsName("Melee Right Attack 01") && FSM.comboCount == 1 && FSM.animationManager.attackStateInfo.normalizedTime > 0.5F)
             {
                 FSM.animationManager.PlayAnimation("AttackID", 2);
                 FSM.comboCount = 2;
+                if (FSM.characterStatus.weaponType == WeaponType.Sword)
+                {
+                    AudioManager.PlaySound2D("Sword").Play();
+                }
+                if (FSM.characterStatus.weaponType == WeaponType.Club)
+                {
+                    AudioManager.PlaySound2D("Club").Play();
+                }
 
             }
             else if (FSM.animationManager.attackStateInfo.IsName("Melee Right Attack 02") && FSM.comboCount == 2 && FSM.animationManager.attackStateInfo.normalizedTime > 0.4F)
             {
                 FSM.animationManager.PlayAnimation("AttackID", 3);
                 FSM.comboCount = 3;
+                if (FSM.characterStatus.weaponType == WeaponType.Sword)
+                {
+                    AudioManager.PlaySound2D("Sword").Play();
+                }
+                if (FSM.characterStatus.weaponType == WeaponType.Club)
+                {
+                    AudioManager.PlaySound2D("Club").Play();
+                }
             }
+            
             FSM.Attacked = false;
         }
-       
+
 
     }
 
@@ -64,9 +90,10 @@ public class SingleWieldAttackState : FSMState
         FSM.animationManager.baseStateInfo.IsName("Idle") && FSM.animationManager.attackStateInfo.normalizedTime > 1.15f
         );
 
-        if ((FSM.characterStatus.weaponType == WeaponType.Sword || FSM.characterStatus.weaponType == WeaponType.Club))
+        if (Input.GetButtonDown("Fire1") && (FSM.characterStatus.weaponType == WeaponType.Sword || FSM.characterStatus.weaponType == WeaponType.Club))
         {
             FSM.Attacked = true;
+            
             FSM.PerformTransition(FSMTransitionType.AttackWithSingleWield);
         }
 

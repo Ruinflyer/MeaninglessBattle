@@ -24,17 +24,17 @@ public class MagicBehaviour : MonoBehaviour
             switch (magicType)
             {
                 case MagicType.Ripple:
-                    Damage(1, 30);
+                    Damage(2, 30);
                     break;
                 case MagicType.HeartAttack:
-                    Damage(1, 30);
+                    Damage(2, 30);
                     break;
                 case MagicType.IceArrow:
                     float IProbability = ItemInfoManager.Instance.GetItemInfo(603).magicProperties.Probability;
                     Damage(1, 30);
                     if (Random.value < IProbability)
                     {
-                        Freeze(2, 1, 30);
+                        Freeze(2, 2.5f, 30);
                     }
                     break;
                 case MagicType.ChoshimArrow:
@@ -42,7 +42,7 @@ public class MagicBehaviour : MonoBehaviour
                     Damage(1, 30);
                     if (Random.value < CProbability)
                     {
-                        SlowDown(4, 1, 30);
+                        SlowDown(4, 2.5f, 30);
                     }
                     break;
                 case MagicType.StygianDesolator:

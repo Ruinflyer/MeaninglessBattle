@@ -22,6 +22,7 @@ public class ThunderBoltState : FSMState
                 {
                     BagManager.Instance.UseMagic(0);
                     GameObject go = NetPoolManager.Instantiate("ThunderBolt", FSM.transform.position + FSM.transform.forward * 5, FSM.transform.rotation);
+                    AudioManager.PlaySound2D("ThunderBolt").Play();
                     go.GetComponent<MagicBehaviour>().isHit = true;
                 }
             }
@@ -33,6 +34,7 @@ public class ThunderBoltState : FSMState
                 {
                     BagManager.Instance.UseMagic(1);
                     GameObject go = NetPoolManager.Instantiate("ThunderBolt", FSM.transform.position + FSM.transform.forward * 5, FSM.transform.rotation);
+                    AudioManager.PlaySound2D("ThunderBolt").Play();
                     go.GetComponent<MagicBehaviour>().isHit = true;
                 }
 

@@ -50,6 +50,7 @@ public class HUDUI : BaseUI
 
     private void Update()
     {
+        Img_FrontSight.rectTransform.position= new Vector2(Screen.width / 2, Screen.height / 2);
         SetBarIcon();
         UpdateSkillCount();
         UpdateTime();

@@ -9,7 +9,7 @@
           "weaponProperties": {
             "weaponType": 1,
             "Damage": 40.0,
-            "weaponLength": 0.8,
+            "weaponLength": 1.2,
             "CDTime": 0.0
           }
         },
@@ -22,7 +22,7 @@
           "weaponProperties": {
             "weaponType": 1,
             "Damage": 48.0,
-            "weaponLength": 0.8,
+            "weaponLength": 1.2,
             "CDTime": 0.0
           }
         },
@@ -35,7 +35,7 @@
           "weaponProperties": {
             "weaponType": 1,
             "Damage": 54.0,
-            "weaponLength": 0.8,
+            "weaponLength": 1.2,
             "CDTime": 0.0
           }
         },
@@ -48,7 +48,7 @@
           "weaponProperties": {
             "weaponType": 1,
             "Damage": 62.0,
-            "weaponLength": 0.8,
+            "weaponLength": 1.2,
             "CDTime": 0.0
           }
         },
@@ -61,7 +61,7 @@
           "weaponProperties": {
             "weaponType": 1,
             "Damage": 70.0,
-            "weaponLength": 0.8,
+            "weaponLength": 1.2,
             "CDTime": 0.0
           }
         },
@@ -74,7 +74,7 @@
           "weaponProperties": {
             "weaponType": 1,
             "Damage": 62.0,
-            "weaponLength": 0.8,
+            "weaponLength": 1.2,
             "CDTime": 0.0
           }
         },
@@ -87,7 +87,7 @@
           "weaponProperties": {
             "weaponType": 2,
             "Damage": 35.0,
-            "weaponLength": 0.7,
+            "weaponLength": 1.2,
             "CDTime": 0.0
           }
         },
@@ -100,7 +100,7 @@
           "weaponProperties": {
             "weaponType": 2,
             "Damage": 60.0,
-            "weaponLength": 1,
+            "weaponLength": 1.4,
             "CDTime": 0.0
           }
         },
@@ -113,7 +113,7 @@
           "weaponProperties": {
             "weaponType": 2,
             "Damage": 68.0,
-            "weaponLength": 1.2,
+            "weaponLength": 1.5,
             "CDTime": 0.0
           }
         },
@@ -126,7 +126,7 @@
           "weaponProperties": {
             "weaponType": 2,
             "Damage": 68.0,
-            "weaponLength": 1,
+            "weaponLength": 1.4,
             "CDTime": 0.0
           }
         },
@@ -139,7 +139,7 @@
           "weaponProperties": {
             "weaponType": 3,
             "Damage": 35.0,
-            "weaponLength": 0.5,
+            "weaponLength": 1.2,
             "CDTime": 0.0
           }
         },
@@ -152,7 +152,7 @@
           "weaponProperties": {
             "weaponType": 3,
             "Damage": 45.0,
-            "weaponLength": 0.7,
+            "weaponLength": 1.2,
             "CDTime": 0.0
           }
         },
@@ -165,7 +165,7 @@
           "weaponProperties": {
             "weaponType": 3,
             "Damage": 35.0,
-            "weaponLength": 0.5,
+            "weaponLength": 1.2,
             "CDTime": 0.0
           }
         },
@@ -178,7 +178,7 @@
           "weaponProperties": {
             "weaponType": 4,
             "Damage": 95.0,
-            "weaponLength": 2,
+            "weaponLength": 2.2,
             "CDTime": 0.0
           }
         },
@@ -191,7 +191,7 @@
           "weaponProperties": {
             "weaponType": 4,
             "Damage": 80.0,
-            "weaponLength": 1.8,
+            "weaponLength": 2,
             "CDTime": 0.0
           }
         },

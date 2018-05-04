@@ -22,6 +22,7 @@ public class StygianDesolatorState : FSMState
                     BagManager.Instance.UseMagic(0);
                     FSM.PlayAnimation("Spin Attack");
                     GameObject go = NetPoolManager.Instantiate("Stygian Desolator", GameTool.FindTheChild(FSM.gameObject, "RigPelvisGizmo").position, FSM.transform.rotation);
+                    AudioManager.PlaySound2D("Stygian Desolator").Play();
                     go.GetComponent<MagicBehaviour>().isHit = true;
                 }
 
@@ -35,6 +36,7 @@ public class StygianDesolatorState : FSMState
                     BagManager.Instance.UseMagic(1);
                     FSM.PlayAnimation("Spin Attack");
                     GameObject go = NetPoolManager.Instantiate("Stygian Desolator", GameTool.FindTheChild(FSM.gameObject, "RigPelvisGizmo").position, FSM.transform.rotation);
+                    AudioManager.PlaySound2D("Stygian Desolator").Play();
                     go.GetComponent<MagicBehaviour>().isHit = true;
                 }
 

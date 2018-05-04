@@ -61,8 +61,7 @@ public class CameraCollision : MonoBehaviour
                         MessageCenter.Send(Meaningless.EMessageType.FoundItem, false);
                         itemTran = null;
                     }
-                    if (hitToItem.collider.tag == "Terrain")
-                        MessageCenter.Send(Meaningless.EMessageType.GetHitPoint, hitToItem.point);
+                    
                 }
           
             }
@@ -71,7 +70,6 @@ public class CameraCollision : MonoBehaviour
                 MessageCenter.Send(Meaningless.EMessageType.FoundItem, false);
                 itemTran = null;
             }
-
         }
         else
         {
@@ -79,6 +77,6 @@ public class CameraCollision : MonoBehaviour
             itemTran = null;
         }
 
-
+       
     }
 }
