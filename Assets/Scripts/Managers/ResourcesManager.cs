@@ -57,7 +57,7 @@ public class ResourcesManager : Mono_DDOLSingleton<ResourcesManager>
         Sprite resourceGObj = null;
         if (!Dict_UITex.TryGetValue(textureName, out resourceGObj))
         {
-            Debug.LogError(textureName + "不在文件夹中");
+            Debug.LogError(textureName + "不在图集中");
         }
 
         if (resourceGObj == null)

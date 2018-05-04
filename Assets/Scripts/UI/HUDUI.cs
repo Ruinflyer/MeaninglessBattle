@@ -11,14 +11,14 @@ public class HUDUI : BaseUI
 
     //AutoStatement
     private Image Img_Weapon1 = null;
-	private Image Img_Weapon2 = null;
-	private Image Img_Skill1 = null;
-	private Image Img_Skill2 = null;
+    private Image Img_Weapon2 = null;
+    private Image Img_Skill1 = null;
+    private Image Img_Skill2 = null;
     private Image Img_Skill1_Mask = null;
     private Image Img_Skill2_Mask = null;
     private Image Img_Shield = null;
-    private Image Img_PickUpTip=null;
-    private Image Img_FrontSight=null;
+    private Image Img_PickUpTip = null;
+    private Image Img_FrontSight = null;
     private Text Text_Skill1_Count = null;
     private Text Text_Skill2_Count = null;
     private Slider Slider_HP = null;
@@ -29,15 +29,15 @@ public class HUDUI : BaseUI
     protected override void InitUiOnAwake()
     {
         Img_PickUpTip = GameTool.GetTheChildComponent<Image>(this.gameObject, "PickUpTip");
-        Img_Weapon1 = GameTool.GetTheChildComponent<Image>(this.gameObject,"Img_Weapon1");
-		Img_Weapon2 = GameTool.GetTheChildComponent<Image>(this.gameObject,"Img_Weapon2");
-		Img_Skill1 = GameTool.GetTheChildComponent<Image>(this.gameObject,"Img_Skill1");
-		Img_Skill2 = GameTool.GetTheChildComponent<Image>(this.gameObject,"Img_Skill2");
-        Img_Skill1_Mask= GameTool.GetTheChildComponent<Image>(Img_Skill1.gameObject, "Ing_Skill1_Mask");
+        Img_Weapon1 = GameTool.GetTheChildComponent<Image>(this.gameObject, "Img_Weapon1");
+        Img_Weapon2 = GameTool.GetTheChildComponent<Image>(this.gameObject, "Img_Weapon2");
+        Img_Skill1 = GameTool.GetTheChildComponent<Image>(this.gameObject, "Img_Skill1");
+        Img_Skill2 = GameTool.GetTheChildComponent<Image>(this.gameObject, "Img_Skill2");
+        Img_Skill1_Mask = GameTool.GetTheChildComponent<Image>(Img_Skill1.gameObject, "Ing_Skill1_Mask");
         Img_Skill2_Mask = GameTool.GetTheChildComponent<Image>(Img_Skill2.gameObject, "Ing_Skill2_Mask");
-        Img_Shield = GameTool.GetTheChildComponent<Image>(this.gameObject,"Img_Shield");
+        Img_Shield = GameTool.GetTheChildComponent<Image>(this.gameObject, "Img_Shield");
         Img_FrontSight = GameTool.GetTheChildComponent<Image>(gameObject, "Img_FrontSight");
-        Text_Skill1_Count= GameTool.GetTheChildComponent<Text>(this.gameObject, "Text_Count3");
+        Text_Skill1_Count = GameTool.GetTheChildComponent<Text>(this.gameObject, "Text_Count3");
         Text_Skill2_Count = GameTool.GetTheChildComponent<Text>(this.gameObject, "Text_Count4");
         Slider_HP = GameTool.GetTheChildComponent<Slider>(this.gameObject, "Slider");
         Text_Remain = GameTool.GetTheChildComponent<Text>(this.gameObject, "Text_Remain");
@@ -52,7 +52,7 @@ public class HUDUI : BaseUI
     {
         SetBarIcon();
         UpdateSkillCount();
-       UpdateTime();
+        UpdateTime();
     }
 
     protected override void InitDataOnAwake()
@@ -67,7 +67,7 @@ public class HUDUI : BaseUI
 
     private void UpdateSkillCount()
     {
-        if(BagManager.Instance.Magic1!=BagManager.Instance.NullInfo)
+        if (BagManager.Instance.Magic1 != BagManager.Instance.NullInfo)
         {
             Text_Skill1_Count.gameObject.SetActive(true);
             Img_Skill1_Mask.gameObject.SetActive(true);
@@ -96,7 +96,7 @@ public class HUDUI : BaseUI
 
     private void UpdateHP(object HP)
     {
-        Slider_HP.value = (float)HP/100;
+        Slider_HP.value = (float)HP / 100;
     }
 
     private void SetBarIcon()
@@ -119,13 +119,13 @@ public class HUDUI : BaseUI
 
         if (BagManager.Instance.Magic1.magicProperties != null)
         {
-            if (BagManager.Instance.Magic1.ResName !="")
-                Img_Skill1.sprite = ResourcesManager.Instance.GetUITexture(BagManager.Instance.Magic1.ResName); 
+            if (BagManager.Instance.Magic1.ResName != "")
+                Img_Skill1.sprite = ResourcesManager.Instance.GetUITexture(BagManager.Instance.Magic1.ResName);
         }
         else
             Img_Skill1.sprite = ResourcesManager.Instance.GetUITexture("Null");
 
-        if(BagManager.Instance.Magic2.magicProperties != null)
+        if (BagManager.Instance.Magic2.magicProperties != null)
         {
             if (BagManager.Instance.Magic2.ResName != "")
                 Img_Skill2.sprite = ResourcesManager.Instance.GetUITexture(BagManager.Instance.Magic2.ResName);
@@ -134,27 +134,17 @@ public class HUDUI : BaseUI
             Img_Skill2.sprite = ResourcesManager.Instance.GetUITexture("Null");
 
     }
-    
+
     private void UpdateTime()
     {
-        
-        if(Time.time- lastTime>1f && MapManager.Instance.countdownTime>=0f)
+        if (MapManager.Instance.Moving)
         {
-            
-            MapManager.Instance.countdownTime -= 1;
-
-                if (MapManager.Instance.Moving)
-                {
-                    Text_Time.text = "暗影移动时间: " + MapManager.Instance.countdownTime.ToString() + "秒";
-                }
-                else
-                {
-                    Text_Time.text = "暗影保持时间: " + MapManager.Instance.countdownTime.ToString() + "秒";
-                }
-            
-            lastTime = Time.time;
+            Text_Time.text = "暗影移动时间: " + MapManager.Instance.countdownTime.ToString() + "秒";
         }
-       
+        else
+        {
+            Text_Time.text = "暗影保持时间: " + MapManager.Instance.countdownTime.ToString() + "秒";
+        }
     }
 
 }

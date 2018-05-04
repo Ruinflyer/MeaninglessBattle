@@ -10,10 +10,19 @@ public class MapManager : MonoSingleton<MapManager>
 {
     public bool isLoaded = false;
 
-   //毒圈
+    #region 毒圈变量
     private GameObject Circlefield;
     public float countdownTime = 0;
+    private float lastTime=0;
     public bool Moving = false;
+
+    //半径
+    public float CurrentR = 200f;
+   //累积收缩率
+    private float totalShrinkpercent = 1.0f;
+    //与原点距离
+    public float distance=200f;
+    #endregion
     //下降点
     public ItemSpawnPoint itemSpawnPoint;
     private List<float> RandomList = new List<float>();
@@ -64,7 +73,16 @@ public class MapManager : MonoSingleton<MapManager>
     // Update is called once per frame
     void Update()
     {
-
+        if(Moving)
+        {
+            CurrentR = 200f*Circlefield.transform.localScale.x;
+            Debug.Log(CurrentR);
+        }
+        if (Time.time - lastTime > 1f && MapManager.Instance.countdownTime > 0f)
+        {
+            MapManager.Instance.countdownTime -= 1;
+            lastTime = Time.time;
+        }
     }
 
     /// <summary>
@@ -211,8 +229,8 @@ public class MapManager : MonoSingleton<MapManager>
         countdownTime = Movetime;
         Moving = true;
 
-        iTween.ScaleTo(Circlefield, iTween.Hash("x", Circlefield.transform.localScale.x*shrinkPercent, "z", Circlefield.transform.localScale.z*shrinkPercent, "time", Movetime));
-        iTween.MoveTo(Circlefield, iTween.Hash("position", new Vector3(X, 0, Y), "time", Movetime));
+        iTween.ScaleTo(Circlefield, iTween.Hash("x", Circlefield.transform.localScale.x*shrinkPercent, "z", Circlefield.transform.localScale.z*shrinkPercent, "time", Movetime, "easeType",iTween.EaseType.linear));
+        iTween.MoveTo(Circlefield, iTween.Hash("position", new Vector3(X, 0, Y), "time", Movetime, "easeType", iTween.EaseType.linear));
     }
     public void OnCirclefieldTimeBack(BaseProtocol protocol)
     {
