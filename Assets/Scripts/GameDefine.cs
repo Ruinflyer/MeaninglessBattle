@@ -18,6 +18,7 @@ namespace Meaningless
 		,TipsUI
 		,Canvas
 		,FinishUI
+        ,EscapeUI
 		/*UIIDHere*/
 
     }
@@ -126,6 +127,7 @@ namespace Meaningless
 			{UIid.TipsUI,"UIPrefab/TipsUI"},
 			{UIid.Canvas,"UIPrefab/Canvas"},
 			{UIid.FinishUI,"UIPrefab/FinishUI"},
+            {UIid.EscapeUI,"UIPrefab/EscapeUI" },
 			/*UIDictHere*/
                        
 
@@ -162,7 +164,10 @@ namespace Meaningless
 				case UIid.FinishUI:
 					 scriptType=typeof(FinishUI);
 					break;
-				/*SwitchUIScriptType*/
+                case UIid.EscapeUI:
+                    scriptType = typeof(EscapeUI);
+                    break;
+                /*SwitchUIScriptType*/
                 case UIid.NullUI:
                     Debug.LogError("传入的窗体ID为NullUI");
                     break;

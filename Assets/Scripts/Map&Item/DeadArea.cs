@@ -25,6 +25,7 @@ public class DeadArea : MonoBehaviour
 
         //玩家死亡处理
         UIManager.Instance.ShowUI(UIid.FinishUI);
+        CameraBase.Instance.isFollowing = false;
         object[] param = new object[3];
         param[0] = "珍惜生命，远离悬崖";
         param[1] = "你死于跳崖自杀";

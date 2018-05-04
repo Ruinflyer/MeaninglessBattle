@@ -80,6 +80,14 @@ namespace Meaningless
 
             }
         }
+        public void Esc()
+        {
+            if(Input.GetButtonDown("Esc"))
+            {
+                UIManager.Instance.ShowUI(UIid.EscapeUI);
+                CameraBase.Instance.isFollowing = false;
+            }
+        }
 
         public abstract void Move(float walkSpeed, float jumpSpeed);
         public abstract void FallingCtrl(float Speed);
