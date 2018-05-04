@@ -12,6 +12,8 @@ public class MapManager : MonoSingleton<MapManager>
 
    //毒圈
     private GameObject Circlefield;
+    public float countdownTime = 0;
+    public bool Moving = false;
     //下降点
     public ItemSpawnPoint itemSpawnPoint;
     private List<float> RandomList = new List<float>();
@@ -206,10 +208,8 @@ public class MapManager : MonoSingleton<MapManager>
         float shrinkPercent = p.GetFloat(startIndex, ref startIndex);
         int Movetime = p.GetInt(startIndex, ref startIndex);
         //HUDUI倒计时显示
-        object[] param = new object[2];
-        param[0] = Movetime;
-        param[1] = true;
-        MessageCenter.Send(EMessageType.CountdownTime, param);
+        countdownTime = Movetime;
+        Moving = true;
 
         iTween.ScaleTo(Circlefield, iTween.Hash("x", Circlefield.transform.localScale.x*shrinkPercent, "z", Circlefield.transform.localScale.z*shrinkPercent, "time", Movetime));
         iTween.MoveTo(Circlefield, iTween.Hash("position", new Vector3(X, 0, Y), "time", Movetime));
@@ -221,11 +221,8 @@ public class MapManager : MonoSingleton<MapManager>
         p.GetString(startIndex, ref startIndex);
         int HoldTime = p.GetInt(startIndex, ref startIndex);
         //HUDUI倒计时显示
-        object[] param = new object[2];
-        param[0] = HoldTime;
-        param[1] = false;
-        MessageCenter.Send(EMessageType.CountdownTime, param);
-       
+        countdownTime = HoldTime;
+        Moving = false;
     }
     /// <summary>
     /// 开门

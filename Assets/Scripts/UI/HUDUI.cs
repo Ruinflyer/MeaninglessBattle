@@ -25,9 +25,6 @@ public class HUDUI : BaseUI
     private Text Text_Remain = null;
     private Text Text_Time = null;
 
-    private bool RefreshTime = false;
-    private int countdownTime = 0;
-    private bool isMoving = false;
     private float lastTime = 0;
     protected override void InitUiOnAwake()
     {
@@ -44,23 +41,18 @@ public class HUDUI : BaseUI
         Text_Skill2_Count = GameTool.GetTheChildComponent<Text>(this.gameObject, "Text_Count4");
         Slider_HP = GameTool.GetTheChildComponent<Slider>(this.gameObject, "Slider");
         Text_Remain = GameTool.GetTheChildComponent<Text>(this.gameObject, "Text_Remain");
-        Text_Time = GameTool.GetTheChildComponent<Text>(this.gameObject, "Text_Time");
+        Text_Time = GameTool.GetTheChildComponent<Text>(gameObject, "TextTime");
         MessageCenter.AddListener(EMessageType.FoundItem, AwakePickUpTip);
         MessageCenter.AddListener(EMessageType.CurrentHP, UpdateHP);
         MessageCenter.AddListener(EMessageType.Remain, (object obj) => { Text_Remain.text = "" + (int)obj; });
-        MessageCenter.AddListener_Multparam(EMessageType.CountdownTime,(object[] objs)=> 
-        {
-            countdownTime = (int)objs[0];//倒计时秒数
-            isMoving = (bool)objs[1];//false为保持时间 true为移动时间
-            RefreshTime = true;//开始计时
-        });
+
     }
 
     private void Update()
     {
         SetBarIcon();
         UpdateSkillCount();
-       // UpdateTime();
+       UpdateTime();
     }
 
     protected override void InitDataOnAwake()
@@ -145,22 +137,21 @@ public class HUDUI : BaseUI
     
     private void UpdateTime()
     {
-        Debug.Log("RefreshTime "+ RefreshTime);
-        if(Time.time- lastTime>1f)
+        
+        if(Time.time- lastTime>1f && MapManager.Instance.countdownTime>=0f)
         {
-            countdownTime -= 1;
+            
+            MapManager.Instance.countdownTime -= 1;
 
-            if (RefreshTime)
-            {
-                if (isMoving)
+                if (MapManager.Instance.Moving)
                 {
-                    Text_Time.text = "暗影移动时间: " + countdownTime.ToString() + "秒";
+                    Text_Time.text = "暗影移动时间: " + MapManager.Instance.countdownTime.ToString() + "秒";
                 }
                 else
                 {
-                    Text_Time.text = "暗影保持时间: " + countdownTime.ToString() + "秒";
+                    Text_Time.text = "暗影保持时间: " + MapManager.Instance.countdownTime.ToString() + "秒";
                 }
-            }
+            
             lastTime = Time.time;
         }
        
