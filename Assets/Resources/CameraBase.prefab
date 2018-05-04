@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 81110302565744718}
   - component: {fileID: 114136608729550686}
   - component: {fileID: 114869234021575352}
+  - component: {fileID: 114287978776398160}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -67,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1684250929407704}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 500, z: 1}
+  m_LocalPosition: {x: 0, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4145654003723474}
@@ -154,6 +155,20 @@ MonoBehaviour:
   canDistanceXToPlayer: 0
   canDistanceYToPlayer: 0
   canDistanceZToPlayer: 0
+--- !u!114 &114287978776398160
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1782356822510166}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04830ede054f67a4f88611daf2e164a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SCShader: {fileID: 4800000, guid: 021f74a6bc502364ea09233306e2eac2, type: 3}
+  SprTex: {fileID: 2800000, guid: e24d36d8ff948514689bd64ae291d616, type: 3}
+  Color: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &114869234021575352
 MonoBehaviour:
   m_ObjectHideFlags: 1

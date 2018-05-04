@@ -168,6 +168,15 @@ public class NetworkPlayerManager : MonoBehaviour
         int startIndex = 0;
         p.GetString(startIndex, ref startIndex);
         string KilledPlayerName = p.GetString(startIndex, ref startIndex);
+        if(KilledPlayerName==NetworkManager.PlayerName)
+        {
+            UIManager.Instance.ShowUI(UIid.FinishUI);
+            object[] param = new object[3];
+            param[0] = "无畏之争，无谓之争";
+            param[1] = "你被暗影毒杀";
+            param[2] = " ";
+            MessageCenter.Send_Multparam(EMessageType.FinishUI, param);
+        }
         DelPlayer(KilledPlayerName);
     }
 

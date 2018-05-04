@@ -15,13 +15,9 @@ public class MapManager : MonoSingleton<MapManager>
     public float countdownTime = 0;
     private float lastTime=0;
     public bool Moving = false;
-
-    //半径
-    public float CurrentR = 200f;
-   //累积收缩率
-    private float totalShrinkpercent = 1.0f;
-    //与原点距离
-    public float distance=200f;
+    private bool isBegin = false;
+    public Vector3 CircleCenter=Vector3.zero;
+    private Chunky chunkyEffect;
     #endregion
     //下降点
     public ItemSpawnPoint itemSpawnPoint;
@@ -68,22 +64,51 @@ public class MapManager : MonoSingleton<MapManager>
 
         ProbabilityValue = ItemInfoManager.Instance.GetTotalOccurrenceProbability();
         ItemsID = ItemInfoManager.Instance.GetAllItemsID();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Moving)
-        {
-            CurrentR = 200f*Circlefield.transform.localScale.x;
-            Debug.Log(CurrentR);
-        }
         if (Time.time - lastTime > 1f && MapManager.Instance.countdownTime > 0f)
         {
+           
             MapManager.Instance.countdownTime -= 1;
             lastTime = Time.time;
+            float d = Vector3.Distance(CameraBase.Instance.player.transform.position, Circlefield.transform.position);
+            //超出半径时
+            if (chunkyEffect == null)
+            {
+                chunkyEffect = Camera.main.gameObject.GetComponent<Chunky>();
+            }
+            if(isBegin)
+            {
+                Debug.Log(d.ToString()+"  "+ Circlefield.transform.localScale.x);
+                if (d > Circlefield.transform.localScale.x)
+                {
+                    if (chunkyEffect.enabled == false)
+                    {
+                        chunkyEffect.enabled = true;
+                    }
+                    //发送毒圈伤害消息
+                    NetworkManager.SendPlayerPoison();
+                }
+                else
+                {
+                    if (chunkyEffect.enabled == true)
+                    {
+                        chunkyEffect.enabled = false;
+                    }
+
+                }
+            }
+           
         }
+
     }
+
+
+    #region 生成地面道具代码
 
     /// <summary>
     /// 请求获得道具数据
@@ -94,7 +119,7 @@ public class MapManager : MonoSingleton<MapManager>
         p.SpliceString("GetMapItemData");
         NetworkManager.Send(p);
     }
-  
+
     /// <summary>
     /// 获取地图道具随机数种子
     /// </summary>
@@ -110,7 +135,7 @@ public class MapManager : MonoSingleton<MapManager>
         param[1] = 0;
         MessageCenter.Send_Multparam(EMessageType.LoadingUI, param);
 
-        if(Seed!=0)
+        if (Seed != 0)
         {
             //220个物品生成点的随机数
             RandomList = InitTotalProbabilityValue(ProbabilityValue);
@@ -122,15 +147,14 @@ public class MapManager : MonoSingleton<MapManager>
         }
         else
         {
-            Debug.LogError("Seed异常 "+Seed.ToString()+" 无法加载");
+            Debug.LogError("Seed异常 " + Seed.ToString() + " 无法加载");
         }
     }
-    //生成地面道具
+
     public void GenerateItem()
     {
         StartCoroutine(Generate());
     }
-
     IEnumerator Generate()
     {
         //LoadingUI提示：
@@ -187,7 +211,6 @@ public class MapManager : MonoSingleton<MapManager>
         return probabilityValue.Length - 1;
 
     }
-
     /// <summary>
     /// 返回一个浮点数列表,成员数为物品生成点数量
     /// </summary>
@@ -212,6 +235,8 @@ public class MapManager : MonoSingleton<MapManager>
         return temp_RandomList;
     }
 
+    #endregion
+    #region 毒圈回调代码
     /// <summary>
     /// 毒圈回调
     /// </summary>
@@ -228,8 +253,10 @@ public class MapManager : MonoSingleton<MapManager>
         //HUDUI倒计时显示
         countdownTime = Movetime;
         Moving = true;
+        CircleCenter = new Vector3(X,0,Y);
 
-        iTween.ScaleTo(Circlefield, iTween.Hash("x", Circlefield.transform.localScale.x*shrinkPercent, "z", Circlefield.transform.localScale.z*shrinkPercent, "time", Movetime, "easeType",iTween.EaseType.linear));
+        isBegin = true;
+        iTween.ScaleTo(Circlefield, iTween.Hash("x", Circlefield.transform.localScale.x*shrinkPercent, "y", Circlefield.transform.localScale.y*shrinkPercent, "time", Movetime, "easeType",iTween.EaseType.linear));
         iTween.MoveTo(Circlefield, iTween.Hash("position", new Vector3(X, 0, Y), "time", Movetime, "easeType", iTween.EaseType.linear));
     }
     public void OnCirclefieldTimeBack(BaseProtocol protocol)
@@ -242,6 +269,8 @@ public class MapManager : MonoSingleton<MapManager>
         countdownTime = HoldTime;
         Moving = false;
     }
+    #endregion
+    #region 地图物件被使用回调代码
     /// <summary>
     /// 开门
     /// </summary>
@@ -256,6 +285,22 @@ public class MapManager : MonoSingleton<MapManager>
         {
             Doors[DoorID].gameObject.GetComponent<DoorControl>().ControlDoor();
         }
+    }
+    /// <summary>
+    /// 游戏物品被拾取处理
+    /// </summary>
+    /// <param name="protocol"></param>
+    public void OnPickItem(BaseProtocol protocol)
+    {
+        BytesProtocol p = protocol as BytesProtocol;
+        int startIndex = 0;
+        p.GetString(startIndex, ref startIndex);
+        int GroundItemID = p.GetInt(startIndex, ref startIndex);
+        if (Items.ContainsKey(GroundItemID))
+        {
+            Items[GroundItemID].Hide();
+        }
+
     }
 
     /// <summary>
@@ -276,22 +321,7 @@ public class MapManager : MonoSingleton<MapManager>
         NetworkManager.SendGetPlayersInfo();
     }
 
-    /// <summary>
-    /// 游戏物品被拾取处理
-    /// </summary>
-    /// <param name="protocol"></param>
-    public void OnPickItem(BaseProtocol protocol)
-    {
-        BytesProtocol p = protocol as BytesProtocol;
-        int startIndex = 0;
-        p.GetString(startIndex, ref startIndex);
-        int GroundItemID = p.GetInt(startIndex, ref startIndex);
-        if(Items.ContainsKey(GroundItemID))
-        {
-            Items[GroundItemID].Hide();
-        }
-        
-    }
+
 
     /// <summary>
     /// 接收到物品被扔消息
@@ -312,7 +342,7 @@ public class MapManager : MonoSingleton<MapManager>
         }
     }
 
-    
+    #endregion
 }
 
 

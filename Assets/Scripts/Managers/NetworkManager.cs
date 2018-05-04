@@ -255,6 +255,16 @@ public class NetworkManager : MonoSingleton<NetworkManager>
         protocol.SpliceString("PlayerDead");
         Send(protocol);
     }
+
+    /// <summary>
+    /// 发送玩家被毒圈伤害消息
+    /// </summary>
+    public static void SendPlayerPoison()
+    {
+        BytesProtocol protocol = new BytesProtocol();
+        protocol.SpliceString("PlayerPoison");
+        Send(protocol);
+    }
 }                                                                      
                                                                        
                                             
