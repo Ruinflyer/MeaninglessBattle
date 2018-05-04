@@ -21,6 +21,7 @@ public class NetworkPlayerManager : MonoBehaviour
         NetworkManager.AddEventListener("PlayerEquipClothe", OnPlayerEquipClothe);
         NetworkManager.AddEventListener("PlayerEquipWeapon", OnPlayerEquipWeapon);
         NetworkManager.AddEventListener("PlayerMagic",OnPlayerMagicBack);
+        NetworkManager.AddEventListener("PlayerSuccess", OnPlayerSuccess);
         NetworkManager.AddEventListener("PlayerDead", OnPlayerDead);
     }
 
@@ -179,7 +180,18 @@ public class NetworkPlayerManager : MonoBehaviour
         }
         DelPlayer(KilledPlayerName);
     }
-
+    private void OnPlayerSuccess(BaseProtocol protocol)
+    {
+        BytesProtocol p = protocol as BytesProtocol;
+        int startIndex = 0;
+        p.GetString(startIndex, ref startIndex);
+        UIManager.Instance.ShowUI(UIid.FinishUI);
+        object[] param = new object[3];
+        param[0] = "无畏之争，无胃之争";
+        param[1] = "今晚不会有人抢你的鸡吃了";
+        param[2] = "胜利者 ";
+        MessageCenter.Send_Multparam(EMessageType.FinishUI, param);
+    }
     private void OnPlayerEquipHelmet(BaseProtocol protocol)
     {
         BytesProtocol p = protocol as BytesProtocol;

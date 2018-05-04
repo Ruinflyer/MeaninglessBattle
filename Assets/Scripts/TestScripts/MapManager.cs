@@ -83,7 +83,7 @@ public class MapManager : MonoSingleton<MapManager>
             }
             if(isBegin)
             {
-                Debug.Log(d.ToString()+"  "+ Circlefield.transform.localScale.x);
+                //Debug.Log(d.ToString()+"  "+ Circlefield.transform.localScale.x);
                 if (d > Circlefield.transform.localScale.x)
                 {
                     if (chunkyEffect.enabled == false)
