@@ -81,6 +81,10 @@ namespace Meaningless
             Debug.LogError("FSM ERROR: The state passed was not on the list. Impossible to delete it");
         }
 
+        /// <summary>
+        /// 转换状态
+        /// </summary>
+        /// <param name="trans"></param>
         public void PerformTransition(FSMTransitionType trans)
         {
             FSMStateType id = currentState.GetOutputState(trans);

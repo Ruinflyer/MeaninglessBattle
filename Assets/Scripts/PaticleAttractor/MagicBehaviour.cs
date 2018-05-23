@@ -75,6 +75,7 @@ public class MagicBehaviour : MonoBehaviour
             if (player.CheckCanAttack(gameObject, enemy.Value.gameObject, distance, angle))
             {
                 enemy.Value.playerController.GetDeBuffInTime(BuffType.Freeze, buffTime, enemy.Value.status);
+                NetworkManager.SendPlayerGetBuff(enemy.Value.name, BuffType.Freeze, buffTime);
 
             }
         }
@@ -88,6 +89,7 @@ public class MagicBehaviour : MonoBehaviour
             {
                 //本地效果
                 enemy.Value.playerController.GetDeBuffInTime(BuffType.Blind, buffTime, enemy.Value.status);
+                NetworkManager.SendPlayerGetBuff(enemy.Value.name, BuffType.Blind, buffTime);
             }
         }
     }
@@ -100,6 +102,7 @@ public class MagicBehaviour : MonoBehaviour
             {
                 //本地效果
                 enemy.Value.playerController.GetDeBuffInTime(BuffType.SlowDown, buffTime, enemy.Value.status);
+                NetworkManager.SendPlayerGetBuff(enemy.Value.name, BuffType.SlowDown, buffTime);
             }
         }
     }

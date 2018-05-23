@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: 1d078102ec86f8147a8b99b53fa1e1cf
-timeCreated: 1473815147
-licenseType: Store
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -18,6 +16,7 @@ ModelImporter:
     4300000: SF_Env_Preset_Undead_Castle_01_MeshPart0
     4300002: SF_Env_Preset_Undead_Castle_01_MeshPart1
     9500000: //RootNode
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 0
@@ -37,6 +36,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5

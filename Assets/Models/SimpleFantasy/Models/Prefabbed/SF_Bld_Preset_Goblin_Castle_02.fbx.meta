@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: 21091c4b0b5adff46b7b2f52f9c96b87
-timeCreated: 1473823104
-licenseType: Store
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -58,6 +56,7 @@ ModelImporter:
     4300016: SF_Bld_Preset_Goblin_Castle_02_MeshPart3
     4300018: SF_Bld_Preset_Goblin_Castle_02_MeshPart4
     9500000: //RootNode
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 0
@@ -77,6 +76,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
