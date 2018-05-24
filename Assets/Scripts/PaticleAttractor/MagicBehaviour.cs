@@ -75,7 +75,12 @@ public class MagicBehaviour : MonoBehaviour
         {
             if (player.CheckCanAttack(gameObject, enemy.Value.gameObject, distance, angle))
             {
+<<<<<<< HEAD
                 NetworkManager.SendPlayerGetBuff(enemy.Value.PlayerName,BuffType.Freeze,buffTime);
+=======
+                enemy.Value.playerController.GetDeBuffInTime(BuffType.Freeze, buffTime, enemy.Value.status);
+                NetworkManager.SendPlayerGetBuff(enemy.Value.name, BuffType.Freeze, buffTime);
+>>>>>>> 49b1fc4237349bab58e1bc315c6adc4d9da75d35
 
             }
         }
@@ -87,7 +92,13 @@ public class MagicBehaviour : MonoBehaviour
         {
             if (player.CheckCanAttack(gameObject, enemy.Value.gameObject, distance, angle))
             {
+<<<<<<< HEAD
                 NetworkManager.SendPlayerGetBuff(enemy.Value.PlayerName, BuffType.Blind, buffTime);
+=======
+                //本地效果
+                enemy.Value.playerController.GetDeBuffInTime(BuffType.Blind, buffTime, enemy.Value.status);
+                NetworkManager.SendPlayerGetBuff(enemy.Value.name, BuffType.Blind, buffTime);
+>>>>>>> 49b1fc4237349bab58e1bc315c6adc4d9da75d35
             }
         }
     }
@@ -98,7 +109,13 @@ public class MagicBehaviour : MonoBehaviour
         {
             if (player.CheckCanAttack(gameObject, enemy.Value.gameObject, distance, angle))
             {
+<<<<<<< HEAD
                 NetworkManager.SendPlayerGetBuff(enemy.Value.PlayerName, BuffType.SlowDown, buffTime);
+=======
+                //本地效果
+                enemy.Value.playerController.GetDeBuffInTime(BuffType.SlowDown, buffTime, enemy.Value.status);
+                NetworkManager.SendPlayerGetBuff(enemy.Value.name, BuffType.SlowDown, buffTime);
+>>>>>>> 49b1fc4237349bab58e1bc315c6adc4d9da75d35
             }
         }
     }

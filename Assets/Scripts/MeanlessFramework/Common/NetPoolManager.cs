@@ -27,7 +27,6 @@ public class NetPoolManager : ObjectPoolManager
         {
             go = ResourcesManager.Instance.GetMapTiles(prefabId);
         }
-        
         return ObjectPoolManager.PullObjcetFromPool(go, position, rotation).gameObject;
     }
 

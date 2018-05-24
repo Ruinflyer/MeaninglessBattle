@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using Meaningless;
 using System;
 
+//角色属性可序列化类
 [Serializable]
 public class CharacterStatus
 {
+    //角色名
     public string characterName;
+    //当前武器类型
     public WeaponType weaponType;
+    //当前魔法类型
     public MagicType magicType;
-    
-
+    //移动速度
     public float moveSpeed;
+    //无视
     public float jumpSpeed;
     //生命值
     public float HP;
