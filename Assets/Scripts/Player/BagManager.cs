@@ -332,6 +332,12 @@ public class BagManager : Mono_DDOLSingleton<BagManager>
                     armorAttributes.rate_MoveSpeed += HeadGem2.gemProperties.Rate_MoveSpeed;
                     armorAttributes.rate_Recovery += HeadGem2.gemProperties.Rate_Recovery;
                 }
+                //添加身体防具属性
+                armorAttributes.rate_Defend_Magic += itemInfo.armorProperties.Rate_MagicalDefend;
+                armorAttributes.rate_Defend_Physics += itemInfo.armorProperties.Rate_PhysicalDefend;
+                armorAttributes.rate_DurationTime_Magic += itemInfo.armorProperties.Rate_DecreasedDurationTime;
+                armorAttributes.rate_MoveSpeed += itemInfo.armorProperties.Rate_MoveSpeed;
+                armorAttributes.rate_Recovery += itemInfo.armorProperties.Rate_Recovery;
                 Head = itemInfo;
                 break;
             case EquippedItem.Body:

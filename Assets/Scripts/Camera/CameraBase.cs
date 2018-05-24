@@ -6,7 +6,9 @@ using Meaningless;
 public class CameraBase : MonoSingleton<CameraBase>
 {
     public bool isFollowing=false;
-
+    public bool isDead = false;
+    public bool isBagOpen = false;
+    public bool isEscape = false;
     public float moveSpeed = 120f;
     public GameObject cameraFollowGO;
     public float clampAngle = 80f;

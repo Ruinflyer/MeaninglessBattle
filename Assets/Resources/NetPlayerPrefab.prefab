@@ -1069,7 +1069,7 @@ Animator:
   m_GameObject: {fileID: 1887132482691962}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 231d45dba8bff13478d80904318e7bc4, type: 3}
-  m_Controller: {fileID: 9100000, guid: b28a5814760ae474880bf98404639623, type: 2}
+  m_Controller: {fileID: 9100000, guid: 38bd54edb891bdc47bb940de0cfbc816, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1116,7 +1116,6 @@ MonoBehaviour:
   bodyItemID: 0
   weaponID: 0
   currentAction: 
-  curAttackID: 0
   status:
     characterName: 
     weaponType: 0

@@ -24,6 +24,7 @@ public class ThunderBoltState : FSMState
                     GameObject go = NetPoolManager.Instantiate("ThunderBolt", FSM.transform.position + FSM.transform.forward * 5, FSM.transform.rotation);
                     AudioManager.PlaySound2D("ThunderBolt").Play();
                     go.GetComponent<MagicBehaviour>().isHit = true;
+                    NetworkManager.SendPlayerMagic("ThunderBolt", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
                 }
             }
         if (BagManager.Instance.skillAttributesList[1].skillInfo != BagManager.Instance.NullInfo)
@@ -36,6 +37,7 @@ public class ThunderBoltState : FSMState
                     GameObject go = NetPoolManager.Instantiate("ThunderBolt", FSM.transform.position + FSM.transform.forward * 5, FSM.transform.rotation);
                     AudioManager.PlaySound2D("ThunderBolt").Play();
                     go.GetComponent<MagicBehaviour>().isHit = true;
+                    NetworkManager.SendPlayerMagic("ThunderBolt", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
                 }
 
             }

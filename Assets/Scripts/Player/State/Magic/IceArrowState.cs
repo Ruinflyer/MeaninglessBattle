@@ -24,6 +24,7 @@ public class IceArrowState : FSMState
                     GameObject go = NetPoolManager.Instantiate("Ice Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
                     AudioManager.PlaySound2D("Arrow").Play();
                     go.GetComponent<MagicBehaviour>().isHit = true;
+                    NetworkManager.SendPlayerMagic("Ice Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
                 }
 
             }
@@ -38,6 +39,7 @@ public class IceArrowState : FSMState
                     GameObject go = NetPoolManager.Instantiate("Ice Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
                     AudioManager.PlaySound2D("Arrow").Play();
                     go.GetComponent<MagicBehaviour>().isHit = true;
+                    NetworkManager.SendPlayerMagic("Ice Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
                 }
 
             }

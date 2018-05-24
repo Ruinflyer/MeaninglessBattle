@@ -24,6 +24,7 @@ public class StygianDesolatorState : FSMState
                     GameObject go = NetPoolManager.Instantiate("Stygian Desolator", GameTool.FindTheChild(FSM.gameObject, "RigPelvisGizmo").position, FSM.transform.rotation);
                     AudioManager.PlaySound2D("Stygian Desolator").Play();
                     go.GetComponent<MagicBehaviour>().isHit = true;
+                    NetworkManager.SendPlayerMagic("Stygian Desolator", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
                 }
 
             }
@@ -38,6 +39,7 @@ public class StygianDesolatorState : FSMState
                     GameObject go = NetPoolManager.Instantiate("Stygian Desolator", GameTool.FindTheChild(FSM.gameObject, "RigPelvisGizmo").position, FSM.transform.rotation);
                     AudioManager.PlaySound2D("Stygian Desolator").Play();
                     go.GetComponent<MagicBehaviour>().isHit = true;
+                    NetworkManager.SendPlayerMagic("Stygian Desolator", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
                 }
 
             }

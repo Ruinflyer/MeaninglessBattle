@@ -134,7 +134,7 @@
             "ItemID": 310,
             "ItemName": "爪",
             "ResName": "Claw",
-            "OccurrenceProbability": 0.27,
+            "OccurrenceProbability": 0.14,
             "itemType": 0,
           "weaponProperties": {
             "weaponType": 3,
@@ -147,7 +147,7 @@
             "ItemID": 311,
             "ItemName": "斧头",
             "ResName": "Axe",
-            "OccurrenceProbability": 0.27,
+            "OccurrenceProbability": 0.14,
             "itemType": 0,
           "weaponProperties": {
             "weaponType": 3,
@@ -160,7 +160,7 @@
             "ItemID": 312,
             "ItemName": "手指虎",
             "ResName": "Knuckles",
-            "OccurrenceProbability": 0.28,
+            "OccurrenceProbability": 0.14,
             "itemType": 0,
           "weaponProperties": {
             "weaponType": 3,
@@ -173,11 +173,11 @@
             "ItemID": 313,
             "ItemName": "长矛",
             "ResName": "Spear",
-            "OccurrenceProbability": 0.21,
+            "OccurrenceProbability": 0.30,
             "itemType": 0,
           "weaponProperties": {
             "weaponType": 4,
-            "Damage": 95.0,
+            "Damage": 45.0,
             "weaponLength": 2.2,
             "CDTime": 0.0
           }
@@ -186,11 +186,11 @@
             "ItemID": 314,
             "ItemName": "耙",
             "ResName": "Rake",
-            "OccurrenceProbability": 0.22,
+            "OccurrenceProbability": 0.30,
             "itemType": 0,
           "weaponProperties": {
             "weaponType": 4,
-            "Damage": 80.0,
+            "Damage": 40.0,
             "weaponLength": 2,
             "CDTime": 0.0
           }
@@ -250,7 +250,7 @@
             "ItemID": 103,
             "ItemName": "绿帽头盔",
             "ResName": "Helmet_Green",
-            "OccurrenceProbability": 0.20,
+            "OccurrenceProbability": 0,
             "itemType": 1,
             "armorProperties": {
                 "armorType": 1,
@@ -284,7 +284,7 @@
             "ItemID": 200,
             "ItemName": "休闲便服",
             "ResName": "Armor_Casual",
-            "OccurrenceProbability": 0.28,
+            "OccurrenceProbability": 0,
             "itemType": 1,
             "armorProperties": {
                 "armorType": 2,
@@ -567,7 +567,7 @@
             "ItemID": 602,
             "ItemName": "黯灭",
             "ResName": "Stygian_Desolator",
-            "OccurrenceProbability": 0.12,
+            "OccurrenceProbability": 0.20,
             "itemType": 3,
             "magicProperties":{
                 "magicType":3,
@@ -581,7 +581,7 @@
             "ItemID": 603,
             "ItemName": "冰结之箭",
             "ResName": "IceArrow",
-            "OccurrenceProbability": 0.12,
+            "OccurrenceProbability": 0.20,
             "itemType": 3,
             "magicProperties":{
                 "magicType":4,
@@ -595,7 +595,7 @@
             "ItemID": 604,
             "ItemName": "初心之箭",
             "ResName": "ChoshimArrow",
-            "OccurrenceProbability": 0.12,
+            "OccurrenceProbability": 0.20,
             "itemType": 3,
             "magicProperties":{
                 "magicType":5,
@@ -609,7 +609,7 @@
             "ItemID": 605,
             "ItemName": "皇后杀手",
             "ResName": "KillerQueen",
-            "OccurrenceProbability": 0.12,
+            "OccurrenceProbability": 0,
             "itemType": 3,
             "magicProperties":{
                 "magicType":6,
@@ -623,11 +623,11 @@
             "ItemID": 606,
             "ItemName": "迅雷",
             "ResName": "Thunderbolt",
-            "OccurrenceProbability": 0.12,
+            "OccurrenceProbability": 0.30,
             "itemType": 3,
             "magicProperties":{
                 "magicType":7,
-                "Damage":60,
+                "Damage":40,
                 "Probability":0,
                 "UsableCount":2,
                 "CDTime":20

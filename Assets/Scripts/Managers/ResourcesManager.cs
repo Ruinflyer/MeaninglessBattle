@@ -43,14 +43,18 @@ public class ResourcesManager : Mono_DDOLSingleton<ResourcesManager>
     /// </summary>
     public void LoadUITextures()
     {
-        Dict_UITex = new Dictionary<string, Sprite>();
-        BundleConf bundleConf = MeaninglessJson.LoadJsonFromFile<BundleConf>(Application.dataPath + "/StreamingAssets/" + "BC_UITextures.json");
-        AssetBundle ab = AssetBundle.LoadFromFile(Application.dataPath + "/StreamingAssets/" + bundleConf.BundlePath);
-        UnityEngine.U2D.SpriteAtlas spriteAtlas = ab.LoadAsset<UnityEngine.U2D.SpriteAtlas>("BagIcon");
-        foreach (string str in bundleConf.ResName)
+        if(Dict_UITex==null)
         {
-            Dict_UITex.Add(str, spriteAtlas.GetSprite(str));
+            Dict_UITex = new Dictionary<string, Sprite>();
+            BundleConf bundleConf = MeaninglessJson.LoadJsonFromFile<BundleConf>(Application.dataPath + "/StreamingAssets/" + "BC_UITextures.json");
+            AssetBundle ab = AssetBundle.LoadFromFile(Application.dataPath + "/StreamingAssets/" + bundleConf.BundlePath);
+            UnityEngine.U2D.SpriteAtlas spriteAtlas = ab.LoadAsset<UnityEngine.U2D.SpriteAtlas>("BagIcon");
+            foreach (string str in bundleConf.ResName)
+            {
+                Dict_UITex.Add(str, spriteAtlas.GetSprite(str));
+            }
         }
+        
     }
     public Sprite GetUITexture(string textureName)
     {
@@ -150,11 +154,15 @@ public class ResourcesManager : Mono_DDOLSingleton<ResourcesManager>
     /// </summary>
     public void LoadSceneAndGetSceneName()
     {
-        AssetBundle ab = AssetBundle.LoadFromFile(Application.dataPath + "/StreamingAssets/scene.ab");
-        string[] scenePath = ab.GetAllScenePaths();
-        string SceneName = System.IO.Path.GetFileNameWithoutExtension(scenePath[0]);
+        if(sceneName=="")
+        {
+            AssetBundle ab = AssetBundle.LoadFromFile(Application.dataPath + "/StreamingAssets/scene.ab");
+            string[] scenePath = ab.GetAllScenePaths();
+            string SceneName = System.IO.Path.GetFileNameWithoutExtension(scenePath[0]);
 
-        sceneName= SceneName;
+            sceneName = SceneName;
+        }
+      
     }
 
 }

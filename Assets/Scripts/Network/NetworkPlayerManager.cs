@@ -23,6 +23,7 @@ public class NetworkPlayerManager : MonoBehaviour
         NetworkManager.AddEventListener("PlayerMagic",OnPlayerMagicBack);
         NetworkManager.AddEventListener("PlayerSuccess", OnPlayerSuccess);
         NetworkManager.AddEventListener("PlayerDead", OnPlayerDead);
+        NetworkManager.AddEventListener("PlayerGetBuff", OnPlayerGetBuff);
     }
 
     // Update is called once per frame
@@ -49,7 +50,6 @@ public class NetworkPlayerManager : MonoBehaviour
         float rotX = p.GetFloat(startIndex, ref startIndex);
         float rotY = p.GetFloat(startIndex, ref startIndex);
         float rotZ = p.GetFloat(startIndex, ref startIndex);
-        int AttackID= p.GetInt(startIndex, ref startIndex);
         string CurrentAction = p.GetString(startIndex, ref startIndex);
 
         //自己的消息
@@ -60,7 +60,7 @@ public class NetworkPlayerManager : MonoBehaviour
 
         if (ScenePlayers.ContainsKey(playerName))
         {
-            ScenePlayers[playerName].SetPlayerInfo(HP, AttackID, CurrentAction);
+            ScenePlayers[playerName].SetPlayerInfo(HP, CurrentAction);
             ScenePlayers[playerName].SetPlayerTransform(posX, posY, posZ, rotX, rotY, rotZ);
         }
     }
@@ -157,6 +157,7 @@ public class NetworkPlayerManager : MonoBehaviour
             param[1] = "你被 "+KillerName+" 击杀";
             param[2] = " ";
             MessageCenter.Send_Multparam(EMessageType.FinishUI,param);
+            CameraBase.Instance.isFollowing = false;
             return;
         }
 
@@ -171,12 +172,17 @@ public class NetworkPlayerManager : MonoBehaviour
         string KilledPlayerName = p.GetString(startIndex, ref startIndex);
         if(KilledPlayerName==NetworkManager.PlayerName)
         {
-            UIManager.Instance.ShowUI(UIid.FinishUI);
-            object[] param = new object[3];
-            param[0] = "无畏之争，无谓之争";
-            param[1] = "你被暗影毒杀";
-            param[2] = " ";
-            MessageCenter.Send_Multparam(EMessageType.FinishUI, param);
+            if(CameraBase.Instance.isEscape==false)
+            {
+                UIManager.Instance.ShowUI(UIid.FinishUI);
+                object[] param = new object[3];
+                param[0] = "无畏之争，无谓之争";
+                param[1] = "你被暗影毒杀";
+                param[2] = " ";
+                MessageCenter.Send_Multparam(EMessageType.FinishUI, param);
+                CameraBase.Instance.isFollowing = false;
+            }
+            
         }
         DelPlayer(KilledPlayerName);
     }
@@ -191,6 +197,7 @@ public class NetworkPlayerManager : MonoBehaviour
         param[1] = "今晚不会有人抢你的鸡吃了";
         param[2] = "胜利者 ";
         MessageCenter.Send_Multparam(EMessageType.FinishUI, param);
+        CameraBase.Instance.isFollowing = false;
     }
     private void OnPlayerEquipHelmet(BaseProtocol protocol)
     {
@@ -248,5 +255,19 @@ public class NetworkPlayerManager : MonoBehaviour
         float rotZ = p.GetFloat(startIndex, ref startIndex);
         
         NetPoolManager.Instantiate(MagicName,new Vector3(posX,posY,posZ), Quaternion.Euler(rotX, rotY, rotZ));
+    }
+    private void OnPlayerGetBuff(BaseProtocol protocol)
+    {
+        BytesProtocol p = protocol as BytesProtocol;
+        int startIndex = 0;
+        p.GetString(startIndex, ref startIndex);
+        string playerName= p.GetString(startIndex,ref startIndex);
+        int bufftype=p.GetInt(startIndex, ref startIndex);
+        float buffTime=p.GetFloat(startIndex,ref startIndex);
+
+        if(playerName==NetworkManager.PlayerName)
+        {
+            CameraBase.Instance.player.GetComponent<PlayerController>().GetDeBuffInTime((BuffType)bufftype,buffTime, BagManager.Instance.characterStatus);
+        }
     }
 }

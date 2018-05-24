@@ -68,6 +68,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 2d399f5b117c2e644986a5403b4d1d8a, type: 3}
   - {fileID: 21300000, guid: 66ff2d09e94de194fa43f75e4feaefa6, type: 3}
   - {fileID: 21300000, guid: cbed0dd40e6c36943a196f3504736d70, type: 3}
+  - {fileID: 21300000, guid: 902f550ca264ec94abc01101e973f4a1, type: 3}
   - {fileID: 21300000, guid: af8c6d9f5aec5a14da8cd4cf277ed86e, type: 3}
   - {fileID: 21300000, guid: 651d70b1581ca2746a89aa74a4ddaad0, type: 3}
   - {fileID: 21300000, guid: ad323473572f3c145acd43f0b112741d, type: 3}
@@ -115,6 +116,7 @@ SpriteAtlas:
   - IronShield
   - Stygian_Desolator
   - Crystal_Magic
+  - forgehammer
   - Mace
   - Armor_Chain
   - Armor_Casual

@@ -23,6 +23,7 @@ public class ChoshimArrowState : FSMState
                     GameObject go = NetPoolManager.Instantiate("Choshim Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
                     AudioManager.PlaySound2D("Arrow").Play();
                     go.GetComponent<MagicBehaviour>().isHit = true;
+                    NetworkManager.SendPlayerMagic("Choshim Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
                 }
 
             }
@@ -37,6 +38,7 @@ public class ChoshimArrowState : FSMState
                     GameObject go = NetPoolManager.Instantiate("Choshim Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
                     AudioManager.PlaySound2D("Arrow").Play();
                     go.GetComponent<MagicBehaviour>().isHit = true;
+                    NetworkManager.SendPlayerMagic("Choshim Arrow", GameTool.FindTheChild(FSM.gameObject, "RigLArmPalmGizmo").position, FSM.transform.rotation);
                 }
             }
     }

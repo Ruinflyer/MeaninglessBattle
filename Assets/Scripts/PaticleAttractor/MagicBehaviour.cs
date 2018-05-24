@@ -64,6 +64,7 @@ public class MagicBehaviour : MonoBehaviour
             if (player.CheckCanAttack(gameObject, enemy.Value.gameObject, distance, angle))
             {
                 NetworkManager.SendPlayerHitSomeone(enemy.Value.name, BagManager.Instance.GetCharacterStatus().Attack_Magic * (1 - enemy.Value.status.Defend_Magic / 100));
+
             }
         }
     }
@@ -74,7 +75,7 @@ public class MagicBehaviour : MonoBehaviour
         {
             if (player.CheckCanAttack(gameObject, enemy.Value.gameObject, distance, angle))
             {
-                enemy.Value.playerController.GetDeBuffInTime(BuffType.Freeze, buffTime, enemy.Value.status);
+                NetworkManager.SendPlayerGetBuff(enemy.Value.PlayerName,BuffType.Freeze,buffTime);
 
             }
         }
@@ -86,8 +87,7 @@ public class MagicBehaviour : MonoBehaviour
         {
             if (player.CheckCanAttack(gameObject, enemy.Value.gameObject, distance, angle))
             {
-                //本地效果
-                enemy.Value.playerController.GetDeBuffInTime(BuffType.Blind, buffTime, enemy.Value.status);
+                NetworkManager.SendPlayerGetBuff(enemy.Value.PlayerName, BuffType.Blind, buffTime);
             }
         }
     }
@@ -98,8 +98,7 @@ public class MagicBehaviour : MonoBehaviour
         {
             if (player.CheckCanAttack(gameObject, enemy.Value.gameObject, distance, angle))
             {
-                //本地效果
-                enemy.Value.playerController.GetDeBuffInTime(BuffType.SlowDown, buffTime, enemy.Value.status);
+                NetworkManager.SendPlayerGetBuff(enemy.Value.PlayerName, BuffType.SlowDown, buffTime);
             }
         }
     }
